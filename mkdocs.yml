@@ -1,0 +1,56 @@
+repo_url: https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-PortalEntreAmigos
+repo_name: 2026.1-Grupo01
+
+site_name: Projeto de Requisitos de Software - Grupo 01
+site_description: Documentação do Projeto de Requisitos de Software - Grupo 01
+site_author: Grupo 01 - 2026.1
+
+nav:
+  - Home: index.md
+  
+  - Cenério Atual do Cliente e do Negócio: 
+    - Introdução ao Negócio e ao Cliente: 01_Cliente/intro.md
+    - Rich Picture: 01_Cliente/rich_picture.md
+    - Desafios do Projeto: 01_Cliente/desafios.md
+    - Mapa de Stakeholders: 01_Cliente/mapa_stakeholders.md
+    - Segmentação de Clientes: 01_Cliente/segmentacao.md
+
+  - Propostas de Solução: 02_solucao/solucao.md
+
+
+
+
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.top
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: teal
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Modo Noturno
+    - scheme: slate
+      primary: cyan
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Modo Claro
+
+
+markdown_extensions:
+  - pymdownx.emoji
+  - pymdownx.tasklist
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+  - attr_list
