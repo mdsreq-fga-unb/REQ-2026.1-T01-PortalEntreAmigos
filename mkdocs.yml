@@ -15,7 +15,10 @@ nav:
     - Mapa de Stakeholders: 01_Cliente/mapa_stakeholders.md
     - Segmentação de Clientes: 01_Cliente/segmentacao.md
 
-  - Propostas de Solução: 02_solucao/solucao.md
+  - Solução Proposta: 
+    - Objetivo: 02_solucao/objetivo.md
+    - Características do Produto: 02_solucao/produto.md
+    - Tecnologias a Serem Utilizadas: 02_solucao/tecnologias.md
 
 
 theme:
