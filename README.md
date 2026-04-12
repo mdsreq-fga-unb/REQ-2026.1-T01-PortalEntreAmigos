@@ -3,6 +3,7 @@
 <p align="center">
     <img src="docs/00_assets/imagens/logo_2.png" alt="Logo Ação Entre Amigos">
 </p>
+Fonte: Elaborada pelo Grupo
 
 Bem-vindo ao repositório do **Grupo 01**, da disciplina **Requisitos de Software (2026.1)**, da Universidade de Brasília (FCTE-UnB). Nosso ambiente de documentação está hospedado usando **MkDocs**, e está disponível online em: [https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/](https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/)
 

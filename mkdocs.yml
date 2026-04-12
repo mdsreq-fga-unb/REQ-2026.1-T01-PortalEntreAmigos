@@ -8,17 +8,14 @@ site_author: Grupo 01 - 2026.1
 nav:
   - Home: index.md
   
-  - Cenério Atual do Cliente e do Negócio: 
-    - Introdução ao Negócio e ao Cliente: 01_Cliente/intro.md
+  - Cliente e Negócio: 
+    - Introdução ao Cliente e Negócio: 01_Cliente/intro.md
     - Rich Picture: 01_Cliente/rich_picture.md
     - Desafios do Projeto: 01_Cliente/desafios.md
     - Mapa de Stakeholders: 01_Cliente/mapa_stakeholders.md
     - Segmentação de Clientes: 01_Cliente/segmentacao.md
 
   - Propostas de Solução: 02_solucao/solucao.md
-
-
-
 
 
 theme:
@@ -31,14 +28,14 @@ theme:
     - search.highlight
   palette:
     - scheme: default
-      primary: teal
-      accent: indigo
+      primary: blue
+      accent: blue
       toggle:
         icon: material/weather-night
         name: Modo Noturno
     - scheme: slate
-      primary: cyan
-      accent: indigo
+      primary: green
+      accent: light blue
       toggle:
         icon: material/weather-sunny
         name: Modo Claro
