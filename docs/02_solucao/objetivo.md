@@ -2,7 +2,7 @@
 
 ## Objetivo Geral do Produto
 
-texto ainda indefinido
+O objetivo geral do produto é combater a descentralização e informalidade da comunicação e do controle de doações. O sistema elimina os gargalos logísticos sofridos pela ONG, aumenta a eficiência na conversão das promessas de doação e garante transparência na prestação de contas
 
 ## Objetivos Específicos (OE) do Produto
 
