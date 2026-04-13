@@ -19,6 +19,18 @@ nav:
     - Objetivo: 02_solucao/objetivo.md
     - Características do Produto: 02_solucao/produto.md
     - Tecnologias a Serem Utilizadas: 02_solucao/tecnologias.md
+    - Pesquisa de Mercado: 02_solucao/pesquisa_mercado.md
+    - Viabilidade e Benefícios: 02_solucao/viabilidade.md
+
+  - Estratégias: 03_estrategia/estrategias.md
+
+  - Engenharia de Requisitos: 04_engenharia_requisitos/engenharia_requisitos.md
+
+  - Cronograma e Entregas: 05_cronograma/cronograma.md
+
+  - Equipe e Cliente: 06_equipe_cliente/equipe_cliente.md
+
+
 
 
 theme:

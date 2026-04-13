@@ -7,11 +7,9 @@ A imagem a seguir (Figura 1) ilustra o fluxo atual de organização de eventos e
 O principal gargalo operacional ocorre neste momento: o moderador precisa ler cada mensagem, extrair a promessa de doação e registrar manualmente em uma planilha do Excel para calcular o progresso das metas. Posteriormente, quando o doador entrega o mantimento no ponto de coleta, o moderador realiza uma nova conferência e anotação manual na planilha para confirmar a entrada no estoque. Esse ecossistema dependente do trabalho manual e fragmentado entre o WhatsApp e o Excel gera ineficiências logísticas, dificulta a visibilidade das metas em tempo real e atrasa a prestação de contas, evidenciando a oportunidade de centralização em uma plataforma dedicada.
 
 
-<p align="center">
-    <img src="/00_assets/imagens/richpicture.png" alt="Rich Picture">
-</p>
+![Rich Picture](../00_assets/imagens/richpicture.png)
 
-Figura 1: Rich Picture
+Figura 1 : Rich Picture
 
 Fonte: Elaborada com ajuda de inteligência artificial
 

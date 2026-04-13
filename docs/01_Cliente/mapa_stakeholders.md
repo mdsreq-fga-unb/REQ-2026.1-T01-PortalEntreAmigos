@@ -1,8 +1,6 @@
 # Mapa de Stakeholder
 
-<p align="center">
-    <img src="/00_assets/imagens/stakeholder.png" alt="Mapa de Stakeholder">
-</p>
+![Mapa de Stakeholder](../00_assets/imagens/stakeholder.png)
 
 Figura 1: Mapa de Stakeholder
 

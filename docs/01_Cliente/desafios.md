@@ -5,9 +5,7 @@
 O problema central da ONG reside na descentralização e informalidade da comunicação e do controle de doações, realizados majoritariamente por de grupos em aplicativos de troca de mensagem (WhatsApp) e registros manuais em planilhas. Esse modelo gera alto retrabalho operacional, pois o moderador precisa interpretar cada mensagem, registrar promessas manualmente e atualizar o estoque em múltiplos momentos. Além disso, a baixa rastreabilidade dos dados dificulta o acompanhamento das metas de arrecadação em tempo real.
 Como consequência, a ONG enfrenta ineficiência logística, risco de inconsistências no estoque físico versus digital e dificuldade na prestação de contas. 
 
-<p align="center">
-    <img src="/00_assets/imagens/problema.png" alt="Mapa Identificação de Problema">
-</p>
+![Mapa Identificação de Problema](../00_assets/imagens/problema.png)
 
 Figura 1: Mapa Identificação de Problema
 
