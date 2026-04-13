@@ -1,6 +1,7 @@
 repo_url: https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/
 repo_name: 2026.1-Grupo01
 
+site_url: https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/
 site_name: Projeto de Requisitos de Software - Grupo 01
 site_description: Documentação do Projeto de Requisitos de Software - Grupo 01
 site_author: Grupo 01 - 2026.1
@@ -35,6 +36,8 @@ nav:
 
 theme:
   name: material
+  logo: 00_assets/imagens/logo_1.png
+  favicon: 00_assets/imagens/logo_2.png
   features:
     - navigation.instant
     - navigation.tabs
