@@ -19,7 +19,7 @@ Caso queira ver ou editar a documentação localmente:
 ### Clone este repositório:
    ```bash
    git clone https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-PortalEntreAmigos.git
-   cd 2025.2-Grupo02
+   cd projeto_grupo01_2026.1
 
 # Acesse a pasta do projeto
 cd repositorio
