@@ -31,6 +31,19 @@ nav:
 
   - Equipe e Cliente: 06_equipe_cliente/equipe_cliente.md
 
+  - Licoes Aprendidas:
+    - Unidade 1: 10_licoes/Unidades/unidade_01.md
+
+  - Reuniões:
+    - Gravações: 12_reunioes/gravacoes.md
+    - Atas:
+        - Ata de Reunião em Grupo:
+            - Ata de Reunião 1: 12_reunioes/atas/grupo/ata_grupo_01.md
+            - Ata de Reunião 2: 12_reunioes/atas/grupo/ata_grupo_02.md
+            - Ata de Reunião 3: 12_reunioes/atas/grupo/ata_grupo_03.md
+        - Ata de Reunião com o Cliente:
+            - Ata de Reunião 1: 12_reunioes/atas/cliente/ata_cliente_01.md
+
 
 
 
