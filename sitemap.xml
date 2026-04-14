@@ -2,62 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/01_Cliente/desafios/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/01_Cliente/intro/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/01_Cliente/mapa_stakeholders/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/01_Cliente/rich_picture/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/01_Cliente/segmentacao/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/02_solucao/objetivo/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/02_solucao/pesquisa_mercado/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/02_solucao/produto/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/02_solucao/tecnologias/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/02_solucao/viabilidade/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/03_estrategia/estrategias/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/04_engenharia_requisitos/engenharia_requisitos/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/05_cronograma/cronograma/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
          <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/06_equipe_cliente/equipe_cliente/</loc>
-         <lastmod>2026-04-13</lastmod>
+         <lastmod>2026-04-14</lastmod>
+    </url>
+    <url>
+         <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/10_licoes/Unidades/unidade_01/</loc>
+         <lastmod>2026-04-14</lastmod>
+    </url>
+    <url>
+         <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/12_reunioes/gravacoes/</loc>
+         <lastmod>2026-04-14</lastmod>
+    </url>
+    <url>
+         <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/12_reunioes/atas/cliente/ata_cliente_01/</loc>
+         <lastmod>2026-04-14</lastmod>
+    </url>
+    <url>
+         <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/12_reunioes/atas/grupo/ata_grupo_01/</loc>
+         <lastmod>2026-04-14</lastmod>
+    </url>
+    <url>
+         <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/12_reunioes/atas/grupo/ata_grupo_02/</loc>
+         <lastmod>2026-04-14</lastmod>
+    </url>
+    <url>
+         <loc>https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/12_reunioes/atas/grupo/ata_grupo_03/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
 </urlset>
