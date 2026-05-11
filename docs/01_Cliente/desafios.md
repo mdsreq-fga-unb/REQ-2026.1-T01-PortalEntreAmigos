@@ -2,8 +2,9 @@
 
 ## Identificação do Problema / Oportunidade
 
-O problema central da ONG reside na descentralização e informalidade da comunicação e do controle de doações, realizados majoritariamente por de grupos em aplicativos de troca de mensagem (WhatsApp) e registros manuais em planilhas. Esse modelo gera alto retrabalho operacional, pois o moderador precisa interpretar cada mensagem, registrar promessas manualmente e atualizar o estoque em múltiplos momentos. Além disso, a baixa rastreabilidade dos dados dificulta o acompanhamento das metas de arrecadação em tempo real.
-Como consequência, a ONG enfrenta ineficiência logística, risco de inconsistências no estoque físico versus digital e dificuldade na prestação de contas. 
+O problema central da ONG reside na **falta de estruturação da gestão operacional** de campanhas e doações: **planejamento de necessidades**, **acompanhamento do que foi prometido e do que foi efetivamente recebido**, e **consolidação de informações para prestação de contas** ainda dependem em grande medida de **processos informais** (mensagens em aplicativos como WhatsApp) e de **registros manuais** em planilhas. Esse modelo gera alto retrabalho operacional, pois a equipe precisa interpretar mensagens, registrar intenções de doação manualmente e atualizar controles em múltiplos momentos. Além disso, a baixa rastreabilidade dos dados dificulta o acompanhamento das metas de arrecadação de forma confiável e compartilhada.
+
+Como consequência, a ONG enfrenta **ineficiência na logística** de arrecadação e distribuição, **risco de inconsistências** entre o controle digital e o estoque físico e **dificuldade na prestação de contas** com clareza e agilidade.
 
 ![Mapa Identificação de Problema](../00_assets/imagens/problema.png)
 
@@ -25,3 +26,4 @@ O desenvolvimento e a implantação deste produto enfrentam três desafios princ
 | Versão |    Data    | Descrição  | Autor(es) | Revisor(es)|
 | :----: | :--------: | :--------- | :-------: | :---------: |
 |  1.0   | 12/04/2026 | Criação da página    |  [Guilherme](https://github.com/GuilhermeOliveira1327)  | [Gustavo](https://github.com/GUGOFO) |
+|  1.1   | 11/05/2026 | Revisão da declaração do problema: ênfase em gestão operacional e rastreabilidade (alinhamento ao feedback docente). | [Kaio Amoury](https://github.com/KaioAmouryUnB) | Equipe |

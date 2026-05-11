@@ -2,9 +2,9 @@
 
 ## Introdução
 
-A imagem a seguir (Figura 1) ilustra o fluxo atual de organização de eventos e arrecadação da Ação Entre Amigos BSB. Atualmente, o processo é centralizado na figura do moderador e sustentado por ferramentas genéricas. O fluxo se inicia com o anúncio das necessidades do evento em um grupo de WhatsApp. A partir daí, os voluntários engajam de duas maneiras: realizando transferências financeiras diretas via PIX (cujo valor é integralmente convertido para as necessidades do evento) ou enviando mensagens no chat com "promessas" de doação de itens físicos (como alimentos ou produtos de higiene).
+A imagem a seguir (Figura 1) ilustra o **fluxo atual de gestão** de eventos e arrecadação da Ação Entre Amigos BSB. O trabalho permanece **concentrado na figura do moderador** e apoiado em **ferramentas genéricas** (grupo de WhatsApp e planilha). O fluxo se inicia com o anúncio das necessidades do evento no WhatsApp; em seguida, os voluntários contribuem com transferências via PIX ou com mensagens no chat indicando intenção de doação de itens físicos (por exemplo, alimentos ou produtos de higiene).
 
-O principal gargalo operacional ocorre neste momento: o moderador precisa ler cada mensagem, extrair a promessa de doação e registrar manualmente em uma planilha do Excel para calcular o progresso das metas. Posteriormente, quando o doador entrega o mantimento no ponto de coleta, o moderador realiza uma nova conferência e anotação manual na planilha para confirmar a entrada no estoque. Esse ecossistema dependente do trabalho manual e fragmentado entre o WhatsApp e o Excel gera ineficiências logísticas, dificulta a visibilidade das metas em tempo real e atrasa a prestação de contas, evidenciando a oportunidade de centralização em uma plataforma dedicada.
+O principal gargalo operacional ocorre na **consolidação e no registro**: o moderador precisa ler cada mensagem, extrair a intenção de doação e lançar manualmente em planilha para acompanhar o progresso das metas. Depois, na entrega no ponto de coleta, há nova conferência e anotação manual para refletir a entrada no estoque. Esse ecossistema **fragmentado** entre conversas e planilha gera ineficiências logísticas, dificulta o **acompanhamento confiável** das metas e atrasa a prestação de contas, evidenciando a oportunidade de uma **plataforma dedicada à gestão** dessas informações.
 
 
 ![Rich Picture](../00_assets/imagens/richpicture.png)
@@ -18,3 +18,4 @@ Fonte: Elaborada com ajuda de inteligência artificial
 | Versão |    Data    | Descrição  | Autor(es) | Revisor(es)|
 | :----: | :--------: | :--------- | :-------: | :---------: |
 |  1.0   | 12/04/2026 | Criação da página    |  [Guilherme](https://github.com/GuilhermeOliveira1327)  | [Gustavo](https://github.com/GUGOFO) |
+|  1.1   | 11/05/2026 | Ajuste de redação na introdução (gestão e registro vs. foco em “comunicação”). | [Kaio Amoury](https://github.com/KaioAmouryUnB) | Equipe |
