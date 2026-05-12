@@ -8,7 +8,7 @@
 | Gerente de Projetos | Encarregado de monitorar o cronograma, mitigar riscos e facilitar a comunicação entre os membros do grupo e os stakeholders externos.| Guilherme |  | 
 | Desenvolvedor Front-end | Cuida do desenvolvimento da interface do usuário, garantindo o design e a implementação das funcionalidades no lado do cliente | Leonardo | Kaio | 
 | Desenvolvedor Back-end | Implementa a lógica de negócios, integração com banco de dados e API’s.| Edson| Arthur | 
-| Analista de Requisitos | Responsável pela elicitação de necessidades, criação Rich Pictures e garantia de que os critérios de aceite atendam às dores logísticas da ONG. | Gustavo | Guilherme | 
+| Analista de Requisitos | Responsável pela elicitação de necessidades, criação Rich Pictures e garantia de que os critérios de aceite atendam às dores logísticas da ONG. | Toda a Equipe |  | 
 
 ## Comunicação 
 
@@ -28,19 +28,29 @@
 
 ## Processo de Validação
 
-### Validação interna da equipe
+### Validação Interna da Equipe
 
-A equipe de desenvolvimento irá realizar revisões e testes internos ao final de cada ciclo de desenvolvimento, com o objetivo de garantir a qualidade do código, a funcionalidade de cada recurso e o alinhamento com as especificações do projeto. Isso inclui:
+A equipe de desenvolvimento realizará revisões e testes internos ao final de cada ciclo, garantindo a qualidade técnica antes da exposição ao cliente.
 
-- **Testes de funcionalidade**: verificação se cada botão, link ou formulário está funcionando corretamente.
+- **Testes de Funcionalidade**: Verificação rigorosa de botões, formulários e fluxos de navegação para garantir que operem conforme os critérios de aceite.
 
-- **Revisão de código**: feito pelos desenvolvedores da equipe para garantir que esteja limpo, otimizado e livre de erros.
+- **Revisão de Código**: Auditoria entre pares (*peer review*) para assegurar a manutenibilidade, otimização e segurança dos dados da ONG.
 
-### Validação com o cliente
+### Validação com o Cliente (Foco em Design e Usabilidade)
 
-- **Demonstração por Iteração**: Ao final de cada ciclo (ex: entrega do módulo de "Vitrine de Necessidades"), o protótipo funcional é apresentado ao moderador Carlos Vaz para validação de usabilidade.
+Diferente de modelos tradicionais, o cliente participará de forma contínua, com foco especial na concepção visual e funcional do sistema.
 
-- **Teste de Aceitação do Usuário (UAT)**: Simulação de um evento real de arrecadação onde o moderador realiza a baixa de itens físicos e gera relatórios automatizados, confirmando se o sistema substitui com sucesso as planilhas manuais e mitiga erros logísticos.
+- **Design Colaborativo (Co-criação)**: Antes da implementação do código, serão realizados workshops de design (sessões JAD) com Carlos Vaz. O objetivo é desenhar interfaces e fluxos — como o processo de baixa de itens — em conjunto, garantindo aderência à realidade operacional da ONG.
+
+- **Demonstração por Incremento**: Ao longo de cada iteração, e não apenas ao final, incrementos funcionais do protótipo serão apresentados para validação e ajustes rápidos, evitando retrabalho no encerramento do ciclo.
+
+### Teste de Aceitação do Usuário (UAT)
+
+O UAT será o marco final de validação da solução, no qual o representante da ONG confirmará se o sistema está apto para substituir os processos manuais atualmente utilizados.
+
+- **Simulação de Cenário Real**: Carlos Vaz realizará uma operação simulada completa, desde o anúncio de uma necessidade até a baixa física do item no estoque e a geração automática do relatório de transparência.
+
+- **Critério de Sucesso**: O sistema será considerado validado caso o moderador consiga concluir o processo de conciliação das doações em menos tempo do que o atualmente gasto utilizando WhatsApp e Excel, mantendo margem de erro nula na integração das informações.
 
 ## Histórico de versão
 

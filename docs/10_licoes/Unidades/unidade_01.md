@@ -2,41 +2,35 @@
 
 ## Unidade 1
 
-Durante o desenvolvimento inicial do projeto Portal Entre Amigos, a equipe passou pelo processo de imersão no problema logístico da ONG Ação Entre Amigos BSB, o que gerou aprendizados cruciais para a definição da estratégia de software e do escopo do sistema. Abaixo estão as lições aprendidas e os desafios superados durante este primeiro ciclo.
+Nesta unidade, a maior dificuldade residiu na transição da visão teórica para a prática operacional da ONG. Abaixo, detalhamos as reflexões críticas sobre o processo.
 
-### Lições Aprendidas e Melhorias para o Processo
+### Dificuldade na Elicitação com Stakeholders Reais
 
-#### Elicitação de Requisitos em Contextos Informais
+- **Desafio**: Inicialmente, a equipe focou em descrever o fluxo da ONG de forma genérica. Porém, durante a construção do Rich Picture, percebeu-se que não havia entendimento suficiente sobre como o moderador Carlos Vaz lidava com a “promessa” versus a “entrega real” das doações.
 
-- **Desafio**: O fluxo atual da ONG é extremamente fragmentado entre mensagens de WhatsApp e planilhas manuais, dificultando a tradução de "conversas" em requisitos técnicos estruturados.
+- **Como foi superada**: Foi realizada uma entrevista complementar focada especificamente no gargalo causado pelo uso do WhatsApp. A equipe aprendeu que ferramentas visuais como o Rich Picture não servem apenas como ilustração, mas também como instrumento de diagnóstico para identificar falhas no entendimento do problema.
 
-- **Ação de Melhoria**: A equipe utilizou a técnica de Rich Picture para visualizar o caos operacional e o gargalo no trabalho do moderador Carlos Vaz. Isso permitiu identificar que o foco principal deve ser a automação da "baixa" de itens, e não apenas o registro de doações.
+### Conflito de Metodologia (RAD vs. Disciplina Acadêmica)
 
-#### Definição da Estratégia de Desenvolvimento (RAD vs. XP)
+- **Desafio**: No início do projeto, o grupo tentou seguir o processo RAD priorizando apenas a velocidade de desenvolvimento, o que resultou em requisitos superficiais.
 
-- **Desafio**: Havia uma dúvida inicial sobre adotar práticas rigorosas de engenharia (XP) ou focar na velocidade de prototipagem para validação rápida com o cliente.
+- **Erro identificado**: A fase de planejamento de requisitos foi subestimada, pois a equipe acreditava que poderia avançar diretamente para o design e prototipação. Isso impactou negativamente a definição do MVP, já que as Histórias de Usuário estavam mal estruturadas.
 
-- **Ação de Melhoria**: Após análise, a equipe decidiu pela abordagem Híbrida com processo RAD. O aprendizado foi que, em um contexto acadêmico e de voluntariado, a validação visual constante com o stakeholder é mais eficiente para mitigar a resistência à adoção do sistema do que a disciplina técnica extrema do XP.
+- **Aprendizado**: A equipe concluiu que teria sido mais eficiente aplicar técnicas como User Story Mapping logo na primeira semana, organizando melhor o backlog antes da discussão tecnológica.
 
-### Dificuldades e Ações para Superá-las
+### O Desafio da Sustentabilidade (Custo Zero)
 
-#### Alinhamento da Visão Técnica com Restrição de Custo Zero
+- **Desafio**: Um dos aprendizados mais relevantes foi perceber o impacto do requisito não funcional de “Custo Zero” sobre as decisões arquiteturais do sistema.
 
-- **Desafio**: Um dos maiores desafios foi planejar uma infraestrutura robusta que atendesse aos requisitos de sustentabilidade técnica sem gerar custos para a ONG.
+- **Dificuldade encontrada**: Algumas ferramentas inicialmente consideradas pela equipe possuíam custos incompatíveis com a realidade da ONG.
 
-- **Como foi superada**: A equipe realizou uma pesquisa aprofundada de tecnologias (React, Node.js e MongoDB) que oferecessem planos gratuitos (free tiers) confiáveis. Isso foi documentado como um objetivo específico (OE6) para garantir a sobrevida do projeto após a entrega acadêmica.
+- **Como foi superada**: A equipe priorizou tecnologias com planos gratuitos confiáveis, como MongoDB e Node.js. Essa decisão exigiu adaptações no design técnico para reduzir o consumo de requisições ao banco de dados, demonstrando que a limitação financeira é um requisito tão importante quanto as funcionalidades do sistema.
 
-#### Organização e Sincronização da Equipe de 6 Membros
+### Análise Crítica da Comunicação com o Cliente
 
-- **Desafio**: Sincronizar as agendas de 6 integrantes com diferentes grades horárias e compromissos acadêmicos, garantindo que as decisões técnicas e de requisitos fossem tomadas coletivamente sem atrasar o cronograma.
+- **Desafio**: Durante as reuniões com o stakeholder Carlos Vaz, o uso excessivo de termos técnicos acabou gerando desengajamento e dificuldades na validação das funcionalidades.
 
-- **Como foi superada**: A equipe estabeleceu um cronograma fixo de reuniões semanais via Microsoft Teams, com gravação obrigatória e elaboração de atas para que membros ausentes pudessem se atualizar de forma assíncrona. 
-
-#### Achar um cliente disponível
-
-- **Desafio**: Encontrar um stakeholder real que apresentasse um problema logístico concreto e que possuísse disponibilidade para participar ativamente das sessões de design e validação de protótipos exigidos pelo processo RAD.
-
-- **Como foi superada**: Após prospecção em diferentes setores, a equipe estabeleceu parceria com a ONG Ação Entre Amigos BSB, representada por Carlos Vaz. A identificação de processos críticos operados de forma manual e fragmentada (via Excel e WhatsApp) confirmou a oportunidade de negócio e permitiu focar a engenharia de requisitos em dores reais, como a falta de rastreabilidade e o retrabalho na gestão de doações.
+- **Como foi superada**: A equipe passou a utilizar uma linguagem mais próxima do contexto da ONG e do negócio. Termos técnicos foram substituídos por expressões mais intuitivas, como “Vitrine de Necessidades” em vez de “Frontend de Visualização de Objetos”, facilitando a comunicação e a validação das propostas apresentadas.
 
 ## Histórico de versão
 
