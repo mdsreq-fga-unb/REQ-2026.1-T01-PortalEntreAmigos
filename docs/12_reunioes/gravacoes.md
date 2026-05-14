@@ -1,52 +1,53 @@
-# Vídeos do Projeto
+# Gravações com o Cliente
 
 ## Introdução
 
-Esta página reúne os vídeos produzidos ao longo do desenvolvimento do projeto, incluindo gravações de reuniões da equipe e encontros com o cliente. Esses registros têm como objetivo documentar as decisões tomadas, o alinhamento de expectativas e a evolução das atividades realizadas durante a disciplina.
+Esta página reúne as gravações das reuniões realizadas entre a equipe de desenvolvimento e o representante da ONG Ação Entre Amigos BSB.
+
+Os encontros tiveram como objetivo compreender o contexto da organização, identificar problemas enfrentados pela instituição, levantar requisitos e validar decisões relacionadas ao desenvolvimento da solução proposta.
+
+As gravações também auxiliam na rastreabilidade das informações discutidas ao longo do projeto, contribuindo para maior transparência e alinhamento entre equipe e cliente.
+
+---
 
 ## Reuniões com o Cliente
 
-Nesta seção estão disponíveis as gravações das reuniões realizadas com o cliente, nas quais foram discutidos requisitos, validações e ajustes necessários para o desenvolvimento da solução.
-
 ### Reunião 1
-
 
 <p align="center">
   <iframe width="560" height="315"
     src="https://www.youtube.com/embed/3965ATi-Dng"
-    title="Apresentação Unidade 1"
-    frameborder="0"
-    allowfullscreen>
-  </iframe>
-</p>
-
-
----
-
-## Reuniões da Equipe
-
-Nesta seção estão reunidas as apresentações realizadas ao longo de cada unidade da disciplina. Esses materiais representam a evolução do projeto, evidenciando o progresso das atividades, os resultados obtidos e o desenvolvimento das etapas de Engenharia de Requisitos.
-
-### Unidade 1
-
-<p align="center">
-  <iframe width="560" height="315"
-    src="https://www.youtube.com/embed/Qn6kD7ILfmo"
     title="Reunião com Cliente 1"
     frameborder="0"
     allowfullscreen>
   </iframe>
 </p>
 
+---
+
+### Reunião 2
+
+<p align="center">
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/_MhGfzvSaw8"
+    title="Reunião com Cliente 2"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</p>
 
 ---
 
+
 ## Considerações
 
-Os vídeos apresentados contribuem para a transparência do projeto, permitindo o acompanhamento das decisões e garantindo maior rastreabilidade das atividades realizadas ao longo do desenvolvimento.
+As reuniões com o cliente foram fundamentais para compreender as necessidades reais da ONG e garantir que o desenvolvimento da solução permanecesse alinhado aos objetivos do projeto.
+
+---
 
 ## Histórico de versão
 
-| Versão |    Data    | Descrição  | Autor(es) | Revisor(es)|
-| :----: | :--------: | :--------- | :-------: | :---------: |
-|  1.0   | 12/04/2026 | Criação da página    |  [Guilherme](https://github.com/GuilhermeOliveira1327)  | [Gustavo](https://github.com/GUGOFO) |
+| Versão | Data | Descrição | Autor(es) | Revisor(es)| 
+| :----: | :--------: | :--------- | :-------: | :-------: | 
+| 1.0 | 12/04/2026 | Criação da página | [Guilherme](https://github.com/GuilhermeOliveira1327) | [Gustavo](https://github.com/GUGOFO) |
+| 1.0 | 13/05/2026 | Edição da página | [Guilherme](https://github.com/GuilhermeOliveira1327) | Equipe |

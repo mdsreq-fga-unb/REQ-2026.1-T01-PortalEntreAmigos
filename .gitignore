@@ -1,0 +1,27 @@
+# MkDocs - pasta gerada pelo build, nunca versionar
+site/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Linux
+*~
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
