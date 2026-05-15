@@ -9,30 +9,32 @@ site_author: Grupo 01 - 2026.1
 nav:
   - Home: index.md
   
-  - Cliente e Negócio:
-      - Visão Geral do Cliente: 01_Cliente/visao_geral.md
-      - Análise do Problema: 01_Cliente/analise_problema.md
-      - Stakeholders e Usuários: 01_Cliente/stakeholders.md
+  - Visão Geral do Projeto:
 
-  - Solução Proposta:
-      - Objetivos e Produto: 02_solucao/produto.md
-      - Tecnologias e Viabilidade: 02_solucao/tecnologias_viabilidade.md
+     - Cliente e Negócio:
+        - Visão Geral do Cliente: 01_Cliente/visao_geral.md
+        - Análise do Problema: 01_Cliente/analise_problema.md
+        - Stakeholders e Usuários: 01_Cliente/stakeholders.md
 
-  - Estratégias: 03_estrategia/estrategias.md
+     - Solução Proposta:
+        - Objetivos e Produto: 02_solucao/produto.md
+        - Tecnologias e Viabilidade: 02_solucao/tecnologias_viabilidade.md
 
-  - Engenharia de Requisitos: 04_engenharia_requisitos/engenharia_requisitos.md
+     - Estratégias: 03_estrategia/estrategias.md
 
-  - Cronograma e Entregas: 05_cronograma/cronograma.md
+     - Engenharia de Requisitos: 04_engenharia_requisitos/engenharia_requisitos.md
 
-  - Equipe e Cliente: 06_equipe_cliente/equipe_cliente.md
+     - Cronograma e Entregas: 05_cronograma/cronograma.md
 
-  - Requisitos de Software: 
-    - Elicitação de Requisitos: 13_requisitos/requisitos.md
-    - Priorização de Requisitos: 13_requisitos/priorizacao.md
+     - Equipe e Cliente: 06_equipe_cliente/equipe_cliente.md
 
-  - DoR e DoD: 14_dor_dod/dor_dod.md
+     - Requisitos de Software: 
+       - Elicitação de Requisitos: 13_requisitos/requisitos.md
+       - Priorização de Requisitos: 13_requisitos/priorizacao.md
 
-  - Backlog do Produto: 15_backlog/backlog.md
+     - DoR e DoD: 14_dor_dod/dor_dod.md
+
+     - Backlog do Produto: 15_backlog/backlog.md
 
   - Lições Aprendidas:
     - Unidade 1: 10_licoes/Unidades/unidade_01.md

@@ -36,7 +36,7 @@ A equipe de desenvolvimento realizará revisões e testes internos ao final de c
 
 - **Revisão de Código**: Auditoria entre pares (*peer review*) para assegurar a manutenibilidade, otimização e segurança dos dados da ONG.
 
-### Validação com o Cliente (Foco em Design e Usabilidade)
+### Validação com o Cliente 
 
 Diferente de modelos tradicionais, o cliente participará de forma contínua, com foco especial na concepção visual e funcional do sistema.
 
