@@ -2,7 +2,7 @@
 
 | Data | Horário | Local | Participantes |
 | :--: | :-----: | :---: | :----------:  |
-| 07/04/2026 | 19:30 - 20:30 | Online pelo Microsoft Teams |  Artur Fernandes Galdino, Edson Pereira Roldao Filho, Guilherme Oliveira, Gustavo Gomes Fornaciari, Kaio Amoury Sasaki Acacio, Leonardo de Aquino Silveira Braga | 
+| 07/04/2026 | 19:30 - 20:30 | Online pelo Microsoft Teams | [Artur Fernandes Galdino](https://github.com/ArturFGaldino), [Edson Pereira Roldao Filho](https://github.com/edso-n), [Guilherme Oliveira](https://github.com/GuilhermeOliveira1327), [Gustavo Gomes Fornaciari](https://github.com/GUGOFO), [Kaio Amoury Sasaki Acacio](https://github.com/KaioAmouryUnB), [Leonardo de Aquino Silveira Braga](https://github.com/surpesaiajin) | 
 
 ---
 

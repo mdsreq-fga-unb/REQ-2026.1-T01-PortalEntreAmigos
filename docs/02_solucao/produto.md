@@ -1,26 +1,92 @@
-# Características do Produto
+# Solução Proposta
 
 ## Introdução
 
-As características do produto descritas a seguir representam **capacidades de alto nível** previstas para a solução. Cada característica está associada a um valor de negócio e à contribuição para os objetivos específicos (OE). **Fluxos detalhados de interação, regras de negócio pontuais e decisões de interface** (por exemplo, como o progresso de metas será exibido, ou como a baixa será registrada na prática) serão tratados em **histórias de usuário, requisitos funcionais e não funcionais**, sem misturar esse nível de detalhe com a declaração das CPs.
+A solução proposta tem como objetivo estruturar e centralizar os processos operacionais da ONG Ação Entre Amigos BSB, reduzindo a dependência de ferramentas informais utilizadas atualmente para gerenciamento das campanhas sociais.
 
-## Tabela Características do Produto
+Hoje, grande parte da organização das arrecadações ocorre por meio de aplicativos de mensagens e planilhas preenchidas manualmente, o que gera dificuldades relacionadas ao controle das informações, rastreamento das doações e prestação de contas.
 
-| ID | Característica de Produto (CP) | Descrição | Valor de negócio principal | Contribuição principal | Contribuição secundária |
-| :--: | :--: | :---: | :---: | :---: | :--: |
-| CP1 {#cp01} | Gestão de Eventos e Campanhas | Capacidade para a ONG **planejar e administrar** eventos e campanhas (datas, pontos de coleta, necessidades e **metas de arrecadação** por tipo de contribuição). | Centralizar a definição do que precisa ser arrecadado e onde, em substituição a anúncios longos e dispersos em grupos de mensagens. | [OE1](objetivo.md#oe01) | [OE3](objetivo.md#oe03) |
-| CP2 {#cp02} | Vitrine de Necessidades das Campanhas | Capacidade de **divulgar** campanhas ativas e de **acompanhar o andamento** das arrecadações em relação às metas definidas pela ONG, de forma compreensível para voluntários e equipe. | Reduzir dependência de atualizações manuais repetidas (“o que falta”) e dar clareza sobre o estado de cada campanha. | [OE3](objetivo.md#oe03) | [OE4](objetivo.md#oe04) |
-| CP3 {#cp03} | Registro Formal de Intenção de Doação | Capacidade de **registrar de forma estruturada** a intenção de contribuição (itens físicos e/ou valores), permitindo **antecipar** o que se espera receber antes da entrega nos pontos de coleta. | Melhorar previsibilidade para logística e estoque, formalizando o compromisso fora do fluxo exclusivo de mensagens soltas. | [OE4](objetivo.md#oe04) | [OE1](objetivo.md#oe01) |
-| CP4 {#cp04} | Painel de Recebimento e Baixa | Capacidade, para perfis autorizados, de **conferir** intenções registradas e **registrar o recebimento físico** vinculado aos pontos de coleta, mantendo o registro alinhado à realidade das entregas. | Reduzir planilhas paralelas e retrabalho na conferência entre o prometido e o recebido. | [OE1](objetivo.md#oe01) | [OE5](objetivo.md#oe05) |
-| CP5 {#cp05} | Consolidação e Relatórios de Campanhas | Capacidade de **compilar** informações de campanhas encerradas (previsto x entregue, contribuições relevantes) para apoio à **prestação de contas** e à gestão. | Reduzir esforço manual de consolidação e apoiar transparência com voluntários e partes interessadas. | [OE2](objetivo.md#oe02) | [OE5](objetivo.md#oe05) |
-| CP6 {#cp06} | Perfil e Histórico do Voluntário | Capacidade de manter, para usuários autenticados, **visão do histórico** de participação e do **status** das intenções de doação em andamento. | Fortalecer confiança e continuidade do engajamento, com registro centralizado em vez de disperso em conversas. | [OE5](objetivo.md#oe05) | [OE4](objetivo.md#oe04) |
-| CP7 {#cp07} | Gestão de Acessos e Perfis | Capacidade de **controlar permissões** (por exemplo, voluntário **versus** equipe/moderador), protegendo dados e operações sensíveis da gestão de campanhas e recebimentos. | Assegurar que cada perfil acesse apenas o que lhe compete, em linha com boas práticas de segurança e governança de dados. | [OE1](objetivo.md#oe01) | [OE6](objetivo.md#oe06) |
+Dessa forma, a plataforma proposta busca automatizar processos operacionais, melhorar a organização das campanhas e proporcionar maior eficiência logística e transparência para a ONG e seus voluntários.
 
-**Nota (requisitos não funcionais / viabilidade):** decisões de **arquitetura, hospedagem, provedores e limites de custo** (incluindo a meta de **ausência de custo recorrente** para a ONG) complementam o OE6 e serão documentadas como **RNFs / restrições de projeto**, e não como texto desta tabela de características de produto.
+---
 
-## Histórico de versão
+## Objetivo Geral do Produto
 
-| Versão |    Data    | Descrição  | Autor(es) | Revisor(es)|
-| :----: | :--------: | :--------- | :-------: | :---------: |
-|  1.0   | 12/04/2026 | Criação da página    |  [Guilherme](https://github.com/GuilhermeOliveira1327)  | [Gustavo](https://github.com/GUGOFO) |
-|  1.1   | 11/05/2026 | Revisão das CP: nível de abstração alinhado a CP (remoção de detalhes de UI/RN/arquitetura); CP7 focada em acessos; nota sobre RNFs e OE6. | [Kaio Amoury](https://github.com/KaioAmouryUnB) | Equipe |
+O objetivo geral do produto é centralizar e estruturar a gestão operacional de campanhas e doações da ONG, reduzindo o retrabalho manual e melhorando o controle das informações relacionadas às arrecadações e eventos sociais.
+
+Além disso, a solução busca:
+
+- melhorar a organização das campanhas;
+- facilitar o acompanhamento das arrecadações;
+- aumentar a transparência das ações realizadas;
+- melhorar a prestação de contas;
+- facilitar o acesso às informações pelos voluntários;
+- fortalecer o gerenciamento das doações.
+
+---
+
+## Objetivos Específicos
+
+Os objetivos específicos representam os principais resultados esperados com a implementação da solução.
+
+| ID | Objetivo Específico |
+| :---: | :--- |
+| <a id="oe1"></a>OE1 | Minimizar o esforço manual necessário para acompanhar doações e controlar arrecadações. |
+| <a id="oe2"></a>OE2 | Melhorar a transparência e facilitar a prestação de contas das campanhas sociais. |
+| <a id="oe3"></a>OE3 | Proporcionar maior visibilidade das campanhas, metas e necessidades da ONG. |
+| <a id="oe4"></a>OE4 | Facilitar o engajamento dos voluntários durante as campanhas e eventos. |
+| <a id="oe5"></a>OE5 | Centralizar o histórico e o fluxo das doações em um único ambiente digital. |
+| <a id="oe6"></a>OE6 | Garantir sustentabilidade técnica e operacional com baixo custo de infraestrutura. |
+
+---
+
+## Características do Produto
+
+As características do produto representam funcionalidades e capacidades de alto nível previstas para a solução.
+## Características do Produto
+
+As características do produto representam funcionalidades e capacidades de alto nível previstas para a solução.
+
+| ID | Característica do Produto | Descrição | Objetivos Relacionados |
+| :---: | :--- | :--- | :---: |
+| <a id="cp1"></a>CP1 | Gestão de Eventos e Campanhas | Permitir o cadastro e gerenciamento de campanhas sociais, metas de arrecadação, pontos de coleta e informações relacionadas aos eventos da ONG. | OE1, OE3 |
+| <a id="cp2"></a>CP2 | Vitrine de Necessidades das Campanhas | Disponibilizar uma área para divulgação das campanhas ativas e acompanhamento das metas de arrecadação. | OE3, OE4 |
+| <a id="cp3"></a>CP3 | Registro de Intenção de Doação | Permitir que voluntários registrem suas intenções de doação de maneira estruturada pela plataforma. | OE1, OE4 |
+| <a id="cp4"></a>CP4 | Controle de Recebimento e Estoque | Possibilitar o registro das entregas realizadas e o controle dos itens arrecadados durante as campanhas. | OE1, OE5 |
+| <a id="cp5"></a>CP5 | Relatórios e Prestação de Contas | Consolidar informações financeiras e operacionais para auxiliar na transparência e prestação de contas da ONG. | OE2, OE5 |
+| <a id="cp6"></a>CP6 | Perfil e Histórico do Voluntário | Disponibilizar aos voluntários acesso ao histórico de participação e contribuições realizadas. | OE4, OE5 |
+| <a id="cp7"></a>CP7 | Gestão de Acessos e Permissões | Controlar diferentes níveis de acesso entre administradores, organizadores e voluntários. | OE1, OE6 |
+
+---
+
+## Benefícios Esperados
+
+A implementação da solução busca gerar benefícios operacionais e organizacionais tanto para a ONG quanto para os voluntários envolvidos nas campanhas.
+
+### Benefícios para a ONG
+
+- centralização das informações;
+- redução de retrabalho manual;
+- melhoria da organização das campanhas;
+- maior controle das arrecadações;
+- aumento da transparência;
+- melhoria da prestação de contas;
+- maior eficiência operacional.
+
+### Benefícios para os Voluntários
+
+- acesso facilitado às campanhas;
+- melhor acompanhamento das metas;
+- maior clareza sobre necessidades da ONG;
+- experiência mais organizada durante as contribuições;
+- maior visibilidade das ações realizadas.
+
+---
+
+## Histórico de Versão
+
+| Versão | Data | Descrição | Autor(es) | Revisor(es) |
+| :---: | :---: | :--- | :---: | :---: |
+| 1.0 | 12/04/2026 | Criação das páginas originais | [Guilherme](https://github.com/GuilhermeOliveira1327) | [Gustavo](https://github.com/GUGOFO) |
+| 1.1 | 11/05/2026 | Revisão dos objetivos específicos e características do produto | [Kaio Amoury](https://github.com/KaioAmouryUnB) | Equipe |
+| 2.0 | 13/05/2026 | Consolidação das páginas de solução proposta e características do produto | [Guilherme](https://github.com/GuilhermeOliveira1327) | Equipe |

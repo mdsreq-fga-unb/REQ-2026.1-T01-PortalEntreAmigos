@@ -9,19 +9,14 @@ site_author: Grupo 01 - 2026.1
 nav:
   - Home: index.md
   
-  - Cliente e Negócio: 
-    - Introdução ao Cliente e Negócio: 01_Cliente/intro.md
-    - Rich Picture: 01_Cliente/rich_picture.md
-    - Desafios do Projeto: 01_Cliente/desafios.md
-    - Mapa de Stakeholders: 01_Cliente/mapa_stakeholders.md
-    - Segmentação de Clientes: 01_Cliente/segmentacao.md
+  - Cliente e Negócio:
+      - Visão Geral do Cliente: 01_Cliente/visao_geral.md
+      - Análise do Problema: 01_Cliente/analise_problema.md
+      - Stakeholders e Usuários: 01_Cliente/stakeholders.md
 
-  - Solução Proposta: 
-    - Objetivo: 02_solucao/objetivo.md
-    - Características do Produto: 02_solucao/produto.md
-    - Tecnologias a Serem Utilizadas: 02_solucao/tecnologias.md
-    - Pesquisa de Mercado: 02_solucao/pesquisa_mercado.md
-    - Viabilidade e Benefícios: 02_solucao/viabilidade.md
+  - Solução Proposta:
+      - Objetivos e Produto: 02_solucao/produto.md
+      - Tecnologias e Viabilidade: 02_solucao/tecnologias_viabilidade.md
 
   - Estratégias: 03_estrategia/estrategias.md
 
@@ -31,18 +26,32 @@ nav:
 
   - Equipe e Cliente: 06_equipe_cliente/equipe_cliente.md
 
+  - Requisitos de Software: 
+    - Elicitação de Requisitos: 13_requisitos/requisitos.md
+    - Priorização de Requisitos: 13_requisitos/priorizacao.md
+
+  - DoR e DoD: 14_dor_dod/dor_dod.md
+
+  - Backlog do Produto: 15_backlog/backlog.md
+
   - Lições Aprendidas:
     - Unidade 1: 10_licoes/Unidades/unidade_01.md
 
-  - Reuniões:
-    - Gravações: 12_reunioes/gravacoes.md
+  - Reuniões/Gravações:
+    - Gravações em Grupo: 12_reunioes/gravacoes_grupo.md
+    - Gravações com Cliente: 12_reunioes/gravacoes.md
     - Atas:
-        - Ata de Reunião em Grupo:
-            - Ata de Reunião 1: 12_reunioes/atas/grupo/ata_grupo_01.md
-            - Ata de Reunião 2: 12_reunioes/atas/grupo/ata_grupo_02.md
-            - Ata de Reunião 3: 12_reunioes/atas/grupo/ata_grupo_03.md
-        - Ata de Reunião com o Cliente:
-            - Ata de Reunião 1: 12_reunioes/atas/cliente/ata_cliente_01.md
+         - Ata de Reunião 1: 12_reunioes/atas/grupo/ata_grupo_01.md
+         - Ata de Reunião 2: 12_reunioes/atas/grupo/ata_grupo_02.md
+         - Ata de Reunião 3: 12_reunioes/atas/grupo/ata_grupo_03.md
+         - Ata de Reunião 4: 12_reunioes/atas/grupo/ata_grupo_04.md
+         - Ata de Reunião 5: 12_reunioes/atas/grupo/ata_grupo_05.md
+         - Ata de Reunião 6: 12_reunioes/atas/grupo/ata_grupo_06.md
+         - Ata de Reunião 7: 12_reunioes/atas/grupo/ata_grupo_07.md
+         
+         
+         
+         - Ata de Reunião 1 com Cliente: 12_reunioes/atas/cliente/ata_cliente_01.md
 
 
 
@@ -59,14 +68,14 @@ theme:
     - search.highlight
   palette:
     - scheme: default
-      primary: blue
-      accent: blue
+      primary: deep orange
+      accent: orange
       toggle:
         icon: material/weather-night
         name: Modo Noturno
     - scheme: slate
-      primary: green
-      accent: light blue
+      primary: deep orange
+      accent: orange
       toggle:
         icon: material/weather-sunny
         name: Modo Claro
