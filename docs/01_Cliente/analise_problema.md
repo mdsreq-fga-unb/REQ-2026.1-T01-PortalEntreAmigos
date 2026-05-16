@@ -10,7 +10,7 @@ Embora a instituição possua forte atuação social e uma grande rede de volunt
 
 ## Identificação do Problema
 
-O principal problema identificado está relacionado à ausência de uma plataforma centralizada para gerenciamento das campanhas, doações e eventos da ONG.
+O principal problema identificado está relacionado à ausência de uma plataforma centralizada para a gestão das campanhas, doações e eventos da ONG.
 
 Atualmente, grande parte das atividades ocorre por meio de aplicativos de mensagens e planilhas eletrônicas preenchidas manualmente. O fluxo operacional depende da interpretação de mensagens enviadas pelos voluntários, do registro manual das intenções de doação e da atualização constante das planilhas de controle.
 
