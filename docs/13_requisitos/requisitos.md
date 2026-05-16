@@ -15,13 +15,13 @@ Os requisitos funcionais descrevem os serviços e funcionalidades que o sistema 
 
 ---
 
-# Requisitos Funcionais
+## Requisitos Funcionais
 
 Os requisitos funcionais representam as funcionalidades que deverão ser implementadas na plataforma.
 
 ---
 
-## Gestão de Usuários
+### Gestão de Usuários
 
 | ID | Requisito Funcional | Característica do Produto |
 | :---: | :--- | :---: |
@@ -33,7 +33,7 @@ Os requisitos funcionais representam as funcionalidades que deverão ser impleme
 
 ---
 
-## Gestão de Eventos
+### Gestão de Eventos
 
 | ID | Requisito Funcional | Característica do Produto |
 | :---: | :--- | :---: |
@@ -45,7 +45,7 @@ Os requisitos funcionais representam as funcionalidades que deverão ser impleme
 
 ---
 
-## Gestão Financeira e Doações
+### Gestão Financeira e Doações
 
 | ID | Requisito Funcional | Característica do Produto |
 | :---: | :--- | :---: |
@@ -55,7 +55,7 @@ Os requisitos funcionais representam as funcionalidades que deverão ser impleme
 
 ---
 
-## Participação em Eventos
+### Participação em Eventos
 
 | ID | Requisito Funcional | Característica do Produto |
 | :---: | :--- | :---: |
@@ -65,7 +65,7 @@ Os requisitos funcionais representam as funcionalidades que deverão ser impleme
 
 ---
 
-## Transparência e Prestação de Contas
+### Transparência e Prestação de Contas
 
 | ID | Requisito Funcional | Característica do Produto |
 | :---: | :--- | :---: |
@@ -80,7 +80,7 @@ Os requisitos funcionais representam as funcionalidades que deverão ser impleme
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/kMxEVxPcaLlDG02xoxBjUd/Tabela-completa-OE--CP--RF?node-id=0-1&embed-host=share" allowfullscreen></iframe>
 
 
-# Requisitos Não Funcionais
+## Requisitos Não Funcionais
 
 Os requisitos não funcionais descrevem restrições e características de qualidade esperadas para o sistema.
 

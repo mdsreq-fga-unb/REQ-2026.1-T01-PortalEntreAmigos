@@ -1,21 +1,23 @@
 # Cronograma e Entregas
 
+## Introdução
+
 O planejamento temporal do Portal Entre Amigos organiza o trabalho da equipe ao longo do semestre 2026.1 da disciplina de Requisitos de Software (REQ – Turma 01), em sintonia com o cronograma de atividades da matéria e com a estratégia baseada no ciclo de vida iterativo e incremental, processo RAD e validações periódicas com o representante do cliente (Carlos Vaz).
 
 O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final de cada iteração, o grupo revisa datas, escopo e entregáveis, atualizando o planejamento e o acompanhamento no GitHub, de forma coerente com a comunicação e validação. As entregas em equipe EU1, EU2, EU3 e EU4 correspondem aos marcos de avaliação da disciplina; a documentação e o conteúdo do site do projeto devem estar publicados no GitHub Pages e versionados no repositório da equipe na organização da disciplina, até o horário de início da aula do dia de apresentações, conforme regras do plano de ensino.
 
 ---
 
-# Cronograma de Projeto: Portal Entre Amigos
+## Cronograma de Projeto: Portal Entre Amigos
 
 **Metodologia:** Híbrida (RAD + Iterativo Incremental)  
 **Data Final:** 03 de Julho de 2026
 
 ---
 
-## 1. Mapeamento das Fases RAD e Ciclos de Desenvolvimento
+### 1. Mapeamento das Fases RAD e Ciclos de Desenvolvimento
 
-### Fase 1: Requirements Planning (Planejamento de Requisitos)
+#### Fase 1: Requirements Planning (Planejamento de Requisitos)
 **Período:** 01 de Abril – 18 de Maio  
 *Fase inicial orientada à elicitação, compreensão do problema e alinhamento do escopo macro com o cliente.*
 
@@ -24,14 +26,14 @@ O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final
 * **Definições de Processo:** Estabelecimento de DoR (Definition of Ready) e DoD (Definition of Done).
 * **Infraestrutura:** Configuração do site MkDocs e repositório GitHub.
 
-### Fase 2: User Design (Design do Usuário)
+#### Fase 2: User Design (Design do Usuário)
 **Período:** 18 de Maio – 31 de Maio (Integrado ao Ciclo do MVP)  
 *Fase de modelagem activa e design de interfaces junto aos usuários através de workshops rápidos e prototipagem de alta fidelidade.*
 
 * **Foco:** Arquitetura de Informação e Design de Interface para a Gestão de Doadores.
 * **Técnica RAD:** Sessões de Joint Application Design (JAD) e criação de protótipos rápidos da UI de cadastro para validação imediata com o cliente.
 
-### Fase 3: Construction (Construção)
+#### Fase 3: Construction (Construção)
 **Período:** 18 de Maio – 28 de Junho  
 *Fase intensiva de desenvolvimento de software onde a codificação e a criação de incrementos funcionais acontecem em paralelo com testes contínuos.*
 
@@ -47,7 +49,7 @@ O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final
     * **Técnica Iterativa:** Refatoração e polimento do código baseado no feedback gerado pelos usuários da ONG nos ciclos anteriores.
     * **Incremento:** Painel de Relatórios de Impacto Social e Estabilização do Sistema.
 
-### Fase 4: Cutover (Transição)
+#### Fase 4: Cutover (Transição)
 **Período:** 29 de Junho – 03 de Julho  
 *Fase final onde o sistema passa por homologação, a documentação é consolidada e o produto é preparado para a entrega definitiva.*
 
