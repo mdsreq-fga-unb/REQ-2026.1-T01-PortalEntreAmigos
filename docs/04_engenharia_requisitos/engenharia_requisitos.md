@@ -20,7 +20,7 @@ A Engenharia de Requisitos é responsável por identificar, analisar, documentar
 
 - **Declaração Orientada a valor**: Declaração associada ao benefício esperado e utilizando de narrativas curtas, Épicos e histórias de usuário. Visando melhor visualização de prioridades e facilitando a compreensão geral dos requisitos sempre alinhada ao propósito do projeto.
 
-- **Critérios de aceite**: Cada história de usuário possuirá um conjunto de condições e regras de negócio claras e testáveis que o software deve satisfazer para ser considerado “Pronto”.
+- **Critérios de aceite**: Cada história de usuário possuirá um conjunto de condições e regras de negócio claras e testáveis que o software deve satisfazer para ser considerado “Concluído”.
 
 ### Representação de Requisitos:
 
@@ -62,6 +62,7 @@ A Engenharia de Requisitos é responsável por identificar, analisar, documentar
 | Design | Verificação e Validação | Aceitação Final (UAT) | Teste de Aceitação do Utilizador com simulação de evento real. | Plataforma validada no contexto real da ONG, garantindo a substituição das planilhas. |
 | Design| Verificação e Validação | Feedback com o cliente, DoR, DoD e Revisão por pares | Teste de Aceitação do Utilizador com simulação de evento real, antecedido por um conjunto de critérios de qualidade. | Garantir que a equipe de desenvolvimento está entregando o produto certo e que ele foi construido de maneira correta. | 
 | Planejamento de Requisitos| Organização e Atualização | Reuniões semanas da equipe de desenvolvimento buscando a priorização e atualização contínua do Product Backlog | Revisão do Product Backlog | Manter os requisitos relevantes para o projeto, estimando corretamente o tempo necessário e a necessidade dos requisitos. | 
+| Planejamento de Requisitos| Verificação e Validação | Revisão e Aprovação do Escopo Inicial | Reunião de validação de requisitos com o cliente e Análise de Viabilidade Técnica preliminar. | Confirmação de que os requisitos definidos resolvem o problema correto, mitigação de riscos iniciais e consenso formal para avançar para a fase de Design (Prototipagem).| 
 
 
 ## Histórico de versão
@@ -70,3 +71,4 @@ A Engenharia de Requisitos é responsável por identificar, analisar, documentar
 | :----: | :--------: | :--------- | :-------: | :---------: |
 |  1.0   | 12/04/2026 | Criação da página    |  [Guilherme](https://github.com/GuilhermeOliveira1327)  | [Gustavo](https://github.com/GUGOFO) |
 |  2.0   | 09/05/2026 | Atualização de tópicos   |  [Edson](https://github.com/edso-n)  |  |
+|  2.1   | 16/05/2026 | Atualização de tópicos   |  [Edson](https://github.com/edso-n)  |  |
