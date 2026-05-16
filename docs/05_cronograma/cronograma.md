@@ -18,6 +18,7 @@ O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final
 ### Fase 1: Requirements Planning (Planejamento de Requisitos)
 **Período:** 01 de Abril – 18 de Maio  
 *Fase inicial orientada à elicitação, compreensão do problema e alinhamento do escopo macro com o cliente.*
+
 * **Documentação de Negócio:** Visão Geral do Cliente, Stakeholders e Análise do Problema.
 * **Engenharia de Requisitos:** Elicitação, Priorização (MoSCoW) e Backlog do Produto preliminar.
 * **Definições de Processo:** Estabelecimento de DoR (Definition of Ready) e DoD (Definition of Done).
@@ -25,7 +26,8 @@ O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final
 
 ### Fase 2: User Design (Design do Usuário)
 **Período:** 18 de Maio – 31 de Maio (Integrado ao Ciclo do MVP)  
-*Fase de modelagem ativa e design de interfaces junto aos usuários através de workshops rápidos e prototipagem de alta fidelidade.*
+*Fase de modelagem activa e design de interfaces junto aos usuários através de workshops rápidos e prototipagem de alta fidelidade.*
+
 * **Foco:** Arquitetura de Informação e Design de Interface para a Gestão de Doadores.
 * **Técnica RAD:** Sessões de Joint Application Design (JAD) e criação de protótipos rápidos da UI de cadastro para validação imediata com o cliente.
 
