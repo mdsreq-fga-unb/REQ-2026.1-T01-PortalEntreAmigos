@@ -22,21 +22,17 @@ Com o crescimento das ações e do número de voluntários, surgiu a necessidade
 
 ## Contexto Atual do Negócio
 
-Atualmente, a ONG realiza atividades relacionadas à coleta, organização e distribuição de doações, incluindo alimentos, roupas, produtos de higiene e recursos financeiros. Além disso, também promove campanhas sociais e eventos beneficentes voltados para o atendimento da comunidade.
+Atualmente, a ONG realiza atividades relacionadas à coleta, organização e distribuição de doações, incluindo alimentos, roupas, produtos de higiene e recursos financeiros. Além disso, também promove campanhas sociais e eventos beneficentes voltados para o atendimento da comunidade, com uma frequencia média trimestral.
 
 Segundo dados consolidados até o início de 2026, a instituição conta com aproximadamente 424 voluntários cadastrados, já realizou 51 ações sociais e auxiliou cerca de 3.995 pessoas, acumulando mais de R$ 242 mil arrecadados ao longo de sua trajetória.
 
 Apesar do impacto positivo das ações, grande parte da gestão operacional ainda ocorre de maneira informal. O controle das arrecadações, organização dos eventos e comunicação entre os participantes acontece principalmente por meio de grupos em aplicativos de mensagens e planilhas preenchidas manualmente.
 
-Essa ausência de centralização gera diversos problemas operacionais, como:
+Essa falta de centralização gera impactos operacionais severos, como atrasos na organização dos eventos, risco de falta ou excesso de itens específicos nas arrecadações e um alto volume de retrabalho manual.
 
-- dificuldade no acompanhamento das doações;
-- retrabalho manual;
-- inconsistências nos registros;
-- demora na prestação de contas;
-- risco de falta ou excesso de itens arrecadados.
+Na 46ª Ação, por exemplo, a coordenação precisou gerenciar e conciliar manualmente dezenas de comprovantes de PIX e faturas fragmentadas, totalizando R$9.844,06, variando desde a locação até a compra de caixas organizadoras e suprimentos alimentícios. A ausência de automação torna a compilação desses números extremamente demorada, consumindo cerca de 2  horas diarias de trabalho dedicadas pelo moderador apenas para consolidar os relatórios.
 
-Em campanhas maiores, a equipe precisa realizar manualmente a conferência de comprovantes, registros financeiros e controle de estoque, tornando o processo lento e sujeito a falhas.
+Consequentemente, a dificuldade de rastrear as doações prejudica a prestação de contas, evidenciando a necessidade urgente de uma solução tecnológica para estruturar a gestão.
 
 ---
 
@@ -46,7 +42,10 @@ A Figura 1 apresenta uma visão geral do fluxo atual de arrecadação e gestão 
 
 O processo permanece fortemente centralizado na figura do moderador, que realiza manualmente o acompanhamento das doações, o registro das contribuições e a atualização das planilhas de controle. Atualmente, a comunicação ocorre principalmente pelo WhatsApp, enquanto o controle operacional é realizado em planilhas eletrônicas.
 
-Esse modelo gera dificuldades relacionadas à rastreabilidade das doações, atualização das metas em tempo real e prestação de contas das campanhas.
+O principal gargalo operacional ocorre neste momento: o moderador precisa ler cada mensagem, extrair a promessa de doação e registrar manualmente em uma planilha para calcular o progresso das metas. Posteriormente, quando o doador entrega o mantimento no ponto de coleta, o moderador realiza uma nova conferência e anotação manual na planilha para confirmar a entrada no estoque. Esse ecossistema dependente do trabalho manual e fragmentado entre o WhatsApp e as Planilhas gera ineficiências logísticas, dificulta a visibilidade das metas em tempo real e atrasa a prestação de contas, evidenciando a oportunidade de centralização em uma plataforma dedicada.
+
+Para ilustrar o impacto desse gargalo na rotina do moderador, em campanhas de grande porte como a 51ª Ação, o fluxo manual de conciliação exigiu o acompanhamento e a prestação de contas de R$ 4.451,17 recebidos apenas via doações diretas, além do registro individual de dezenas de categorias de itens físicos, que incluíram desde 151 peças de roupas e calçados até dezenas de quilos de alimentos (arroz, feijão, leite) e produtos de limpeza. A transcrição manual desse volume do chat para as planilhas frequentemente gera inconsistências, tais como a discrepância entre o que o voluntário promete no aplicativo e o que é efetivamente entregue ou baixado no estoque digital. 
+
 
 ![Rich Picture](../00_assets/imagens/richpicture.png)
 
