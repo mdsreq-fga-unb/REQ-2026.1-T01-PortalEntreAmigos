@@ -36,7 +36,6 @@ Os objetivos específicos representam os principais resultados esperados com a i
 | <a id="oe3"></a>OE3 | Proporcionar maior visibilidade das campanhas, metas e necessidades da ONG. |
 | <a id="oe4"></a>OE4 | Facilitar o engajamento dos voluntários durante as campanhas e eventos. |
 | <a id="oe5"></a>OE5 | Centralizar o histórico e o fluxo das doações em um único ambiente digital. |
-| <a id="oe6"></a>OE6 | Garantir sustentabilidade técnica e operacional com baixo custo de infraestrutura. |
 
 ---
 
@@ -55,7 +54,7 @@ As características do produto representam funcionalidades e capacidades de alto
 | <a id="cp4"></a>CP4 | Controle de Recebimento e Estoque | Possibilitar o registro das entregas realizadas e o controle dos itens arrecadados durante as campanhas. | OE1, OE5 |
 | <a id="cp5"></a>CP5 | Relatórios e Prestação de Contas | Consolidar informações financeiras e operacionais para auxiliar na transparência e prestação de contas da ONG. | OE2, OE5 |
 | <a id="cp6"></a>CP6 | Perfil e Histórico do Voluntário | Disponibilizar aos voluntários acesso ao histórico de participação e contribuições realizadas. | OE4, OE5 |
-| <a id="cp7"></a>CP7 | Gestão de Acessos e Permissões | Controlar diferentes níveis de acesso entre administradores, organizadores e voluntários. | OE1, OE6 |
+| <a id="cp7"></a>CP7 | Gestão de Acessos e Permissões | Controlar diferentes níveis de acesso entre administradores, organizadores e voluntários. | OE1, OE4 |
 
 ---
 
