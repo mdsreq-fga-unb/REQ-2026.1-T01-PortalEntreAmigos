@@ -26,17 +26,19 @@ Abaixo, apresenta-se uma comparação técnica entre o processo RAD, focado em v
 
 ## 3.3 Justificativa 
 
-A escolha pela abordagem híbrida, utilizando o processo RAD e um ciclo de vida Iterativo e Incremental, justifica-se pela necessidade de equilibrar a agilidade no desenvolvimento com um planejamento estruturado que mitigue riscos técnicos e financeiros.
+A escolha pelo processo RAD (Rapid Application Development) justifica-se pela necessidade de focar em entregas rápidas e visuais que permitam a validação constante com a ONG, mitigando riscos de rejeição da nova plataforma.
 
-Os principais motivos são:
+Os principais motivos para a adoção do RAD são:
 
-* **Validação de Usabilidade e Prototipagem (RAD)**: O projeto prioriza a criação de protótipos funcionais rápidos.
-* **Engajamento**: Isso permite validar a interface com os usuários finais em estágios iniciais, garantindo que a ferramenta seja intuitiva e superando a resistência de voluntários menos familiarizados com sistemas complexos.
-* **Controle de Infraestrutura e Custos (Híbrido)**: Diferente de modelos ágeis puros, a abordagem híbrida permite uma fase de design técnico antecipado.
-* **Foco**: Assim facilitando em pontos que sejam de mais importância.
-* **Entregas de Valor (Iterativo)**: O desenvolvimento é dividido em ciclos iterativos, permitindo que módulos como a "Vitrine de Necessidades" sejam entregues e validados individualmente.
-* **Ajuste de Escopo**: Isso assegura que o escopo seja ajustado conforme o aprendizado de cada iteração, garantindo que os pontos de maior importância para a transparência da saúde sejam priorizados.
-* **Eficiência de Recursos**: Ao enfatizar a reutilização de componentes e ciclos curtos de construção, o RAD permite que a equipe acadêmica mantenha um ritmo constante de entregas, focando no que é funcionalmente essencial para o projeto.
+- **Prototipação Rápida:** O projeto prioriza a criação acelerada de protótipos funcionais, permitindo testar a interface visual e a usabilidade em estágios iniciais antes da codificação completa.
+
+- **Envolvimento Ativo do Usuário:** A forte colaboração contínua com o cliente garante que a ferramenta seja intuitiva, superando a resistência de voluntários menos familiarizados com sistemas complexos.
+
+- **Desenvolvimento Incremental:** O software é construído de forma evolutiva, o que assegura que o escopo seja ajustado conforme o aprendizado de cada iteração, garantindo que os pontos de maior importância sejam priorizados.
+
+- **Ciclos Curtos de Construção:** O desenvolvimento é dividido em iterações breves e focadas, permitindo que módulos críticos, como a "Vitrine de Necessidades", sejam entregues e validados individualmente com maior rapidez.
+
+- **Reutilização de Componentes:** Ao enfatizar a reutilização de componentes de código e design, o RAD permite que a equipe acadêmica mantenha um ritmo constante de entregas, otimizando o tempo e focando no que é funcionalmente essencial para o projeto.
 
 ## Histórico de versão
 
