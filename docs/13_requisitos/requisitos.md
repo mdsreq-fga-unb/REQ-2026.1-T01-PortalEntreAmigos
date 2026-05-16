@@ -51,6 +51,7 @@ Os requisitos funcionais representam as funcionalidades que deverão ser impleme
 | :---: | :--- | :---: |
 | <a id="rf11"></a>RF11 | Registrar doação | [CP3](../02_solucao/produto.md#cp3) |
 | <a id="rf12"></a>RF12 | Atualizar saldo | [CP4](../02_solucao/produto.md#cp4) |
+| <a id="rf13"></a>RF13 | Confirmar recebimento de doação | [CP4](../02_solucao/produto.md#cp4) |
 
 ---
 
@@ -58,9 +59,9 @@ Os requisitos funcionais representam as funcionalidades que deverão ser impleme
 
 | ID | Requisito Funcional | Característica do Produto |
 | :---: | :--- | :---: |
-| <a id="rf13"></a>RF13 | Exibir eventos | [CP2](../02_solucao/produto.md#cp2) |
-| <a id="rf14"></a>RF14 | Realizar inscrição em eventos | [CP3](../02_solucao/produto.md#cp3) |
-| <a id="rf15"></a>RF15 | Exibir informações institucionais | [CP5](../02_solucao/produto.md#cp5) |
+| <a id="rf14"></a>RF14 | Exibir eventos | [CP2](../02_solucao/produto.md#cp2) |
+| <a id="rf15"></a>RF15 | Realizar inscrição em eventos | [CP3](../02_solucao/produto.md#cp3) |
+| <a id="rf16"></a>RF16 | Exibir informações institucionais | [CP5](../02_solucao/produto.md#cp5) |
 
 ---
 
@@ -68,11 +69,16 @@ Os requisitos funcionais representam as funcionalidades que deverão ser impleme
 
 | ID | Requisito Funcional | Característica do Produto |
 | :---: | :--- | :---: |
-| <a id="rf16"></a>RF16 | Visualizar comprovantes | [CP5](../02_solucao/produto.md#cp5) |
-| <a id="rf17"></a>RF17 | Enviar notas fiscais | [CP4](../02_solucao/produto.md#cp4) |
-| <a id="rf18"></a>RF18 | Gerar relatório de informações do evento | [CP5](../02_solucao/produto.md#cp5) |
+| <a id="rf17"></a>RF17 | Visualizar comprovantes | [CP5](../02_solucao/produto.md#cp5) |
+| <a id="rf18"></a>RF18 | Enviar notas fiscais | [CP4](../02_solucao/produto.md#cp4) |
+| <a id="rf19"></a>RF19 | Gerar relatório de informações do evento | [CP5](../02_solucao/produto.md#cp5) |
 
 ---
+
+## Rastreabilidade dos Requisitos
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/kMxEVxPcaLlDG02xoxBjUd/Tabela-completa-OE--CP--RF?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+
 
 # Requisitos Não Funcionais
 
@@ -103,3 +109,4 @@ Esses requisitos poderão sofrer refinamentos ao longo do desenvolvimento do pro
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | :---: | :---: | :--- | :---: | :---: |
 | 1.0 | 13/05/2026 | Criação da página de elicitação de requisitos | [Guilherme](https://github.com/GuilhermeOliveira1327) | Equipe |
+| 1.1 | 16/05/2026 | adição do RF 13 | [Guilherme](https://github.com/GuilhermeOliveira1327) | Equipe |
