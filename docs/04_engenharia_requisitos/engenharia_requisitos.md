@@ -44,13 +44,7 @@ A Engenharia de Requisitos é responsável por identificar, analisar, documentar
 
 - **Revisões periódicas**: Sessões periódicas realizadas ao longo de cada iteração para revisar, detalhar e repriorizar itens do Backlog do Produto.
 
-- **Backlog do Produto**: Funcionará como uma lista viva de requisitos, estruturada em épicos e histórias de usuário. O backlog será continuamente priorizado e refinado com base no valor entregue ao cliente. Para garantir o acompanhamento de cada item, desde a sua concepção até a validação, utilizaremos a cadeia de rastreabilidade abaixo:
-
-
-#### Rastreabilidade dos Requisitos
-
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/kMxEVxPcaLlDG02xoxBjUd/Tabela-completa-OE--CP--RF?node-id=0-1&embed-host=share" allowfullscreen></iframe>
-
+- **Backlog do Produto**: Funcionará como uma lista viva de requisitos, estruturada em épicos e histórias de usuário. O backlog será continuamente priorizado e refinado com base no valor entregue ao cliente. Para garantir o controle e o acompanhamento de cada item, desde a sua concepção até a validação, implementaremos uma cadeia de rastreabilidade que seguirá a ordem de objetivos específicos, desdobrando-se em características do produto e culminando, por fim, no requisito.
 
 ## Engenharia de Requisitos e Processo RAD
 
