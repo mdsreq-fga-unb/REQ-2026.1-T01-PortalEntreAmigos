@@ -25,24 +25,24 @@ O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final
 * **Infraestrutura:** Configuração do site MkDocs e repositório GitHub.
 
 ### Fase 2: User Design (Design do Usuário)
-**Período:** 18 de Maio – 31 de Maio (Integrado ao Ciclo do MVP)  
+**Período:** 19 de Maio – 26 de Maio  
 *Fase de modelagem activa e design de interfaces junto aos usuários através de workshops rápidos e prototipagem de alta fidelidade.*
 
 * **Foco:** Arquitetura de Informação e Design de Interface para a Gestão de Doadores.
 * **Técnica RAD:** Sessões de Joint Application Design (JAD) e criação de protótipos rápidos da UI de cadastro para validação imediata com o cliente.
 
 ### Fase 3: Construction (Construção)
-**Período:** 18 de Maio – 28 de Junho  
+**Período:** 27 de Maio – 28 de Junho  
 *Fase intensiva de desenvolvimento de software onde a codificação e a criação de incrementos funcionais acontecem em paralelo com testes contínuos.*
 
-* **Ciclo 1: MVP Funcional (18 de Maio – 31 de Maio)**
+* **Ciclo 1: MVP Funcional (27 de Maio – 07 de Junho)**
     * **Foco:** Engenharia de dados e codificação da Gestão de Doadores.
     * **Incremento:** Integração de banco de dados e Módulo funcional de Cadastro e Listagem de Doadores pronto.
-* **Ciclo 2: Expansão de Recursos (01 de Junho – 14 de Junho)**
+* **Ciclo 2: Expansão de Recursos (08 de Junho – 18 de Junho)**
     * **Foco:** Inventário e Comunidades.
     * **Técnica RAD:** Uso de bibliotecas de componentes prontos para acelerar a gestão de estoque.
     * **Incremento:** Módulo de Controle de Distribuição e Gestão de Comunidades Atendidas.
-* **Ciclo 3: Refinamento e Transparência (15 de Junho – 28 de Junho)**
+* **Ciclo 3: Refinamento e Transparência (19 de Junho – 28 de Junho)**
     * **Foco:** Dashboards e Ajustes Finais.
     * **Técnica Iterativa:** Refatoração e polimento do código baseado no feedback gerado pelos usuários da ONG nos ciclos anteriores.
     * **Incremento:** Painel de Relatórios de Impacto Social e Estabilização do Sistema.
@@ -62,7 +62,6 @@ O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final
 ## Diretrizes de Execução
 1.  **Feedback RAD:** Cada ciclo da fase de Construção deve terminar com uma demonstração visual e funcional para os stakeholders.
 2.  **Qualidade Incremental:** Nenhum incremento é integrado à branch "main" sem passar pelo critério estabelecido no DoD (testes e revisão de código).
-3.  **Time-box:** As datas finais das fases e ciclos são rígidas para mitigar riscos de atraso na entrega final em 03 de julho.
 
 * **Atualização sucessiva:** Após cada ciclo, a equipe registra o que foi entregue, o que mudou no escopo e o que será priorizado na Unidade seguinte, mantendo a rastreabilidade no GitHub.
 * **Avaliações da disciplina:** Questionários individuais, avaliação cruzada e demais datas seguem o Moodle (Aprender 3) e o calendário definido pelo professor.
