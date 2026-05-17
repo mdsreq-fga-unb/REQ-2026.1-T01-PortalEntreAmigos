@@ -42,9 +42,6 @@ Os objetivos específicos representam os principais resultados esperados com a i
 ## Características do Produto
 
 As características do produto representam funcionalidades e capacidades de alto nível previstas para a solução.
-## Características do Produto
-
-As características do produto representam funcionalidades e capacidades de alto nível previstas para a solução.
 
 | ID | Característica do Produto | Descrição | Objetivos Relacionados |
 | :---: | :--- | :--- | :---: |

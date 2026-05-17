@@ -20,7 +20,7 @@ A Engenharia de Requisitos é responsável por identificar, analisar, documentar
 
 - **Declaração Orientada a valor**: Declaração associada ao benefício esperado e utilizando de narrativas curtas, Épicos e histórias de usuário. Visando melhor visualização de prioridades e facilitando a compreensão geral dos requisitos sempre alinhada ao propósito do projeto.
 
-- **Critérios de aceite**: Cada história de usuário possuirá um conjunto de condições e regras de negócio claras e testáveis que o software deve satisfazer para ser considerado “Concluído”.
+- **Critérios de aceite**: Cada história de usuário possuirá um conjunto de condições e regras de negócio claras e testáveis que o software deve satisfazer para ser considerado concluído.
 
 ### Representação de Requisitos:
 
@@ -42,10 +42,9 @@ A Engenharia de Requisitos é responsável por identificar, analisar, documentar
 
 ### Organização e Atualização de Requisitos:
 
-- **Backlog do Produto**: Atuará como uma lista de requisitos viva, estruturada no formato de épicos e histórias de usuário. Será continuamente priorizada e atualizada com base no valor entregue ao cliente.
-
 - **Revisões periódicas**: Sessões periódicas realizadas ao longo de cada iteração para revisar, detalhar e repriorizar itens do Backlog do Produto.
 
+- **Backlog do Produto**: Funcionará como uma lista viva de requisitos, estruturada em épicos e histórias de usuário. O backlog será continuamente priorizado e refinado com base no valor entregue ao cliente. Para garantir o controle e o acompanhamento de cada item, desde a sua concepção até a validação, implementaremos uma cadeia de rastreabilidade que seguirá a ordem de objetivos específicos, desdobrando-se em características do produto e culminando, por fim, no requisito.
 
 ## Engenharia de Requisitos e Processo RAD
 
@@ -54,15 +53,14 @@ A Engenharia de Requisitos é responsável por identificar, analisar, documentar
 | Planeamento de Requisitos| Elicitação e Descoberta | Levantamento do fluxo atual e necessidades | Entrevistas com o Carlos Vaz, Análise de documentação | Escopo macro do projeto definido, dores mapeadas e objetivos de negócio alinhados |
 | Planeamento de Requisitos | Análise e Consenso | Definição de Prioridades | MoSCoW, Matriz de Avaliação Técnica x Valor  | Funcionalidades essenciais acordadas | 
 | Planeamento de Requisitos | Declaração | Registo Inicial | Criação de lista de Requisitos de Alto Nível (Épicos). | Documentação clara do que precisa ser resolvido antes de iniciar os protótipos. | 
-| Design do Utilizador (Prototipagem) | Representação | Modelagem Visual e Prototipagem | Wireframes, Criação de Protótipos Interativos  | Representação visual clara das interfaces, permitindo ao cliente visualizar a solução.| 
-|Design do Utilizador (Prototipagem) | Verificação e Validação | Feedback com o Cliente, Revisão por pares  | Workshops interativos de design e demonstrações ao cliente. | Feedback imediato sobre a usabilidade e fluxo de doações; aprovação do design. | 
-|Design do Utilizador (Prototipagem) | Organização e Atualização | Refinamento Iterativo | Atualização contínua dos requisitos baseada no feedback do protótipo. | Requisitos funcionais ajustados à realidade validada pelo cliente, prontos para construção. | 
-| Construção | Análise e Consenso | Resolução de Detalhes Técnicos | Discussões diárias da equipa de desenvolvimento. | Entendimento claro de como integrar o frontend com o backend/base de dados. | 
-| Design | Verificação e Validação | Testes Contínuos | Testes cruzados com os Critérios de Aceitação. | Código validado funcionalmente, garantindo que o que foi codificado corresponde ao protótipo aprovado | 
-| Design | Verificação e Validação | Aceitação Final (UAT) | Teste de Aceitação do Utilizador com simulação de evento real. | Plataforma validada no contexto real da ONG, garantindo a substituição das planilhas. |
-| Design| Verificação e Validação | Feedback com o cliente, DoR, DoD e Revisão por pares | Teste de Aceitação do Utilizador com simulação de evento real, antecedido por um conjunto de critérios de qualidade. | Garantir que a equipe de desenvolvimento está entregando o produto certo e que ele foi construido de maneira correta. | 
 | Planejamento de Requisitos| Organização e Atualização | Reuniões semanas da equipe de desenvolvimento buscando a priorização e atualização contínua do Product Backlog | Revisão do Product Backlog | Manter os requisitos relevantes para o projeto, estimando corretamente o tempo necessário e a necessidade dos requisitos. | 
 | Planejamento de Requisitos| Verificação e Validação | Revisão e Aprovação do Escopo Inicial | Reunião de validação de requisitos com o cliente e Análise de Viabilidade Técnica preliminar. | Confirmação de que os requisitos definidos resolvem o problema correto, mitigação de riscos iniciais e consenso formal para avançar para a fase de Design (Prototipagem).| 
+| Design do Usuário | Representação | Modelagem Visual e Prototipagem | Wireframes, Criação de Protótipos Interativos  | Representação visual clara das interfaces, permitindo ao cliente visualizar a solução.| 
+|Design do Usuário | Organização e Atualização | Refinamento Iterativo | Atualização contínua dos requisitos baseada no feedback do protótipo. | Requisitos funcionais ajustados à realidade validada pelo cliente, prontos para construção. | 
+| Design do Usuário| Verificação e Validação | Feedback com o cliente, DoR, DoD e Revisão por pares | Teste de Aceitação do Utilizador com simulação de evento real, antecedido por um conjunto de critérios de qualidade. | Garantir que a equipe de desenvolvimento está entregando o produto certo e que ele foi construido de maneira correta. | 
+| Construção | Análise e Consenso | Resolução de Detalhes Técnicos | Discussões diárias da equipa de desenvolvimento. | Entendimento claro de como integrar o frontend com o backend/base de dados. | 
+| Transição| Verificação e Validação | Testes Contínuos | Testes cruzados com os Critérios de Aceitação. | Código validado funcionalmente, garantindo que o que foi codificado corresponde ao protótipo aprovado | 
+| Transição | Verificação e Validação | Aceitação Final (UAT) | Teste de Aceitação do Utilizador com simulação de evento real. | Plataforma validada no contexto real da ONG, garantindo a substituição das planilhas. |
 
 
 ## Histórico de versão
@@ -72,3 +70,4 @@ A Engenharia de Requisitos é responsável por identificar, analisar, documentar
 |  1.0   | 12/04/2026 | Criação da página    |  [Guilherme](https://github.com/GuilhermeOliveira1327)  | [Gustavo](https://github.com/GUGOFO) |
 |  2.0   | 09/05/2026 | Atualização de tópicos   |  [Edson](https://github.com/edso-n)  |  |
 |  2.1   | 16/05/2026 | Atualização de tópicos   |  [Edson](https://github.com/edso-n)  |  |
+|  2.2   | 16/05/2026 | Atualização de tópicos   |  [Edson](https://github.com/edso-n)  |  |
