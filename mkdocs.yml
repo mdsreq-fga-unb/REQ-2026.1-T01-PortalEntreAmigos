@@ -30,13 +30,13 @@ nav:
 
      - Equipe e Cliente: 06_equipe_cliente/equipe_cliente.md
 
-     - Requisitos de Software: 
-       - Elicitação de Requisitos: 13_requisitos/requisitos.md
-       - Priorização de Requisitos: 13_requisitos/priorizacao.md
+     - Requisitos de Software: 13_requisitos/requisitos.md
 
      - DoR e DoD: 14_dor_dod/dor_dod.md
 
-     - Backlog do Produto: 15_backlog/backlog.md
+     - Backlog do Produto: 
+        - Backlog Geral: 15_backlog/backlog.md
+        - Priorização do Backlog e MVP: 15_backlog/priorizacao.md
 
   - Lições Aprendidas:
     - Unidade 1: 10_licoes/Unidades/unidade_01.md

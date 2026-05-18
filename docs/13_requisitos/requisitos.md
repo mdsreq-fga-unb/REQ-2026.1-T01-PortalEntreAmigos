@@ -75,9 +75,6 @@ Os requisitos funcionais representam as funcionalidades que deverão ser impleme
 
 ---
 
-## Rastreabilidade dos Requisitos
-
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/kMxEVxPcaLlDG02xoxBjUd/Tabela-completa-OE--CP--RF?node-id=0-1&embed-host=share" allowfullscreen></iframe>
 
 
 ## Requisitos Não Funcionais
@@ -93,6 +90,11 @@ Os requisitos não funcionais descrevem restrições e características de quali
 | RNF05 | Compatibilidade entre Navegadores | O sistema deve funcionar corretamente nos principais navegadores modernos, como Google Chrome, Mozilla Firefox, Microsoft Edge e Safari. | **Teste de Renderização Manual:** Subir a aplicação localmente (localhost) e abrir a mesma tela principal nos navegadores descritos no RNF. **Critério de sucesso:** O layout, as cores e o funcionamento dos botões devem ser idênticos e funcionais nos três ambientes. | Compatibilidade (URPS+) |
 | RNF06 | Atualização Dinâmica | O sistema deve atualizar o progresso das campanhas toda vez que a página do usuário recarregar. | **Teste de Abas Simultâneas:** Abrir o sistema em duas abas do navegador. Na Aba 1 (Admin), registrar o recebimento de uma doação. Na Aba 2 (Voluntário), pressionar F5 (Recarregar). **Critério de sucesso:** A barra de progresso da meta na Aba 2 deve refletir imediatamente o novo valor atualizado pela Aba 1. | Desempenho (URPS+) |
 | RNF07 | Persistência de Dados | O sistema deve garantir que informações cadastradas permaneçam armazenadas após reinicializações ou atualizações do sistema. | **Teste de Reinicialização de Servidor:** Cadastrar um novo evento na plataforma. No terminal do VS Code, derrubar o servidor backend/banco de dados (Ctrl + C). Iniciar o servidor novamente e recarregar a página. **Critério de sucesso:** O evento recém-criado deve continuar visível e intacto na listagem. | Confiabilidade (URPS+) |
+
+---
+## Rastreabilidade dos Requisitos
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/kMxEVxPcaLlDG02xoxBjUd/Tabela-completa-OE--CP--RF?node-id=0-1&embed-host=share" allowfullscreen></iframe>
 
 ---
 
