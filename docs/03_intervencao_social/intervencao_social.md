@@ -39,4 +39,4 @@ Portanto, a intervenção social produzida é uma **intervenção socioorganizac
 
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | :----: | :--------: | :--------- | :-------: | :---------: |
-| 1.0 | 18/05/2026 | Criação da seção Intervenção Social (entrega Unidade 2). | [Kaio Amoury](https://github.com/KaioAmouryUnB) | Equipe |
+| 1.0 | 18/05/2026 | Criação da seção Intervenção Social (entrega Unidade 2). | [Kaio](https://github.com/KaioAmouryUnB) | Equipe |
