@@ -79,23 +79,23 @@ A Figura 1 apresenta o material produzido pela equipe durante o processo de prio
 
 ## Tabela MoSCoW
 
-| Categoria                              | Requisitos                                                                                                                                                                                                                                                                                                          |
-| :------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Must Have (Deve ter)**               | [RF06](requisitos.md#rf06) – Criar eventos<br>[RF08](requisitos.md#rf07) – Excluir eventos<br>[RF09](requisitos.md#rf09) – Encerrar eventos<br>[RF11](requisitos.md#rf11) – Registrar doação<br>[RF13](requisitos.md#rf12) – Confirmar recebimento de doação<br>[RF12](requisitos.md#rf13) – Atualizar saldo<br>[RF15](requisitos.md#rf15) – Realizar inscrição em eventos<br>[RF17](requisitos.md#rf17) – Visualizar comprovantes<br>[RF18](requisitos.md#rf18) – Enviar notas fiscais<br>[RF14](requisitos.md#rf14) – Exibir eventos<br>
-| **Should Have (Deveria ter)**          | [RF16](requisitos.md#rf16) – Exibir informações institucionais<br>[RF07](requisitos.md#rf07) – Editar eventos<br>[RF08](requisitos.md#rf08) – Gerar relatório de informações do evento<br>|                                                                                                                                                                                              
-| **Could Have (Poderia ter)**           | [RF01](requisitos.md#rf01) – Cadastrar usuário<br>[RF02](requisitos.md#rf02) – Login de usuário<br>[RF03](requisitos.md#rf03) – Visualizar perfil<br>[RF04](requisitos.md#rf04) – Editar perfil<br>[RF05](requisitos.md#rf05) – Excluir conta<br>[RF10](requisitos.md#rf10) – Exibir progresso da meta  |                                                                                                                        |
-| **Won’t Have (Não terá por enquanto)** | Nenhum requisito foi classificado nesta categoria durante a priorização inicial.                                                                                                                                                                                                                                    |
+| Categoria | Requisitos |
+| :--- | :--- |
+| **Must Have (Deve ter)** | [RF06](../13_requisitos/requisitos.md#rf06) – Criar eventos<br>[RF08](../13_requisitos/requisitos.md#rf08) – Excluir eventos<br>[RF09](../13_requisitos/requisitos.md#rf09) – Encerrar eventos<br>[RF11](../13_requisitos/requisitos.md#rf11) – Registrar doação<br>[RF12](../13_requisitos/requisitos.md#rf12) – Atualizar saldo<br>[RF13](../13_requisitos/requisitos.md#rf13) – Confirmar recebimento de doação<br>[RF14](../13_requisitos/requisitos.md#rf14) – Exibir eventos<br>[RF15](../13_requisitos/requisitos.md#rf15) – Realizar inscrição em eventos<br>[RF17](../13_requisitos/requisitos.md#rf17) – Visualizar comprovantes<br>[RF18](../13_requisitos/requisitos.md#rf18) – Enviar notas fiscais |
+| **Should Have (Deveria ter)** | [RF07](../13_requisitos/requisitos.md#rf07) – Editar eventos<br>[RF16](../13_requisitos/requisitos.md#rf16) – Exibir informações institucionais<br>[RF19](../13_requisitos/requisitos.md#rf19) – Gerar relatório de informações do evento |
+| **Could Have (Poderia ter)** | [RF01](../13_requisitos/requisitos.md#rf01) – Cadastrar usuário<br>[RF02](../13_requisitos/requisitos.md#rf02) – Login de usuário<br>[RF03](../13_requisitos/requisitos.md#rf03) – Visualizar perfil<br>[RF04](../13_requisitos/requisitos.md#rf04) – Editar perfil<br>[RF05](../13_requisitos/requisitos.md#rf05) – Excluir conta<br>[RF10](../13_requisitos/requisitos.md#rf10) – Exibir progresso da meta |
+| **Won’t Have (Não terá por enquanto)** | Nenhum requisito foi classificado nesta categoria durante a priorização inicial. |
 
 ---
 
 ## Tabela Matriz Valor x Esforço
 
-| Quadrante                           | Requisitos                                                                                                                                                                                                                                                                                                                                                                                        |
-| :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Grande Valor / Pequeno Esforço**  | [RF11](requisitos.md#rf11) – Registrar doação<br>[RF12](requisitos.md#rf12) – Atualizar saldo<br>[RF16](requisitos.md#rf16)– Exibir informações institucionais                                                                                                                                                                                                                                                                                                     |
-| **Grande Valor / Grande Esforço**   | [RF01](requisitos.md#rf01) – Cadastrar usuário<br>[RF02](requisitos.md#rf02)– Login de usuário<br>[RF03](requisitos.md#rf03) – Visualizar perfil<br>[RF04](requisitos.md#rf04)– Editar perfil<br>[RF05](requisitos.md#rf05) – Excluir conta<br> [RF06](requisitos.md#rf06) – Criar eventos<br>[RF07](requisitos.md#rf07)– Editar eventos<br>[RF08](requisitos.md#rf08)– Excluir eventos<br>[RF09](requisitos.md#rf09)– Confirmar recebimento de doação <br>[RF13](requisitos.md#rf13) – Excluir conta – Encerrar eventos<br>[RF14](requisitos.md#rf14)– Realizar inscrição em eventos<br>[RF16](requisitos.md#rf16) – Visualizar comprovantes<br>[RF17](requisitos.md#rf17) – Enviar notas fiscais<br>[RF18](requisitos.md#rf18) – Gerar relatório de informações do evento<br>|
-| **Pequeno Valor / Pequeno Esforço** | [RF10](requisitos.md#rf10) – Exibir progresso da meta<br>[RF13](requisitos.md#rf13)– Exibir eventos                                                                                                                                                                                                                                                                                                                                          |
-| **Pequeno Valor / Grande Esforço**  | Nenhum requisito foi classificado neste quadrante.                                                                                                                                                                                                                                                                                                                                                |
+| Quadrante | Requisitos |
+| :--- | :--- |
+| **Grande Valor / Pequeno Esforço** | [RF11](../13_requisitos/requisitos.md#rf11) – Registrar doação<br>[RF12](../13_requisitos/requisitos.md#rf12) – Atualizar saldo<br>[RF14](../13_requisitos/requisitos.md#rf14) – Exibir eventos<br>[RF16](../13_requisitos/requisitos.md#rf16) – Exibir informações institucionais |
+| **Grande Valor / Grande Esforço** | [RF06](../13_requisitos/requisitos.md#rf06) – Criar eventos<br>[RF07](../13_requisitos/requisitos.md#rf07) – Editar eventos<br>[RF08](../13_requisitos/requisitos.md#rf08) – Excluir eventos<br>[RF09](../13_requisitos/requisitos.md#rf09) – Encerrar eventos<br>[RF13](../13_requisitos/requisitos.md#rf13) – Confirmar recebimento de doação<br>[RF15](../13_requisitos/requisitos.md#rf15) – Realizar inscrição em eventos<br>[RF17](../13_requisitos/requisitos.md#rf17) – Visualizar comprovantes<br>[RF18](../13_requisitos/requisitos.md#rf18) – Enviar notas fiscais<br>[RF19](../13_requisitos/requisitos.md#rf19) – Gerar relatório de informações do evento |
+| **Pequeno Valor / Pequeno Esforço** | [RF03](../13_requisitos/requisitos.md#rf03) – Visualizar perfil<br>[RF05](../13_requisitos/requisitos.md#rf05) – Excluir conta<br>[RF10](../13_requisitos/requisitos.md#rf10) – Exibir progresso da meta |
+| **Pequeno Valor / Grande Esforço** | [RF01](../13_requisitos/requisitos.md#rf01) – Cadastrar usuário<br>[RF02](../13_requisitos/requisitos.md#rf02) – Login de usuário<br>[RF04](../13_requisitos/requisitos.md#rf04) – Editar perfil |
 
 ---
 
@@ -129,10 +129,11 @@ A partir das técnicas aplicadas, foi gerada a seguinte priorização do backlog
 
 ## MVP do Produto
 
-Com base na priorização realizada utilizando as técnicas MoSCoW, Valor x Esforço e Índice de Prioridade (IP), foi definido que o MVP (Minimum Viable Product) será composto pelas funcionalidades classificadas como prioritárias durante o processo de análise junto ao cliente.
+Com base na priorização realizada utilizando as técnicas MoSCoW, Valor x Esforço e Índice de Prioridade (IP), foi definido que o MVP (Minimum Viable Product) será composto pelas funcionalidades classificadas como Prioridade 1 e Prioridade 2 durante o processo de análise junto ao cliente.
+
+As funcionalidades de Prioridade 1 foram selecionadas por apresentarem alto valor de negócio e baixa carga técnica, permitindo entregas rápidas e essenciais para o funcionamento inicial da plataforma. Já as funcionalidades de Prioridade 2 foram incluídas por agregarem elevado valor operacional para a ONG, mesmo demandando maior esforço de desenvolvimento.
 
 Essas funcionalidades representam o núcleo principal do sistema e entregam maior valor para a ONG com menor custo de implementação inicial, permitindo validar a solução proposta e apoiar as principais operações da organização.
-
 
 ### Rastreabilidade do MVP
 
@@ -152,7 +153,7 @@ Essas funcionalidades representam o núcleo principal do sistema e entregam maio
 | [RF18](../13_requisitos/requisitos.md#rf18) – Enviar notas fiscais | [US18](backlog.md#us18) | Permitir envio de comprovantes |
 | [RF19](../13_requisitos/requisitos.md#rf19) – Gerar relatório de informações do evento | [US19](backlog.md#us19) | Gerar relatório com as informações do evento encerrado |
 
----
+
 ---
 
 

@@ -37,9 +37,11 @@ nav:
      - Backlog do Produto: 
         - Backlog Geral: 15_backlog/backlog.md
         - Priorização do Backlog e MVP: 15_backlog/priorizacao.md
+        - Criterios de Aceitação: 15_backlog/criterios_aceitacao.md
 
   - Lições Aprendidas:
     - Unidade 1: 10_licoes/Unidades/unidade_01.md
+    - Unidade 2: 10_licoes/Unidades/unidade_02.md
 
   - Reuniões/Gravações:
     - Gravações em Grupo: 12_reunioes/gravacoes_grupo.md
