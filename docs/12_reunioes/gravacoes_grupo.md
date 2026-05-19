@@ -28,6 +28,14 @@ Esses registros contribuem para acompanhar o progresso do trabalho e evidenciam 
 ### Unidade 2
 
 
+<p align="center">
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/PtQP7m2bWnY"
+    title="Apresentação Unidade 1"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</p>
 
 ---
 
@@ -42,4 +50,5 @@ As gravações das entregas permitem acompanhar a evolução contínua do projet
 | Versão | Data | Descrição | Autor(es) | Revisor(es)| 
 | :----: | :--------: | :--------- | :-------: | :-------: | 
 | 1.0 | 12/04/2026 | Criação da página | [Guilherme](https://github.com/GuilhermeOliveira1327) | [Gustavo](https://github.com/GUGOFO) |
-| 1.0 | 13/05/2026 | Edição da página | [Guilherme](https://github.com/GuilhermeOliveira1327) | Equipe |
+| 2.0 | 13/05/2026 | Edição da página | [Guilherme](https://github.com/GuilhermeOliveira1327) | Equipe |
+| 3.0 | 18/05/2026 | Edição da página | [Guilherme](https://github.com/GuilhermeOliveira1327) | Equipe |
