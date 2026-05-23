@@ -5,9 +5,11 @@ site/
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyc
 .env
 venv/
 .venv/
+db.sqlite3
 
 # macOS
 .DS_Store
