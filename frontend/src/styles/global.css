@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Colors */
+  --color-primary: #E97D25;      /* Orange */
+  --color-primary-hover: #cc6d1f;
+  --color-secondary: #F391A0;    /* Pink */
+  --color-background: #F8FAFC;   /* Off-white */
+  --color-surface: #FFFFFF;      /* Cards, Navbar */
+  --color-text-main: #1E293B;    /* Dark Gray */
+  --color-text-muted: #64748B;   /* Light Gray */
+  --color-border: #E2E8F0;
+
+  /* Typography */
+  --font-main: 'Outfit', sans-serif;
+  
+  /* Layout */
+  --max-width: 1200px;
+  --header-height: 70px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+}
