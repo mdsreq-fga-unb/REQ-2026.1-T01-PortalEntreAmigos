@@ -33,7 +33,7 @@
   display: none; /* Mobile first: hidden by default */
 }
 
-.desktopAction {
+.desktopActions {
   display: none; /* Mobile first: hidden by default */
 }
 
@@ -150,11 +150,28 @@
     display: none;
   }
 
-  .desktopAction {
-    display: block;
+  .desktopActions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
   }
 
   .actionButton {
     width: auto;
   }
+}
+
+/* Account Link Styling */
+.accountLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.accountLink:hover {
+  color: var(--color-primary-hover);
 }

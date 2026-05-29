@@ -10,6 +10,10 @@
   --color-text-main: #1E293B;    /* Dark Gray */
   --color-text-muted: #64748B;   /* Light Gray */
   --color-border: #E2E8F0;
+  
+  /* Footer */
+  --color-footer-bg: #3B4252;
+  --color-footer-text: #E2E8F0;
 
   /* Typography */
   --font-main: 'Outfit', sans-serif;

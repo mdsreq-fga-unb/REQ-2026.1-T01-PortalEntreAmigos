@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { FiUser } from 'react-icons/fi';
 import styles from './Navbar.module.css';
 
 export function Navbar() {
@@ -24,25 +25,33 @@ export function Navbar() {
         {/* Desktop Menu */}
         <ul className={`${styles.navLinks} ${isOpen ? styles.active : ''}`}>
           <li>
-            <Link to="/" onClick={() => setIsOpen(false)}>Início</Link>
+            <Link to="/" onClick={() => setIsOpen(false)}>INÍCIO</Link>
           </li>
           <li>
-            <Link to="/sobre" onClick={() => setIsOpen(false)}>Sobre Nós</Link>
+            <Link to="/sobre" onClick={() => setIsOpen(false)}>QUEM SOMOS</Link>
           </li>
           <li>
-            <Link to="/campanhas" onClick={() => setIsOpen(false)}>Campanhas</Link>
+            <Link to="/campanhas" onClick={() => setIsOpen(false)}>CAMPANHA</Link>
           </li>
           <li>
-            <Link to="/transparencia" onClick={() => setIsOpen(false)}>Transparência</Link>
+            <Link to="/transparencia" onClick={() => setIsOpen(false)}>TRANSPARÊNCIA</Link>
           </li>
           <li className={styles.mobileOnly}>
-            <Link to="/doar" className={styles.actionButton} onClick={() => setIsOpen(false)}>Doar</Link>
+            <Link to="/minha-conta" className={styles.accountLink} onClick={() => setIsOpen(false)}>
+              MINHA CONTA <FiUser size={20} />
+            </Link>
+          </li>
+          <li className={styles.mobileOnly}>
+            <Link to="/doar" className={styles.actionButton} onClick={() => setIsOpen(false)}>DOAR</Link>
           </li>
         </ul>
 
         {/* Action Button (Desktop) */}
-        <div className={styles.desktopAction}>
-          <Link to="/doar" className={styles.actionButton}>Doar</Link>
+        <div className={styles.desktopActions}>
+          <Link to="/minha-conta" className={styles.accountLink}>
+            MINHA CONTA <FiUser size={20} />
+          </Link>
+          <Link to="/doar" className={styles.actionButton}>DOAR</Link>
         </div>
 
         {/* Mobile Hamburger Menu */}

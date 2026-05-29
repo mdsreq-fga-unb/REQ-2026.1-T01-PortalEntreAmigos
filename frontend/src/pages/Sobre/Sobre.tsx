@@ -1,20 +1,16 @@
 import { Users, Heart, Target } from 'lucide-react';
+import { PageHeader } from '../../components/PageHeader/PageHeader';
+import ongBg from '../../assets/ong_background.png';
 import styles from './Sobre.module.css';
 
 export function Sobre() {
   return (
     <main className={styles.container}>
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroOverlay}>
-          <div className={styles.heroContent}>
-            <h1 className={styles.title}>Quem Somos</h1>
-            <p className={styles.subtitle}>
-              Unindo forças para transformar realidades e levar esperança onde mais se precisa.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader 
+        image={ongBg}
+        title="Quem Somos"
+        subtitle="Unindo forças para transformar realidades e levar esperança onde mais se precisa."
+      />
 
       {/* Content Section */}
       <section className={styles.contentSection}>
