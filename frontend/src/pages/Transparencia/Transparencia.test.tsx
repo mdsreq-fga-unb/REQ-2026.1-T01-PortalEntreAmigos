@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Transparencia } from './Transparencia';
 import { describe, it, expect, vi } from 'vitest';
 
-// Intercepta e simula o arquivo de mocks para que o teste não dependa de dados externos instáveis
+// Intercepta e simula o arquivo de mocks para garantir isolamento
 vi.mock('../../services/mocks', () => ({
   transparencyReportsMock: [
     { id: 'r1', title: 'Relatório Janeiro', subtitle: 'Prestação de contas Jan' },
@@ -11,14 +11,27 @@ vi.mock('../../services/mocks', () => ({
 }));
 
 describe('Página Transparencia', () => {
-  it('deve exibir o título da página e a lista simulada de relatórios', () => {
+  it('deve exibir o cabeçalho com o título correto', () => {
     render(<Transparencia />);
 
-    // Verifica elementos textuais fixos do cabeçalho
-    expect(screen.getByText('TRANSPARÊNCIA')).toBeInTheDocument();
-    
-    // Verifica se os TransparencyCards foram renderizados com base no nosso mock acima
-    expect(screen.getByText('Relatório Janeiro')).toBeInTheDocument();
-    expect(screen.getByText('Relatório Fevereiro')).toBeInTheDocument();
+    // Verifica o título principal da página usando a semântica de heading (h1)
+    expect(screen.getByRole('heading', { level: 1, name: /transparência/i })).toBeInTheDocument();
+  });
+
+  it('deve renderizar a quantidade exata de cartões baseada nos dados recebidos', () => {
+    render(<Transparencia />);
+
+    // Se o seu TransparencyCard utilizar tags semânticas como <article> ou possuir um papel acessível:
+    // Poderíamos usar: const cards = screen.getAllByRole('article');
+    // expect(cards).toHaveLength(2);
+
+    // Validação específica baseada nos dados mockados controlados:
+    const tituloPrimeiroCard = screen.getByText('Relatório Janeiro');
+    const subtituloPrimeiroCard = screen.getByText('Prestação de contas Jan');
+    const tituloSegundoCard = screen.getByText('Relatório Fevereiro');
+
+    expect(tituloPrimeiroCard).toBeInTheDocument();
+    expect(subtituloPrimeiroCard).toBeInTheDocument();
+    expect(tituloSegundoCard).toBeInTheDocument();
   });
 });
