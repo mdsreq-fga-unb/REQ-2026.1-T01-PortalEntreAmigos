@@ -58,7 +58,7 @@ export function Navbar() {
         <button 
           className={styles.hamburger} 
           onClick={toggleMenu}
-          aria-label="Toggle menu"
+          aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>

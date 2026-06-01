@@ -55,6 +55,7 @@ export function DonationSelector({ items }: DonationSelectorProps) {
                 className={styles.counterBtn} 
                 onClick={() => handleDecrement(item.id)}
                 disabled={quantities[item.id] === 0}
+                aria-label={`Diminuir quantidade de ${item.name}`}
               >
                 <FiMinus size={16} />
               </button>
@@ -62,6 +63,7 @@ export function DonationSelector({ items }: DonationSelectorProps) {
               <button 
                 className={`${styles.counterBtn} ${styles.counterBtnPlus}`} 
                 onClick={() => handleIncrement(item.id)}
+                aria-label={`Incrementar quantidade de ${item.name}`}
               >
                 <FiPlus size={16} color="white" />
               </button>
