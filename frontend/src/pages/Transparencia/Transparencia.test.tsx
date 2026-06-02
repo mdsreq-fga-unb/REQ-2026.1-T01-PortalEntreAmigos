@@ -21,10 +21,6 @@ describe('Página Transparencia', () => {
   it('deve renderizar a quantidade exata de cartões baseada nos dados recebidos', () => {
     render(<Transparencia />);
 
-    // Se o seu TransparencyCard utilizar tags semânticas como <article> ou possuir um papel acessível:
-    // Poderíamos usar: const cards = screen.getAllByRole('article');
-    // expect(cards).toHaveLength(2);
-
     // Validação específica baseada nos dados mockados controlados:
     const tituloPrimeiroCard = screen.getByText('Relatório Janeiro');
     const subtituloPrimeiroCard = screen.getByText('Prestação de contas Jan');
