@@ -66,11 +66,31 @@
   transform: scale(0.95);
 }
 
+.actionsContainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.addButton {
+  background-color: rgba(233, 125, 37, 0.1);
+  color: var(--color-primary);
+}
+
+.addButton:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
 @media (max-width: 640px) {
   .card {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+  }
+  .actionsContainer {
+    width: 100%;
+    flex-direction: column;
   }
   
   .actionButton {

@@ -4,6 +4,13 @@ import { Sobre } from '../pages/Sobre/Sobre';
 import { Campanhas } from '../pages/Campanhas/Campanhas';
 import { Transparencia } from '../pages/Transparencia/Transparencia';
 import { Doar } from '../pages/Doar/Doar';
+import { MinhaConta } from '../pages/MinhaConta/MinhaConta';
+import { Cadastro } from '../pages/Cadastro/Cadastro';
+import { Login } from '../pages/Login/Login';
+import { GerenciarCampanhas } from '../pages/GerenciarCampanhas/GerenciarCampanhas';
+import { NovaCampanha } from '../pages/NovaCampanha/NovaCampanha';
+import { CampanhaAtiva } from '../pages/CampanhaAtiva/CampanhaAtiva';
+
 
 export function AppRoutes() {
   return (
@@ -13,6 +20,12 @@ export function AppRoutes() {
       <Route path="/campanhas" element={<Campanhas />} />
       <Route path="/transparencia" element={<Transparencia />} />
       <Route path="/doar" element={<Doar />} />
+      <Route path="/minha-conta" element={<MinhaConta />} />
+      <Route path="/cadastro" element={<Cadastro />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/gerenciar-campanhas" element={<GerenciarCampanhas />} />
+      <Route path="/nova-campanha" element={<NovaCampanha />} />
+      <Route path="/campanha-ativa" element={<CampanhaAtiva />} />
     </Routes>
   );
 }

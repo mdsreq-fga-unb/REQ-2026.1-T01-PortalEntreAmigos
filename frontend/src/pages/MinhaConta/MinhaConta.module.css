@@ -1,0 +1,159 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - var(--header-height));
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--color-background) 0%, #e2e8f0 100%);
+}
+
+.content {
+  width: 100%;
+  max-width: 600px;
+}
+
+.card {
+  background-color: var(--color-surface);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.header {
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+.button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.buttonText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.buttonText strong {
+  font-size: 1.25rem;
+  color: var(--color-text-main);
+  font-weight: 600;
+}
+
+.buttonText span {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+/* Primary Button - Login */
+.primaryButton {
+  background-color: var(--color-background);
+  border-color: var(--color-border);
+}
+
+.primaryButton .iconWrapper {
+  background-color: rgba(233, 125, 37, 0.1);
+  color: var(--color-primary);
+}
+
+.primaryButton:hover {
+  border-color: var(--color-primary);
+  background-color: #fff;
+}
+
+.primaryButton:hover .iconWrapper {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Secondary Button - Register */
+.secondaryButton {
+  background-color: var(--color-background);
+  border-color: var(--color-border);
+}
+
+.secondaryButton .iconWrapper {
+  background-color: rgba(243, 145, 160, 0.1);
+  color: var(--color-secondary);
+}
+
+.secondaryButton:hover {
+  border-color: var(--color-secondary);
+  background-color: #fff;
+}
+
+.secondaryButton:hover .iconWrapper {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .button {
+    padding: 1rem;
+  }
+  
+  .iconWrapper {
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+  }
+}
+
+

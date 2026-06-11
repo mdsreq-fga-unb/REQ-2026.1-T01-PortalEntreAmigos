@@ -1,0 +1,370 @@
+.container {
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - var(--header-height));
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, var(--color-background) 0%, #e2e8f0 100%);
+}
+
+.content {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  align-self: flex-start;
+}
+
+.backLink:hover {
+  color: var(--color-primary);
+}
+
+.header {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.2rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+}
+
+.card {
+  background-color: var(--color-surface);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.campaignDetails h2 {
+  font-size: 1.8rem;
+  color: var(--color-text-main);
+  margin-bottom: 1rem;
+}
+
+.description {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.infoIcon {
+  color: var(--color-primary);
+  margin-top: 0.2rem;
+}
+
+.infoItem div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.infoItem strong {
+  color: var(--color-text-main);
+  font-size: 0.95rem;
+}
+
+.infoItem span {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.actionsDivider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  margin: 2rem 0;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.actionsDivider::before,
+.actionsDivider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.actionsDivider::before {
+  margin-right: 1rem;
+}
+
+.actionsDivider::after {
+  margin-left: 1rem;
+}
+
+.actionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.actionButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.actionButton:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.btnEdit {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.btnEdit:hover {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btnStop {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.btnStop:hover {
+  background-color: #f59e0b;
+  color: white;
+}
+
+.btnDelete {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.btnDelete:hover {
+  background-color: #ef4444;
+  color: white;
+}
+
+.errorCard {
+  background-color: var(--color-surface);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.errorCard h2 {
+  color: #ef4444;
+  margin-bottom: 1rem;
+}
+
+.primaryButton {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.primaryButton:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Modal Styles */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modalContainer {
+  background-color: var(--color-surface);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  padding: 2.5rem;
+  border: 1px solid var(--color-border);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.modalHeader h2 {
+  color: var(--color-primary);
+  font-size: 1.8rem;
+}
+
+.closeButton {
+  color: var(--color-text-muted);
+  transition: color 0.3s ease;
+  padding: 0.5rem;
+}
+
+.closeButton:hover {
+  color: #ef4444;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.rowGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.input, .textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.input {
+  padding: 1rem 1rem 1rem 3rem;
+}
+
+.textarea {
+  padding: 1rem 1rem 1rem 3rem;
+  resize: vertical;
+}
+
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(233, 125, 37, 0.1);
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
+}
+
+.cancelButton {
+  background-color: transparent;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.cancelButton:hover {
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+}
+
+.saveButton {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.saveButton:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .actionsGrid {
+    grid-template-columns: 1fr;
+  }
+}

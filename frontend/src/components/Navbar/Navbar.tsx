@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { FiUser } from 'react-icons/fi';
+import { useAuth } from '../../contexts/AuthContext';
 import styles from './Navbar.module.css';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAdmin } = useAuth();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -42,7 +44,11 @@ export function Navbar() {
             </Link>
           </li>
           <li className={styles.mobileOnly}>
-            <Link to="/doar" className={styles.actionButton} onClick={() => setIsOpen(false)}>DOAR</Link>
+            {isAdmin ? (
+              <Link to="/gerenciar-campanhas" className={styles.actionButton} onClick={() => setIsOpen(false)}>GERENCIAR CAMPANHAS</Link>
+            ) : (
+              <Link to="/doar" className={styles.actionButton} onClick={() => setIsOpen(false)}>DOAR</Link>
+            )}
           </li>
         </ul>
 
@@ -51,7 +57,11 @@ export function Navbar() {
           <Link to="/minha-conta" className={styles.accountLink}>
             MINHA CONTA <FiUser size={20} />
           </Link>
-          <Link to="/doar" className={styles.actionButton}>DOAR</Link>
+          {isAdmin ? (
+            <Link to="/gerenciar-campanhas" className={styles.actionButton}>GERENCIAR CAMPANHAS</Link>
+          ) : (
+            <Link to="/doar" className={styles.actionButton}>DOAR</Link>
+          )}
         </div>
 
         {/* Mobile Hamburger Menu */}
