@@ -22,31 +22,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
 
   const login = async (email: string, senha: string) => {
-    // Simulação temporária de requisição ao backend
-    return new Promise<void>((resolve, reject) => {
-      setTimeout(() => {
-        // Mock: Verificando se é o email mestre (admin)
-        if (email === 'admin@admin.com' && senha === 'admin123') {
-          setUser({
-            nome: 'Administrador',
-            email,
-            role: 'ADMIN',
-          });
-          resolve();
-        } 
-        // Mock: Login de usuário comum para testes futuros
-        else if (email === 'user@user.com' && senha === 'user123') {
-          setUser({
-            nome: 'Voluntário',
-            email,
-            role: 'USER',
-          });
-          resolve();
-        } 
-        else {
-          reject(new Error('E-mail ou senha incorretos.'));
-        }
-      }, 500); // Simulando delay de rede
+    const response = await fetch('http://localhost:8000/api/login/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password: senha,
+      }),
+    });
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      const message = typeof responseData === 'string'
+        ? responseData
+        : responseData.detail || responseData.error || responseData.message || 'E-mail ou senha incorretos.';
+      throw new Error(message);
+    }
+
+    const isAdminFromBackend = responseData.is_admin ?? (responseData.role === 'ADMIN');
+
+    setUser({
+      nome: responseData.nome,
+      email: responseData.email,
+      role: isAdminFromBackend ? 'ADMIN' : 'USER',
     });
   };
 
