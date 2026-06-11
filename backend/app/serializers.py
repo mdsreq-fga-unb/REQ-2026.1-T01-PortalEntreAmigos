@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 import re
@@ -55,6 +56,6 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, data):
         user = authenticate(username=data['email'], password=data['password'])
         if not user:
-            raise serializers.ValidationError('E-mail ou senha incorretos.')
+            raise AuthenticationFailed('E-mail ou senha incorretos.')
         data['user'] = user
         return data
