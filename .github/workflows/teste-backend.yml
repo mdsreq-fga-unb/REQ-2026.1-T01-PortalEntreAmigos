@@ -1,0 +1,38 @@
+name: Testes do Backend (Django)
+
+# Define quando essa pipeline vai rodar
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  testes:
+    name: Rodar Pytest
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Copia o código do seu repositório para a máquina virtual do GitHub
+    - name: Checkout do código
+      uses: actions/checkout@v4
+
+    # 2. Instala o Python 3.12 na máquina virtual
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'pip' # Faz cache das bibliotecas para não baixar tudo do zero toda vez
+
+    # 3. Entra na pasta do backend e instala o Django, Pytest e etc.
+    - name: Instalar dependências
+      run: |
+        cd backend
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # 4. Roda os testes com o mesmo comando que você usou na sua máquina
+    - name: Executar os testes
+      run: |
+        cd backend
+        pytest -v
