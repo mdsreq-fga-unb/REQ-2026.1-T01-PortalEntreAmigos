@@ -3,13 +3,16 @@ import { MemoryRouter } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { describe, it, expect } from 'vitest';
 import '@testing-library/jest-dom'
+import { AuthProvider } from '../../contexts/AuthContext';
 
 describe('Componente Navbar', () => {
   it('deve renderizar os links de navegação principais', () => {
     render(
-      <MemoryRouter>
-        <Navbar />
-      </MemoryRouter>
+      <AuthProvider>
+        <MemoryRouter>
+          <Navbar />
+        </MemoryRouter>
+      </AuthProvider>
     );
 
     expect(screen.getByText('INÍCIO')).toBeInTheDocument();
@@ -20,9 +23,11 @@ describe('Componente Navbar', () => {
 
   it('deve alternar as propriedades do menu ao abrir e fechar', () => {
     render(
-      <MemoryRouter>
-        <Navbar />
-      </MemoryRouter>
+      <AuthProvider>
+        <MemoryRouter>
+          <Navbar />
+        </MemoryRouter>
+      </AuthProvider>
     );
 
     // 1. O menu começa fechado, então procuramos pelo rótulo "Abrir menu"

@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Transparencia } from './Transparencia';
 import { describe, it, expect, vi } from 'vitest';
+import { AuthProvider } from '../../contexts/AuthContext';
 
 // Intercepta e simula o arquivo de mocks para garantir isolamento
 vi.mock('../../services/mocks', () => ({
@@ -12,14 +13,22 @@ vi.mock('../../services/mocks', () => ({
 
 describe('Página Transparencia', () => {
   it('deve exibir o cabeçalho com o título correto', () => {
-    render(<Transparencia />);
+    render(
+      <AuthProvider>
+        <Transparencia />
+      </AuthProvider>
+    );
 
     // Verifica o título principal da página usando a semântica de heading (h1)
     expect(screen.getByRole('heading', { level: 1, name: /transparência/i })).toBeInTheDocument();
   });
 
   it('deve renderizar a quantidade exata de cartões baseada nos dados recebidos', () => {
-    render(<Transparencia />);
+    render(
+      <AuthProvider>
+        <Transparencia />
+      </AuthProvider>
+    );
 
     // Validação específica baseada nos dados mockados controlados:
     const tituloPrimeiroCard = screen.getByText('Relatório Janeiro');
