@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, AlertCircle, ArrowLeft } from 'lucide-react';
+import toast from 'react-hot-toast'; // Importando o Toast
 import styles from './Cadastro.module.css';
 
 export function Cadastro() {
@@ -13,6 +14,7 @@ export function Cadastro() {
   });
   
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isLoading, setIsLoading] = useState(false); // Novo estado de carregamento
 
   const validatePassword = (password: string) => {
     const minLength = password.length >= 8;
@@ -22,7 +24,7 @@ export function Cadastro() {
     return minLength && hasUpperCase && hasNumber && hasSpecialChar;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => { // Função agora é assíncrona (async)
     e.preventDefault();
     const newErrors: Record<string, string> = {};
 
@@ -46,10 +48,46 @@ export function Cadastro() {
       return;
     }
 
-    // TODO: MOCK - Integração futura com o backend
-    console.log('Dados prontos para envio:', formData);
-    alert('Validação do Frontend concluída! Aguardando integração com backend.');
-    // navigate('/login');
+    // Início da Integração com Backend
+    setIsLoading(true);
+    const toastId = toast.loading('Criando sua conta...');
+
+    try {
+      const response = await fetch('http://localhost:8000/api/cadastro/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          // Mapeando os nomes do frontend para o que o Django espera
+          nome_completo: formData.nome,
+          email: formData.email,
+          password: formData.senha,
+          confirmacao_senha: formData.confirmarSenha
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Pega a primeira mensagem de erro retornada pelo Django
+        const errorValues = Object.values(data).flat();
+        const errorMessage = errorValues.length > 0 ? errorValues[0] : 'Erro ao realizar cadastro.';
+        throw new Error(errorMessage as string);
+      }
+
+      // Sucesso!
+      toast.success('Conta criada com sucesso!', { id: toastId });
+      
+      // Redireciona o usuário para a tela de login
+      navigate('/login');
+
+    } catch (error: any) {
+      // Falha (Ex: e-mail já existe)
+      toast.error(error.message || 'Erro de conexão com o servidor.', { id: toastId });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,6 +127,7 @@ export function Cadastro() {
                   onChange={handleChange}
                   className={`${styles.input} ${errors.nome ? styles.inputError : ''}`}
                   placeholder="Digite seu nome completo"
+                  disabled={isLoading}
                 />
               </div>
               {errors.nome && (
@@ -110,6 +149,7 @@ export function Cadastro() {
                   onChange={handleChange}
                   className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
                   placeholder="seu@email.com"
+                  disabled={isLoading}
                 />
               </div>
               {errors.email && (
@@ -131,6 +171,7 @@ export function Cadastro() {
                   onChange={handleChange}
                   className={`${styles.input} ${errors.senha ? styles.inputError : ''}`}
                   placeholder="Crie uma senha forte"
+                  disabled={isLoading}
                 />
               </div>
               <span className={styles.helperText}>
@@ -155,6 +196,7 @@ export function Cadastro() {
                   onChange={handleChange}
                   className={`${styles.input} ${errors.confirmarSenha ? styles.inputError : ''}`}
                   placeholder="Repita a sua senha"
+                  disabled={isLoading}
                 />
               </div>
               {errors.confirmarSenha && (
@@ -164,8 +206,8 @@ export function Cadastro() {
               )}
             </div>
 
-            <button type="submit" className={styles.submitButton}>
-              Finalizar Cadastro
+            <button type="submit" className={styles.submitButton} disabled={isLoading}>
+              {isLoading ? 'Cadastrando...' : 'Finalizar Cadastro'}
             </button>
           </form>
 
