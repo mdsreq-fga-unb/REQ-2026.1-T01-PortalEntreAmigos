@@ -23,6 +23,10 @@ services:
       - db                       # Só liga depois que o banco estiver pronto
     environment:
       - DB_HOST=db               # A MÁGICA ACONTECE AQUI (Explico abaixo)
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
 
   frontend:
     build: ./frontend            # Diz pro Docker ler o Dockerfile da pasta frontend
