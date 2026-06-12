@@ -26,7 +26,7 @@ O Definition of Done (DoD) é o checklist que define o que a equipe técnica ent
 - A entrega está coerente com o protótipo validado pelo cliente?
 - Contempla os critérios de aceite estabelecidos?
 - Todos os testes unitários e de integração relacionados à funcionalidade foram implementados e aprovados?
-- A entrega deve foi revisada por toda a equipe na reunião de revisão da Iteração? recebeu validação?
+- A entrega foi revisada por toda a equipe na reunião de revisão da Iteração? recebeu validação?
 - A documentação técnica (Backlog) foi revisada e atualizada conforme as mudanças de funcionalidade?
 
 

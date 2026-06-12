@@ -1,8 +1,8 @@
-# Elicitação de Requisitos
+# Declaração de Requisitos
 
 ## Introdução
 
-A elicitação de requisitos consiste no processo de identificação, análise e documentação das necessidades dos stakeholders para o desenvolvimento da solução proposta.
+A declaração de requisitos consiste no processo de identificação, análise e documentação das necessidades dos stakeholders para o desenvolvimento da solução proposta.
 
 Os requisitos apresentados nesta página foram levantados a partir das reuniões realizadas com o cliente, análise do contexto operacional da ONG Ação Entre Amigos BSB e discussões conduzidas pela equipe ao longo do projeto.
 
