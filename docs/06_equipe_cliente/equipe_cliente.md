@@ -24,7 +24,7 @@
 
 - **Reuniões semanais entre a equipe**: A equipe de desenvolvimento se reunirá toda semana durante 1 hora pelo Microsoft Teams para discussão do andamento do projeto, em que cada membro irá relatar os progressos e dificuldades que teve durante a semana. A reunião será documentada por meio de uma ata.
 
-- **Reuniões semanais com o cliente**: A equipe de desenvolvimento se reunirá com o cliente toda semana pelo Microsoft Teams para que o cliente possa revisar as entregas, fornecer feedbacks e alinhar prioridades futuras. A reunião será documentada por meio de uma ata.
+- **Reuniões quinzenais com o cliente**: A equipe de desenvolvimento se reunirá com o cliente toda semana pelo Microsoft Teams para que o cliente possa revisar as entregas, fornecer feedbacks e alinhar prioridades futuras. A reunião será documentada por meio de uma ata.
 
 ## Processo de Validação
 
@@ -39,8 +39,6 @@ A equipe de desenvolvimento realizará revisões e testes internos ao final de c
 ### Validação com o Cliente 
 
 Diferente de modelos tradicionais, o cliente participará de forma contínua, com foco especial na concepção visual e funcional do sistema.
-
-- **Design Colaborativo (Co-criação)**: Antes da implementação do código, serão realizados workshops de design (sessões JAD) com Carlos Vaz. O objetivo é desenhar interfaces e fluxos — como o processo de baixa de itens — em conjunto, garantindo aderência à realidade operacional da ONG.
 
 - **Demonstração por Incremento**: Ao longo de cada iteração, e não apenas ao final, incrementos funcionais do protótipo serão apresentados para validação e ajustes rápidos, evitando retrabalho no encerramento do ciclo.
 
