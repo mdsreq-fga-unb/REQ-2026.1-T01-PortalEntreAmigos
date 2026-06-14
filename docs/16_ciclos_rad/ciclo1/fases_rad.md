@@ -44,7 +44,7 @@ Abaixo estão dispostos os protótipos elaborados para este ciclo:
 ![Protótipo da Página Quem Somos – Computador](../../00_assets/imagens/prototipagem/quem_somos/computador_v1.png){ width="40%" style="display: block; margin: 0 auto;" }
 
 #### Versão Mobile
-![Protótipo da Página Quem Somos – Celular](../../00_assets/imagens/prototipagem/quem_somos/celular_v1.png){ width="70" style="display: block; margin: 0 auto;" }
+![Protótipo da Página Quem Somos – Celular](../../00_assets/imagens/prototipagem/quem_somos/celular_v1.png){ width="100" style="display: block; margin: 0 auto;" }
 
 ---
 
@@ -72,17 +72,19 @@ Os componentes desenvolvidos, os estilos estruturados e as páginas integradas p
 #### 2. Página "Quem Somos"
 
 ##### Versão Desktop
-![Site Real - Quem Somos Computador](../../00_assets/imagens/pagina/quem_somos/computador.png){ width="50%" style="display: block; margin: 0 auto;" }
+![Site Real - Quem Somos Computador](../../00_assets/imagens/pagina/quem_somos/computador_parte1.png){ width="50%" style="display: block; margin: 0 auto;" }
+![Site Real - Quem Somos Computador](../../00_assets/imagens/pagina/quem_somos/computador_parte2.png){ width="50%" style="display: block; margin: 0 auto;" }
+![Site Real - Quem Somos Computador](../../00_assets/imagens/pagina/quem_somos/computador_parte3.png){ width="50%" style="display: block; margin: 0 auto;" }
+![Site Real - Quem Somos Computador](../../00_assets/imagens/pagina/quem_somos/computador_parte4.png){ width="50%" style="display: block; margin: 0 auto;" }
 
 ##### Versão Mobile
 
-parte 1
-
 ![Site Real - Quem Somos Celular](../../00_assets/imagens/pagina/quem_somos/celular_parte1.png){ width="150" style="display: block; margin: 0 auto;" }
-
-parte 2
-
 ![Site Real - Quem Somos Celular](../../00_assets/imagens/pagina/quem_somos/celular_parte2.png){ width="150" style="display: block; margin: 0 auto;" }
+![Site Real - Quem Somos Celular](../../00_assets/imagens/pagina/quem_somos/celular_parte3.png){ width="150" style="display: block; margin: 0 auto;" }
+![Site Real - Quem Somos Celular](../../00_assets/imagens/pagina/quem_somos/celular_parte4.png){ width="150" style="display: block; margin: 0 auto;" }
+![Site Real - Quem Somos Celular](../../00_assets/imagens/pagina/quem_somos/celular_parte5.png){ width="150" style="display: block; margin: 0 auto;" }
+
 ---
 
 ## Transicao
