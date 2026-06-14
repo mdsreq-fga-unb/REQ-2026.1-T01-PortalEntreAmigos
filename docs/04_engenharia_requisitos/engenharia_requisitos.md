@@ -6,7 +6,7 @@ A Engenharia de Requisitos é responsável por identificar, analisar, documentar
 
 ### Elicitação e Descoberta: 
 
-- **Entrevistas Semiestruturadas**: Reuniões para extrair informações acerca das necessidades do cliente, baseada em um roteiro guia.
+- **Entrevistas Semiestruturadas**: Reuniões para extrair informações acerca das necessidades do cliente.
 
 - **Análise de Documentos**: Examinar documentação existente sobre o domínio e o contexto do cliente, buscando possíveis requisitos funcionais e não funcionais, além de compreender regras de negócio pré-estabelecidas.
 
