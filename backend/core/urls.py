@@ -1,11 +1,12 @@
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
-from app.views import RegistroUsuarioView, LoginUsuarioView, EventoViewSet, ItemDoacaoViewSet
+from app.views import RegistroUsuarioView, LoginUsuarioView, EventoViewSet, ItemDoacaoViewSet, DoacaoViewSet
 
 router = DefaultRouter()
 router.register('eventos', EventoViewSet)
 router.register('doacoes', ItemDoacaoViewSet)
+router.register('registros-doacao', DoacaoViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

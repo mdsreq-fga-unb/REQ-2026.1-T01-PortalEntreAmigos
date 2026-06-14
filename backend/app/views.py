@@ -5,8 +5,8 @@ from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.models import User
 from rest_framework import viewsets
-from .models import Evento, ItemDoacao
-from .serializers import RegistroSerializer, LoginSerializer, EventoSerializer, ItemDoacaoSerializer
+from .models import Evento, ItemDoacao, Doacao
+from .serializers import RegistroSerializer, LoginSerializer, EventoSerializer, ItemDoacaoSerializer, DoacaoSerializer
 
 class RegistroUsuarioView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -42,6 +42,10 @@ class LoginUsuarioView(APIView):
 class EventoViewSet(viewsets.ModelViewSet):
     queryset = Evento.objects.all()
     serializer_class = EventoSerializer
+
+class DoacaoViewSet(viewsets.ModelViewSet):
+    queryset = Doacao.objects.all()
+    serializer_class = DoacaoSerializer
     
 class ItemDoacaoViewSet(viewsets.ModelViewSet):
     queryset = ItemDoacao.objects.all()

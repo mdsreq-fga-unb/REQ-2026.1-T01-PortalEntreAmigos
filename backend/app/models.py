@@ -46,12 +46,27 @@ class ItemDoacao(models.Model):
     meta_item = models.PositiveIntegerField(default=1)
     quantidade_arrecadada = models.PositiveIntegerField(default=0) 
     
-    @property #progresso da meta individual de cada item
+    def atualizar_quantidade(self):
+        total = self.doacoes.aggregate(total=models.Sum('quantidade'))['total'] or 0
+        self.quantidade_arrecadada = total
+        self.save()
+
+    @property #progresso meta individual
     def progresso(self):
         if self.meta_item == 0:
             return 0
-
         return round((self.quantidade_arrecadada / self.meta_item) * 100, 2)
     
+class Doacao(models.Model):
+    item = models.ForeignKey(
+        ItemDoacao,
+        on_delete=models.CASCADE,
+        related_name='doacoes'
+    )
+    doador_nome = models.CharField(max_length=100)
+    doador_email = models.EmailField()
+    quantidade = models.PositiveIntegerField()
+    criado_em = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
-        return f'{self.nome} ({self.evento.nome})'
+        return f'{self.doador_nome} → {self.item.nome} ({self.quantidade})'

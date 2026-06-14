@@ -3,7 +3,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 import re
-from .models import Evento, ItemDoacao
+from .models import Evento, ItemDoacao, Doacao
 
 class RegistroSerializer(serializers.ModelSerializer):
     # CA-US01-01: Campos obrigatórios
@@ -83,3 +83,14 @@ class ItemDoacaoSerializer(serializers.ModelSerializer):
         model = ItemDoacao
         fields = ['id', 'nome', 'meta_item', 'evento', 'quantidade_arrecadada', 'progresso']
         read_only_fields = ['progresso']   
+        
+class DoacaoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Doacao
+        fields = ['id', 'item', 'doador_nome', 'doador_email', 'quantidade', 'criado_em']
+        read_only_fields = ['criado_em']
+
+    def create(self, validated_data):
+        doacao = super().create(validated_data)
+        doacao.item.atualizar_quantidade()  
+        return doacao        
