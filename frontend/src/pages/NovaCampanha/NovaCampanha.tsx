@@ -7,6 +7,7 @@ import * as z from 'zod';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../contexts/AuthContext';
 import { Modal } from '../../components/Modal/Modal';
+import { eventoService, itemDoacaoService } from '../../services/api';
 import styles from './NovaCampanha.module.css';
 
 const itemSchema = z.object({
@@ -39,6 +40,7 @@ type CampanhaFormData = z.infer<typeof campanhaSchema>;
 export function NovaCampanha() {
   const { isAdmin } = useAuth();
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm<CampanhaFormData>({
     resolver: zodResolver(campanhaSchema),
@@ -77,15 +79,39 @@ export function NovaCampanha() {
     );
   }
 
-  const onSubmit = (data: CampanhaFormData) => {
-    // TODO: Integração com o Backend futuramente
-    console.log('Campanha pronta para salvar:', data);
-    toast.success('Campanha criada com sucesso!');
-    
-    // Simula volta ao painel após sucesso
-    setTimeout(() => {
-      navigate('/gerenciar-campanhas');
-    }, 2000);
+   const onSubmit = async (data: CampanhaFormData) => {
+    setIsSubmitting(true);
+    try {
+      // Cria o evento
+      const evento = await eventoService.criar({
+        nome: data.titulo,
+        descricao: data.descricao,
+        data_inicio: data.dataInicio,
+        data_fim: data.dataTermino,
+        local: data.local,
+        capacidade_voluntarios: 0,
+        status: 'EM_ANDAMENTO',
+      });
+
+      // Cria cada item de doação vinculado ao evento
+      await Promise.all(
+        data.itens.map(item =>
+          itemDoacaoService.criar({
+            evento: evento.id,
+            nome: item.nome,
+            meta_item: Number(item.quantidade),
+          })
+        )
+      );
+
+      toast.success('Campanha criada com sucesso!');
+      setTimeout(() => navigate('/gerenciar-campanhas'), 2000);
+
+    } catch {
+      toast.error('Erro ao criar campanha. Tente novamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleAddItem = (closeModal: boolean) => {

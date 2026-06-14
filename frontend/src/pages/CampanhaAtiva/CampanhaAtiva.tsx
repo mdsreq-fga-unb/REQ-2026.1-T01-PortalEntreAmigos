@@ -1,34 +1,78 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Edit, StopCircle, Trash2, Calendar, Target, MapPin, X, Type, FileText } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import { eventoService } from '../../services/api';
+import toast from 'react-hot-toast';
 import styles from './CampanhaAtiva.module.css';
 
 export function CampanhaAtiva() {
   const { isAdmin } = useAuth();
+  const { id } = useParams(); // pega o ID da URL: /campanhas/:id
 
-  const [activeCampaign, setActiveCampaign] = useState({
-    titulo: 'Campanha de Inverno Solidário',
-    descricao: 'Arrecadação de agasalhos e cobertores para famílias em situação de vulnerabilidade durante o inverno rigoroso.',
-    dataInicio: '2026-06-01',
-    dataTermino: '2026-07-30',
-    local: 'Sede da Ação Entre Amigos BSB',
-    metas: '500 cobertores e R$ 2.000,00'
-  });
-
+  const [campanha, setCampanha] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [editFormData, setEditFormData] = useState({ ...activeCampaign });
+  const [editFormData, setEditFormData] = useState<any>({});
+
+  // Busca o evento ao carregar
+  useEffect(() => {
+    if (!id) return;
+    eventoService.buscar(id)
+      .then(data => {
+        setCampanha(data);
+        setEditFormData(data);
+      })
+      .catch(() => toast.error('Erro ao carregar campanha'))
+      .finally(() => setLoading(false));
+  }, [id]);
 
   const handleEditChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setEditFormData({ ...editFormData, [e.target.name]: e.target.value });
   };
 
-  const handleEditSubmit = (e: React.FormEvent) => {
+  const handleEditSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Format dates locally just for display if needed, but assuming HTML5 format
-    setActiveCampaign({ ...editFormData });
-    setIsEditModalOpen(false);
+    try {
+      const atualizado = await eventoService.atualizar(id!, {
+        nome: editFormData.nome,
+        descricao: editFormData.descricao,
+        data_inicio: editFormData.data_inicio,
+        data_fim: editFormData.data_fim,
+        local: editFormData.local,
+        capacidade_voluntarios: editFormData.capacidade_voluntarios,
+      });
+      setCampanha(atualizado);
+      setIsEditModalOpen(false);
+      toast.success('Campanha atualizada!');
+    } catch {
+      toast.error('Erro ao atualizar campanha');
+    }
   };
+
+  const handleEncerrar = async () => {
+    try {
+      const atualizado = await eventoService.atualizar(id!, { status: 'CONCLUIDO' });
+      setCampanha(atualizado);
+      toast.success('Campanha encerrada!');
+    } catch {
+      toast.error('Erro ao encerrar campanha');
+    }
+  };
+
+  const handleDeletar = async () => {
+    if (!confirm('Tem certeza que deseja excluir esta campanha?')) return;
+    try {
+      await eventoService.deletar(id!);
+      toast.success('Campanha excluída!');
+      window.location.href = '/gerenciar-campanhas';
+    } catch {
+      toast.error('Erro ao excluir campanha');
+    }
+  };
+
+  if (loading) return <p>Carregando...</p>;
+  if (!campanha) return <p>Campanha não encontrada.</p>;
 
   if (!isAdmin) {
     return (
@@ -51,7 +95,7 @@ export function CampanhaAtiva() {
           <ArrowLeft size={20} />
           Voltar para o Painel
         </Link>
-        
+
         <div className={styles.header}>
           <h1 className={styles.title}>Gerenciar Campanha Ativa</h1>
           <p className={styles.subtitle}>
@@ -61,23 +105,23 @@ export function CampanhaAtiva() {
 
         <div className={styles.card}>
           <div className={styles.campaignDetails}>
-            <h2>{activeCampaign.titulo}</h2>
-            <p className={styles.description}>{activeCampaign.descricao}</p>
-            
+            <h2>{campanha.nome}</h2>
+            <p className={styles.description}>{campanha.descricao}</p>
+
             <div className={styles.infoGrid}>
               <div className={styles.infoItem}>
                 <Calendar size={20} className={styles.infoIcon} />
                 <div>
                   <strong>Período</strong>
-                  <span>{activeCampaign.dataInicio} a {activeCampaign.dataTermino}</span>
+                  <span>{campanha.data_inicio} a {campanha.data_fim}</span>
                 </div>
               </div>
-              
+
               <div className={styles.infoItem}>
                 <Target size={20} className={styles.infoIcon} />
                 <div>
-                  <strong>Metas</strong>
-                  <span>{activeCampaign.metas}</span>
+                  <strong>Progresso Geral</strong>
+                  <span>{campanha.progresso_geral}%</span>
                 </div>
               </div>
 
@@ -85,28 +129,27 @@ export function CampanhaAtiva() {
                 <MapPin size={20} className={styles.infoIcon} />
                 <div>
                   <strong>Local</strong>
-                  <span>{activeCampaign.local}</span>
+                  <span>{campanha.local}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className={styles.actionsDivider}>
-            Ações da Campanha
-          </div>
+          <div className={styles.actionsDivider}>Ações da Campanha</div>
 
           <div className={styles.actionsGrid}>
-            <button className={`${styles.actionButton} ${styles.btnEdit}`} onClick={() => { setEditFormData({ ...activeCampaign }); setIsEditModalOpen(true); }}>
+            <button className={`${styles.actionButton} ${styles.btnEdit}`}
+              onClick={() => { setEditFormData({ ...campanha }); setIsEditModalOpen(true); }}>
               <Edit size={24} />
               <span>Editar Campanha</span>
             </button>
 
-            <button className={`${styles.actionButton} ${styles.btnStop}`}>
+            <button className={`${styles.actionButton} ${styles.btnStop}`} onClick={handleEncerrar}>
               <StopCircle size={24} />
               <span>Encerrar Campanha</span>
             </button>
 
-            <button className={`${styles.actionButton} ${styles.btnDelete}`}>
+            <button className={`${styles.actionButton} ${styles.btnDelete}`} onClick={handleDeletar}>
               <Trash2 size={24} />
               <span>Excluir Campanha</span>
             </button>
@@ -123,13 +166,13 @@ export function CampanhaAtiva() {
                 <X size={24} />
               </button>
             </div>
-            
+
             <form onSubmit={handleEditSubmit} className={styles.form}>
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Título da Campanha</label>
                 <div className={styles.inputWrapper}>
                   <Type size={20} className={styles.inputIcon} />
-                  <input type="text" name="titulo" value={editFormData.titulo} onChange={handleEditChange} className={styles.input} required />
+                  <input type="text" name="nome" value={editFormData.nome} onChange={handleEditChange} className={styles.input} required />
                 </div>
               </div>
 
@@ -146,7 +189,7 @@ export function CampanhaAtiva() {
                   <label className={styles.label}>Data de Início</label>
                   <div className={styles.inputWrapper}>
                     <Calendar size={20} className={styles.inputIcon} />
-                    <input type="date" name="dataInicio" value={editFormData.dataInicio} onChange={handleEditChange} className={styles.input} required />
+                    <input type="date" name="data_inicio" value={editFormData.data_inicio} onChange={handleEditChange} className={styles.input} required />
                   </div>
                 </div>
 
@@ -154,7 +197,7 @@ export function CampanhaAtiva() {
                   <label className={styles.label}>Data de Término</label>
                   <div className={styles.inputWrapper}>
                     <Calendar size={20} className={styles.inputIcon} />
-                    <input type="date" name="dataTermino" value={editFormData.dataTermino} onChange={handleEditChange} className={styles.input} required />
+                    <input type="date" name="data_fim" value={editFormData.data_fim} onChange={handleEditChange} className={styles.input} required />
                   </div>
                 </div>
               </div>
@@ -164,14 +207,6 @@ export function CampanhaAtiva() {
                 <div className={styles.inputWrapper}>
                   <MapPin size={20} className={styles.inputIcon} />
                   <input type="text" name="local" value={editFormData.local} onChange={handleEditChange} className={styles.input} required />
-                </div>
-              </div>
-
-              <div className={styles.inputGroup}>
-                <label className={styles.label}>Metas de Arrecadação</label>
-                <div className={styles.inputWrapper}>
-                  <Target size={20} className={styles.inputIcon} />
-                  <input type="text" name="metas" value={editFormData.metas} onChange={handleEditChange} className={styles.input} required />
                 </div>
               </div>
 

@@ -1,11 +1,32 @@
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CampaignCard } from '../../components/CampaignCard/CampaignCard';
-import { activeCampaignMock, closedCampaignsMock } from '../../services/mocks';
+import { eventoService } from '../../services/api';
+import toast from 'react-hot-toast';
 import styles from './Campanhas.module.css';
+import bannerImg from '../../assets/donation_banner.png'
 
 export function Campanhas() {
-  // TODO: Em breve substituiremos estes mocks por uma chamada de API (React Query ou useEffect)
-  const activeCampaign = activeCampaignMock;
-  const closedCampaigns = closedCampaignsMock;
+  const [campanhasAtivas, setCampanhasAtivas] = useState<any[]>([]);
+  const [campanhasEncerradas, setCampanhasEncerradas] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    eventoService.listar()
+      .then(data => {
+        console.log('Dados recebidos:', data)
+        setCampanhasAtivas(data.filter((e: any) => e.status === 'EM_ANDAMENTO'));
+        setCampanhasEncerradas(data.filter((e: any) => e.status === 'CONCLUIDO' || e.status === 'CANCELADO'));
+      })
+      .catch((err) => {
+    console.error('Erro:', err) 
+    toast.error('Erro ao carregar campanhas')
+     })
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <p>Carregando...</p>;
 
   return (
     <main className={styles.container}>
@@ -14,33 +35,46 @@ export function Campanhas() {
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Ativa</h2>
         <div className={styles.campaignWrapper}>
-          <CampaignCard
-            image={activeCampaign.image}
-            progress={activeCampaign.progress}
-            progressColor="primary"
-            endDate={activeCampaign.endDate}
-            title={activeCampaign.title}
-            description={activeCampaign.description}
-            isActive={true}
-          />
+          {campanhasAtivas.length === 0 ? (
+            <p>Nenhuma campanha ativa no momento.</p>
+          ) : (
+            campanhasAtivas.map(campanha => (
+              <div key={campanha.id} onClick={() => navigate(`/doar/${campanha.id}`)} style={{ cursor: 'pointer' }}>
+              <CampaignCard
+                key={campanha.id}
+                progress={campanha.progresso_geral}
+                progressColor="primary"
+                endDate={campanha.data_fim}
+                title={campanha.nome}
+                description={campanha.descricao}
+                isActive={true}
+                image={bannerImg}
+              />
+              </div>
+            ))
+          )}
         </div>
       </section>
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Encerradas</h2>
         <div className={styles.closedCampaignsGrid}>
-          {closedCampaigns.map((campaign) => (
-            <CampaignCard
-              key={campaign.id}
-              image={campaign.image}
-              progress={campaign.progress}
-              progressColor="secondary"
-              endDate={campaign.endDate}
-              title={campaign.title}
-              description={campaign.description}
-              isActive={false}
-            />
-          ))}
+          {campanhasEncerradas.length === 0 ? (
+            <p>Nenhuma campanha encerrada.</p>
+          ) : (
+            campanhasEncerradas.map(campanha => (
+              <CampaignCard
+                key={campanha.id}
+                progress={campanha.progresso_geral}
+                progressColor="secondary"
+                endDate={campanha.data_fim}
+                title={campanha.nome}
+                description={campanha.descricao}
+                isActive={false}
+                image={bannerImg}
+              />
+            ))
+          )}
         </div>
       </section>
     </main>

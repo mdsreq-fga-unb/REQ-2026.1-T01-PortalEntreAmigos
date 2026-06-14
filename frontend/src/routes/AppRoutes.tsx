@@ -20,12 +20,14 @@ export function AppRoutes() {
       <Route path="/campanhas" element={<Campanhas />} />
       <Route path="/transparencia" element={<Transparencia />} />
       <Route path="/doar" element={<Doar />} />
+      <Route path="/doar/:id" element={<Doar />} />
       <Route path="/minha-conta" element={<MinhaConta />} />
       <Route path="/cadastro" element={<Cadastro />} />
       <Route path="/login" element={<Login />} />
       <Route path="/gerenciar-campanhas" element={<GerenciarCampanhas />} />
       <Route path="/nova-campanha" element={<NovaCampanha />} />
       <Route path="/campanha-ativa" element={<CampanhaAtiva />} />
+      <Route path="/campanha-ativa/:id" element={<CampanhaAtiva />} />
     </Routes>
   );
 }
