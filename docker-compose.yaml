@@ -38,6 +38,7 @@ services:
       - /app/node_modules        # Protege as dependências do contêiner
     depends_on:
       - backend
-
+    command: sh -c "npm install && npm run dev"
+    
 volumes:
   postgres_data:

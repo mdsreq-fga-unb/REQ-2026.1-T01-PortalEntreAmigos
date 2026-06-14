@@ -4,7 +4,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.models import User
-from .serializers import RegistroSerializer, LoginSerializer
+from rest_framework import viewsets
+from .models import Evento, ItemDoacao, Doacao
+from .serializers import RegistroSerializer, LoginSerializer, EventoSerializer, ItemDoacaoSerializer, DoacaoSerializer
 
 class RegistroUsuarioView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -36,3 +38,23 @@ class LoginUsuarioView(APIView):
             },
             status=status.HTTP_200_OK,
         )
+
+class EventoViewSet(viewsets.ModelViewSet):
+    queryset = Evento.objects.all()
+    serializer_class = EventoSerializer
+
+class DoacaoViewSet(viewsets.ModelViewSet):
+    queryset = Doacao.objects.all()
+    serializer_class = DoacaoSerializer
+    
+class ItemDoacaoViewSet(viewsets.ModelViewSet):
+    queryset = ItemDoacao.objects.all()
+    serializer_class = ItemDoacaoSerializer
+    
+     # Filtra itens pelo evento: /api/doacao/?evento=1
+    def get_queryset(self):
+        queryset = ItemDoacao.objects.all()
+        evento_id = self.request.query_params.get('evento')
+        if evento_id:
+            queryset = queryset.filter(evento_id=evento_id)
+        return queryset

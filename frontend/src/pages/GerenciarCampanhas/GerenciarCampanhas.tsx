@@ -1,12 +1,34 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { PlusCircle, Settings, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import { eventoService } from '../../services/api';
+import toast from 'react-hot-toast';
 import styles from './GerenciarCampanhas.module.css';
 
 export function GerenciarCampanhas() {
   const { user, isAdmin } = useAuth();
+  const [campanhaAtivaId, setCampanhaAtivaId] = useState<number | null>(null);
+  const navigate = useNavigate();
 
-  // Proteção básica de rota no frontend para demonstração
+  useEffect(() => {
+    if (!isAdmin) return;
+    eventoService.listar()
+      .then(data => {
+        const ativa = data.find((e: any) => e.status === 'EM_ANDAMENTO');
+        if (ativa) setCampanhaAtivaId(ativa.id);
+      })
+      .catch(() => toast.error('Erro ao buscar campanha ativa'));
+  }, [isAdmin]);
+
+  const handleGerenciar = () => {
+    if (!campanhaAtivaId) {
+      toast.error('Nenhuma campanha ativa no momento.');
+      return;
+    }
+    navigate(`/campanha-ativa/${campanhaAtivaId}`);
+  };
+
   if (!isAdmin) {
     return (
       <main className={styles.container}>
@@ -35,9 +57,8 @@ export function GerenciarCampanhas() {
             Olá, <strong>{user?.nome}</strong>. O que você gostaria de gerenciar hoje?
           </p>
         </div>
-        
+
         <div className={styles.grid}>
-          {/* Card: Criar Nova Campanha */}
           <Link to="/nova-campanha" className={styles.actionCard}>
             <div className={`${styles.iconWrapper} ${styles.iconCreate}`}>
               <PlusCircle size={36} />
@@ -48,8 +69,8 @@ export function GerenciarCampanhas() {
             </div>
           </Link>
 
-          {/* Card: Gerenciar Campanha Ativa */}
-          <Link to="/campanha-ativa" className={styles.actionCard}>
+          {/* Agora é button em vez de Link, pois precisa do ID dinâmico */}
+          <button onClick={handleGerenciar} className={styles.actionCard}>
             <div className={`${styles.iconWrapper} ${styles.iconManage}`}>
               <Settings size={36} />
             </div>
@@ -57,7 +78,7 @@ export function GerenciarCampanhas() {
               <h3>Gerenciar Campanha Ativa</h3>
               <p>Edite as informações da campanha vigente, acompanhe o progresso das doações ou encerre.</p>
             </div>
-          </Link>
+          </button>
         </div>
       </div>
     </main>
