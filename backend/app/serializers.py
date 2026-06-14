@@ -3,6 +3,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 import re
+from .models import Evento, ItemDoacao
 
 class RegistroSerializer(serializers.ModelSerializer):
     # CA-US01-01: Campos obrigatórios
@@ -59,3 +60,26 @@ class LoginSerializer(serializers.Serializer):
             raise AuthenticationFailed('E-mail ou senha incorretos.')
         data['user'] = user
         return data
+    
+    
+class EventoSerializer(serializers.ModelSerializer):
+    progresso_geral = serializers.FloatField(read_only=True)
+    
+    class Meta:
+        model = Evento
+        #colunas que ficam visíveis na api
+        fields = ['id', 'nome', 'descricao', 'data_inicio', 'data_fim', 'criado_em', 'local', 'capacidade_voluntarios', 'status', 'progresso_geral']
+        read_only_fields = ['criado_em']
+    
+    def validate(self, data):  # validação de datas
+        if data['data_fim'] < data['data_inicio']:
+            raise serializers.ValidationError("A data de fim não pode ser anterior à data de início.")
+        return data    
+        
+class ItemDoacaoSerializer(serializers.ModelSerializer):
+    progresso = serializers.FloatField(read_only=True) 
+    
+    class Meta:
+        model = ItemDoacao
+        fields = ['id', 'nome', 'meta_item', 'evento', 'quantidade_arrecadada', 'progresso']
+        read_only_fields = ['progresso']   
