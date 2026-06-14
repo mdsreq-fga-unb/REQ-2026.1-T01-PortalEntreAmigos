@@ -163,8 +163,10 @@ Os critérios de aceite foram organizados de forma rastreável, permitindo sua a
 
 | ID | Critério de Aceite |
 | :--- | :--- |
-| <a id="ca-us14-01"></a>CA-US14-01 | A vitrine deve exibir apenas os eventos com status "Ativo" ou "Em Andamento". |
-| <a id="ca-us14-02"></a>CA-US14-02 | A listagem deve ser ordenada pelos eventos cuja data de término esteja mais próxima. |
+| <a id="ca-us14-01"></a>CA-US14-01 | A Página de Campanhas deve listar a "Campanha Ativa" em destaque principal e segregar as "Últimas Campanhas Fechadas". |
+| <a id="ca-us14-02"></a>CA-US14-02 | O layout de ambas as páginas deve ser totalmente responsivo (mobile e desktop) ([RNF01](../13_requisitos/requisitos.md#rnf01)). |
+| <a id="ca-us14-03"></a>CA-US14-03 | A Página da Campanha deve carregar todos os dados detalhados específicos, descrição longa e objetivos da mobilização ativa selecionada. |
+| <a id="ca-us14-04"></a>CA-US14-04 | A Página da Campanha deve exibir indicadores visuais claros sobre a meta de arrecadação. |
 
 ---
 
