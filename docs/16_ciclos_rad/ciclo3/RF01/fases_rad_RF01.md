@@ -1,6 +1,6 @@
 # Ciclo RAD 3
 
-**Período:** 09/06 a 15/06  
+**Período:** 01/06 a 08/06  
 **Responsáveis:** [Edson Pereira Roldao Filho](https://github.com/edso-n), [Gustavo Gomes Fornaciari](https://github.com/GUGOFO), [Leonardo de Aquino Silveira Braga](https://github.com/surpesaiajin)  
 **Requisitos Alocados:** [RF01 - Cadastrar usuário](../../../13_requisitos/requisitos.md#rf01)
 
