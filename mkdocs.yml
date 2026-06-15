@@ -70,6 +70,10 @@ nav:
         - DOR e DOD: 16_ciclos_rad/ciclo3/RF05/dor_dod_evidencias_RF05.md
         - Critérios de Aceitação: 16_ciclos_rad/ciclo3/RF05/criterios_evidencias_RF05.md
     - Ciclo 4:
+      - RF06:
+        - Fases do RAD: 16_ciclos_rad/ciclo4/RF06/fases_rad_RF06.md
+        - DOR e DOD: 16_ciclos_rad/ciclo4/RF06/dor_dod_evidencias_RF06.md
+        - Critérios de Aceitação: 16_ciclos_rad/ciclo4/RF06/criterios_evidencias_RF06.md
       - RF07:
         - Fases do RAD: 16_ciclos_rad/ciclo4/RF07/fases_rad_RF07.md
         - DOR e DOD: 16_ciclos_rad/ciclo4/RF07/dor_dod_evidencias_RF07.md

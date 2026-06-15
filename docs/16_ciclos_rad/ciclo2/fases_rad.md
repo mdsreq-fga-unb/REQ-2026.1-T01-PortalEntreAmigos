@@ -90,8 +90,6 @@ Caso queira analisar detalhadamente o comportamento estrutural do código implem
 
 **Link para análise técnica:** [Repositório de Transição - Ciclo 2](https://github.com/GUGOFO)
 
-![Codigo de Teste](../../00_assets/imagens/testes/ciclo2.png){ width="400" style="display: block; margin: 0 auto;" }
-
 ---
 
 ## Histórico de Versão

@@ -93,8 +93,6 @@ Caso queira analisar detalhadamente o comportamento estrutural do código implem
 
 **Link para análise técnica:** [Repositório de Transição - Ciclo 1](https://github.com/GuilhermeOliveira1327)
 
-![Codigo de Teste](../../00_assets/imagens/testes/ciclo1.png){ width="400" style="display: block; margin: 0 auto;" }
-
 ---
 
 ## Histórico de Versão
