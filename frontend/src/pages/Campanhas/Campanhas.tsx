@@ -15,7 +15,6 @@ export function Campanhas() {
   useEffect(() => {
     eventoService.listar()
       .then(data => {
-        console.log('Dados recebidos:', data)
         setCampanhasAtivas(data.filter((e: any) => e.status === 'EM_ANDAMENTO'));
         setCampanhasEncerradas(data.filter((e: any) => e.status === 'CONCLUIDO' || e.status === 'CANCELADO'));
       })

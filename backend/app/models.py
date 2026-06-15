@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -25,9 +27,13 @@ class Evento(models.Model):
 
     @property #progresso da meta geral
     def progresso_geral(self):
-        itens = self.itens_doacao.all()
-        total_arrecadado = sum(item.quantidade_arrecadada for item in itens)  
-        total_meta = sum(item.meta_item for item in itens)                    
+        totais = self.itens_doacao.aggregate(
+            total_arrecadado=models.Sum('quantidade_arrecadada'),
+            total_meta=models.Sum('meta_item')
+        )
+        total_arrecadado = totais['total_arrecadado'] or 0
+        total_meta = totais['total_meta'] or 0
+        
         if total_meta == 0:
             return 0
         return round((total_arrecadado / total_meta) * 100, 2)
@@ -70,3 +76,8 @@ class Doacao(models.Model):
 
     def __str__(self):
         return f'{self.doador_nome} → {self.item.nome} ({self.quantidade})'
+
+@receiver(post_save, sender=Doacao)
+@receiver(post_delete, sender=Doacao)
+def atualizar_quantidade_item(sender, instance, **kwargs):
+    instance.item.atualizar_quantidade()

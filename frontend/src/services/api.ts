@@ -1,85 +1,55 @@
-const BASE_URL = 'http://localhost:8000/api'
+import apiClient from './apiClient';
 
 export const eventoService = {
   listar: async () => {
-    const res = await fetch(`${BASE_URL}/eventos/`)
-    if (!res.ok) throw new Error('Erro ao listar eventos')
-    return res.json()
+    const res = await apiClient.get('/eventos/');
+    return res.data;
   },
 
   buscar: async (id: string | number) => {
-    const res = await fetch(`${BASE_URL}/eventos/${id}/`)
-    if (!res.ok) throw new Error('Evento não encontrado')
-    return res.json()
+    const res = await apiClient.get(`/eventos/${id}/`);
+    return res.data;
   },
 
   criar: async (dados: any) => {
-    const res = await fetch(`${BASE_URL}/eventos/`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(dados)
-    })
-    if (!res.ok) throw new Error('Erro ao criar evento')
-    return res.json()
+    const res = await apiClient.post('/eventos/', dados);
+    return res.data;
   },
 
   atualizar: async (id: string | number, dados: any) => {
-    const res = await fetch(`${BASE_URL}/eventos/${id}/`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(dados)
-    })
-    if (!res.ok) throw new Error('Erro ao atualizar evento')
-    return res.json()
+    const res = await apiClient.patch(`/eventos/${id}/`, dados);
+    return res.data;
   },
 
   deletar: async (id: string | number) => {
-    const res = await fetch(`${BASE_URL}/eventos/${id}/`, { method: 'DELETE' })
-    if (!res.ok) throw new Error('Erro ao deletar evento')
+    await apiClient.delete(`/eventos/${id}/`);
   }
 }
 
 export const doacaoService = {
   registrar: async (dados: any) => {
-    const res = await fetch(`${BASE_URL}/registros-doacao/`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(dados)
-    })
-    if (!res.ok) throw new Error('Erro ao registrar doação')
-    return res.json()
+    const res = await apiClient.post('/doacoes/', dados);
+    return res.data;
   }
 }
 
 export const itemDoacaoService = {
   listarPorEvento: async (eventoId: string | number) => {
-    const res = await fetch(`${BASE_URL}/doacoes/?evento=${eventoId}`)
-    if (!res.ok) throw new Error('Erro ao listar itens')
-    return res.json()
+    const res = await apiClient.get(`/itens-doacao/?evento=${eventoId}`);
+    return res.data;
   },
 
   criar: async (dados: any) => {
-    const res = await fetch(`${BASE_URL}/doacoes/`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(dados)
-    })
-    if (!res.ok) throw new Error('Erro ao criar item')
-    return res.json()
+    const res = await apiClient.post('/itens-doacao/', dados);
+    return res.data;
   },
 
   atualizar: async (id: string | number, dados: any) => {
-    const res = await fetch(`${BASE_URL}/doacoes/${id}/`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(dados)
-    })
-    if (!res.ok) throw new Error('Erro ao atualizar item')
-    return res.json()
+    const res = await apiClient.patch(`/itens-doacao/${id}/`, dados);
+    return res.data;
   },
 
   deletar: async (id: string | number) => {
-    const res = await fetch(`${BASE_URL}/doacoes/${id}/`, { method: 'DELETE' })
-    if (!res.ok) throw new Error('Erro ao deletar item')
+    await apiClient.delete(`/itens-doacao/${id}/`);
   }
 }

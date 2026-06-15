@@ -5,8 +5,8 @@ from app.views import RegistroUsuarioView, LoginUsuarioView, EventoViewSet, Item
 
 router = DefaultRouter()
 router.register('eventos', EventoViewSet)
-router.register('doacoes', ItemDoacaoViewSet)
-router.register('registros-doacao', DoacaoViewSet)
+router.register('itens-doacao', ItemDoacaoViewSet)
+router.register('doacoes', DoacaoViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

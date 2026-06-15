@@ -19,7 +19,17 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(() => {
+    const savedUser = localStorage.getItem('portal_user');
+    if (savedUser) {
+      try {
+        return JSON.parse(savedUser);
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  });
 
   const login = async (email: string, senha: string) => {
     const response = await fetch('http://localhost:8000/api/login/', {
@@ -44,20 +54,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const isAdminFromBackend = responseData.is_admin ?? (responseData.role === 'ADMIN');
 
-    setUser({
+    const loggedUser: User = {
       nome: responseData.nome,
       email: responseData.email,
       role: isAdminFromBackend ? 'ADMIN' : 'USER',
-    });
+    };
+
+    // Armazena no localStorage
+    localStorage.setItem('portal_user', JSON.stringify(loggedUser));
+    if (responseData.access) {
+      localStorage.setItem('portal_access_token', responseData.access);
+    }
+    if (responseData.refresh) {
+      localStorage.setItem('portal_refresh_token', responseData.refresh);
+    }
+
+    setUser(loggedUser);
   };
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem('portal_user');
+    localStorage.removeItem('portal_access_token');
+    localStorage.removeItem('portal_refresh_token');
   };
 
   const updateUser = (data: Partial<User>) => {
     if (user) {
-      setUser({ ...user, ...data });
+      const updatedUser = { ...user, ...data };
+      setUser(updatedUser);
+      localStorage.setItem('portal_user', JSON.stringify(updatedUser));
     }
   };
 

@@ -55,7 +55,18 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True, required=True)
 
     def validate(self, data):
-        user = authenticate(username=data['email'], password=data['password'])
+        email = data.get('email')
+        password = data.get('password')
+        
+        # Tenta achar o usuário pelo e-mail primeiro para descobrir o username real dele
+        user_obj = User.objects.filter(email=email).first()
+        
+        if user_obj:
+            user = authenticate(username=user_obj.username, password=password)
+        else:
+            # Fallback caso dê algum erro bizarro
+            user = authenticate(username=email, password=password)
+            
         if not user:
             raise AuthenticationFailed('E-mail ou senha incorretos.')
         data['user'] = user
@@ -89,8 +100,3 @@ class DoacaoSerializer(serializers.ModelSerializer):
         model = Doacao
         fields = ['id', 'item', 'doador_nome', 'doador_email', 'quantidade', 'criado_em']
         read_only_fields = ['criado_em']
-
-    def create(self, validated_data):
-        doacao = super().create(validated_data)
-        doacao.item.atualizar_quantidade()  
-        return doacao        
