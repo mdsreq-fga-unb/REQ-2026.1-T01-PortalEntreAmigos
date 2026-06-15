@@ -69,6 +69,32 @@ nav:
         - Fases do RAD: 16_ciclos_rad/ciclo3/RF05/fases_rad_RF05.md
         - DOR e DOD: 16_ciclos_rad/ciclo3/RF05/dor_dod_evidencias_RF05.md
         - Critérios de Aceitação: 16_ciclos_rad/ciclo3/RF05/criterios_evidencias_RF05.md
+    - Ciclo 4:
+      - RF07:
+        - Fases do RAD: 16_ciclos_rad/ciclo4/RF07/fases_rad_RF07.md
+        - DOR e DOD: 16_ciclos_rad/ciclo4/RF07/dor_dod_evidencias_RF07.md
+        - Critérios de Aceitação: 16_ciclos_rad/ciclo4/RF07/criterios_evidencias_RF07.md
+      - RF08:
+        - Fases do RAD: 16_ciclos_rad/ciclo4/RF08/fases_rad_RF08.md
+        - DOR e DOD: 16_ciclos_rad/ciclo4/RF08/dor_dod_evidencias_RF08.md
+        - Critérios de Aceitação: 16_ciclos_rad/ciclo4/RF08/criterios_evidencias_RF08.md
+      - RF09:
+        - Fases do RAD: 16_ciclos_rad/ciclo4/RF09/fases_rad_RF09.md
+        - DOR e DOD: 16_ciclos_rad/ciclo4/RF09/dor_dod_evidencias_RF09.md
+        - Critérios de Aceitação: 16_ciclos_rad/ciclo4/RF09/criterios_evidencias_RF09.md
+    - Ciclo 5:
+      - RF10:
+        - Fases do RAD: 16_ciclos_rad/ciclo5/RF10/fases_rad_RF10.md
+        - DOR e DOD: 16_ciclos_rad/ciclo5/RF10/dor_dod_evidencias_RF10.md
+        - Critérios de Aceitação: 16_ciclos_rad/ciclo5/RF10/criterios_evidencias_RF10.md
+      - RF11:
+        - Fases do RAD: 16_ciclos_rad/ciclo5/RF11/fases_rad_RF11.md
+        - DOR e DOD: 16_ciclos_rad/ciclo5/RF11/dor_dod_evidencias_RF11.md
+        - Critérios de Aceitação: 16_ciclos_rad/ciclo5/RF11/criterios_evidencias_RF11.md
+      - RF12:
+        - Fases do RAD: 16_ciclos_rad/ciclo5/RF12/fases_rad_RF12.md
+        - DOR e DOD: 16_ciclos_rad/ciclo5/RF12/dor_dod_evidencias_RF12.md
+        - Critérios de Aceitação: 16_ciclos_rad/ciclo5/RF12/criterios_evidencias_RF12.md
 
     
   - Lições Aprendidas:
