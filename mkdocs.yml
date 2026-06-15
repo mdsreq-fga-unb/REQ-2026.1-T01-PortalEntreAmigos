@@ -49,18 +49,28 @@ nav:
       - DOR e DOD: 16_ciclos_rad/ciclo2/dor_dod_evidencias.md
       - Critérios de Aceitação: 16_ciclos_rad/ciclo2/criterios_evidencias.md
     - Ciclo 3:
-      - Fases do RAD: 16_ciclos_rad/ciclo3/fases_rad.md
-      - DOR e DOD: 16_ciclos_rad/ciclo3/dor_dod_evidencias.md
-      - Critérios de Aceitação: 16_ciclos_rad/ciclo3/criterios_evidencias.md
-    - Ciclo 4:
-      - Fases do RAD: 16_ciclos_rad/ciclo4/fases_rad.md
-      - DOR e DOD: 16_ciclos_rad/ciclo4/dor_dod_evidencias.md
-      - Critérios de Aceitação: 16_ciclos_rad/ciclo4/criterios_evidencias.md
-    - Ciclo 5:
-      - Fases do RAD: 16_ciclos_rad/ciclo5/fases_rad.md
-      - DOR e DOD: 16_ciclos_rad/ciclo5/dor_dod_evidencias.md
-      - Critérios de Aceitação: 16_ciclos_rad/ciclo5/criterios_evidencias.md
+      - RF01:
+        - Fases do RAD: 16_ciclos_rad/ciclo3/RF01/fases_rad_RF01.md
+        - DOR e DOD: 16_ciclos_rad/ciclo3/RF01/dor_dod_evidencias_RF01.md
+        - Critérios de Aceitação: 16_ciclos_rad/ciclo3/RF01/criterios_evidencias_RF01.md
+      - RF02:
+        - Fases do RAD: 16_ciclos_rad/ciclo3/RF02/fases_rad_RF02.md
+        - DOR e DOD: 16_ciclos_rad/ciclo3/RF02/dor_dod_evidencias_RF02.md
+        - Critérios de Aceitação: 16_ciclos_rad/ciclo3/RF02/criterios_evidencias_RF02.md
+      - RF03:
+        - Fases do RAD: 16_ciclos_rad/ciclo3/RF03/fases_rad_RF03.md
+        - DOR e DOD: 16_ciclos_rad/ciclo3/RF03/dor_dod_evidencias_RF03.md
+        - Critérios de Aceitação: 16_ciclos_rad/ciclo3/RF03/criterios_evidencias_RF03.md
+      - RF04:
+        - Fases do RAD: 16_ciclos_rad/ciclo3/RF04/fases_rad_RF04.md
+        - DOR e DOD: 16_ciclos_rad/ciclo3/RF04/dor_dod_evidencias_RF04.md
+        - Critérios de Aceitação: 16_ciclos_rad/ciclo3/RF04/criterios_evidencias_RF04.md
+      - RF05:
+        - Fases do RAD: 16_ciclos_rad/ciclo3/RF05/fases_rad_RF05.md
+        - DOR e DOD: 16_ciclos_rad/ciclo3/RF05/dor_dod_evidencias_RF05.md
+        - Critérios de Aceitação: 16_ciclos_rad/ciclo3/RF05/criterios_evidencias_RF05.md
 
+    
   - Lições Aprendidas:
     - Unidade 1: 10_licoes/Unidades/unidade_01.md
     - Unidade 2: 10_licoes/Unidades/unidade_02.md
