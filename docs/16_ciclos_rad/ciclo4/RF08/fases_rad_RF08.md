@@ -27,10 +27,7 @@ Abaixo estão reservados os espaços para as visões do protótipo de exclusão/
 ### Componente de Exclusão de Evento (Modal)
 
 #### Versão Desktop
-![Protótipo de Exclusão de Evento – Computador](../../../00_assets/imagens/prototipagem/excluir_eventos/placeholder_desktop.png){ width="40%" style="display: block; margin: 0 auto;" }
-
-#### Versão Mobile
-![Protótipo de Exclusão de Evento – Celular](../../../00_assets/imagens/prototipagem/excluir_eventos/placeholder_mobile.png){ width="100" style="display: block; margin: 0 auto;" }
+![Protótipo de Exclusão de Evento – Computador](../../../00_assets/imagens/prototipagem/excluir_eventos/prototipo.png){ width="40%" style="display: block; margin: 0 auto;" }
 
 ---
 
@@ -46,10 +43,10 @@ Os componentes desenvolvidos, as folhas de estilo utilitárias e a lógica de tr
 #### 1. Tela de Exclusão de Evento Implementada
 
 ##### Versão Desktop
-![Site Real - Excluir Evento Computador](../../../00_assets/imagens/pagina/eventos/excluir_evento_desktop.png){ width="50%" style="display: block; margin: 0 auto;" }
+![Site Real - Excluir Evento Computador](../../../00_assets/imagens/pagina/excluir_eventos/computador.png){ width="50%" style="display: block; margin: 0 auto;" }
 
 ##### Versão Mobile
-![Site Real - Excluir Evento Celular](../../../00_assets/imagens/pagina/eventos/excluir_evento_mobile.png){ width="150" style="display: block; margin: 0 auto;" }
+![Site Real - Excluir Evento Celular](../../../00_assets/imagens/pagina/excluir_eventos/celular.png){ width="150" style="display: block; margin: 0 auto;" }
 
 ---
 
@@ -67,4 +64,4 @@ Caso queira analisar detalhadamente o comportamento estrutural do código implem
 
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | :---: | :---: | :--- | :---: | :---: |
-| 1.0 | 22/06/2026 | Documentação inicial do planejamento, design e construção do RF08 no Ciclo 4 | [Edson Pereira](https://github.com/edso-n), <br>[Gustavo Gomes](https://github.com/GUGOFO), <br>[Leonardo de Aquino](https://github.com/surpesaiajin) | Equipe |
+| 1.0 | 22/06/2026 | Documentação inicial do planejamento, design e construção do RF08 no Ciclo 4 | <br>[Gustavo Gomes](https://github.com/GUGOFO)| Equipe |

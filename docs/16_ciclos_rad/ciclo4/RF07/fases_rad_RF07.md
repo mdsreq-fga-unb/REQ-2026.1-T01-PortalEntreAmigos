@@ -26,11 +26,7 @@ Abaixo estão reservados os espaços para as visões do protótipo de edição d
 
 ### Página de Edição de Evento
 
-#### Versão Desktop
-![Protótipo de Edição de Evento – Computador](../../../00_assets/imagens/prototipagem/editar_eventos/placeholder_desktop.png){ width="40%" style="display: block; margin: 0 auto;" }
-
-#### Versão Mobile
-![Protótipo de Edição de Evento – Celular](../../../00_assets/imagens/prototipagem/editar_eventos/placeholder_mobile.png){ width="100" style="display: block; margin: 0 auto;" }
+![Protótipo de Edição de Evento – Computador](../../../00_assets/imagens/prototipagem/editar_eventos/prototipo.png){ width="40%" style="display: block; margin: 0 auto;" }
 
 ---
 
@@ -46,10 +42,10 @@ Os componentes desenvolvidos, as folhas de estilo utilitárias e a lógica de co
 #### 1. Tela de Edição de Evento Implementada
 
 ##### Versão Desktop
-![Site Real - Editar Evento Computador](../../../00_assets/imagens/pagina/eventos/editar_evento_desktop.png){ width="50%" style="display: block; margin: 0 auto;" }
+![Site Real - Editar Evento Computador](../../../00_assets/imagens/pagina/editar_eventos/computador.png){ width="50%" style="display: block; margin: 0 auto;" }
 
 ##### Versão Mobile
-![Site Real - Editar Evento Celular](../../../00_assets/imagens/pagina/eventos/editar_evento_mobile.png){ width="150" style="display: block; margin: 0 auto;" }
+![Site Real - Editar Evento Celular](../../../00_assets/imagens/pagina/editar_eventos/celular.png){ width="150" style="display: block; margin: 0 auto;" }
 
 ---
 
@@ -67,4 +63,4 @@ Caso queira analisar detalhadamente o comportamento estrutural do código implem
 
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | :---: | :---: | :--- | :---: | :---: |
-| 1.0 | 22/06/2026 | Documentação inicial do planejamento, design e construção do RF07 no Ciclo 4 | [Edson Pereira](https://github.com/edso-n), <br>[Gustavo Gomes](https://github.com/GUGOFO), <br>[Leonardo de Aquino](https://github.com/surpesaiajin) | Equipe |
+| 1.0 | 22/06/2026 | Documentação inicial do planejamento, design e construção do RF07 no Ciclo 4 | <br>[Gustavo Gomes](https://github.com/GUGOFO) | Equipe |

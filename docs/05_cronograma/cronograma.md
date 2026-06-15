@@ -47,7 +47,7 @@ As entregas em equipe EU1, EU2, EU3 e EU4 correspondem aos marcos de avaliação
 
 - **Entregas**: Cada ciclo gera um ou mais incrementos funcionais do sistema, contribuindo para a construção gradual da versão final do Portal Entre Amigos.
 
-#### Fase 4: Transição
+### Fase 3: Transição
 **Período:** 29 de Junho – 03 de Julho  
 *Fase final onde o sistema passa por homologação, a documentação é consolidada e o produto é preparado para a entrega definitiva.*
 

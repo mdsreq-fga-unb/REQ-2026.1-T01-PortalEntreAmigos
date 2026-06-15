@@ -27,10 +27,10 @@ Abaixo estão reservados os espaços para as visões do protótipo de criação 
 ### Página de Criação de Evento
 
 #### Versão Desktop
-![Protótipo de Criação de Evento – Computador](../../../00_assets/imagens/prototipagem/criar_eventos/placeholder_desktop.png){ width="40%" style="display: block; margin: 0 auto;" }
+![Protótipo de Criação de Evento – Computador](../../../00_assets/imagens/prototipagem/criar_eventos/computador.png){ width="40%" style="display: block; margin: 0 auto;" }
 
 #### Versão Mobile
-![Protótipo de Criação de Evento – Celular](../../../00_assets/imagens/prototipagem/criar_eventos/placeholder_mobile.png){ width="100" style="display: block; margin: 0 auto;" }
+![Protótipo de Criação de Evento – Celular](../../../00_assets/imagens/prototipagem/criar_eventos/celular.png){ width="100" style="display: block; margin: 0 auto;" }
 
 ---
 
@@ -46,10 +46,10 @@ Os componentes desenvolvidos, os estilos estruturados e as regras de obrigatorie
 #### 1. Tela de Criação de Evento Implementada
 
 ##### Versão Desktop
-![Site Real - Criar Evento Computador](../../../00_assets/imagens/pagina/eventos/criar_evento_desktop.png){ width="50%" style="display: block; margin: 0 auto;" }
+![Site Real - Criar Evento Computador](../../../00_assets/imagens/pagina/criar_eventos/computador.png){ width="50%" style="display: block; margin: 0 auto;" }
 
 ##### Versão Mobile
-![Site Real - Criar Evento Celular](../../../00_assets/imagens/pagina/eventos/criar_evento_mobile.png){ width="150" style="display: block; margin: 0 auto;" }
+![Site Real - Criar Evento Celular](../../../00_assets/imagens/pagina/criar_eventos/celular.png){ width="150" style="display: block; margin: 0 auto;" }
 
 ---
 
@@ -67,4 +67,4 @@ Caso queira analisar detalhadamente o comportamento estrutural do código implem
 
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | :---: | :---: | :--- | :---: | :---: |
-| 1.0 | 22/06/2026 | Documentação inicial do planejamento, design e construção do RF06 no Ciclo 4 | [Edson Pereira](https://github.com/edso-n), <br>[Gustavo Gomes](https://github.com/GUGOFO), <br>[Leonardo de Aquino](https://github.com/surpesaiajin) | Equipe |
+| 1.0 | 22/06/2026 | Documentação inicial do planejamento, design e construção do RF06 no Ciclo 4 | <br>[Gustavo Gomes](https://github.com/GUGOFO) | Equipe |

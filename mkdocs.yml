@@ -82,10 +82,6 @@ nav:
         - Fases do RAD: 16_ciclos_rad/ciclo4/RF08/fases_rad_RF08.md
         - DOR e DOD: 16_ciclos_rad/ciclo4/RF08/dor_dod_evidencias_RF08.md
         - Critérios de Aceitação: 16_ciclos_rad/ciclo4/RF08/criterios_evidencias_RF08.md
-      - RF09:
-        - Fases do RAD: 16_ciclos_rad/ciclo4/RF09/fases_rad_RF09.md
-        - DOR e DOD: 16_ciclos_rad/ciclo4/RF09/dor_dod_evidencias_RF09.md
-        - Critérios de Aceitação: 16_ciclos_rad/ciclo4/RF09/criterios_evidencias_RF09.md
     - Ciclo 5:
       - RF10:
         - Fases do RAD: 16_ciclos_rad/ciclo5/RF10/fases_rad_RF10.md
@@ -109,6 +105,7 @@ nav:
     - Gravações em Grupo: 12_reunioes/gravacoes_grupo.md
     - Gravações com Cliente: 12_reunioes/gravacoes.md
     - Atas:
+      - Grupo:
          - Ata de Reunião 1: 12_reunioes/atas/grupo/ata_grupo_01.md
          - Ata de Reunião 2: 12_reunioes/atas/grupo/ata_grupo_02.md
          - Ata de Reunião 3: 12_reunioes/atas/grupo/ata_grupo_03.md
@@ -128,7 +125,9 @@ nav:
          - Ata de Reunião 17: 12_reunioes/atas/grupo/ata_grupo_17.md
          - Ata de Reunião 18: 12_reunioes/atas/grupo/ata_grupo_18.md
          - Ata de Reunião 19: 12_reunioes/atas/grupo/ata_grupo_19.md
-         
+         - Ata de Reunião 20: 12_reunioes/atas/grupo/ata_grupo_20.md
+         - Ata de Reunião 21: 12_reunioes/atas/grupo/ata_grupo_21.md
+      - Cliente:
          - Ata de Reunião 1 com Cliente: 12_reunioes/atas/cliente/ata_cliente_01.md
          - Ata de Reunião 2 com Cliente: 12_reunioes/atas/cliente/ata_cliente_02.md
          - Ata de Reunião 3 com Cliente: 12_reunioes/atas/cliente/ata_cliente_03.md
