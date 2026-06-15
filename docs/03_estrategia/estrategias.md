@@ -15,11 +15,11 @@ Abaixo, apresenta-se uma comparação técnica entre o processo RAD Híbrido (Op
 
 | Característica | Modelo RAD | Modelo Espiral |
 | :--- | :--- | :--- |
-| **Tratamento da Incerteza** | Incertezas iniciais são tratadas na fase de Inception (OpenUP), enquanto ajustes funcionais são resolvidos rapidamente nos ciclos RAD. | Resolvida via análise exaustiva. Se algo é incerto, criam-se alternativas e estudos de viabilidade antes da construção. |
+| **Tratamento da Incerteza** | Incertezas iniciais são tratadas na fase de Concepção (OpenUP), enquanto ajustes funcionais são resolvidos rapidamente nos ciclos RAD. | Resolvida via análise exaustiva. Se algo é incerto, criam-se alternativas e estudos de viabilidade antes da construção. |
 | **Custo de Gestão** | Baixo a Médio. O planejamento inicial reduz retrabalho, mas a gestão continua leve e orientada a entregas rápidas. | Alto. Exige gestores experientes para avaliar riscos e decidir se o projeto deve avançar para o próximo ciclo. |
 | **Flexibilidade** | Alta e controlada. Há liberdade para mudanças durante os ciclos RAD, mas com uma base inicial de requisitos e objetivos definidos. | Estruturada. Mudanças são incorporadas no início de cada novo ciclo, garantindo que o impacto seja documentado. |
 | **Papel do Protótipo** |Os protótipos são usados para validar rapidamente funcionalidades e interfaces, podendo evoluir para partes do sistema final. | É uma ferramenta de prova de conceito. Serve para testar uma funcionalidade crítica ou interface antes do desenvolvimento real. |
-| **Rigor e Formalidade** | Moderado. A fase de Inception adiciona organização e documentação inicial, enquanto os ciclos RAD mantêm comunicação ágil e prática. | Maior. Cada volta da espiral gera revisões e aprovações formais (milestones) que garantem a integridade do sistema. |
+| **Rigor e Formalidade** | Moderado. A fase de Concepção adiciona organização e documentação inicial, enquanto os ciclos RAD mantêm comunicação ágil e prática. | Maior. Cada volta da espiral gera revisões e aprovações formais (milestones) que garantem a integridade do sistema. |
 | **Tamanho da Equipe** | Equipes pequenas a médias, colaborativas e capazes de se dividir em frentes paralelas de desenvolvimento. | Pode envolver múltiplas frentes de trabalho e especialistas dedicados apenas à segurança e riscos. |
 | **Segurança e Missão Crítica** | Adequado para sistemas com requisitos moderados de segurança, equilibrando rapidez de entrega e organização inicial. | Excelente. É o modelo preferido para sistemas onde erros custam vidas ou prejuízos financeiros bilionários. |
 

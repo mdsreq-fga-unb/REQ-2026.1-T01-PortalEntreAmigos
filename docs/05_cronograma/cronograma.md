@@ -4,7 +4,7 @@
 
 O planejamento temporal do Portal Entre Amigos organiza o trabalho da equipe ao longo do semestre 2026.1 da disciplina de Requisitos de Software (REQ – Turma 01), em sintonia com o cronograma de atividades da matéria e com a estratégia baseada no ciclo de vida iterativo e incremental, utilizando uma abordagem **RAD Híbrida (OpenUP + RAD)** e validações periódicas com o representante do cliente (Carlos Vaz).
 
-O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final de cada ciclo de desenvolvimento, o grupo revisa datas, escopo e entregáveis, atualizando o planejamento e o acompanhamento no GitHub, de forma coerente com a comunicação e validação contínua. A fase de **Inception** foi utilizada para a definição dos requisitos, entendimento do problema e planejamento inicial do projeto, enquanto os **Ciclos RAD** são responsáveis pela implementação incremental das funcionalidades e a fase de **Transição** pela consolidação e entrega final do sistema.
+O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final de cada ciclo de desenvolvimento, o grupo revisa datas, escopo e entregáveis, atualizando o planejamento e o acompanhamento no GitHub, de forma coerente com a comunicação e validação contínua. A fase de **Concepção** foi utilizada para a definição dos requisitos, entendimento do problema e planejamento inicial do projeto, enquanto os **Ciclos RAD** são responsáveis pela implementação incremental das funcionalidades e a fase de **Transição** pela consolidação e entrega final do sistema.
 
 As entregas em equipe EU1, EU2, EU3 e EU4 correspondem aos marcos de avaliação da disciplina; a documentação e o conteúdo do site do projeto devem estar publicados no GitHub Pages e versionados no repositório da equipe na organização da disciplina, até o horário de início da aula do dia de apresentações, conforme regras do plano de ensino.
 
@@ -20,7 +20,7 @@ As entregas em equipe EU1, EU2, EU3 e EU4 correspondem aos marcos de avaliação
 
 ### 1. Mapeamento das Fases do RAD Híbrido
 
-### Fase 1: Inception
+### Fase 1: Concepção
 
 **Período**: 01 de Abril – 26 de Maio
 
@@ -67,7 +67,7 @@ As entregas em equipe EU1, EU2, EU3 e EU4 correspondem aos marcos de avaliação
 
 - **Atualização Sucessiva**: Ao final de cada ciclo, a equipe registra as funcionalidades entregues, as alterações realizadas no escopo e as prioridades para o ciclo seguinte, mantendo a rastreabilidade por meio do GitHub.
 
-- **Alinhamento com a Metodologia Híbrida**: A fase de Inception é utilizada para organização e refinamento dos requisitos, enquanto os Ciclos RAD concentram o desenvolvimento incremental e a fase de Transição consolida a documentação, homologação e entrega do sistema.
+- **Alinhamento com a Metodologia Híbrida**: A fase de Concepção é utilizada para organização e refinamento dos requisitos, enquanto os Ciclos RAD concentram o desenvolvimento incremental e a fase de Transição consolida a documentação, homologação e entrega do sistema.
 
 - **Avaliações da Disciplina**: Questionários individuais, avaliação cruzada e demais atividades seguem o Moodle (Aprender 3) e o calendário definido pelo professor.
 
