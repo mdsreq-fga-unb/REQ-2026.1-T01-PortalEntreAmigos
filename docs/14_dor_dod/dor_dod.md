@@ -4,7 +4,7 @@ Nesta seção são apresentados os conceitos de Definition of Ready (DoR) e Defi
 
 ## Definition of Ready (DoR)
 
-No contexto do ciclo iterativo, o Definition of Ready (DoR) atua como um mecanismo de controle pré-desenvolvimento. Ele define as condições que um item do backlog deve cumprir para ser considerado apto a entrar em uma nova iteração. A adoção desse padrão evita incertezas durante a prototipagem do RAD e assegura que o grupo possua a base de conhecimento necessária para uma implementação eficiente. Os critérios de DoR incluem:
+No contexto do ciclo iterativo, o Definition of Ready (DoR) atua como um mecanismo de controle pré-desenvolvimento. Ele define as condições que um item do backlog deve cumprir para ser considerado apto a entrar em uma nova iteração. A adoção desse padrão evita incertezas durante a prototipagem do Ciclo RAD e assegura que o grupo possua a base de conhecimento necessária para uma implementação eficiente. Os critérios de DoR incluem:
 
 | **Critério**  | **Descrição** |
 | :--- | :--- |

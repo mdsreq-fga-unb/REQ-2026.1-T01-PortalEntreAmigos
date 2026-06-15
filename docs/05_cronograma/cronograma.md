@@ -2,40 +2,40 @@
 
 ## Introdução
 
-O planejamento temporal do Portal Entre Amigos organiza o trabalho da equipe ao longo do semestre 2026.1 da disciplina de Requisitos de Software (REQ – Turma 01), em sintonia com o cronograma de atividades da matéria e com a estratégia baseada no ciclo de vida iterativo e incremental, processo RAD e validações periódicas com o representante do cliente (Carlos Vaz).
+O planejamento temporal do Portal Entre Amigos organiza o trabalho da equipe ao longo do semestre 2026.1 da disciplina de Requisitos de Software (REQ – Turma 01), em sintonia com o cronograma de atividades da matéria e com a estratégia baseada no ciclo de vida iterativo e incremental, utilizando uma abordagem **RAD Híbrida (OpenUP + RAD)** e validações periódicas com o representante do cliente (Carlos Vaz).
 
-O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final de cada iteração, o grupo revisa datas, escopo e entregáveis, atualizando o planejamento e o acompanhamento no GitHub, de forma coerente com a comunicação e validação. As entregas em equipe EU1, EU2, EU3 e EU4 correspondem aos marcos de avaliação da disciplina; a documentação e o conteúdo do site do projeto devem estar publicados no GitHub Pages e versionados no repositório da equipe na organização da disciplina, até o horário de início da aula do dia de apresentações, conforme regras do plano de ensino.
+O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final de cada ciclo de desenvolvimento, o grupo revisa datas, escopo e entregáveis, atualizando o planejamento e o acompanhamento no GitHub, de forma coerente com a comunicação e validação contínua. A fase de **Inception** foi utilizada para a definição dos requisitos, entendimento do problema e planejamento inicial do projeto, enquanto os **Ciclos RAD** são responsáveis pela implementação incremental das funcionalidades e a fase de **Transição** pela consolidação e entrega final do sistema.
+
+As entregas em equipe EU1, EU2, EU3 e EU4 correspondem aos marcos de avaliação da disciplina; a documentação e o conteúdo do site do projeto devem estar publicados no GitHub Pages e versionados no repositório da equipe na organização da disciplina, até o horário de início da aula do dia de apresentações, conforme regras do plano de ensino.
 
 ---
 
 ## Cronograma de Projeto: Portal Entre Amigos
 
-**Metodologia:** Híbrida (RAD + Iterativo Incremental)  
+**Metodologia:** RAD Híbrido (OpenUP + RAD)
 **Data Final:** 03 de Julho de 2026
 
 ---
 
-### 1. Mapeamento das Fases RAD e Ciclos de Desenvolvimento
 
-#### Fase 1: Requirements Planning (Planejamento de Requisitos)
-**Período:** 01 de Abril – 18 de Maio  
-*Fase inicial orientada à elicitação, compreensão do problema e alinhamento do escopo macro com o cliente.*
+### 1. Mapeamento das Fases do RAD Híbrido
 
-* **Documentação de Negócio:** Visão Geral do Cliente, Stakeholders e Análise do Problema.
-* **Engenharia de Requisitos:** Elicitação, Priorização (MoSCoW) e Backlog do Produto preliminar.
-* **Definições de Processo:** Estabelecimento de DoR (Definition of Ready) e DoD (Definition of Done).
-* **Infraestrutura:** Configuração do site MkDocs e repositório GitHub.
+### Fase 1: Inception
 
-### Fase 2: User Design (Design do Usuário)
-**Período:** 19 de Maio – 26 de Maio  
-*Fase de modelagem activa e design de interfaces junto aos usuários através de workshops rápidos e prototipagem de alta fidelidade.*
+**Período**: 01 de Abril – 26 de Maio
 
-* **Foco:** Arquitetura de Informação e Design de Interface para a Gestão de Doadores.
-* **Técnica RAD:** Sessões de Joint Application Design (JAD) e criação de protótipos rápidos da UI de cadastro para validação imediata com o cliente.
+*Fase inicial baseada no OpenUP, dedicada à compreensão do problema, definição dos requisitos e planejamento do projeto.*
 
-### Fase 3: Construction (Construção)
-**Período:** 27 de Maio – 28 de Junho  
-*Fase intensiva de desenvolvimento de software onde a codificação e a criação de incrementos funcionais acontecem em paralelo com testes contínuos.*
+* **Documentação de Negócio**: Visão Geral do Cliente, Stakeholders e Análise do Problema.
+* **Engenharia de Requisitos**: Elicitação, Priorização (MoSCoW) e Backlog do Produto.
+* **Definições de Processo**: Estabelecimento de DoR (Definition of Ready) e DoD (Definition of Done).
+* **Infraestrutura**: Configuração do site MkDocs e repositório GitHub.
+* **Validação Inicial**: Refinamento dos requisitos e alinhamento contínuo com o cliente.
+* **Prototipação**: Modelagem inicial e protótipos para validação das funcionalidades prioritárias.
+
+### Fase 2: Ciclos RAD
+**Período:** 27 de Maio – 28 de Junho
+*Fase de desenvolvimento iterativo baseada em ciclos RAD de curta duração, nos quais as funcionalidades são construídas, validadas e refinadas continuamente com base no feedback obtido ao longo do projeto.*
 
 * **Ciclo 1: MVP Funcional (27 de Maio – 07 de Junho)**
     * **Foco:** Engenharia de dados e codificação da Gestão de Doadores.
@@ -49,7 +49,7 @@ O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final
     * **Técnica Iterativa:** Refatoração e polimento do código baseado no feedback gerado pelos usuários da ONG nos ciclos anteriores.
     * **Incremento:** Painel de Relatórios de Impacto Social e Estabilização do Sistema.
 
-#### Fase 4: Cutover (Transição)
+#### Fase 4: Transição
 **Período:** 29 de Junho – 03 de Julho  
 *Fase final onde o sistema passa por homologação, a documentação é consolidada e o produto é preparado para a entrega definitiva.*
 
@@ -62,15 +62,21 @@ O cronograma cobre o projeto inteiro, ainda que em caráter preliminar: ao final
 ---
 
 ## Diretrizes de Execução
-1.  **Feedback RAD:** Cada ciclo da fase de Construção deve terminar com uma demonstração visual e funcional para os stakeholders.
-2.  **Qualidade Incremental:** Nenhum incremento é integrado à branch "main" sem passar pelo critério estabelecido no DoD (testes e revisão de código).
 
-* **Atualização sucessiva:** Após cada ciclo, a equipe registra o que foi entregue, o que mudou no escopo e o que será priorizado na Unidade seguinte, mantendo a rastreabilidade no GitHub.
-* **Avaliações da disciplina:** Questionários individuais, avaliação cruzada e demais datas seguem o Moodle (Aprender 3) e o calendário definido pelo professor.
+- **Validação Contínua**: Cada Ciclo RAD deve terminar com uma demonstração funcional para os stakeholders, permitindo a coleta de feedback e a identificação de ajustes necessários para as próximas iterações.
+
+- **Qualidade Incremental**: Nenhum incremento é integrado à branch main sem atender aos critérios estabelecidos no DoD (Definition of Done), incluindo revisão de código, testes e validações previstas para a funcionalidade.
+
+- **Atualização Sucessiva**: Ao final de cada ciclo, a equipe registra as funcionalidades entregues, as alterações realizadas no escopo e as prioridades para o ciclo seguinte, mantendo a rastreabilidade por meio do GitHub.
+
+- **Alinhamento com a Metodologia Híbrida**: A fase de Inception é utilizada para organização e refinamento dos requisitos, enquanto os Ciclos RAD concentram o desenvolvimento incremental e a fase de Transição consolida a documentação, homologação e entrega do sistema.
+
+- **Avaliações da Disciplina**: Questionários individuais, avaliação cruzada e demais atividades seguem o Moodle (Aprender 3) e o calendário definido pelo professor.
 
 ## Histórico de versão
 
 | Versão |    Data    | Descrição | Autor(es) | Revisor(es) |
 | :----: | :--------: | :--------- | :-------: | :---------: |
 |  1.0   | 12/04/2026 | Criação da página | [Guilherme](https://github.com/GuilhermeOliveira1327) | [Gustavo](https://github.com/GUGOFO) |
-|  1.1   | 14/05/2026 | Reestruturação do cronograma conforme as 4 fases do RAD | [Artur Galdino](https://github.com/arturgaldino) | Equipe |
+|  1.1   | 14/05/2026 | Reestruturação do cronograma conforme as 4 fases do RAD | [Artur Galdino](https://github.com/arturgaldio) | Equipe |
+|  1.2   | 15/06/2026 | Reestruturação do cronograma conforme o RAD Híbrido | [Guilherme](https://github.com/GuilhermeOliveira1327) | [Gustavo](https://github.com/GUGOFO) |

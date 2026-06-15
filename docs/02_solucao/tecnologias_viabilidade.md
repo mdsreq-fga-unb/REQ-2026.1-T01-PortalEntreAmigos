@@ -24,13 +24,12 @@ Além disso, a análise de mercado e a avaliação de viabilidade permitem compr
 
 ## Linguagens e Tecnologias Utilizadas
 
-|                                                    Logo                                                     |         Ferramenta         | Finalidade                                                      |
-| :---------------------------------------------------------------------------------------------------------: | :------------------------: | :-------------------------------------------------------------- |
-|           ![MkDocs](../00_assets/imagens/ferramentas/mkdocs.png){: style="height:50px;width:50px"}           |         [MkDocs](https://www.mkdocs.org/)       | Geração e organização da documentação do projeto em formato web.                       |
-| ![React](../00_assets/imagens/ferramentas/react.png){: style="height:50px;width:50px"} | [React](https://react.dev/) | Desenvolvimento da interface do usuário (front-end), proporcionando uma aplicação interativa e responsiva. |
-| ![Node.js](../00_assets/imagens/ferramentas/nodejs.png){: style="height:50px;width:50px"} | [Node.js](https://nodejs.org/) | Execução do ambiente back-end, permitindo a construção da lógica da aplicação. |
-| ![MongoDB](../00_assets/imagens/ferramentas/mongodb.png){: style="height:50px;width:50px"} | [MongoDB](https://www.mongodb.com/) | Banco de dados utilizado para armazenamento e gerenciamento das informações do sistema. |
-
+|     Ferramenta  | Finalidade               |
+| :----: | :------------: |
+|[Mkdocs](https://www.mkdocs.org/) | Geração e organização da documentação do projeto em formato web, permitindo a centralização e publicação dos artefatos produzidos pela equipe.|
+|[React + TypeScript](https://react.dev/)|Desenvolvimento da interface do usuário (front-end), utilizando componentes reutilizáveis e tipagem estática para aumentar a manutenibilidade, segurança e qualidade do código.|
+|[Django + Python](https://www.djangoproject.com/)| Desenvolvimento da camada back-end da aplicação, responsável pelas regras de negócio, APIs, autenticação e comunicação com o banco de dados.|
+| [PostgreSQL](https://www.postgresql.org/)| Sistema gerenciador de banco de dados relacional utilizado para armazenamento, consulta e gerenciamento das informações da aplicação.|
 
 ---
 
