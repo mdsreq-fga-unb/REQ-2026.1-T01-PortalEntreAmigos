@@ -35,19 +35,17 @@ As entregas em equipe EU1, EU2, EU3 e EU4 correspondem aos marcos de avaliação
 
 ### Fase 2: Ciclos RAD
 **Período:** 27 de Maio – 28 de Junho
-*Fase de desenvolvimento iterativo baseada em ciclos RAD de curta duração, nos quais as funcionalidades são construídas, validadas e refinadas continuamente com base no feedback obtido ao longo do projeto.*
+*Fase de desenvolvimento iterativo baseada em ciclos RAD de curta duração. Durante esse período, a equipe realiza múltiplos ciclos de construção, validação e refinamento de funcionalidades, podendo executar atividades em paralelo conforme a divisão das equipes e as prioridades definidas no backlog.*
 
-* **Ciclo 1: MVP Funcional (27 de Maio – 07 de Junho)**
-    * **Foco:** Engenharia de dados e codificação da Gestão de Doadores.
-    * **Incremento:** Integração de banco de dados e Módulo funcional de Cadastro e Listagem de Doadores pronto.
-* **Ciclo 2: Expansão de Recursos (08 de Junho – 18 de Junho)**
-    * **Foco:** Inventário e Comunidades.
-    * **Técnica RAD:** Uso de bibliotecas de componentes prontos para acelerar a gestão de estoque.
-    * **Incremento:** Módulo de Controle de Distribuição e Gestão de Comunidades Atendidas.
-* **Ciclo 3: Refinamento e Transparência (19 de Junho – 28 de Junho)**
-    * **Foco:** Dashboards e Ajustes Finais.
-    * **Técnica Iterativa:** Refatoração e polimento do código baseado no feedback gerado pelos usuários da ONG nos ciclos anteriores.
-    * **Incremento:** Painel de Relatórios de Impacto Social e Estabilização do Sistema.
+- **Duração dos Ciclos**: Aproximadamente uma semana por ciclo.
+
+- **Foco**: Implementação incremental das funcionalidades priorizadas, integração dos componentes do sistema e evolução contínua do produto.
+
+- **Validação**: Ao final de cada ciclo, as funcionalidades desenvolvidas são apresentadas aos stakeholders para obtenção de feedback e identificação de melhorias.
+
+- **Refinamento Contínuo**: Correções, ajustes de usabilidade e melhorias identificadas durante os ciclos anteriores são incorporadas nas iterações seguintes.
+
+- **Entregas**: Cada ciclo gera um ou mais incrementos funcionais do sistema, contribuindo para a construção gradual da versão final do Portal Entre Amigos.
 
 #### Fase 4: Transição
 **Período:** 29 de Junho – 03 de Julho  
