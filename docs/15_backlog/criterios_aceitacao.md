@@ -38,11 +38,11 @@ Os critérios de aceite foram organizados de forma rastreável, permitindo sua a
 
 ## [US03](backlog.md#us03) - Visualizar perfil
 
-*Como voluntário, quero visualizar o meu perfil, para acompanhar o meu histórico de doações e eventos participados.*
+*Como voluntário, quero visualizar o meu perfil, para que eu possa ver meus dados cadastrados*
 
 | ID | Critério de Aceite |
 | :--- | :--- |
-| <a id="ca-us03-01"></a>CA-US03-01 | A página de perfil deve exibir os dados pessoais do usuário, lista de eventos em que se inscreveu e o histórico de doações. |
+| <a id="ca-us03-01"></a>CA-US03-01 | A página de perfil deve exibir os dados pessoais do usuário |
 | <a id="ca-us03-02"></a>CA-US03-02 | A visualização deve se adaptar perfeitamente a telas de dispositivos móveis (smartphones e tablets) e desktops ([RNF01](../13_requisitos/requisitos.md#rnf01)). |
 
 ---
@@ -53,7 +53,7 @@ Os critérios de aceite foram organizados de forma rastreável, permitindo sua a
 
 | ID | Critério de Aceite |
 | :--- | :--- |
-| <a id="ca-us04-01"></a>CA-US04-01 | O voluntário deve poder alterar seu Nome, Telefone, Endereço e Senha. |
+| <a id="ca-us04-01"></a>CA-US04-01 | O voluntário deve poder alterar seu Nome e Senha. |
 | <a id="ca-us04-02"></a>CA-US04-02 | As alterações devem refletir imediatamente no banco de dados e na interface do usuário ([RNF07](../13_requisitos/requisitos.md#rnf07)). |
 
 ---

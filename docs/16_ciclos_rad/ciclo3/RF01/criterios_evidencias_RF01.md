@@ -31,7 +31,7 @@ Para consolidar a aprovação dos critérios acima, o comportamento e a aderênc
 
 ## Considerações Finais
 
-A entrega do **RF01** cumpre com êxito todos os limites de funcionalidade, regras de validação e critérios de segurança estipulados para este ciclo de iteração. O incremento de software encontra-se totalmente funcional no frontend e preparado para os testes de integração.
+A entrega do **RF01** cumpre com êxito todos os limites de funcionalidade, regras de validação e critérios de segurança estipulados para este ciclo de iteração.
 
 ---
 
