@@ -46,7 +46,7 @@ A Engenharia de Requisitos é responsável por identificar, analisar, documentar
 
 - **Backlog do Produto**: Funcionará como uma lista viva de requisitos, estruturada em épicos e histórias de usuário. O backlog será continuamente priorizado e refinado com base no valor entregue ao cliente. Para garantir o controle e o acompanhamento de cada item, desde a sua concepção até a validação, implementaremos uma cadeia de rastreabilidade que seguirá a ordem de objetivos específicos, desdobrando-se em características do produto e culminando, por fim, no requisito.
 
-## Engenharia de Requisitos e Processo RAD
+## Engenharia de Requisitos e Processo RAD Híbrido
 
 |Fases do Processo| Atividades ER | Prática | Técnica | Resultado Esperado| 
 | :---: | :---: | :---: | :---: | :---: | 
