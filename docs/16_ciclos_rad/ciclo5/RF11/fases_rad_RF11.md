@@ -1,7 +1,7 @@
 # Ciclo RAD 5 - RF11
 
 **Período:** 08/06 a 15/06  
-**Responsáveis:** [Artur Fernandes Galdino](https://github.com/ArturFGaldino), [Guilherme Oliveira](https://github.com/GuilhermeOliveira1327), [Kaio Amoury](https://github.com/KaioAmouryUnB) e [Gustavo Gomes Fornaciari](https://github.com/GUGOFO)  
+**Responsáveis:** [Artur Fernandes Galdino](https://github.com/ArturFGaldino), [Guilherme Oliveira](https://github.com/GuilhermeOliveira1327) e [Kaio Amoury](https://github.com/KaioAmouryUnB) 
 **Requisitos Alocados:** [RF11 - Registrar doação](../../../13_requisitos/requisitos.md#rf11)
 
 ---
@@ -73,4 +73,4 @@ Caso queira analisar detalhadamente o comportamento estrutural do código implem
 
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | :---: | :---: | :--- | :---: | :---: |
-| 1.0 | 15/06/2026 | Documentação do planejamento, design e construção do RF11 no Ciclo RAD 5 | [Artur Fernandes Galdino](https://github.com/ArturFGaldino), [Guilherme Oliveira](https://github.com/GuilhermeOliveira1327), [Kaio Amoury](https://github.com/KaioAmouryUnB), [Gustavo Gomes Fornaciari](https://github.com/GUGOFO) | Equipe |
+| 1.0 | 15/06/2026 | Documentação do planejamento, design e construção do RF11 no Ciclo RAD 5 | [Kaio Amoury](https://github.com/KaioAmouryUnB) | Equipe |
