@@ -39,27 +39,27 @@ nav:
         - Priorização do Backlog e MVP: 15_backlog/priorizacao.md
         - Criterios de Aceitação: 15_backlog/criterios_aceitacao.md
 
-     - Ciclos RAD:
-        - Ciclo 1:
-          - Fases do RAD: 16_ciclos_rad/ciclo1/fases_rad.md
-          - DOR e DOD: 16_ciclos_rad/ciclo1/dor_dod_evidencias.md
-          - Critérios de Aceitação: 16_ciclos_rad/ciclo1/criterios_evidencias.md
-        - Ciclo 2:
-          - Fases do RAD: 16_ciclos_rad/ciclo2/fases_rad.md
-          - DOR e DOD: 16_ciclos_rad/ciclo2/dor_dod_evidencias.md
-          - Critérios de Aceitação: 16_ciclos_rad/ciclo2/criterios_evidencias.md
-        - Ciclo 3:
-          - Fases do RAD: 16_ciclos_rad/ciclo3/fases_rad.md
-          - DOR e DOD: 16_ciclos_rad/ciclo3/dor_dod_evidencias.md
-          - Critérios de Aceitação: 16_ciclos_rad/ciclo3/criterios_evidencias.md
-        - Ciclo 4:
-          - Fases do RAD: 16_ciclos_rad/ciclo4/fases_rad.md
-          - DOR e DOD: 16_ciclos_rad/ciclo4/dor_dod_evidencias.md
-          - Critérios de Aceitação: 16_ciclos_rad/ciclo4/criterios_evidencias.md
-        - Ciclo 5:
-          - Fases do RAD: 16_ciclos_rad/ciclo5/fases_rad.md
-          - DOR e DOD: 16_ciclos_rad/ciclo5/dor_dod_evidencias.md
-          - Critérios de Aceitação: 16_ciclos_rad/ciclo5/criterios_evidencias.md
+  - Ciclos RAD:
+    - Ciclo 1:
+      - Fases do RAD: 16_ciclos_rad/ciclo1/fases_rad.md
+      - DOR e DOD: 16_ciclos_rad/ciclo1/dor_dod_evidencias.md
+      - Critérios de Aceitação: 16_ciclos_rad/ciclo1/criterios_evidencias.md
+    - Ciclo 2:
+      - Fases do RAD: 16_ciclos_rad/ciclo2/fases_rad.md
+      - DOR e DOD: 16_ciclos_rad/ciclo2/dor_dod_evidencias.md
+      - Critérios de Aceitação: 16_ciclos_rad/ciclo2/criterios_evidencias.md
+    - Ciclo 3:
+      - Fases do RAD: 16_ciclos_rad/ciclo3/fases_rad.md
+      - DOR e DOD: 16_ciclos_rad/ciclo3/dor_dod_evidencias.md
+      - Critérios de Aceitação: 16_ciclos_rad/ciclo3/criterios_evidencias.md
+    - Ciclo 4:
+      - Fases do RAD: 16_ciclos_rad/ciclo4/fases_rad.md
+      - DOR e DOD: 16_ciclos_rad/ciclo4/dor_dod_evidencias.md
+      - Critérios de Aceitação: 16_ciclos_rad/ciclo4/criterios_evidencias.md
+    - Ciclo 5:
+      - Fases do RAD: 16_ciclos_rad/ciclo5/fases_rad.md
+      - DOR e DOD: 16_ciclos_rad/ciclo5/dor_dod_evidencias.md
+      - Critérios de Aceitação: 16_ciclos_rad/ciclo5/criterios_evidencias.md
 
   - Lições Aprendidas:
     - Unidade 1: 10_licoes/Unidades/unidade_01.md
