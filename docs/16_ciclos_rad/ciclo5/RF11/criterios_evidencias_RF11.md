@@ -33,4 +33,4 @@ A entrega do **RF11** cumpre os critérios de registro de intenção de doação
 
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | :---: | :---: | :--- | :---: | :---: |
-| 1.0 | 15/06/2026 | Consolidação das evidências de aceitação do RF11 no Ciclo RAD 5 | [Kaio Amoury](https://github.com/KaioAmouryUnB), [Gustavo Gomes Fornaciari](https://github.com/GUGOFO) | Equipe |
+| 1.0 | 15/06/2026 | Consolidação das evidências de aceitação do RF11 no Ciclo RAD 5 | [Artur Fernandes Galdino](https://github.com/ArturFGaldino), [Guilherme Oliveira](https://github.com/GuilhermeOliveira1327), [Kaio Amoury](https://github.com/KaioAmouryUnB), [Gustavo Gomes Fornaciari](https://github.com/GUGOFO) | Equipe |
