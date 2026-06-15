@@ -39,4 +39,4 @@ Após o fechamento da fase de construção, as entregas funcionais foram submeti
 
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | :---: | :---: | :--- | :---: | :---: |
-| 1.0 | 15/06/2026 | Consolidação das evidências de DoR/DoD do RF10 no Ciclo RAD 5 | [Kaio Amoury](https://github.com/KaioAmouryUnB) | Equipe |
+| 1.0 | 15/06/2026 | Consolidação das evidências de DoR/DoD do RF10 no Ciclo RAD 5 | [Kaio Amoury](https://github.com/KaioAmouryUnB), [Gustavo Gomes Fornaciari](https://github.com/GUGOFO) | Equipe |
