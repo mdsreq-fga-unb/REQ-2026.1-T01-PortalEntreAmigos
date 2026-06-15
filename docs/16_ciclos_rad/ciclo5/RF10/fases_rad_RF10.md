@@ -61,7 +61,7 @@ Os componentes de gráficos, estilos e integração com os dados da campanha enc
 
 ## Transição
 
-Esta fase compreendeu a validação da renderização responsiva dos gráficos, a verificação da atualização dos percentuais após novas doações e a preparação da integração com os demais requisitos do ciclo (RF11 e RF12).
+Esta fase compreendeu a validação da renderização responsiva dos gráficos, a verificação da atualização dos percentuais após novas doações e a preparação da integração com o RF11.
 
 Caso queira analisar detalhadamente o comportamento estrutural do código implementado, acesse o link a seguir:
 

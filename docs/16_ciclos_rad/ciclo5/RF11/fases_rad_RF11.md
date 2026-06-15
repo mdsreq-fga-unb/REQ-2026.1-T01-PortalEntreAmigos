@@ -61,7 +61,7 @@ Os componentes de seleção, estados de formulário e integração com a campanh
 
 ## Transição
 
-Esta fase compreendeu testes de usabilidade do fluxo de seleção, validação do contador dinâmico de itens e verificação da persistência dos dados registrados para integração com o RF12.
+Esta fase compreendeu testes de usabilidade do fluxo de seleção, validação do contador dinâmico de itens e verificação da persistência dos dados registrados.
 
 Caso queira analisar detalhadamente o comportamento estrutural do código implementado, acesse o link a seguir:
 
