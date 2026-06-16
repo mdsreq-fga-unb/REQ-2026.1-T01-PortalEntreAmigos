@@ -66,4 +66,4 @@ Caso queira analisar detalhadamente o comportamento estrutural do código implem
 
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | :---: | :---: | :--- | :---: | :---: |
-| 1.0 | 15/06/2026 | Documentação inicial do planejamento, design e construção do RF03 no Ciclo 3 | [Edson Pereira](https://github.com/edso-n), <br>[Gustavo Gomes](https://github.com/GUGOFO), <br>[Leonardo de Aquino](https://github.com/surpesaiajin) | Equipe |
+| 1.0 | 15/06/2026 | Documentação inicial do planejamento, design e construção do RF03 no Ciclo 3 | <br>[Gustavo Gomes](https://github.com/GUGOFO) | Equipe |

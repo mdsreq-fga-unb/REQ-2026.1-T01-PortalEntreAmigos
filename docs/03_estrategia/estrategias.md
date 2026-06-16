@@ -13,7 +13,7 @@
 ## 3. Quadro Comparativo
 Abaixo, apresenta-se uma comparação técnica entre o processo RAD Híbrido (OpenUP + RAD), que combina planejamento inicial estruturado com ciclos rápidos de desenvolvimento, e o Modelo Espiral, focado na análise rigorosa de riscos e planejamento, para fundamentar a escolha da equipe por uma abordagem híbrida.
 
-| Característica | Modelo RAD | Modelo Espiral |
+| Característica | Modelo RAD HIBRIDO | Modelo Espiral |
 | :--- | :--- | :--- |
 | **Tratamento da Incerteza** | Incertezas iniciais são tratadas na fase de Concepção (OpenUP), enquanto ajustes funcionais são resolvidos rapidamente nos ciclos RAD. | Resolvida via análise exaustiva. Se algo é incerto, criam-se alternativas e estudos de viabilidade antes da construção. |
 | **Custo de Gestão** | Baixo a Médio. O planejamento inicial reduz retrabalho, mas a gestão continua leve e orientada a entregas rápidas. | Alto. Exige gestores experientes para avaliar riscos e decidir se o projeto deve avançar para o próximo ciclo. |

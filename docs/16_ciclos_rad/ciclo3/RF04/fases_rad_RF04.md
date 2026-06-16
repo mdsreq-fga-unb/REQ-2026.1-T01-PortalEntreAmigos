@@ -67,4 +67,4 @@ Para inspecionar o comportamento estrutural do código técnico construído, uti
 
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | :---: | :---: | :--- | :---: | :---: |
-| 1.0 | 15/06/2026 | Documentação inicial das fases de planejamento, design, construção e transição do RF04 | [Edson Pereira](https://github.com/edso-n), <br>[Gustavo Gomes](https://github.com/GUGOFO), <br>[Leonardo de Aquino](https://github.com/surpesaiajin) | Equipe |
+| 1.0 | 15/06/2026 | Documentação inicial das fases de planejamento, design, construção e transição do RF04 |j <br>[Gustavo Gomes](https://github.com/GUGOFO) | Equipe |
