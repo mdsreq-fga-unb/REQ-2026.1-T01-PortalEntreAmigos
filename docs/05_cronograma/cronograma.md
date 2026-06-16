@@ -35,7 +35,7 @@ As entregas em equipe EU1, EU2, EU3 e EU4 correspondem aos marcos de avaliação
 
 ### Fase 2: Ciclos RAD
 **Período:** 27 de Maio – 28 de Junho
-*Fase de desenvolvimento iterativo baseada em ciclos RAD de curta duração. Durante esse período, a equipe realiza múltiplos ciclos de construção, validação e refinamento de funcionalidades, podendo executar atividades em paralelo conforme a divisão das equipes e as prioridades definidas no backlog.*
+*Fase de desenvolvimento iterativo baseada em ciclos RAD de curta duração. Durante esse período, a equipe realiza múltiplos ciclos de construção, validação e refinamento de funcionalidades, podendo executar atividades em paralelo conforme a divisão das equipes e as prioridades definidas no backlog. No final dessa fase, o **MVP** estara montado.*
 
 - **Duração dos Ciclos**: Aproximadamente uma semana por ciclo.
 

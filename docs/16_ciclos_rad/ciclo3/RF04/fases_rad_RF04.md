@@ -1,7 +1,7 @@
 # Ciclo RAD 3 - RF04
 
 **Período:** 01/06 a 08/06  
-**Responsáveis:** [Edson Pereira Roldao Filho](https://github.com/edso-n), [Gustavo Gomes Fornaciari](https://github.com/GUGOFO), [Leonardo de Aquino Silveira Braga](https://github.com/surpesaiajin)  
+**Responsáveis:** [Artur Fernandes Galdino](https://github.com/ArturFGaldino), [Edson Pereira Roldao Filho](https://github.com/edso-n), [Guilherme Oliveira](https://github.com/GuilhermeOliveira1327), [Gustavo Gomes Fornaciari](https://github.com/GUGOFO), [Kaio Amoury Sasaki Acacio](https://github.com/KaioAmouryUnB), [Leonardo de Aquino Silveira Braga](https://github.com/surpesaiajin)  
 **Requisitos Alocados:** [RF04 - Editar perfil](../../../13_requisitos/requisitos.md#rf04)
 
 ---
@@ -59,7 +59,7 @@ A transição cobriu os testes de fechamento alternativo (clicando fora ou no bo
 
 Para inspecionar o comportamento estrutural do código técnico construído, utilize o link abaixo:
 
-**Link para análise técnica:** [Repositório de Transição - Ciclo 3](https://github.com/GUGOFO)
+**Link para análise técnica:** [Repositório de Transição - Ciclo 3](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-PortalEntreAmigos/tree/develop)
 
 ---
 

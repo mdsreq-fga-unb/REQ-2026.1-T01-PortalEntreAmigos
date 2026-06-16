@@ -55,7 +55,7 @@ Esta fase compreendeu o teste de preenchimento e submissão de novos dados, a va
 
 Caso queira analisar detalhadamente o comportamento estrutural do código implementado, acesse o link a seguir:
 
-**Link para análise técnica:** [Repositório de Transição - Ciclo 4](https://github.com/GUGOFO)
+**Link para análise técnica:** [Repositório de Transição - Ciclo 4](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-PortalEntreAmigos/tree/develop)
 
 ---
 

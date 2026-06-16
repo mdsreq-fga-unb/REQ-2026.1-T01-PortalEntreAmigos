@@ -1,7 +1,7 @@
 # Ciclo RAD 5 - RF11
 
 **Período:** 08/06 a 15/06  
-**Responsáveis:** [Artur Fernandes Galdino](https://github.com/ArturFGaldino), [Guilherme Oliveira](https://github.com/GuilhermeOliveira1327) e [Kaio Amoury](https://github.com/KaioAmouryUnB) 
+**Responsáveis:** [Artur Fernandes Galdino](https://github.com/ArturFGaldino), [Guilherme Oliveira](https://github.com/GuilhermeOliveira1327) e [Kaio Amoury](https://github.com/KaioAmouryUnB)
 **Requisitos Alocados:** [RF11 - Registrar doação](../../../13_requisitos/requisitos.md#rf11)
 
 ---

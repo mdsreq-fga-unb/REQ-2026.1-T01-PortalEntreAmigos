@@ -88,7 +88,7 @@ Os componentes desenvolvidos, os estilos estruturados e as páginas integradas p
 
 Caso queira analisar detalhadamente o comportamento estrutural do código implementado, acesse o link a seguir:
 
-**Link para análise técnica:** [Repositório de Transição - Ciclo 2](https://github.com/GUGOFO)
+**Link para análise técnica:** [Repositório de Transição - Ciclo 2](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-PortalEntreAmigos/tree/develop)
 
 ---
 

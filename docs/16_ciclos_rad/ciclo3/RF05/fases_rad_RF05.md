@@ -1,7 +1,7 @@
 # Ciclo RAD 3 - RF05
 
 **Período:** 01/06 a 08/06  
-**Responsáveis:** [Edson Pereira Roldao Filho](https://github.com/edso-n), [Gustavo Gomes Fornaciari](https://github.com/GUGOFO), [Leonardo de Aquino Silveira Braga](https://github.com/surpesaiajin)  
+**Responsáveis:** [Artur Fernandes Galdino](https://github.com/ArturFGaldino), [Edson Pereira Roldao Filho](https://github.com/edso-n), [Guilherme Oliveira](https://github.com/GuilhermeOliveira1327), [Gustavo Gomes Fornaciari](https://github.com/GUGOFO), [Kaio Amoury Sasaki Acacio](https://github.com/KaioAmouryUnB), [Leonardo de Aquino Silveira Braga](https://github.com/surpesaiajin)  
 **Requisitos Alocados:** [RF05 - Excluir conta](../../../13_requisitos/requisitos.md#rf05)
 
 ---
@@ -59,7 +59,7 @@ A transição envolveu os testes de acionamento do modal a partir do painel prin
 
 Caso queira analisar detalhadamente o comportamento estrutural do código técnico construído, acesse o link abaixo:
 
-**Link para análise técnica:** [Repositório de Transição - Ciclo 3](https://github.com/GUGOFO)
+**Link para análise técnica:** [Repositório de Transição - Ciclo 3](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-PortalEntreAmigos/tree/develop)
 
 ---
 
