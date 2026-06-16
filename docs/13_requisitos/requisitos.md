@@ -75,8 +75,6 @@ Os requisitos funcionais representam as funcionalidades que deverão ser impleme
 
 ---
 
-
-
 ## Requisitos Não Funcionais
 
 Os requisitos não funcionais descrevem restrições e características de qualidade esperadas para o sistema.
@@ -92,6 +90,21 @@ Os requisitos não funcionais descrevem restrições e características de quali
 | <a id="rnf07"></a>RNF07 | Persistência de Dados | O sistema deve garantir que informações cadastradas permaneçam armazenadas após reinicializações ou atualizações do sistema. | **Teste de Reinicialização de Servidor:** Cadastrar um novo evento na plataforma. No terminal do VS Code, derrubar o servidor backend/banco de dados (Ctrl + C). Iniciar o servidor novamente e recarregar a página. **Critério de sucesso:** O evento recém-criado deve continuar visível e intacto na listagem. | Confiabilidade (URPS+) |
 
 ---
+
+## Regras de Negócio
+
+A tabela abaixo estabelece as restrições operacionais, limites de funcionalidade e regras de governança sistêmica que regem o comportamento das regras de negócio aplicadas à plataforma.
+
+| ID | Nome da Regra | Descrição / Restrição Sistêmica | Justificativa de Negócio | Fonte | Impacto Esperado no Código | RFs Relacionados |
+| :---: | :--- | :--- | :--- | :---: | :--- | :--- |
+| **RN-01** | Permissão para Gestão Administrativa | Apenas usuários autenticados com nível de permissão "Moderador" podem criar, editar, excluir ou encerrar eventos, gerenciar saldos de estoque e auditar comprovantes ou notas fiscais. | Garantir a segurança operacional da ONG, evitando fraudes ou modificações indevidas por usuários comuns. | Alinhamento com o Cliente | O sistema validará a flag de administrador antes de renderizar componentes ou processar requisições dessas rotas. | [RF06](#rf06), [RF07](#rf07), [RF08](#rf08), [RF09](#rf09), [RF12](#rf12), [RF13](#rf13), [RF17](#rf17), [RF18](#rf18), [RF19](#rf19) |
+| **RN-02** | Apagamento de Dados | No momento da exclusão de uma conta de usuário, todos os seus dados pessoais sensíveis e identificáveis devem ser permanentemente removidos ou anonimizados. | Cumprimento estrito das obrigações legais de privacidade e autodeterminação informativa impostas pela LGPD. | Lei Geral de Proteção de Dados | A rotina de exclusão apagará ou descaracterizará irreversivelmente campos nominais e e-mails associados no banco de dados. | [RF05](#rf05) |
+| **RN-03** | Bloqueio de Ações em Eventos Encerrados | Impedir novas inscrições de voluntários ou registros de intenções de doações para campanhas cujo status atual seja igual a "Encerrado". | Evitar gargalos logísticos e frustrações de voluntários que tentem apoiar mobilizações já finalizadas pela ONG. | Alinhamento com o Cliente / Critérios de Aceite | Desativação estática de botões de ação nas interfaces públicas e rejeição de payloads de submissão no backend. | [RF09](#rf09), [RF11](#rf11), [RF15](#rf15) |
+| **RN-04** | Sincronização de Atualizações Cadastrais | Alterações efetuadas pelo usuário em seu Nome ou Senha devem propagar-se e refletir de forma síncrona na interface e na sessão ativa. | Garantir consistência de dados e cumprir com os critérios de persistência estável em tempo real. | Critérios de Aceite | Atualização reativa do estado global de autenticação no frontend imediatamente após o retorno positivo da API. | [RF04](#rf04) |
+| **RN-05** | Unicidade de Inscrição por Campanha | Impedir estritamente que um mesmo usuário voluntário realize mais de uma inscrição ativa para atuar presencialmente no mesmo evento social. | Evitar distorções na contagem de vagas e falhas no planejamento logístico de equipes de campo presenciais. | Alinhamento com o Cliente / Critérios de Aceite | O sistema travará o botão de envio e modificará o rótulo para o status fixo "Inscrito" caso detecte registro existente. | [RF15](#rf15) |
+
+---
+
 ## Rastreabilidade dos Requisitos
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/kMxEVxPcaLlDG02xoxBjUd/Tabela-completa-OE--CP--RF?node-id=0-1&embed-host=share" allowfullscreen></iframe>
