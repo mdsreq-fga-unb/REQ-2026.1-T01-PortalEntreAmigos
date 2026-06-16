@@ -120,7 +120,6 @@ Os critérios de aceite foram organizados de forma rastreável, permitindo sua a
 | ID | Critério de Aceite |
 | :--- | :--- |
 | <a id="ca-us10-01"></a>CA-US10-01 | O progresso deve ser exibido de forma visual (ex: barra de progresso, gráfico circular) com a porcentagem concluída. |
-| <a id="ca-us10-02"></a>CA-US10-02 | Os dados do gráfico devem ser atualizados dinamicamente quando o usuário atualizar a página manualmente ([RNF06](../13_requisitos/requisitos.md#rnf06)). |
 
 ---
 

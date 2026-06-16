@@ -12,7 +12,6 @@ Este documento reúne os testes e as evidências de conformidade dos **Critério
 | ID do Critério | Critério de Aceite Original | Método de Verificação | Situação no Ciclo |
 | :--- | :--- | :--- | :---: |
 | [CA-US10-01](../../../15_backlog/criterios_aceitacao.md#ca-us10-01) | O progresso deve ser exibido de forma visual (ex: barra de progresso, gráfico circular) com a porcentagem concluída. | **Inspeção Visual:** Acesso à campanha ativa e verificação do gráfico circular de progresso global (32,14%) e do gráfico de pizza de distribuição. <br> *Resultado:* Ambos os indicadores renderizados corretamente em desktop e mobile. | **Aprovado** |
-| [CA-US10-02](../../../15_backlog/criterios_aceitacao.md#ca-us10-02) | Os dados do gráfico devem ser atualizados dinamicamente quando o usuário atualizar a página manualmente ([RNF06](../../../13_requisitos/requisitos.md#rnf06)). | **Teste de Atualização:** Registro de nova doação seguido de recarregamento da página. <br> *Resultado:* Percentuais e gráficos refletiram os dados atualizados após refresh. | **Aprovado** |
 
 ---
 
