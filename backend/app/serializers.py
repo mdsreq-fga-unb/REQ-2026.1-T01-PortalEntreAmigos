@@ -134,14 +134,20 @@ class LoginSerializer(serializers.Serializer):
         # Tenta achar o usuário pelo e-mail primeiro para descobrir o username real dele
         user_obj = User.objects.filter(email=email).first()
         
+        if user_obj and user_obj.check_password(password) and not user_obj.is_active:
+            raise AuthenticationFailed(
+                'Sua conta ainda não foi ativada. Verifique o link de confirmação enviado para o seu e-mail.',
+                code='conta_inativa'
+            )
+
         if user_obj:
             user = authenticate(username=user_obj.username, password=password)
         else:
-            # Fallback caso dê algum erro bizarro
             user = authenticate(username=email, password=password)
-            
+
         if not user:
             raise AuthenticationFailed('E-mail ou senha incorretos.')
+
         data['user'] = user
         return data
     
