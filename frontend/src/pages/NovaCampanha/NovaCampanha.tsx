@@ -8,7 +8,9 @@ import toast from 'react-hot-toast';
 import { useAuth } from '../../contexts/AuthContext';
 import { Modal } from '../../components/Modal/Modal';
 import { eventoService, itemDoacaoService } from '../../services/api';
+import { MapPicker, type PontoColeta } from '../../components/MapPicker/MapPicker';
 import styles from './NovaCampanha.module.css';
+
 
 const itemSchema = z.object({
   nome: z.string(),
@@ -23,7 +25,6 @@ const campanhaSchema = z.object({
   descricao: z.string().min(1, 'A descrição é obrigatória.'),
   dataInicio: z.string().min(1, 'Data de início é obrigatória.'),
   dataTermino: z.string().min(1, 'Data de término é obrigatória.'),
-  local: z.string().min(1, 'O local é obrigatório.'),
   itens: z.array(itemSchema).min(1, 'Adicione pelo menos um item à campanha.'),
 }).refine((data) => {
   if (data.dataInicio && data.dataTermino) {
@@ -49,7 +50,6 @@ export function NovaCampanha() {
       descricao: '',
       dataInicio: '',
       dataTermino: '',
-      local: '',
       itens: [],
     }
   });
@@ -63,6 +63,8 @@ export function NovaCampanha() {
     tipo: 'alimento' as 'alimento' | 'objeto',
     quantidade: '' as number | string
   });
+  const [pontosColeta, setPontosColeta] = useState<PontoColeta[]>([]);
+
 
   // Proteção básica
   if (!isAdmin) {
@@ -82,33 +84,40 @@ export function NovaCampanha() {
    const onSubmit = async (data: CampanhaFormData) => {
     setIsSubmitting(true);
     try {
-      // Cria o evento
-      const evento = await eventoService.criar({
+      // 1. Cria a campanha
+      const novoEvento = await eventoService.criar({
         nome: data.titulo,
         descricao: data.descricao,
         data_inicio: data.dataInicio,
         data_fim: data.dataTermino,
-        local: data.local,
+        local: '',
         capacidade_voluntarios: 0,
         status: 'EM_ANDAMENTO',
+        pontos_coleta: pontosColeta,
       });
 
       // Cria cada item de doação vinculado ao evento
       await Promise.all(
-        data.itens.map(item =>
+        data.itens.map((item) =>
           itemDoacaoService.criar({
-            evento: evento.id,
             nome: item.nome,
             meta_item: Number(item.quantidade),
+            evento: novoEvento.id,
           })
         )
       );
 
-      toast.success('Campanha criada com sucesso!');
-      setTimeout(() => navigate('/gerenciar-campanhas'), 2000);
-
-    } catch {
-      toast.error('Erro ao criar campanha. Tente novamente.');
+      toast.success('Campanha publicada com sucesso!');
+      navigate('/gerenciar-campanhas');
+    } catch (error: any) {
+      const responseData = error.response?.data;
+      if (responseData && typeof responseData === 'object') {
+        const errorMsgs = Object.values(responseData).flat().join(' ');
+        toast.error(errorMsgs || 'Erro ao criar campanha.');
+      } else {
+        toast.error('Erro ao criar campanha.');
+      }
+      console.error(error);
     } finally {
       setIsSubmitting(false);
     }
@@ -141,15 +150,13 @@ export function NovaCampanha() {
         </Link>
         
         <div className={styles.card}>
-          <div className={styles.header}>
-            <h1 className={styles.title}>Criar Nova Campanha</h1>
-            <p className={styles.subtitle}>
-              Preencha os dados abaixo para publicar uma nova iniciativa de arrecadação.
-            </p>
-          </div>
+          <h1 className={styles.title}>Nova Campanha</h1>
+          <p className={styles.subtitle}>
+            Preencha os campos abaixo para iniciar uma nova campanha de arrecadação.
+          </p>
           
           <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-            {/* Título */}
+            {/* Título e Descrição */}
             <div className={styles.inputGroup}>
               <label htmlFor="titulo" className={styles.label}>Título da Campanha</label>
               <div className={styles.inputWrapper}>
@@ -165,17 +172,16 @@ export function NovaCampanha() {
               {errors.titulo && <span className={styles.errorMessage}><AlertCircle size={16} />{errors.titulo.message}</span>}
             </div>
 
-            {/* Descrição */}
             <div className={styles.inputGroup}>
-              <label htmlFor="descricao" className={styles.label}>Descrição</label>
+              <label htmlFor="descricao" className={styles.label}>Descrição / Objetivo</label>
               <div className={styles.inputWrapper}>
                 <FileText size={20} className={styles.inputIcon} style={{ top: '1rem', position: 'absolute' }} />
                 <textarea
                   id="descricao"
                   {...register('descricao')}
+                  className={`${styles.input} ${styles.textarea} ${errors.descricao ? styles.inputError : ''}`}
+                  placeholder="Descreva o objetivo da campanha e como as pessoas podem ajudar..."
                   rows={4}
-                  className={`${styles.textarea} ${errors.descricao ? styles.inputError : ''}`}
-                  placeholder="Explique o propósito da campanha..."
                 />
               </div>
               {errors.descricao && <span className={styles.errorMessage}><AlertCircle size={16} />{errors.descricao.message}</span>}
@@ -212,20 +218,16 @@ export function NovaCampanha() {
               </div>
             </div>
 
-            {/* Local */}
+            {/* Pontos de Coleta no Mapa */}
             <div className={styles.inputGroup}>
-              <label htmlFor="local" className={styles.label}>Local de Arrecadação / Ponto de Coleta</label>
-              <div className={styles.inputWrapper}>
-                <MapPin size={20} className={styles.inputIcon} />
-                <input
-                  type="text"
-                  id="local"
-                  {...register('local')}
-                  className={`${styles.input} ${errors.local ? styles.inputError : ''}`}
-                  placeholder="Ex: Sede da ONG - Brasília, DF"
-                />
-              </div>
-              {errors.local && <span className={styles.errorMessage}><AlertCircle size={16} />{errors.local.message}</span>}
+              <label className={styles.label}>
+                <MapPin size={16} style={{ display: 'inline', marginRight: '0.35rem' }} />
+                Pontos de Coleta no Mapa
+              </label>
+              <p style={{ fontSize: '0.82rem', color: 'var(--color-text-muted)', marginBottom: '0.75rem', marginTop: '-0.25rem' }}>
+                Clique no mapa para marcar os locais onde os itens serão recebidos.
+              </p>
+              <MapPicker pontos={pontosColeta} onChange={setPontosColeta} />
             </div>
 
             {/* Itens */}
@@ -261,9 +263,10 @@ export function NovaCampanha() {
               {errors.itens && <span className={styles.errorMessage}><AlertCircle size={16} />{errors.itens.message}</span>}
             </div>
 
-            <button type="submit" className={styles.submitButton}>
-              Publicar Campanha
+            <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+              {isSubmitting ? 'Publicando…' : 'Publicar Campanha'}
             </button>
+
           </form>
         </div>
       </div>

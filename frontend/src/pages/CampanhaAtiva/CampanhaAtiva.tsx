@@ -1,31 +1,53 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, Edit, StopCircle, Trash2, Calendar, Target, MapPin, X, Type, FileText } from 'lucide-react';
+import {
+  ArrowLeft, Edit, StopCircle, Trash2, Calendar, Target, MapPin,
+  X, Type, FileText, CheckCircle2, Trash
+} from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
-import { eventoService } from '../../services/api';
+import { eventoService, itemDoacaoService, doacaoService } from '../../services/api';
+import { DonationProgress } from '../Doar/components/DonationProgress/DonationProgress';
+import { MapPicker, type PontoColeta } from '../../components/MapPicker/MapPicker';
 import toast from 'react-hot-toast';
 import styles from './CampanhaAtiva.module.css';
 
+
+const CORES = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'];
+
 export function CampanhaAtiva() {
   const { isAdmin } = useAuth();
-  const { id } = useParams(); // pega o ID da URL: /campanhas/:id
+  const { id } = useParams();
 
   const [campanha, setCampanha] = useState<any>(null);
+  const [itens, setItens] = useState<any[]>([]);
+  const [promessas, setPromessas] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editFormData, setEditFormData] = useState<any>({});
+  const [pontosEditando, setPontosEditando] = useState<PontoColeta[]>([]);
 
-  // Busca o evento ao carregar
-  useEffect(() => {
+
+  const carregarDados = useCallback(async () => {
     if (!id) return;
-    eventoService.buscar(id)
-      .then(data => {
-        setCampanha(data);
-        setEditFormData(data);
-      })
-      .catch(() => toast.error('Erro ao carregar campanha'))
-      .finally(() => setLoading(false));
+    try {
+      const [campanhaData, itensData, promessasData] = await Promise.all([
+        eventoService.buscar(id),
+        itemDoacaoService.listarPorEvento(id),
+        doacaoService.listarPorEvento(id),
+      ]);
+      setCampanha(campanhaData);
+      setItens(itensData);
+      setPromessas(promessasData);
+    } catch {
+      toast.error('Erro ao carregar campanha');
+    } finally {
+      setLoading(false);
+    }
   }, [id]);
+
+  useEffect(() => {
+    carregarDados();
+  }, [carregarDados]);
 
   const handleEditChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setEditFormData({ ...editFormData, [e.target.name]: e.target.value });
@@ -39,16 +61,25 @@ export function CampanhaAtiva() {
         descricao: editFormData.descricao,
         data_inicio: editFormData.data_inicio,
         data_fim: editFormData.data_fim,
-        local: editFormData.local,
+        local: '',
         capacidade_voluntarios: editFormData.capacidade_voluntarios,
+        pontos_coleta: pontosEditando,
       });
       setCampanha(atualizado);
       setIsEditModalOpen(false);
       toast.success('Campanha atualizada!');
-    } catch {
-      toast.error('Erro ao atualizar campanha');
+    } catch (error: any) {
+      const responseData = error.response?.data;
+      if (responseData && typeof responseData === 'object') {
+        const errorMsgs = Object.values(responseData).flat().join(' ');
+        toast.error(errorMsgs || 'Erro ao atualizar campanha.');
+      } else {
+        toast.error('Erro ao atualizar campanha.');
+      }
+      console.error(error);
     }
   };
+
 
   const handleEncerrar = async () => {
     try {
@@ -71,6 +102,27 @@ export function CampanhaAtiva() {
     }
   };
 
+  const handleConfirmarPromessa = async (promessaId: number) => {
+    try {
+      await doacaoService.confirmar(promessaId);
+      toast.success('Doação confirmada como recebida! ✅');
+      carregarDados(); // recarrega promessas e itens (incluindo progresso)
+    } catch {
+      toast.error('Erro ao confirmar doação.');
+    }
+  };
+
+  const handleExcluirPromessa = async (promessaId: number) => {
+    if (!confirm('Deseja cancelar esta promessa de doação?')) return;
+    try {
+      await doacaoService.deletar(promessaId);
+      toast.success('Promessa cancelada.');
+      carregarDados();
+    } catch {
+      toast.error('Erro ao cancelar promessa.');
+    }
+  };
+
   if (loading) return <p>Carregando...</p>;
   if (!campanha) return <p>Campanha não encontrada.</p>;
 
@@ -88,6 +140,19 @@ export function CampanhaAtiva() {
     );
   }
 
+  // Dados para os gráficos
+  const dadosPromessas = itens.map((item, index) => ({
+    name: item.nome,
+    value: item.quantidade_prometida,
+    color: CORES[index % CORES.length],
+  }));
+
+  const dadosRecebidos = itens.map((item, index) => ({
+    name: item.nome,
+    value: item.quantidade_recebida,
+    color: CORES[index % CORES.length],
+  }));
+
   return (
     <main className={styles.container}>
       <div className={styles.content}>
@@ -103,6 +168,7 @@ export function CampanhaAtiva() {
           </p>
         </div>
 
+        {/* ─── Card de Detalhes da Campanha ─────────────────────────── */}
         <div className={styles.card}>
           <div className={styles.campaignDetails}>
             <h2>{campanha.nome}</h2>
@@ -120,16 +186,8 @@ export function CampanhaAtiva() {
               <div className={styles.infoItem}>
                 <Target size={20} className={styles.infoIcon} />
                 <div>
-                  <strong>Progresso Geral</strong>
+                  <strong>Progresso (Prometido)</strong>
                   <span>{campanha.progresso_geral}%</span>
-                </div>
-              </div>
-
-              <div className={styles.infoItem}>
-                <MapPin size={20} className={styles.infoIcon} />
-                <div>
-                  <strong>Local</strong>
-                  <span>{campanha.local}</span>
                 </div>
               </div>
             </div>
@@ -138,8 +196,14 @@ export function CampanhaAtiva() {
           <div className={styles.actionsDivider}>Ações da Campanha</div>
 
           <div className={styles.actionsGrid}>
-            <button className={`${styles.actionButton} ${styles.btnEdit}`}
-              onClick={() => { setEditFormData({ ...campanha }); setIsEditModalOpen(true); }}>
+            <button
+              className={`${styles.actionButton} ${styles.btnEdit}`}
+              onClick={() => {
+                setEditFormData({ ...campanha });
+                setPontosEditando(campanha.pontos_coleta ?? []);
+                setIsEditModalOpen(true);
+              }}
+            >
               <Edit size={24} />
               <span>Editar Campanha</span>
             </button>
@@ -154,9 +218,95 @@ export function CampanhaAtiva() {
               <span>Excluir Campanha</span>
             </button>
           </div>
+
+          {/* ─── Tabela de Promessas ──────────────────────────────── */}
+          <div className={styles.promessasSection}>
+            <div className={styles.sectionDivider}>Promessas de Doação</div>
+
+            <div className={styles.tableWrapper}>
+              <table className={styles.promessasTable}>
+                <thead>
+                  <tr>
+                    <th>Voluntário</th>
+                    <th>CPF</th>
+                    <th>Item</th>
+                    <th>Qtd.</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {promessas.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} className={styles.emptyState}>
+                        Nenhuma promessa de doação registrada ainda.
+                      </td>
+                    </tr>
+                  ) : (
+                    promessas.map((p: any) => (
+                      <tr
+                        key={p.id}
+                        className={p.status === 'RECEBIDA' ? styles.rowConfirmada : ''}
+                      >
+                        <td>{p.doador_nome || '—'}</td>
+                        <td>{p.doador_cpf || '—'}</td>
+                        <td>{p.item_nome || `Item #${p.item}`}</td>
+                        <td>{p.quantidade}</td>
+                        <td>
+                          <span
+                            className={`${styles.statusBadge} ${
+                              p.status === 'RECEBIDA' ? styles.statusRecebida : styles.statusPendente
+                            }`}
+                          >
+                            {p.status}
+                          </span>
+                        </td>
+                        <td>
+                          <div className={styles.tableActions}>
+                            <button
+                              className={styles.btnConfirmar}
+                              onClick={() => handleConfirmarPromessa(p.id)}
+                              disabled={p.status === 'RECEBIDA'}
+                              title="Confirmar recebimento"
+                            >
+                              <CheckCircle2 size={14} />
+                              Confirmar
+                            </button>
+                            <button
+                              className={styles.btnExcluir}
+                              onClick={() => handleExcluirPromessa(p.id)}
+                              title="Cancelar promessa"
+                            >
+                              <Trash size={14} />
+                              Excluir
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        {/* ─── Gráficos ──────────────────────────────────────────────── */}
+        <div className={styles.chartsGrid}>
+          <DonationProgress
+            data={dadosPromessas}
+            globalProgress={campanha.progresso_geral}
+            title="Distribuição das Promessas"
+          />
+          <DonationProgress
+            data={dadosRecebidos}
+            globalProgress={campanha.progresso_recebido ?? 0}
+            title="Distribuição dos Itens Recebidos"
+          />
         </div>
       </div>
 
+      {/* ─── Modal de Edição ───────────────────────────────────────── */}
       {isEditModalOpen && (
         <div className={styles.modalBackdrop}>
           <div className={styles.modalContainer}>
@@ -203,11 +353,14 @@ export function CampanhaAtiva() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Local de Arrecadação</label>
-                <div className={styles.inputWrapper}>
-                  <MapPin size={20} className={styles.inputIcon} />
-                  <input type="text" name="local" value={editFormData.local} onChange={handleEditChange} className={styles.input} required />
-                </div>
+                <label className={styles.label}>
+                  <MapPin size={16} style={{ display: 'inline', marginRight: '0.35rem' }} />
+                  Pontos de Coleta no Mapa
+                </label>
+                <p style={{ fontSize: '0.82rem', color: 'var(--color-text-muted)', marginBottom: '0.75rem', marginTop: '-0.25rem' }}>
+                  Clique no mapa para adicionar ou remover pontos de coleta.
+                </p>
+                <MapPicker pontos={pontosEditando} onChange={setPontosEditando} />
               </div>
 
               <div className={styles.modalActions}>

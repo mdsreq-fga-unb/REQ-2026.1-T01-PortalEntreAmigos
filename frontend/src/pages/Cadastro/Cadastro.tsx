@@ -1,6 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, Mail, Lock, AlertCircle, ArrowLeft } from 'lucide-react';
+import { User, Mail, Lock, AlertCircle, ArrowLeft, Phone, Fingerprint } from 'lucide-react';
 import toast from 'react-hot-toast'; // Importando o Toast
 import styles from './Cadastro.module.css';
 
@@ -9,6 +9,8 @@ export function Cadastro() {
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
+    cpf: '',
+    telefone: '',
     senha: '',
     confirmarSenha: ''
   });
@@ -24,6 +26,54 @@ export function Cadastro() {
     return minLength && hasUpperCase && hasNumber && hasSpecialChar;
   };
 
+  const validateCPF = (cpf: string) => {
+    const cleanCPF = cpf.replace(/\D/g, '');
+    if (cleanCPF.length !== 11) return false;
+    if (/^(\d)\1{10}$/.test(cleanCPF)) return false;
+    
+    let sum = 0;
+    for (let i = 0; i < 9; i++) sum += parseInt(cleanCPF.charAt(i)) * (10 - i);
+    let rev = 11 - (sum % 11);
+    if (rev === 10 || rev === 11) rev = 0;
+    if (rev !== parseInt(cleanCPF.charAt(9))) return false;
+    
+    sum = 0;
+    for (let i = 0; i < 10; i++) sum += parseInt(cleanCPF.charAt(i)) * (11 - i);
+    rev = 11 - (sum % 11);
+    if (rev === 10 || rev === 11) rev = 0;
+    if (rev !== parseInt(cleanCPF.charAt(10))) return false;
+    
+    return true;
+  };
+
+  const validateTelefone = (telefone: string) => {
+    const cleanTelefone = telefone.replace(/\D/g, '');
+    return cleanTelefone.length === 10 || cleanTelefone.length === 11;
+  };
+
+  const formatCPF = (value: string) => {
+    const clean = value.replace(/\D/g, '');
+    return clean
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})$/, '$1-$2')
+      .substring(0, 14);
+  };
+
+  const formatTelefone = (value: string) => {
+    const clean = value.replace(/\D/g, '');
+    if (clean.length <= 10) {
+      return clean
+        .replace(/(\d{2})(\d)/, '($1) $2')
+        .replace(/(\d{4})(\d{1,4})$/, '$1-$2')
+        .substring(0, 14);
+    }
+    return clean
+      .replace(/(\d{2})(\d)/, '($1) $2')
+      .replace(/(\d{5})(\d{1,4})$/, '$1-$2')
+      .substring(0, 15);
+  };
+
   const handleSubmit = async (e: FormEvent) => { // Função agora é assíncrona (async)
     e.preventDefault();
     const newErrors: Record<string, string> = {};
@@ -31,6 +81,18 @@ export function Cadastro() {
     if (!formData.nome.trim()) newErrors.nome = 'Nome completo é obrigatório';
     if (!formData.email.trim()) newErrors.email = 'E-mail é obrigatório';
     
+    if (!formData.cpf.trim()) {
+      newErrors.cpf = 'CPF é obrigatório';
+    } else if (!validateCPF(formData.cpf)) {
+      newErrors.cpf = 'CPF inválido';
+    }
+
+    if (!formData.telefone.trim()) {
+      newErrors.telefone = 'Telefone é obrigatório';
+    } else if (!validateTelefone(formData.telefone)) {
+      newErrors.telefone = 'Telefone inválido (deve conter DDD)';
+    }
+
     if (!formData.senha) {
       newErrors.senha = 'Senha é obrigatória';
     } else if (!validatePassword(formData.senha)) {
@@ -59,31 +121,27 @@ export function Cadastro() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          // Mapeando os nomes do frontend para o que o Django espera
           nome_completo: formData.nome,
           email: formData.email,
           password: formData.senha,
-          confirmacao_senha: formData.confirmarSenha
+          confirmacao_senha: formData.confirmarSenha,
+          cpf: formData.cpf.replace(/\D/g, ''),
+          telefone: formData.telefone.replace(/\D/g, '')
         }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        // Pega a primeira mensagem de erro retornada pelo Django
         const errorValues = Object.values(data).flat();
         const errorMessage = errorValues.length > 0 ? errorValues[0] : 'Erro ao realizar cadastro.';
         throw new Error(errorMessage as string);
       }
 
-      // Sucesso!
       toast.success('Conta criada com sucesso!', { id: toastId });
-      
-      // Redireciona o usuário para a tela de login
       navigate('/login');
 
     } catch (error: any) {
-      // Falha (Ex: e-mail já existe)
       toast.error(error.message || 'Erro de conexão com o servidor.', { id: toastId });
     } finally {
       setIsLoading(false);
@@ -91,8 +149,14 @@ export function Cadastro() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    // Limpar o erro ao digitar
+    let value = e.target.value;
+    if (e.target.name === 'cpf') {
+      value = formatCPF(value);
+    } else if (e.target.name === 'telefone') {
+      value = formatTelefone(value);
+    }
+
+    setFormData({ ...formData, [e.target.name]: value });
     if (errors[e.target.name]) {
       setErrors({ ...errors, [e.target.name]: '' });
     }
@@ -160,6 +224,50 @@ export function Cadastro() {
             </div>
 
             <div className={styles.inputGroup}>
+              <label htmlFor="cpf" className={styles.label}>CPF</label>
+              <div className={styles.inputWrapper}>
+                <Fingerprint size={20} className={styles.inputIcon} />
+                <input
+                  type="text"
+                  id="cpf"
+                  name="cpf"
+                  value={formData.cpf}
+                  onChange={handleChange}
+                  className={`${styles.input} ${errors.cpf ? styles.inputError : ''}`}
+                  placeholder="000.000.000-00"
+                  disabled={isLoading}
+                />
+              </div>
+              {errors.cpf && (
+                <span className={styles.errorMessage}>
+                  <AlertCircle size={16} /> {errors.cpf}
+                </span>
+              )}
+            </div>
+
+            <div className={styles.inputGroup}>
+              <label htmlFor="telefone" className={styles.label}>Telefone</label>
+              <div className={styles.inputWrapper}>
+                <Phone size={20} className={styles.inputIcon} />
+                <input
+                  type="text"
+                  id="telefone"
+                  name="telefone"
+                  value={formData.telefone}
+                  onChange={handleChange}
+                  className={`${styles.input} ${errors.telefone ? styles.inputError : ''}`}
+                  placeholder="(00) 00000-0000"
+                  disabled={isLoading}
+                />
+              </div>
+              {errors.telefone && (
+                <span className={styles.errorMessage}>
+                  <AlertCircle size={16} /> {errors.telefone}
+                </span>
+              )}
+            </div>
+
+            <div className={styles.inputGroup}>
               <label htmlFor="senha" className={styles.label}>Senha</label>
               <div className={styles.inputWrapper}>
                 <Lock size={20} className={styles.inputIcon} />
@@ -218,4 +326,4 @@ export function Cadastro() {
       </div>
     </main>
   );
-}
+}

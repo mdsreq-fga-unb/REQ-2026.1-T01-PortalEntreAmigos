@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserPlus, LogIn, LogOut, User as UserIcon, Edit, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import styles from './MinhaConta.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { Modal } from '../../components/Modal/Modal';
+import { doacaoService } from '../../services/api';
 
 export function MinhaConta() {
   const { user, isAdmin, logout, updateUser } = useAuth();
@@ -15,21 +16,127 @@ export function MinhaConta() {
   
   // Local state to simulate edited user data
   const [userData, setUserData] = useState({
-    nome: user?.nome || '',
-    email: user?.email || '',
+    nome: '',
+    email: '',
+    cpf: '',
+    telefone: '',
   });
   const [deletePassword, setDeletePassword] = useState('');
+
+  const validateCPF = (cpf: string) => {
+    const cleanCPF = cpf.replace(/\D/g, '');
+    if (cleanCPF.length !== 11) return false;
+    if (/^(\d)\1{10}$/.test(cleanCPF)) return false;
+    
+    let sum = 0;
+    for (let i = 0; i < 9; i++) sum += parseInt(cleanCPF.charAt(i)) * (10 - i);
+    let rev = 11 - (sum % 11);
+    if (rev === 10 || rev === 11) rev = 0;
+    if (rev !== parseInt(cleanCPF.charAt(9))) return false;
+    
+    sum = 0;
+    for (let i = 0; i < 10; i++) sum += parseInt(cleanCPF.charAt(i)) * (11 - i);
+    rev = 11 - (sum % 11);
+    if (rev === 10 || rev === 11) rev = 0;
+    if (rev !== parseInt(cleanCPF.charAt(10))) return false;
+    
+    return true;
+  };
+
+  const validateTelefone = (telefone: string) => {
+    const cleanTelefone = telefone.replace(/\D/g, '');
+    return cleanTelefone.length === 10 || cleanTelefone.length === 11;
+  };
+
+  const formatCPF = (value: string) => {
+    const clean = value.replace(/\D/g, '');
+    return clean
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})$/, '$1-$2')
+      .substring(0, 14);
+  };
+
+  const formatTelefone = (value: string) => {
+    const clean = value.replace(/\D/g, '');
+    if (clean.length <= 10) {
+      return clean
+        .replace(/(\d{2})(\d)/, '($1) $2')
+        .replace(/(\d{4})(\d{1,4})$/, '$1-$2')
+        .substring(0, 14);
+    }
+    return clean
+      .replace(/(\d{2})(\d)/, '($1) $2')
+      .replace(/(\d{5})(\d{1,4})$/, '$1-$2')
+      .substring(0, 15);
+  };
+
+  // Promises state
+  const [promessas, setPromessas] = useState<any[]>([]);
+  const [loadingPromessas, setLoadingPromessas] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      setUserData({
+        nome: user.nome || '',
+        email: user.email || '',
+        cpf: formatCPF(user.cpf || ''),
+        telefone: formatTelefone(user.telefone || ''),
+      });
+
+      // Se não for admin, carregar as promessas de doação dele
+      if (!isAdmin) {
+        const fetchPromessas = async () => {
+          setLoadingPromessas(true);
+          try {
+            const data = await doacaoService.listarMinhas();
+            setPromessas(data);
+          } catch (err) {
+            console.error('Erro ao carregar promessas:', err);
+          } finally {
+            setLoadingPromessas(false);
+          }
+        };
+        fetchPromessas();
+      }
+    }
+  }, [user, isAdmin]);
 
   const handleLogout = () => {
     logout();
     navigate('/');
   };
 
-  const handleSaveEdit = () => {
-    // Call the context update
-    updateUser(userData);
-    setModalType('none');
-    toast.success('Perfil atualizado com sucesso!');
+  const handleSaveEdit = async () => {
+    if (!userData.nome.trim()) {
+      toast.error('Nome é obrigatório.');
+      return;
+    }
+    if (!userData.email.trim()) {
+      toast.error('E-mail é obrigatório.');
+      return;
+    }
+    if (userData.cpf && !validateCPF(userData.cpf)) {
+      toast.error('CPF inválido.');
+      return;
+    }
+    if (userData.telefone && !validateTelefone(userData.telefone)) {
+      toast.error('Telefone inválido (deve conter DDD).');
+      return;
+    }
+
+    try {
+      await updateUser({
+        nome: userData.nome,
+        email: userData.email,
+        cpf: userData.cpf.replace(/\D/g, ''),
+        telefone: userData.telefone.replace(/\D/g, ''),
+      });
+      setModalType('none');
+      toast.success('Perfil atualizado com sucesso!');
+    } catch (err: any) {
+      toast.error(err.message || 'Erro ao atualizar perfil.');
+    }
   };
 
   const handleDeleteAccount = () => {
@@ -81,7 +188,8 @@ export function MinhaConta() {
     // Regular User View
     return (
       <main className={styles.container}>
-        <div className={styles.content}>
+        <div className={styles.grid}>
+          {/* Menu / Perfil Card */}
           <div className={styles.card}>
             <div className={styles.header}>
               <h1 className={styles.title}>Minha Conta</h1>
@@ -147,6 +255,54 @@ export function MinhaConta() {
               </button>
             </div>
           </div>
+
+          {/* Minhas Promessas Card */}
+          <div className={styles.card}>
+            <div className={styles.header}>
+              <h2 className={styles.title} style={{ fontSize: '2rem' }}>Minhas Promessas</h2>
+              <p className={styles.subtitle}>
+                Acompanhe o status dos itens que você prometeu doar.
+              </p>
+            </div>
+            
+            <div className={styles.promisesList}>
+              {loadingPromessas ? (
+                <div className={styles.loading}>Carregando suas promessas...</div>
+              ) : promessas.length === 0 ? (
+                <div className={styles.emptyState}>
+                  <p>Você ainda não fez nenhuma promessa de doação.</p>
+                  <Link to="/" className={styles.browseLink}>
+                    Ver campanhas ativas
+                  </Link>
+                </div>
+              ) : (
+                promessas.map((promessa) => (
+                  <div key={promessa.id} className={styles.promiseItem}>
+                    <div className={styles.promiseDetails}>
+                      <span className={styles.campaignName}>{promessa.evento_nome || 'Campanha'}</span>
+                      <span className={styles.itemName}>
+                        {promessa.item_nome} • <strong>{promessa.quantidade} u.</strong>
+                      </span>
+                      <span className={styles.promiseDate}>
+                        Prometido em: {new Date(promessa.criado_em).toLocaleDateString('pt-BR')}
+                      </span>
+                    </div>
+                    <div className={styles.promiseStatus}>
+                      {promessa.status === 'RECEBIDA' ? (
+                        <span className={`${styles.badge} ${styles.badgeSuccess}`}>
+                          ✓ Confirmada
+                        </span>
+                      ) : (
+                        <span className={`${styles.badge} ${styles.badgeWarning}`}>
+                          ⏳ Precisa cumprir
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
         </div>
 
         {/* View Modal Content */}
@@ -162,6 +318,14 @@ export function MinhaConta() {
           <div className={styles.formGroup}>
             <label>Email:</label>
             <div className={styles.input} style={{ backgroundColor: '#f7fafc', cursor: 'not-allowed' }}>{userData.email}</div>
+          </div>
+          <div className={styles.formGroup}>
+            <label>CPF:</label>
+            <div className={styles.input} style={{ backgroundColor: '#f7fafc', cursor: 'not-allowed' }}>{userData.cpf || 'Não informado'}</div>
+          </div>
+          <div className={styles.formGroup}>
+            <label>Telefone:</label>
+            <div className={styles.input} style={{ backgroundColor: '#f7fafc', cursor: 'not-allowed' }}>{userData.telefone || 'Não informado'}</div>
           </div>
           <div className={styles.modalActions}>
             <button className={styles.cancelButton} onClick={() => setModalType('none')}>Fechar</button>
@@ -190,6 +354,26 @@ export function MinhaConta() {
               className={styles.input} 
               value={userData.email}
               onChange={(e) => setUserData({...userData, email: e.target.value})}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label>CPF</label>
+            <input 
+              type="text" 
+              className={styles.input} 
+              value={userData.cpf}
+              onChange={(e) => setUserData({...userData, cpf: formatCPF(e.target.value)})}
+              placeholder="000.000.000-00"
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label>Telefone</label>
+            <input 
+              type="text" 
+              className={styles.input} 
+              value={userData.telefone}
+              onChange={(e) => setUserData({...userData, telefone: formatTelefone(e.target.value)})}
+              placeholder="(00) 00000-0000"
             />
           </div>
           <div className={styles.modalActions}>
@@ -263,3 +447,4 @@ export function MinhaConta() {
     </main>
   );
 }
+

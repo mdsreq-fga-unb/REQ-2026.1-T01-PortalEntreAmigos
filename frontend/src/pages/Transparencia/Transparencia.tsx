@@ -12,10 +12,11 @@ export function Transparencia() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedReportId, setSelectedReportId] = useState<string | null>(null);
 
-  const openAddModal = (reportId: string) => {
-    setSelectedReportId(reportId);
+  const openAddModal = (reportId: number | string) => {
+    setSelectedReportId(String(reportId));
     setIsModalOpen(true);
   };
+
 
   const closeAddModal = () => {
     setIsModalOpen(false);

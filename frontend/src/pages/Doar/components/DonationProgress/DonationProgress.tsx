@@ -10,9 +10,10 @@ interface ChartData {
 interface DonationProgressProps {
   data: ChartData[];
   globalProgress: number;
+  title?: string;
 }
 
-export function DonationProgress({ data, globalProgress }: DonationProgressProps) {
+export function DonationProgress({ data, globalProgress, title = 'Distribuição das Doações' }: DonationProgressProps) {
   return (
     <div className={styles.card}>
       <div className={styles.headerButtons}>
@@ -20,7 +21,7 @@ export function DonationProgress({ data, globalProgress }: DonationProgressProps
         <button className={`${styles.button} ${styles.btnSecondary}`}>COMPARTILHAR</button>
       </div>
 
-      <h3 className={styles.title}>Distribuição das Doações</h3>
+      <h3 className={styles.title}>{title}</h3>
 
       <div className={styles.chartContainer}>
         <ResponsiveContainer width="100%" height={250}>

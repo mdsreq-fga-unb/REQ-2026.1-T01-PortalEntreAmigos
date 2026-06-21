@@ -368,3 +368,179 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ─── Tabela de Promessas ─────────────────────────────────────────── */
+.promessasSection {
+  margin-top: 1.5rem;
+}
+
+.sectionDivider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  margin: 2rem 0 1.5rem;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.sectionDivider::before,
+.sectionDivider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sectionDivider::before { margin-right: 1rem; }
+.sectionDivider::after  { margin-left: 1rem;  }
+
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.promessasTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.promessasTable thead {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  color: white;
+}
+
+.promessasTable th {
+  padding: 0.9rem 1.2rem;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.promessasTable td {
+  padding: 0.85rem 1.2rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  vertical-align: middle;
+}
+
+.promessasTable tbody tr {
+  transition: background 0.2s ease;
+}
+
+.promessasTable tbody tr:hover {
+  background-color: rgba(233, 125, 37, 0.04);
+}
+
+.promessasTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Linha verde para doação confirmada */
+.rowConfirmada td {
+  background-color: rgba(34, 197, 94, 0.08) !important;
+  color: #15803d;
+}
+
+.rowConfirmada:hover td {
+  background-color: rgba(34, 197, 94, 0.12) !important;
+}
+
+.tableActions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+}
+
+.btnConfirmar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background-color: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btnConfirmar:hover {
+  background-color: #22c55e;
+  color: white;
+  border-color: #22c55e;
+}
+
+.btnConfirmar:disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+.btnExcluir {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btnExcluir:hover {
+  background-color: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.statusPendente {
+  background-color: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+}
+
+.statusRecebida {
+  background-color: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 2.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* ─── Gráficos ─────────────────────────────────────────────────────── */
+.chartsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.content {
+  width: 100%;
+  max-width: 1000px;
+}

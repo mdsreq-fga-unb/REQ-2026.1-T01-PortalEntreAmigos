@@ -5,6 +5,8 @@ type Role = 'USER' | 'ADMIN';
 interface User {
   nome: string;
   email: string;
+  cpf: string;
+  telefone: string;
   role: Role;
 }
 
@@ -12,7 +14,7 @@ interface AuthContextType {
   user: User | null;
   login: (email: string, senha: string) => Promise<void>;
   logout: () => void;
-  updateUser: (data: Partial<User>) => void;
+  updateUser: (data: Partial<User>) => Promise<void>;
   isAdmin: boolean;
 }
 
@@ -57,6 +59,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const loggedUser: User = {
       nome: responseData.nome,
       email: responseData.email,
+      cpf: responseData.cpf || '',
+      telefone: responseData.telefone || '',
       role: isAdminFromBackend ? 'ADMIN' : 'USER',
     };
 
@@ -79,9 +83,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('portal_refresh_token');
   };
 
-  const updateUser = (data: Partial<User>) => {
+  const updateUser = async (data: Partial<User>) => {
+    const token = localStorage.getItem('portal_access_token');
+    if (!token) throw new Error("Usuário não autenticado.");
+
+    const response = await fetch('http://localhost:8000/api/perfil/', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(data),
+    });
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      const message = typeof responseData === 'string'
+        ? responseData
+        : responseData.detail || responseData.error || responseData.message || Object.values(responseData).flat()[0] || 'Erro ao atualizar perfil.';
+      throw new Error(message);
+    }
+
     if (user) {
-      const updatedUser = { ...user, ...data };
+      const updatedUser: User = {
+        nome: responseData.nome,
+        email: responseData.email,
+        cpf: responseData.cpf || '',
+        telefone: responseData.telefone || '',
+        role: user.role
+      };
       setUser(updatedUser);
       localStorage.setItem('portal_user', JSON.stringify(updatedUser));
     }
@@ -103,3 +134,4 @@ export function useAuth() {
   }
   return context;
 }
+

@@ -30,6 +30,25 @@ export const doacaoService = {
   registrar: async (dados: any) => {
     const res = await apiClient.post('/doacoes/', dados);
     return res.data;
+  },
+
+  listarPorEvento: async (eventoId: string | number) => {
+    const res = await apiClient.get(`/doacoes/?evento=${eventoId}`);
+    return res.data;
+  },
+
+  listarMinhas: async () => {
+    const res = await apiClient.get('/doacoes/');
+    return res.data;
+  },
+
+  confirmar: async (id: string | number) => {
+    const res = await apiClient.post(`/doacoes/${id}/confirmar/`);
+    return res.data;
+  },
+
+  deletar: async (id: string | number) => {
+    await apiClient.delete(`/doacoes/${id}/`);
   }
 }
 

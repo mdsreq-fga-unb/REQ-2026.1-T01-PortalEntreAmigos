@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { PageHeader } from '../../components/PageHeader/PageHeader';
 import { DonationSelector } from './components/DonationSelector/DonationSelector';
@@ -18,7 +18,7 @@ export function Doar() {
   const [itens, setItens] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const carregarDados = useCallback(() => {
     if (!id) return;
     Promise.all([
       eventoService.buscar(id),
@@ -32,6 +32,10 @@ export function Doar() {
       .finally(() => setLoading(false));
   }, [id]);
 
+  useEffect(() => {
+    carregarDados();
+  }, [carregarDados]);
+
   if (loading) return <p>Carregando...</p>;
   if (!evento) return <p>Campanha não encontrada.</p>;
 
@@ -40,14 +44,14 @@ export function Doar() {
     id: String(item.id),
     name: item.nome,
     color: CORES[index % CORES.length],
-    collected: item.quantidade_arrecadada,
+    collected: item.quantidade_prometida,
     goal: item.meta_item,
   }));
 
-  // Converte os itens da API para o formato do DonationProgress (gráfico)
-  const dadosGrafico = itens.map((item, index) => ({
+  // Converte os itens para o gráfico de itens prometidos
+  const dadosGraficoPromessas = itens.map((item, index) => ({
     name: item.nome,
-    value: item.quantidade_arrecadada,
+    value: item.quantidade_prometida,
     color: CORES[index % CORES.length],
   }));
 
@@ -66,14 +70,22 @@ export function Doar() {
 
         <div className={styles.gridContainer}>
           <div className={styles.leftColumn}>
-            <DonationSelector items={itensSeletor} />
+            <DonationSelector
+              items={itensSeletor}
+              onPromessaFeita={carregarDados}
+            />
             <div className={styles.spacer} />
-            <CollectionPoint />
+            <CollectionPoint
+              pontosColeta={evento.pontos_coleta ?? []}
+              localTexto={evento.local}
+            />
+
           </div>
           <div className={styles.rightColumn}>
             <DonationProgress
-              data={dadosGrafico}
+              data={dadosGraficoPromessas}
               globalProgress={evento.progresso_geral}
+              title="Distribuição das Promessas"
             />
           </div>
         </div>

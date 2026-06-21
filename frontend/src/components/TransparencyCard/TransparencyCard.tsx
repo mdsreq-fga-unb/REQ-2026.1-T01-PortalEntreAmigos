@@ -9,7 +9,8 @@ interface TransparencyCardProps {
   onAddClick?: () => void;
 }
 
-export function TransparencyCard({ title, subtitle, fileUrl, isAdmin, onAddClick }: TransparencyCardProps) {
+export function TransparencyCard({ title, subtitle, fileUrl: _fileUrl, isAdmin, onAddClick }: TransparencyCardProps) {
+
   return (
     <div className={styles.card}>
       <div className={styles.iconContainer}>
