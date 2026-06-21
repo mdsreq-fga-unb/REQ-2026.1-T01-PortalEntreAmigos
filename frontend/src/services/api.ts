@@ -5,25 +5,27 @@ export const eventoService = {
     const res = await apiClient.get('/eventos/');
     return res.data;
   },
-
   buscar: async (id: string | number) => {
     const res = await apiClient.get(`/eventos/${id}/`);
     return res.data;
   },
-
   criar: async (dados: any) => {
     const res = await apiClient.post('/eventos/', dados);
     return res.data;
   },
-
   atualizar: async (id: string | number, dados: any) => {
     const res = await apiClient.patch(`/eventos/${id}/`, dados);
     return res.data;
   },
-
   deletar: async (id: string | number) => {
     await apiClient.delete(`/eventos/${id}/`);
-  }
+  },
+  exportarRelatorioPDF: async (id: string | number) => {
+    const res = await apiClient.get(`/eventos/${id}/relatorio-doacoes/`, {
+      responseType: 'blob',
+    });
+    return res.data;
+  },
 }
 
 export const doacaoService = {

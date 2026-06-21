@@ -41,6 +41,7 @@ export function Campanhas() {
               <div key={campanha.id} onClick={() => navigate(`/doar/${campanha.id}`)} style={{ cursor: 'pointer' }}>
               <CampaignCard
                 key={campanha.id}
+                id={campanha.id}
                 progress={campanha.progresso_geral}
                 progressColor="primary"
                 endDate={campanha.data_fim}
@@ -64,6 +65,7 @@ export function Campanhas() {
             campanhasEncerradas.map(campanha => (
               <CampaignCard
                 key={campanha.id}
+                id={campanha.id}
                 progress={campanha.progresso_geral}
                 progressColor="secondary"
                 endDate={campanha.data_fim}
