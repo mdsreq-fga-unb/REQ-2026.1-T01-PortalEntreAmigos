@@ -153,3 +153,9 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend" #entrega a msg via rede
+EMAIL_HOST = os.getenv("EMAIL_HOST", "mailpit")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", 1025))
+
+DEFAULT_FROM_EMAIL = "nao-responda@acaoentreamigos.org"

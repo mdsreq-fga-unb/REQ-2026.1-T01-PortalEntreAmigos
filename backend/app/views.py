@@ -2,6 +2,7 @@ from rest_framework import generics, status
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.models import User
 from rest_framework import viewsets
@@ -9,6 +10,9 @@ from rest_framework.decorators import action
 from .models import Evento, ItemDoacao, Doacao
 from .serializers import RegistroSerializer, LoginSerializer, EventoSerializer, ItemDoacaoSerializer, DoacaoSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.contrib.auth.tokens import default_token_generator
 
 class RegistroUsuarioView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -175,4 +179,48 @@ class ItemDoacaoViewSet(viewsets.ModelViewSet):
         evento_id = self.request.query_params.get('evento')
         if evento_id:
             queryset = queryset.filter(evento_id=evento_id)
-        return queryset
+        return queryset
+
+class AtivarContaView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        uid_b64 = request.data.get('uid')
+        token = request.data.get('token')
+
+        if not uid_b64 or not token:
+            return Response(
+                {"erro": "Dados de ativação ausentes."}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        try:
+            uid = force_str(urlsafe_base64_decode(uid_b64))
+            user = User.objects.get(pk=uid)
+            
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            return Response(
+                {"erro": "Link de ativação inválido ou corrompido."}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if default_token_generator.check_token(user, token):
+            
+            if user.is_active:
+                return Response(
+                    {"mensagem": "Sua conta já estava ativada. Pode fazer login!"}, 
+                    status=status.HTTP_200_OK
+                )
+
+            user.is_active = True
+            user.save()
+            return Response(
+                {"mensagem": "Conta ativada com sucesso! Bem-vindo ao Apoia+."}, 
+                status=status.HTTP_200_OK
+            )
+            
+        else:
+            return Response(
+                {"erro": "Este link de ativação expirou ou já foi utilizado."}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
