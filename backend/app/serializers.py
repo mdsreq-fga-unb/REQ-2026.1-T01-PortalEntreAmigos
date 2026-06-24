@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 import re
 from .models import Evento, ItemDoacao, Doacao, PerfilUsuario
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import send_mail
 
 def is_valid_cpf(cpf: str) -> bool:
     # Remove caracteres não numéricos
@@ -94,7 +98,8 @@ class RegistroSerializer(serializers.ModelSerializer):
             username=validated_data['email'], # No Django padrão, o username é obrigatório, usaremos o e-mail
             email=validated_data['email'],
             password=validated_data['password'],
-            first_name=validated_data['first_name']
+            first_name=validated_data['first_name'],
+            is_active= False
         )
         
         # PerfilUsuario é criado via signal, apenas atualizamos CPF e Telefone
@@ -102,6 +107,17 @@ class RegistroSerializer(serializers.ModelSerializer):
         perfil.cpf = cpf
         perfil.telefone = telefone
         perfil.save()
+        
+        url_ativacao = construir_link_confirmacao(user)
+        corpo_email = f"Olá {user.first_name},\n\nObrigado por se cadastrar no Portal Entre Amigos!\n\nPor favor, clique no link abaixo para ativar a sua conta:\n{url_ativacao}\n\nSe você não solicitou este cadastro, apenas ignore este e-mail."
+        
+        send_mail(
+            subject='Bem-vindo ao Portal Entre Amigos! Confirme seu e-mail',
+            message=corpo_email,
+            from_email='sistema@portalentreamigos.org',
+            recipient_list=[user.email],
+            fail_silently=False,
+        )
         
         return user
 
@@ -118,14 +134,20 @@ class LoginSerializer(serializers.Serializer):
         # Tenta achar o usuário pelo e-mail primeiro para descobrir o username real dele
         user_obj = User.objects.filter(email=email).first()
         
+        if user_obj and user_obj.check_password(password) and not user_obj.is_active:
+            raise AuthenticationFailed(
+                'Sua conta ainda não foi ativada. Verifique o link de confirmação enviado para o seu e-mail.',
+                code='conta_inativa'
+            )
+
         if user_obj:
             user = authenticate(username=user_obj.username, password=password)
         else:
-            # Fallback caso dê algum erro bizarro
             user = authenticate(username=email, password=password)
-            
+
         if not user:
             raise AuthenticationFailed('E-mail ou senha incorretos.')
+
         data['user'] = user
         return data
     
@@ -189,3 +211,21 @@ class DoacaoSerializer(serializers.ModelSerializer):
         model = Doacao
         fields = ['id', 'item', 'item_nome', 'evento_nome', 'usuario', 'doador_nome', 'doador_cpf', 'quantidade', 'status', 'criado_em']
         read_only_fields = ['usuario', 'doador_nome', 'doador_cpf', 'item_nome', 'evento_nome', 'status', 'criado_em']
+        
+# Disparo de emails
+def construir_link_confirmacao(utilizador):
+    """
+    Recebe um objeto de utilizador (User) recém-criado, gera os tokens de segurança
+     e monta o link final que será enviado por e-mail.
+    """
+    
+    #Transformar a Chave Primária (ID) num formato seguro para URLs
+    uid_seguro = urlsafe_base64_encode(force_bytes(utilizador.pk))
+    
+    #Gerar o token matemático único e temporário
+    token_unico = default_token_generator.make_token(utilizador)
+    
+    # Construção do endereço direcionado ao Frontend (React)
+    url_frontend = f"http://localhost:5173/confirmar-email?uid={uid_seguro}&token={token_unico}"
+    
+    return url_frontend        

@@ -11,6 +11,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^2.1.1",
     "@hookform/resolvers": "^5.4.0",
     "axios": "^1.18.0",
     "lucide-react": "^1.17.0",

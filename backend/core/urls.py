@@ -1,7 +1,7 @@
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
-from app.views import RegistroUsuarioView, LoginUsuarioView, UserProfileView, EventoViewSet, ItemDoacaoViewSet, DoacaoViewSet
+from app.views import RegistroUsuarioView, LoginUsuarioView, UserProfileView, EventoViewSet, ItemDoacaoViewSet, DoacaoViewSet, AtivarContaView, RelatorioDoacoesPDFView
 
 router = DefaultRouter()
 router.register('eventos', EventoViewSet)
@@ -13,6 +13,8 @@ urlpatterns = [
     path('api/cadastro/', RegistroUsuarioView.as_view(), name='registro_usuario'),
     path('api/login/', LoginUsuarioView.as_view(), name='login_usuario'),
     path('api/perfil/', UserProfileView.as_view(), name='perfil_usuario'),
+    path('api/ativar-conta/', AtivarContaView.as_view(), name='ativar-conta'),
+    path('api/eventos/<int:evento_id>/relatorio-doacoes/', RelatorioDoacoesPDFView.as_view(), name='relatorio_doacoes'),
     path('api/', include(router.urls)),
 ]
 
