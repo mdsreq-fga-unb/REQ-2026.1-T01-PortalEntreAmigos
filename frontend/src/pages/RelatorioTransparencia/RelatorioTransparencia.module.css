@@ -1,0 +1,391 @@
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.errorCard {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  max-width: 480px;
+}
+
+.errorCard h2 {
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.errorCard p {
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.primaryButton:hover {
+  opacity: 0.9;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.printButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.printButton:hover {
+  opacity: 0.9;
+}
+
+.reportSheet {
+  background-color: white;
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.reportHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 1.5rem;
+}
+
+.reportHeader h1 {
+  font-size: 2rem;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.reportHeader p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.chartSection, .tableSection, .summarySection, .comprovantesSection {
+  margin-bottom: 3rem;
+}
+
+.chartSection h2, .tableSection h2, .comprovantesSection h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  border-left: 4px solid var(--color-primary);
+  padding-left: 1rem;
+}
+
+.chartContainer {
+  background: #fcfcfc;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.dataTable th, .dataTable td {
+  border: 1px solid #e2e8f0;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.dataTable th {
+  background-color: #f8fafc;
+  font-weight: 600;
+  color: #475569;
+}
+
+.cellInput {
+  width: 100%;
+  border: 1px solid transparent;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: transparent;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.cellInput:hover, .cellInput:focus {
+  border-color: var(--color-primary);
+  background-color: white;
+  outline: none;
+}
+
+.currencyInputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.currencyInputWrapper span {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.totalCell {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.btnAddRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px dashed #cbd5e1;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btnAddRow:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+.btnRemoveRow {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
+.btnRemoveRow:hover {
+  background-color: #fef2f2;
+}
+
+.summarySection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #f8fafc;
+  border-radius: 8px;
+}
+
+.summaryCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.summaryLabel {
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summaryValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.dropZone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 3rem;
+  text-align: center;
+  color: #64748b;
+  cursor: pointer;
+  background-color: #f8fafc;
+  transition: all 0.2s;
+  margin-bottom: 2rem;
+}
+
+.dropZone:hover {
+  border-color: var(--color-primary);
+  background-color: #f0fdfa;
+}
+
+.dropIcon {
+  margin-bottom: 1rem;
+  color: #94a3b8;
+}
+
+.comprovantesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.comprovanteCard {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.comprovanteImage {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.comprovanteFooter {
+  display: flex;
+  padding: 0.75rem;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.comprovanteInput {
+  flex: 1;
+  border: 1px solid transparent;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background-color: #f8fafc;
+}
+
+.comprovanteInput:focus {
+  outline: none;
+  border-color: #cbd5e1;
+  background-color: white;
+}
+
+.btnRemoveComprovante {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnRemoveComprovante:hover {
+  background-color: #fef2f2;
+}
+
+
+/* Media query exclusiva para impressão em PDF */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 1.5cm;
+  }
+
+  body {
+    background-color: white !important;
+  }
+
+  .container {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .reportSheet {
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .topBar, .noPrint, .chartSection {
+    display: none !important;
+  }
+
+  .noPrintAction {
+    display: none !important;
+  }
+
+  .cellInput, .comprovanteInput {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  .dataTable th, .dataTable td {
+    padding: 0.5rem;
+    font-size: 10pt;
+  }
+
+  .summarySection {
+    padding: 1.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    break-inside: avoid;
+  }
+
+  .comprovantesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .comprovanteCard {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

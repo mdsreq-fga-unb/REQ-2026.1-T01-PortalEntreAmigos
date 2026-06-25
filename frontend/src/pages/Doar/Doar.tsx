@@ -6,7 +6,6 @@ import { DonationProgress } from './components/DonationProgress/DonationProgress
 import { CollectionPoint } from './components/CollectionPoint/CollectionPoint';
 import { eventoService, itemDoacaoService } from '../../services/api';
 import toast from 'react-hot-toast';
-import bannerImg from '../../assets/donation_banner.png';
 import styles from './Doar.module.css';
 
 // Cores para cada item (expande conforme necessário)
@@ -58,9 +57,7 @@ export function Doar() {
   return (
     <main className={styles.container}>
       <PageHeader
-        image={bannerImg}
         title={evento.nome}
-        showNavArrows={true}
       />
       <div className={styles.contentWrapper}>
         <div className={styles.descriptionCard}>
@@ -86,6 +83,7 @@ export function Doar() {
               data={dadosGraficoPromessas}
               globalProgress={evento.progresso_geral}
               title="Distribuição das Promessas"
+              campaignName={evento.nome}
             />
           </div>
         </div>

@@ -13,6 +13,7 @@ export function MinhaConta() {
 
   // Local state for regular user modals
   const [modalType, setModalType] = useState<'none' | 'view' | 'edit' | 'delete'>('none');
+  const [showEmailWarning, setShowEmailWarning] = useState(false);
   
   // Local state to simulate edited user data
   const [userData, setUserData] = useState({
@@ -21,6 +22,9 @@ export function MinhaConta() {
     cpf: '',
     telefone: '',
   });
+  const [editPassword, setEditPassword] = useState('');
+  const [editNovaSenha, setEditNovaSenha] = useState('');
+  const [editConfirmarSenha, setEditConfirmarSenha] = useState('');
   const [deletePassword, setDeletePassword] = useState('');
 
   const validateCPF = (cpf: string) => {
@@ -86,17 +90,6 @@ export function MinhaConta() {
 
       // Se não for admin, carregar as promessas de doação dele
       if (!isAdmin) {
-        const fetchPromessas = async () => {
-          setLoadingPromessas(true);
-          try {
-            const data = await doacaoService.listarMinhas();
-            setPromessas(data);
-          } catch (err) {
-            console.error('Erro ao carregar promessas:', err);
-          } finally {
-            setLoadingPromessas(false);
-          }
-        };
         fetchPromessas();
       }
     }
@@ -105,6 +98,30 @@ export function MinhaConta() {
   const handleLogout = () => {
     logout();
     navigate('/');
+  };
+
+  const fetchPromessas = async () => {
+    setLoadingPromessas(true);
+    try {
+      const data = await doacaoService.listarMinhas();
+      setPromessas(data);
+    } catch (err) {
+      console.error('Erro ao carregar promessas:', err);
+    } finally {
+      setLoadingPromessas(false);
+    }
+  };
+
+  const handleCancelPromise = async (id: number) => {
+    if (window.confirm("Deseja realmente cancelar esta promessa de doação?")) {
+      try {
+        await doacaoService.deletar(id);
+        toast.success("Promessa de doação cancelada com sucesso!");
+        fetchPromessas();
+      } catch (err) {
+        toast.error("Erro ao cancelar promessa.");
+      }
+    }
   };
 
   const handleSaveEdit = async () => {
@@ -124,17 +141,54 @@ export function MinhaConta() {
       toast.error('Telefone inválido (deve conter DDD).');
       return;
     }
+    if (!editPassword.trim()) {
+      toast.error('Digite sua senha atual para salvar as alterações.');
+      return;
+    }
+    if (editNovaSenha && editNovaSenha !== editConfirmarSenha) {
+      toast.error('A nova senha e a confirmação não coincidem.');
+      return;
+    }
 
+    // Se o e-mail mudou, exibir popup de aviso antes de continuar
+    const emailMudou = userData.email.trim().toLowerCase() !== (user?.email || '').toLowerCase();
+    if (emailMudou) {
+      setShowEmailWarning(true);
+      return;
+    }
+
+    await executarSalvamento();
+  };
+
+  const executarSalvamento = async () => {
     try {
-      await updateUser({
+      const resultado = await updateUser({
         nome: userData.nome,
         email: userData.email,
         cpf: userData.cpf.replace(/\D/g, ''),
         telefone: userData.telefone.replace(/\D/g, ''),
+        password: editPassword,
+        ...(editNovaSenha ? { nova_senha: editNovaSenha } : {}),
       });
-      setModalType('none');
-      toast.success('Perfil atualizado com sucesso!');
+
+      if (resultado.email_alterado) {
+        // E-mail foi alterado: conta inativada, forçar logout
+        setModalType('none');
+        setShowEmailWarning(false);
+        toast.success('E-mail alterado! Verifique sua caixa de entrada para ativar o novo e-mail.');
+        setTimeout(() => {
+          logout();
+          navigate('/login');
+        }, 2500);
+      } else {
+        setModalType('none');
+        setEditPassword('');
+        setEditNovaSenha('');
+        setEditConfirmarSenha('');
+        toast.success('Perfil atualizado com sucesso!');
+      }
     } catch (err: any) {
+      setShowEmailWarning(false);
       toast.error(err.message || 'Erro ao atualizar perfil.');
     }
   };
@@ -293,9 +347,28 @@ export function MinhaConta() {
                           ✓ Confirmada
                         </span>
                       ) : (
-                        <span className={`${styles.badge} ${styles.badgeWarning}`}>
-                          ⏳ Precisa cumprir
-                        </span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span className={`${styles.badge} ${styles.badgeWarning}`}>
+                            ⏳ Precisa cumprir
+                          </span>
+                          <button
+                            onClick={() => handleCancelPromise(promessa.id)}
+                            style={{ 
+                              background: 'transparent', 
+                              border: 'none', 
+                              color: '#ef4444', 
+                              cursor: 'pointer', 
+                              display: 'flex', 
+                              alignItems: 'center', 
+                              justifyContent: 'center',
+                              padding: '4px',
+                              borderRadius: '4px'
+                            }}
+                            title="Cancelar promessa"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
                       )}
                     </div>
                   </div>
@@ -335,7 +408,7 @@ export function MinhaConta() {
         {/* Edit Modal Content */}
         <Modal 
           isOpen={modalType === 'edit'} 
-          onClose={() => setModalType('none')}
+          onClose={() => { setModalType('none'); setEditPassword(''); }}
           title="Editar Perfil"
         >
           <div className={styles.formGroup}>
@@ -376,9 +449,61 @@ export function MinhaConta() {
               placeholder="(00) 00000-0000"
             />
           </div>
+          <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0', margin: '0.5rem 0' }} />
+          <div className={styles.formGroup}>
+            <label>Senha atual <span style={{ color: 'var(--color-danger)', fontWeight: 700 }}>*</span></label>
+            <input 
+              type="password" 
+              className={styles.input} 
+              value={editPassword}
+              onChange={(e) => setEditPassword(e.target.value)}
+              placeholder="Digite sua senha para confirmar"
+            />
+          </div>
+
+          <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0', margin: '0.5rem 0' }} />
+          <p style={{ color: 'var(--color-text-muted)', fontSize: '0.85rem', margin: 0 }}>Alterar senha (opcional)</p>
+          <div className={styles.formGroup}>
+            <label>Nova senha</label>
+            <input 
+              type="password" 
+              className={styles.input} 
+              value={editNovaSenha}
+              onChange={(e) => setEditNovaSenha(e.target.value)}
+              placeholder="Mín. 8 caracteres, maiúscula, número e especial"
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label>Confirmar nova senha</label>
+            <input 
+              type="password" 
+              className={styles.input} 
+              value={editConfirmarSenha}
+              onChange={(e) => setEditConfirmarSenha(e.target.value)}
+              placeholder="Repita a nova senha"
+            />
+          </div>
           <div className={styles.modalActions}>
-            <button className={styles.cancelButton} onClick={() => setModalType('none')}>Cancelar</button>
+            <button className={styles.cancelButton} onClick={() => { setModalType('none'); setEditPassword(''); setEditNovaSenha(''); setEditConfirmarSenha(''); }}>Cancelar</button>
             <button className={styles.saveButton} onClick={handleSaveEdit}>Salvar</button>
+          </div>
+        </Modal>
+
+        {/* Email Warning Modal */}
+        <Modal
+          isOpen={showEmailWarning}
+          onClose={() => setShowEmailWarning(false)}
+          title="Confirmar troca de e-mail"
+        >
+          <p style={{ color: 'var(--color-text-main)', margin: 0, lineHeight: 1.6 }}>
+            Ao trocar seu e-mail, <strong>sua sessão será encerrada</strong> e o novo endereço precisará ser confirmado pela sua caixa de entrada antes de ter acesso à conta novamente.
+          </p>
+          <p style={{ color: 'var(--color-text-muted)', marginTop: '0.75rem', fontSize: '0.95rem' }}>
+            Um link de ativação será enviado para <strong>{userData.email}</strong>.
+          </p>
+          <div className={styles.modalActions}>
+            <button className={styles.cancelButton} onClick={() => setShowEmailWarning(false)}>Cancelar</button>
+            <button className={styles.saveButton} onClick={executarSalvamento}>Confirmar e Continuar</button>
           </div>
         </Modal>
 

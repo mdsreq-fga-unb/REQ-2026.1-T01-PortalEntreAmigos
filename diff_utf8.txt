@@ -1,0 +1,1054 @@
+﻿diff --git a/.gitignore b/.gitignore
+index 1487d37..eb2d19a 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -27,3 +27,5 @@ desktop.ini
+ *.swp
+ *.swo
+ 
++# Ignorar dados do banco local e e-mails do Mailpit
++/data/
+\ No newline at end of file
+diff --git a/backend/app/serializers.py b/backend/app/serializers.py
+index 86889f6..e792e89 100644
+--- a/backend/app/serializers.py
++++ b/backend/app/serializers.py
+@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
+ from django.contrib.auth import authenticate
+ import re
+ from .models import Evento, ItemDoacao, Doacao, PerfilUsuario
++from django.utils.http import urlsafe_base64_encode
++from django.utils.encoding import force_bytes
++from django.contrib.auth.tokens import default_token_generator
++from django.core.mail import send_mail
+ 
+ def is_valid_cpf(cpf: str) -> bool:
+     # Remove caracteres n├úo num├®ricos
+@@ -94,7 +98,8 @@ class RegistroSerializer(serializers.ModelSerializer):
+             username=validated_data['email'], # No Django padr├úo, o username ├® obrigat├│rio, usaremos o e-mail
+             email=validated_data['email'],
+             password=validated_data['password'],
+-            first_name=validated_data['first_name']
++            first_name=validated_data['first_name'],
++            is_active= False
+         )
+         
+         # PerfilUsuario ├® criado via signal, apenas atualizamos CPF e Telefone
+@@ -103,6 +108,17 @@ class RegistroSerializer(serializers.ModelSerializer):
+         perfil.telefone = telefone
+         perfil.save()
+         
++        url_ativacao = construir_link_confirmacao(user)
++        corpo_email = f"Ol├í {user.first_name},\n\nObrigado por se cadastrar no Portal Entre Amigos!\n\nPor favor, clique no link abaixo para ativar a sua conta:\n{url_ativacao}\n\nSe voc├¬ n├úo solicitou este cadastro, apenas ignore este e-mail."
++        
++        send_mail(
++            subject='Bem-vindo ao Portal Entre Amigos! Confirme seu e-mail',
++            message=corpo_email,
++            from_email='sistema@portalentreamigos.org',
++            recipient_list=[user.email],
++            fail_silently=False,
++        )
++        
+         return user
+ 
+ 
+@@ -118,14 +134,20 @@ class LoginSerializer(serializers.Serializer):
+         # Tenta achar o usu├írio pelo e-mail primeiro para descobrir o username real dele
+         user_obj = User.objects.filter(email=email).first()
+         
++        if user_obj and user_obj.check_password(password) and not user_obj.is_active:
++            raise AuthenticationFailed(
++                'Sua conta ainda n├úo foi ativada. Verifique o link de confirma├º├úo enviado para o seu e-mail.',
++                code='conta_inativa'
++            )
++
+         if user_obj:
+             user = authenticate(username=user_obj.username, password=password)
+         else:
+-            # Fallback caso d├¬ algum erro bizarro
+             user = authenticate(username=email, password=password)
+-            
++
+         if not user:
+             raise AuthenticationFailed('E-mail ou senha incorretos.')
++
+         data['user'] = user
+         return data
+     
+@@ -188,4 +210,22 @@ class DoacaoSerializer(serializers.ModelSerializer):
+     class Meta:
+         model = Doacao
+         fields = ['id', 'item', 'item_nome', 'evento_nome', 'usuario', 'doador_nome', 'doador_cpf', 'quantidade', 'status', 'criado_em']
+-        read_only_fields = ['usuario', 'doador_nome', 'doador_cpf', 'item_nome', 'evento_nome', 'status', 'criado_em']
+\ No newline at end of file
++        read_only_fields = ['usuario', 'doador_nome', 'doador_cpf', 'item_nome', 'evento_nome', 'status', 'criado_em']
++        
++# Disparo de emails
++def construir_link_confirmacao(utilizador):
++    """
++    Recebe um objeto de utilizador (User) rec├®m-criado, gera os tokens de seguran├ºa
++     e monta o link final que ser├í enviado por e-mail.
++    """
++    
++    #Transformar a Chave Prim├íria (ID) num formato seguro para URLs
++    uid_seguro = urlsafe_base64_encode(force_bytes(utilizador.pk))
++    
++    #Gerar o token matem├ítico ├║nico e tempor├írio
++    token_unico = default_token_generator.make_token(utilizador)
++    
++    # Constru├º├úo do endere├ºo direcionado ao Frontend (React)
++    url_frontend = f"http://localhost:5173/confirmar-email?uid={uid_seguro}&token={token_unico}"
++    
++    return url_frontend        
+\ No newline at end of file
+diff --git a/backend/app/views.py b/backend/app/views.py
+index a7fbd2c..8cd7c32 100644
+--- a/backend/app/views.py
++++ b/backend/app/views.py
+@@ -2,13 +2,256 @@ from rest_framework import generics, status
+ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
+ from rest_framework.views import APIView
+ from rest_framework.response import Response
++from rest_framework.permissions import AllowAny
+ from rest_framework.exceptions import AuthenticationFailed
+ from django.contrib.auth.models import User
+ from rest_framework import viewsets
+ from rest_framework.decorators import action
++from .serializers import RegistroSerializer, LoginSerializer, EventoSerializer, ItemDoacaoSerializer, DoacaoSerializer
++from rest_framework_simplejwt.tokens import RefreshToken
++from django.utils.http import urlsafe_base64_decode
++from django.utils.encoding import force_bytes, force_str
++from django.contrib.auth.tokens import default_token_generator
++from django.http import HttpResponse
++from reportlab.lib.pagesizes import A4
++from reportlab.lib.units import cm
++from reportlab.lib import colors
++from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
++from reportlab.lib.styles import getSampleStyleSheet
+ from .models import Evento, ItemDoacao, Doacao
++
++class RegistroUsuarioView(generics.CreateAPIView):
++    queryset = User.objects.all()
++    permission_classes = (AllowAny,)  # Permite acesso sem estar logado
++    authentication_classes = []
++    serializer_class = RegistroSerializer
++
++
++class LoginUsuarioView(APIView):
++    permission_classes = (AllowAny,)
++    authentication_classes = []
++    serializer_class = LoginSerializer
++
++    def post(self, request, *args, **kwargs):
++        serializer = self.serializer_class(data=request.data)
++        try:
++            serializer.is_valid(raise_exception=True)
++        except AuthenticationFailed as exc:
++            return Response({'detail': str(exc)}, status=status.HTTP_401_UNAUTHORIZED)
++        user = serializer.validated_data['user']
++        is_administrador = user.is_staff or user.is_superuser
++        refresh = RefreshToken.for_user(user)
++        return Response(
++            {
++                'nome': user.first_name,
++                'email': user.email,
++                'cpf': user.perfil.cpf if hasattr(user, 'perfil') and user.perfil.cpf else "",
++                'telefone': user.perfil.telefone if hasattr(user, 'perfil') and user.perfil.telefone else "",
++                'role': 'ADMIN' if is_administrador else 'USER',
++                'is_admin': is_administrador,
++                'groups': list(user.groups.values_list('name', flat=True)),
++                'access': str(refresh.access_token),
++                'refresh': str(refresh),
++            },
++            status=status.HTTP_200_OK,
++        )
++
++
++class UserProfileView(APIView):
++    permission_classes = [IsAuthenticated]
++
++    def get(self, request, *args, **kwargs):
++        user = request.user
++        return Response(
++            {
++                'nome': user.first_name,
++                'email': user.email,
++                'cpf': user.perfil.cpf if hasattr(user, 'perfil') and user.perfil.cpf else "",
++                'telefone': user.perfil.telefone if hasattr(user, 'perfil') and user.perfil.telefone else "",
++            },
++            status=status.HTTP_200_OK,
++        )
++
++    def put(self, request, *args, **kwargs):
++        user = request.user
++        data = request.data
++
++        nome = data.get('nome')
++        email = data.get('email')
++        cpf = data.get('cpf')
++        telefone = data.get('telefone')
++
++        if not nome or not nome.strip():
++            return Response({'nome': 'Nome ├® obrigat├│rio.'}, status=status.HTTP_400_BAD_REQUEST)
++        if not email or not email.strip():
++            return Response({'email': 'E-mail ├® obrigat├│rio.'}, status=status.HTTP_400_BAD_REQUEST)
++
++        if email != user.email and User.objects.filter(email=email).exists():
++            return Response({'email': 'Este e-mail j├í est├í em uso.'}, status=status.HTTP_400_BAD_REQUEST)
++
++        user.first_name = nome
++        user.email = email
++        user.username = email
++        user.save()
++
++        from .models import PerfilUsuario
++        perfil, created = PerfilUsuario.objects.get_or_create(user=user)
++
++        if cpf:
++            cpf_limpo = ''.join(filter(str.isdigit, cpf))
++            if cpf_limpo != perfil.cpf:
++                from .serializers import is_valid_cpf
++                if not is_valid_cpf(cpf_limpo):
++                    return Response({'cpf': 'CPF inv├ílido.'}, status=status.HTTP_400_BAD_REQUEST)
++                if PerfilUsuario.objects.filter(cpf=cpf_limpo).exists():
++                    return Response({'cpf': 'Este CPF j├í est├í cadastrado.'}, status=status.HTTP_400_BAD_REQUEST)
++                perfil.cpf = cpf_limpo
++        else:
++            perfil.cpf = None
++
++        if telefone:
++            telefone_limpo = ''.join(filter(str.isdigit, telefone))
++            if len(telefone_limpo) not in (10, 11):
++                return Response({'telefone': 'O telefone deve ter 10 ou 11 d├¡gitos (incluindo DDD).'}, status=status.HTTP_400_BAD_REQUEST)
++            perfil.telefone = telefone_limpo
++        else:
++            perfil.telefone = None
++
++        perfil.save()
++
++        return Response(
++            {
++                'nome': user.first_name,
++                'email': user.email,
++                'cpf': perfil.cpf or "",
++                'telefone': perfil.telefone or "",
++            },
++            status=status.HTTP_200_OK,
++        )
++
++
++class EventoViewSet(viewsets.ModelViewSet):
++    queryset = Evento.objects.all()
++    serializer_class = EventoSerializer
++    permission_classes = [IsAuthenticatedOrReadOnly]
++
++
++class DoacaoViewSet(viewsets.ModelViewSet):
++    serializer_class = DoacaoSerializer
++    permission_classes = [IsAuthenticated]
++
++    def get_queryset(self):
++        queryset = Doacao.objects.select_related('usuario', 'usuario__perfil', 'item', 'item__evento').all()
++        
++        # Se for um usu├írio comum (n├úo-admin), ele s├│ pode ver as pr├│prias promessas.
++        # Mas admins podem filtrar ou ver tudo.
++        if not self.request.user.is_staff and not self.request.user.is_superuser:
++            queryset = queryset.filter(usuario=self.request.user)
++        else:
++            # Admins tamb├®m podem usar o filtro de minhas
++            minhas = self.request.query_params.get('minhas')
++            if minhas == 'true':
++                queryset = queryset.filter(usuario=self.request.user)
++
++        evento_id = self.request.query_params.get('evento')
++        if evento_id:
++            queryset = queryset.filter(item__evento_id=evento_id)
++        return queryset
++
++    def perform_create(self, serializer):
++        # O usu├írio autenticado ├® salvo automaticamente como o doador
++        serializer.save(usuario=self.request.user)
++
++    @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
++    def confirmar(self, request, pk=None):
++        """Marca uma promessa de doa├º├úo como RECEBIDA (somente admins)."""
++        doacao = self.get_object()
++        if doacao.status == Doacao.Status.RECEBIDA:
++            return Response({'detail': 'Esta doa├º├úo j├í foi confirmada.'}, status=status.HTTP_400_BAD_REQUEST)
++        doacao.status = Doacao.Status.RECEBIDA
++        doacao.save()
++        # O signal j├í ir├í recalcular as quantidades do ItemDoacao
++        return Response(DoacaoSerializer(doacao).data, status=status.HTTP_200_OK)
++
++
++class ItemDoacaoViewSet(viewsets.ModelViewSet):
++    queryset = ItemDoacao.objects.all()
++    serializer_class = ItemDoacaoSerializer
++    permission_classes = [IsAuthenticatedOrReadOnly]
++
++    # Filtra itens pelo evento: /api/itens-doacao/?evento=1
++    def get_queryset(self):
++        queryset = ItemDoacao.objects.all()
++        evento_id = self.request.query_params.get('evento')
++        if evento_id:
++            queryset = queryset.filter(evento_id=evento_id)
++        return queryset
++
++class AtivarContaView(APIView):
++    permission_classes = [AllowAny]
++
++    def post(self, request):
++        uid_b64 = request.data.get('uid')
++        token = request.data.get('token')
++
++        if not uid_b64 or not token:
++            return Response(
++                {"erro": "Dados de ativa├º├úo ausentes."}, 
++                status=status.HTTP_400_BAD_REQUEST
++            )
++
++        try:
++            uid = force_str(urlsafe_base64_decode(uid_b64))
++            user = User.objects.get(pk=uid)
++            
++        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
++            return Response(
++                {"erro": "Link de ativa├º├úo inv├ílido ou corrompido."}, 
++                status=status.HTTP_400_BAD_REQUEST
++            )
++
++        if default_token_generator.check_token(user, token):
++            
++            if user.is_active:
++                return Response(
++                    {"mensagem": "Sua conta j├í estava ativada. Pode fazer login!"}, 
++                    status=status.HTTP_200_OK
++                )
++
++            user.is_active = True
++            user.save()
++            return Response(
++                {"mensagem": "Conta ativada com sucesso! Bem-vindo ao Apoia+."}, 
++                status=status.HTTP_200_OK
++            )
++            
++        else:
++            return Response(
++                {"erro": "Este link de ativa├º├úo expirou ou j├í foi utilizado."}, 
++                status=status.HTTP_400_BAD_REQUEST
++            )
++
++from rest_framework import generics, status
++from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
++from rest_framework.views import APIView
++from rest_framework.response import Response
++from rest_framework.permissions import AllowAny
++from rest_framework.exceptions import AuthenticationFailed
++from django.contrib.auth.models import User
++from rest_framework import viewsets
++from rest_framework.decorators import action
+ from .serializers import RegistroSerializer, LoginSerializer, EventoSerializer, ItemDoacaoSerializer, DoacaoSerializer
+ from rest_framework_simplejwt.tokens import RefreshToken
++from django.utils.http import urlsafe_base64_decode
++from django.utils.encoding import force_bytes, force_str
++from django.contrib.auth.tokens import default_token_generator
++from django.http import HttpResponse
++from reportlab.lib.pagesizes import A4
++from reportlab.lib.units import cm
++from reportlab.lib import colors
++from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
++from reportlab.lib.styles import getSampleStyleSheet
++from .models import Evento, ItemDoacao, Doacao
+ 
+ class RegistroUsuarioView(generics.CreateAPIView):
+     queryset = User.objects.all()
+@@ -175,4 +418,115 @@ class ItemDoacaoViewSet(viewsets.ModelViewSet):
+         evento_id = self.request.query_params.get('evento')
+         if evento_id:
+             queryset = queryset.filter(evento_id=evento_id)
+-        return queryset
+\ No newline at end of file
++        return queryset
++
++class AtivarContaView(APIView):
++    permission_classes = [AllowAny]
++
++    def post(self, request):
++        uid_b64 = request.data.get('uid')
++        token = request.data.get('token')
++
++        if not uid_b64 or not token:
++            return Response(
++                {"erro": "Dados de ativa├º├úo ausentes."}, 
++                status=status.HTTP_400_BAD_REQUEST
++            )
++
++        try:
++            uid = force_str(urlsafe_base64_decode(uid_b64))
++            user = User.objects.get(pk=uid)
++            
++        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
++            return Response(
++                {"erro": "Link de ativa├º├úo inv├ílido ou corrompido."}, 
++                status=status.HTTP_400_BAD_REQUEST
++            )
++
++        if default_token_generator.check_token(user, token):
++            
++            if user.is_active:
++                return Response(
++                    {"mensagem": "Sua conta j├í estava ativada. Pode fazer login!"}, 
++                    status=status.HTTP_200_OK
++                )
++
++            user.is_active = True
++            user.save()
++            return Response(
++                {"mensagem": "Conta ativada com sucesso! Bem-vindo ao Apoia+."}, 
++                status=status.HTTP_200_OK
++            )
++            
++        else:
++            return Response(
++                {"erro": "Este link de ativa├º├úo expirou ou j├í foi utilizado."}, 
++                status=status.HTTP_400_BAD_REQUEST
++            )
++
++class RelatorioDoacoesPDFView(APIView):
++    permission_classes= [IsAuthenticated]            
++    
++    def get(self, request, evento_id):
++        evento = Evento.objects.filter(id=evento_id).first()
++        if not evento:
++            return Response({'detail': 'Campanha n├úo encontrada.'}, status=404)
++
++        if not request.user.is_staff:
++            return Response(
++                {'detail': 'Apenas administradores podem exportar relat├│rios.'},
++                status=403
++            )
++
++        doacoes = (
++            Doacao.objects
++            .filter(item__evento=evento)
++            .select_related('item', 'usuario', 'usuario__perfil')
++            .order_by('item__nome', 'usuario__first_name')
++        )
++
++        response = HttpResponse(content_type='application/pdf')
++        response['Content-Disposition'] = f'attachment; filename="doacoes_{evento.id}.pdf"'
++
++        doc = SimpleDocTemplate(response, pagesize=A4, topMargin=2 * cm, bottomMargin=2 * cm)
++        styles = getSampleStyleSheet()
++        elementos = []
++
++        elementos.append(Paragraph(f'Relat├│rio de Doa├º├Áes ÔÇö {evento.nome}', styles['Title']))
++        elementos.append(Spacer(1, 8))
++        elementos.append(Paragraph(
++            f'Per├¡odo: {evento.data_inicio} a {evento.data_fim}', styles['Normal']
++        ))
++        elementos.append(Spacer(1, 20))
++
++        dados = [['Doador', 'CPF', 'Item', 'Qtd.', 'Status', 'Data']]
++        for d in doacoes:
++            cpf = getattr(getattr(d.usuario, 'perfil', None), 'cpf', 'ÔÇö') or 'ÔÇö'
++            dados.append([
++                d.usuario.first_name or 'ÔÇö',
++                cpf,
++                d.item.nome,
++                str(d.quantidade),
++                d.get_status_display(),
++                d.criado_em.strftime('%d/%m/%Y %H:%M'),
++            ])
++
++        tabela = Table(dados, repeatRows=1)
++        tabela.setStyle(TableStyle([
++            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#E97D25')),
++            ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
++            ('FONTSIZE', (0, 0), (-1, -1), 9),
++            ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
++            ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#f8f8f8')]),
++            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
++            ('TOPPADDING', (0, 0), (-1, -1), 6),
++            ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
++        ]))
++        elementos.append(tabela)
++
++        if not doacoes.exists():
++            elementos.append(Spacer(1, 20))
++            elementos.append(Paragraph('Nenhuma doa├º├úo registrada para esta campanha.', styles['Normal']))
++
++        doc.build(elementos)
++        return response
+\ No newline at end of file
+diff --git a/backend/core/settings.py b/backend/core/settings.py
+index c059862..f4ced96 100644
+--- a/backend/core/settings.py
++++ b/backend/core/settings.py
+@@ -153,3 +153,9 @@ SIMPLE_JWT = {
+     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+     'AUTH_HEADER_TYPES': ('Bearer',),
+ }
++
++EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend" #entrega a msg via rede
++EMAIL_HOST = os.getenv("EMAIL_HOST", "mailpit")
++EMAIL_PORT = int(os.getenv("EMAIL_PORT", 1025))
++
++DEFAULT_FROM_EMAIL = "nao-responda@acaoentreamigos.org"
+\ No newline at end of file
+diff --git a/backend/core/urls.py b/backend/core/urls.py
+index bab5bea..71d59e8 100644
+--- a/backend/core/urls.py
++++ b/backend/core/urls.py
+@@ -1,7 +1,7 @@
+ from django.contrib import admin
+ from rest_framework.routers import DefaultRouter
+ from django.urls import path, include
+-from app.views import RegistroUsuarioView, LoginUsuarioView, UserProfileView, EventoViewSet, ItemDoacaoViewSet, DoacaoViewSet
++from app.views import RegistroUsuarioView, LoginUsuarioView, UserProfileView, EventoViewSet, ItemDoacaoViewSet, DoacaoViewSet, AtivarContaView, RelatorioDoacoesPDFView
+ 
+ router = DefaultRouter()
+ router.register('eventos', EventoViewSet)
+@@ -13,6 +13,8 @@ urlpatterns = [
+     path('api/cadastro/', RegistroUsuarioView.as_view(), name='registro_usuario'),
+     path('api/login/', LoginUsuarioView.as_view(), name='login_usuario'),
+     path('api/perfil/', UserProfileView.as_view(), name='perfil_usuario'),
++    path('api/ativar-conta/', AtivarContaView.as_view(), name='ativar-conta'),
++    path('api/eventos/<int:evento_id>/relatorio-doacoes/', RelatorioDoacoesPDFView.as_view(), name='relatorio_doacoes'),
+     path('api/', include(router.urls)),
+ ]
+ 
+diff --git a/backend/requirements.txt b/backend/requirements.txt
+index c1a35a3..0ef469e 100644
+--- a/backend/requirements.txt
++++ b/backend/requirements.txt
+@@ -39,3 +39,4 @@ sqlparse==0.5.5
+ urllib3==2.7.0
+ watchdog==6.0.0
+ djangorestframework-simplejwt>=5.3.1
++reportlab
+diff --git a/docker-compose.yaml b/docker-compose.yaml
+index c9b208f..9db971e 100644
+--- a/docker-compose.yaml
++++ b/docker-compose.yaml
+@@ -49,6 +49,21 @@ services:
+     depends_on:
+       - backend
+     command: sh -c "npm install && npm run dev -- --host"
+-    
++
++  mailpit:
++        image: axllent/mailpit
++        container_name: mailpit
++        restart: unless-stopped
++        volumes:
++            - ./data:/data
++        ports:
++            - 8025:8025
++            - 1025:1025
++        environment:
++            MP_MAX_MESSAGES: 5000
++            MP_DATABASE: /data/mailpit.db
++            MP_SMTP_AUTH_ACCEPT_ANY: 1
++            MP_SMTP_AUTH_ALLOW_INSECURE: 1
++
+ volumes:
+   postgres_data:
+\ No newline at end of file
+diff --git a/frontend/package-lock.json b/frontend/package-lock.json
+index c954fb9..9086f88 100644
+--- a/frontend/package-lock.json
++++ b/frontend/package-lock.json
+@@ -8,6 +8,7 @@
+       "name": "frontend",
+       "version": "0.0.0",
+       "dependencies": {
++        "@googlemaps/js-api-loader": "^2.1.1",
+         "@hookform/resolvers": "^5.4.0",
+         "axios": "^1.18.0",
+         "lucide-react": "^1.17.0",
+@@ -680,6 +681,15 @@
+         }
+       }
+     },
++    "node_modules/@googlemaps/js-api-loader": {
++      "version": "2.1.1",
++      "resolved": "https://registry.npmjs.org/@googlemaps/js-api-loader/-/js-api-loader-2.1.1.tgz",
++      "integrity": "sha512-yUpAwksbHrlZIWD49JmveNSfBG4oAK0AwMknfSaPMnP5N7UT8oFRVCqwjGb1XQovi//7KLbPQKZpbofiLGzpDw==",
++      "license": "Apache-2.0",
++      "dependencies": {
++        "@types/google.maps": "^3.53.1"
++      }
++    },
+     "node_modules/@hookform/resolvers": {
+       "version": "5.4.0",
+       "resolved": "https://registry.npmjs.org/@hookform/resolvers/-/resolvers-5.4.0.tgz",
+@@ -1343,7 +1353,6 @@
+       "version": "3.65.2",
+       "resolved": "https://registry.npmjs.org/@types/google.maps/-/google.maps-3.65.2.tgz",
+       "integrity": "sha512-e52bmOhGCQSNabFpL48iQlwJybq6rfns8NUVJ20MR7CdPlHQ2RmSCnPbJfrUYJfogrE4OiHQTZ4LXpop+eer1w==",
+-      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/@types/json-schema": {
+diff --git a/frontend/package.json b/frontend/package.json
+index 42ce487..77c1069 100644
+--- a/frontend/package.json
++++ b/frontend/package.json
+@@ -11,6 +11,7 @@
+     "test": "vitest"
+   },
+   "dependencies": {
++    "@googlemaps/js-api-loader": "^2.1.1",
+     "@hookform/resolvers": "^5.4.0",
+     "axios": "^1.18.0",
+     "lucide-react": "^1.17.0",
+diff --git a/frontend/src/components/CampaignCard/CampaignCard.tsx b/frontend/src/components/CampaignCard/CampaignCard.tsx
+index c68854a..f175ea3 100644
+--- a/frontend/src/components/CampaignCard/CampaignCard.tsx
++++ b/frontend/src/components/CampaignCard/CampaignCard.tsx
+@@ -1,7 +1,12 @@
++import { useState } from 'react';
+ import { Link } from 'react-router-dom';
++import toast from 'react-hot-toast';
++import { useAuth } from '../../contexts/AuthContext';
++import { eventoService } from '../../services/api';
+ import styles from './CampaignCard.module.css';
+ 
+ interface CampaignCardProps {
++  id: number | string;
+   image: string;
+   progress: number;
+   progressColor?: 'primary' | 'secondary';
+@@ -12,6 +17,7 @@ interface CampaignCardProps {
+ }
+ 
+ export function CampaignCard({
++  id,
+   image,
+   progress,
+   progressColor = 'primary',
+@@ -20,18 +26,47 @@ export function CampaignCard({
+   description,
+   isActive
+ }: CampaignCardProps) {
++  const { isAdmin } = useAuth();
++  const [isExporting, setIsExporting] = useState(false);
++
+   // Cap progress at 100% for the visual bar width
+   const visualProgress = Math.min(progress, 100);
+   const barClass = progressColor === 'primary' ? styles.barPrimary : styles.barSecondary;
+ 
++  const handleExportarPDF = async () => {
++  try {
++    setIsExporting(true);
++    const blob = await eventoService.exportarRelatorioPDF(id);
++    const url = window.URL.createObjectURL(blob);
++    const link = document.createElement('a');
++    link.href = url;
++    link.setAttribute('download', `doacoes_${title}.pdf`);
++    document.body.appendChild(link);
++    link.click();
++    link.remove();
++    window.URL.revokeObjectURL(url);
++  } catch (error: any) {
++    let mensagem = 'Erro ao gerar relat├│rio em PDF.';
++    if (error.response?.data instanceof Blob) {
++      try {
++        const texto = await error.response.data.text();
++        mensagem = JSON.parse(texto).detail || mensagem;
++      } catch {
++      }
++    }
++    toast.error(mensagem);
++  } finally {
++    setIsExporting(false);
++  }
++};
++
+   return (
+     <div className={styles.card}>
+       <img src={image} alt={title} className={styles.image} />
+-      
+       <div className={styles.content}>
+         <div className={styles.progressContainer}>
+           <div className={styles.progressBarWrapper}>
+-            <div 
++            <div
+               className={`${styles.progressBar} ${barClass}`}
+               style={{ width: `${visualProgress}%` }}
+             >
+@@ -39,17 +74,23 @@ export function CampaignCard({
+             </div>
+           </div>
+         </div>
+-        
+         <p className={styles.endDate}>At├® {endDate}</p>
+         <h3 className={styles.title}>{title}</h3>
+         <p className={styles.description}>{description}</p>
+-        
+         <div className={styles.actions}>
+           {isActive ? (
+             <>
+               <Link to="/doar" className={`${styles.button} ${styles.btnPrimary}`} style={{ textAlign: 'center', textDecoration: 'none' }}>DOAR</Link>
+               <button className={`${styles.button} ${styles.btnSecondary}`}>COMPARTILHAR</button>
+             </>
++          ) : isAdmin ? (
++            <button
++              className={`${styles.button} ${styles.btnSecondary}`}
++              onClick={handleExportarPDF}
++              disabled={isExporting}
++            >
++              {isExporting ? 'EXPORTANDO...' : 'EXPORTAR RELAT├ôRIO'}
++            </button>
+           ) : (
+             <button className={`${styles.button} ${styles.btnSecondary}`}>COMPROVANTE</button>
+           )}
+@@ -57,4 +98,4 @@ export function CampaignCard({
+       </div>
+     </div>
+   );
+-}
++}
+\ No newline at end of file
+diff --git a/frontend/src/pages/Campanhas/Campanhas.tsx b/frontend/src/pages/Campanhas/Campanhas.tsx
+index 7ff9ce1..b00b586 100644
+--- a/frontend/src/pages/Campanhas/Campanhas.tsx
++++ b/frontend/src/pages/Campanhas/Campanhas.tsx
+@@ -41,6 +41,7 @@ export function Campanhas() {
+               <div key={campanha.id} onClick={() => navigate(`/doar/${campanha.id}`)} style={{ cursor: 'pointer' }}>
+               <CampaignCard
+                 key={campanha.id}
++                id={campanha.id}
+                 progress={campanha.progresso_geral}
+                 progressColor="primary"
+                 endDate={campanha.data_fim}
+@@ -64,6 +65,7 @@ export function Campanhas() {
+             campanhasEncerradas.map(campanha => (
+               <CampaignCard
+                 key={campanha.id}
++                id={campanha.id}
+                 progress={campanha.progresso_geral}
+                 progressColor="secondary"
+                 endDate={campanha.data_fim}
+diff --git a/frontend/src/pages/ConfirmacaoEmail/ConfirmacaoEmail.module.css b/frontend/src/pages/ConfirmacaoEmail/ConfirmacaoEmail.module.css
+new file mode 100644
+index 0000000..aecfd96
+--- /dev/null
++++ b/frontend/src/pages/ConfirmacaoEmail/ConfirmacaoEmail.module.css
+@@ -0,0 +1,143 @@
++.container {
++  display: flex;
++  align-items: center;
++  justify-content: center;
++  min-height: calc(100vh - var(--header-height));
++  padding: 2rem;
++  background: linear-gradient(135deg, var(--color-background) 0%, #e2e8f0 100%);
++}
++
++.content {
++  width: 100%;
++  max-width: 480px;
++}
++
++.card {
++  background-color: var(--color-surface);
++  border-radius: 20px;
++  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
++  padding: 3rem;
++  display: flex;
++  flex-direction: column;
++  border: 1px solid rgba(255, 255, 255, 0.5);
++  backdrop-filter: blur(10px);
++}
++
++.statusBlock {
++  display: flex;
++  flex-direction: column;
++  align-items: center;
++  text-align: center;
++  gap: 1.25rem;
++}
++
++.iconWrapper {
++  display: flex;
++  align-items: center;
++  justify-content: center;
++  width: 88px;
++  height: 88px;
++  border-radius: 50%;
++  margin-bottom: 0.5rem;
++}
++
++.iconLoading {
++  background-color: rgba(233, 125, 37, 0.1);
++  color: var(--color-primary);
++}
++
++.iconSuccess {
++  background-color: #f0fdf4;
++  color: #22c55e;
++}
++
++.iconError {
++  background-color: #fef2f2;
++  color: #ef4444;
++}
++
++.spinnerIcon {
++  animation: spin 1s linear infinite;
++}
++
++@media (prefers-reduced-motion: reduce) {
++  .spinnerIcon {
++    animation-duration: 2.5s;
++  }
++}
++
++@keyframes spin {
++  from {
++    transform: rotate(0deg);
++  }
++  to {
++    transform: rotate(360deg);
++  }
++}
++
++.title {
++  font-size: 1.9rem;
++  color: var(--color-primary);
++  font-weight: 700;
++  line-height: 1.2;
++}
++
++.subtitle {
++  font-size: 1.05rem;
++  color: var(--color-text-muted);
++  line-height: 1.6;
++}
++
++.submitButton {
++  display: flex;
++  justify-content: center;
++  align-items: center;
++  gap: 0.5rem;
++  width: 100%;
++  background-color: var(--color-primary);
++  color: white;
++  padding: 1rem;
++  border-radius: 12px;
++  font-weight: 600;
++  font-size: 1.1rem;
++  margin-top: 0.5rem;
++  transition: all 0.3s ease;
++}
++
++.submitButton:hover {
++  background-color: var(--color-primary-hover);
++  transform: translateY(-2px);
++  box-shadow: 0 8px 16px rgba(233, 125, 37, 0.2);
++}
++
++.submitButton:active {
++  transform: translateY(0);
++}
++
++.secondaryLink {
++  color: var(--color-secondary);
++  font-weight: 600;
++  font-size: 0.95rem;
++  margin-top: 0.5rem;
++  transition: color 0.3s ease;
++}
++
++.secondaryLink:hover {
++  color: var(--color-primary);
++}
++
++/* Responsive */
++@media (max-width: 640px) {
++  .card {
++    padding: 2rem 1.5rem;
++  }
++
++  .title {
++    font-size: 1.6rem;
++  }
++
++  .iconWrapper {
++    width: 72px;
++    height: 72px;
++  }
++}
+\ No newline at end of file
+diff --git a/frontend/src/pages/ConfirmacaoEmail/ConfirmacaoEmail.tsx b/frontend/src/pages/ConfirmacaoEmail/ConfirmacaoEmail.tsx
+new file mode 100644
+index 0000000..aac474b
+--- /dev/null
++++ b/frontend/src/pages/ConfirmacaoEmail/ConfirmacaoEmail.tsx
+@@ -0,0 +1,106 @@
++import { useEffect, useRef, useState } from 'react';
++import { Link, useNavigate, useSearchParams } from 'react-router-dom';
++import { CheckCircle2, XCircle, Loader2, ArrowRight } from 'lucide-react';
++import styles from './ConfirmacaoEmail.module.css';
++
++type Status = 'loading' | 'success' | 'error';
++
++export function ConfirmacaoEmail() {
++  const navigate = useNavigate();
++  const [searchParams] = useSearchParams();
++  const uid = searchParams.get('uid');
++  const token = searchParams.get('token');
++
++  const [status, setStatus] = useState<Status>('loading');
++  const [errorMessage, setErrorMessage] = useState('');
++
++  // Evita disparar a confirma├º├úo duas vezes (StrictMode roda o effect 2x em dev)
++  const jaConfirmou = useRef(false);
++
++  useEffect(() => {
++    if (jaConfirmou.current) return;
++    jaConfirmou.current = true;
++
++    const confirmarEmail = async () => {
++      if (!uid || !token) {
++        setStatus('error');
++        setErrorMessage('Link de confirma├º├úo inv├ílido ou incompleto.');
++        return;
++      }
++
++      try {
++        // Ajuste a URL conforme o endpoint real do backend Django
++        const response = await fetch('http://localhost:8000/api/ativar-conta/', {
++          method: 'POST',
++          headers: { 'Content-Type': 'application/json' },
++          body: JSON.stringify({ uid, token }),
++        });
++
++        if (!response.ok) {
++          throw new Error('Este link j├í foi usado ou expirou.');
++        }
++
++        setStatus('success');
++      } catch (err: any) {
++        setStatus('error');
++        setErrorMessage(err.message || 'N├úo foi poss├¡vel confirmar seu e-mail.');
++      }
++    };
++
++    confirmarEmail();
++  }, [uid, token]);
++
++  return (
++    <main className={styles.container}>
++      <div className={styles.content}>
++        <div className={styles.card}>
++          {status === 'loading' && (
++            <div className={styles.statusBlock}>
++              <div className={`${styles.iconWrapper} ${styles.iconLoading}`}>
++                <Loader2 size={40} className={styles.spinnerIcon} />
++              </div>
++              <h1 className={styles.title}>Confirmando seu e-mail</h1>
++              <p className={styles.subtitle}>
++                Aguarde um instante enquanto validamos seu cadastro.
++              </p>
++            </div>
++          )}
++
++          {status === 'success' && (
++            <div className={styles.statusBlock}>
++              <div className={`${styles.iconWrapper} ${styles.iconSuccess}`}>
++                <CheckCircle2 size={40} />
++              </div>
++              <h1 className={styles.title}>E-mail confirmado!</h1>
++              <p className={styles.subtitle}>
++                Sua conta foi ativada com sucesso. Agora voc├¬ j├í pode acessar
++                a plataforma com seu e-mail e senha.
++              </p>
++              <button
++                type="button"
++                className={styles.submitButton}
++                onClick={() => navigate('/login')}
++              >
++                Acessar Conta
++                <ArrowRight size={20} />
++              </button>
++            </div>
++          )}
++
++          {status === 'error' && (
++            <div className={styles.statusBlock}>
++              <div className={`${styles.iconWrapper} ${styles.iconError}`}>
++                <XCircle size={40} />
++              </div>
++              <h1 className={styles.title}>N├úo foi poss├¡vel confirmar</h1>
++              <p className={styles.subtitle}>{errorMessage}</p>
++              <Link to="/login" className={styles.secondaryLink}>
++                Voltar para o login
++              </Link>
++            </div>
++          )}
++        </div>
++      </div>
++    </main>
++  );
++}
+\ No newline at end of file
+diff --git a/frontend/src/routes/AppRoutes.tsx b/frontend/src/routes/AppRoutes.tsx
+index d6df25f..52ac0b0 100644
+--- a/frontend/src/routes/AppRoutes.tsx
++++ b/frontend/src/routes/AppRoutes.tsx
+@@ -10,7 +10,7 @@ import { Login } from '../pages/Login/Login';
+ import { GerenciarCampanhas } from '../pages/GerenciarCampanhas/GerenciarCampanhas';
+ import { NovaCampanha } from '../pages/NovaCampanha/NovaCampanha';
+ import { CampanhaAtiva } from '../pages/CampanhaAtiva/CampanhaAtiva';
+-
++import { ConfirmacaoEmail } from '../pages/ConfirmacaoEmail/ConfirmacaoEmail';
+ 
+ export function AppRoutes() {
+   return (
+@@ -28,6 +28,7 @@ export function AppRoutes() {
+       <Route path="/nova-campanha" element={<NovaCampanha />} />
+       <Route path="/campanha-ativa" element={<CampanhaAtiva />} />
+       <Route path="/campanha-ativa/:id" element={<CampanhaAtiva />} />
++      <Route path="/confirmar-email" element={<ConfirmacaoEmail />} />
+     </Routes>
+   );
+ }
+diff --git a/frontend/src/services/api.ts b/frontend/src/services/api.ts
+index 3d23fba..54a83e2 100644
+--- a/frontend/src/services/api.ts
++++ b/frontend/src/services/api.ts
+@@ -5,25 +5,27 @@ export const eventoService = {
+     const res = await apiClient.get('/eventos/');
+     return res.data;
+   },
+-
+   buscar: async (id: string | number) => {
+     const res = await apiClient.get(`/eventos/${id}/`);
+     return res.data;
+   },
+-
+   criar: async (dados: any) => {
+     const res = await apiClient.post('/eventos/', dados);
+     return res.data;
+   },
+-
+   atualizar: async (id: string | number, dados: any) => {
+     const res = await apiClient.patch(`/eventos/${id}/`, dados);
+     return res.data;
+   },
+-
+   deletar: async (id: string | number) => {
+     await apiClient.delete(`/eventos/${id}/`);
+-  }
++  },
++  exportarRelatorioPDF: async (id: string | number) => {
++    const res = await apiClient.get(`/eventos/${id}/relatorio-doacoes/`, {
++      responseType: 'blob',
++    });
++    return res.data;
++  },
+ }
+ 
+ export const doacaoService = {

@@ -74,3 +74,25 @@ export const itemDoacaoService = {
     await apiClient.delete(`/itens-doacao/${id}/`);
   }
 }
+
+export const transparenciaService = {
+  listar: async () => {
+    const res = await apiClient.get('/transparencia/');
+    return res.data;
+  },
+  criar: async (dados: FormData) => {
+    const res = await apiClient.post('/transparencia/', dados, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
+    return res.data;
+  },
+  atualizar: async (id: string | number, dados: FormData) => {
+    const res = await apiClient.patch(`/transparencia/${id}/`, dados, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
+    return res.data;
+  },
+  deletar: async (id: string | number) => {
+    await apiClient.delete(`/transparencia/${id}/`);
+  }
+}

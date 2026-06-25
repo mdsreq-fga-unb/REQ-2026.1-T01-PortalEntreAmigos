@@ -29,8 +29,8 @@ export function ConfirmacaoEmail() {
       }
 
       try {
-        // Ajuste a URL conforme o endpoint real do backend Django
-        const response = await fetch('http://localhost:8000/api/ativar-conta/', {
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+        const response = await fetch(`${API_URL}/ativar-conta/`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ uid, token }),

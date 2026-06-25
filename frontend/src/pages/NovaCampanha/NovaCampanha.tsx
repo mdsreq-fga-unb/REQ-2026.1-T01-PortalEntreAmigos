@@ -14,7 +14,7 @@ import styles from './NovaCampanha.module.css';
 
 const itemSchema = z.object({
   nome: z.string(),
-  tipo: z.enum(['alimento', 'objeto']),
+  unidadeMedida: z.string().min(1, 'Informe a unidade'),
   quantidade: z.number(),
 });
 
@@ -60,7 +60,7 @@ export function NovaCampanha() {
   const [currentItemIndex, setCurrentItemIndex] = useState(1);
   const [currentItem, setCurrentItem] = useState({
     nome: '',
-    tipo: 'alimento' as 'alimento' | 'objeto',
+    unidadeMedida: '',
     quantidade: '' as number | string
   });
   const [pontosColeta, setPontosColeta] = useState<PontoColeta[]>([]);
@@ -101,6 +101,7 @@ export function NovaCampanha() {
         data.itens.map((item) =>
           itemDoacaoService.criar({
             nome: item.nome,
+            unidade_medida: item.unidadeMedida,
             meta_item: Number(item.quantidade),
             evento: novoEvento.id,
           })
@@ -124,10 +125,10 @@ export function NovaCampanha() {
   };
 
   const handleAddItem = (closeModal: boolean) => {
-    if (currentItem.nome && currentItem.quantidade) {
+    if (currentItem.nome && currentItem.quantidade && currentItem.unidadeMedida) {
       const newItem: Item = {
         nome: currentItem.nome,
-        tipo: currentItem.tipo,
+        unidadeMedida: currentItem.unidadeMedida,
         quantidade: Number(currentItem.quantidade)
       };
       setValue('itens', [...watchItens, newItem], { shouldValidate: true });
@@ -136,7 +137,7 @@ export function NovaCampanha() {
         setIsModalOpen(false);
       } else {
         setCurrentItemIndex(currentItemIndex + 1);
-        setCurrentItem({ nome: '', tipo: 'alimento', quantidade: '' });
+        setCurrentItem({ nome: '', unidadeMedida: '', quantidade: '' });
       }
     }
   };
@@ -239,7 +240,7 @@ export function NovaCampanha() {
                 onClick={() => {
                   setIsModalOpen(true);
                   setCurrentItemIndex(watchItens.length + 1);
-                  setCurrentItem({ nome: '', tipo: 'alimento', quantidade: '' });
+                  setCurrentItem({ nome: '', unidadeMedida: '', quantidade: '' });
                 }}
               >
                 <Target size={20} />
@@ -253,7 +254,7 @@ export function NovaCampanha() {
                       <div className={styles.itemInfo}>
                         <span className={styles.itemName}>{item.nome}</span>
                         <span className={styles.itemDetail}>
-                          {item.quantidade} {item.tipo === 'alimento' ? 'kg' : 'unidades'} • {item.tipo === 'alimento' ? 'Alimento' : 'Objeto'}
+                          {item.quantidade} {item.unidadeMedida}
                         </span>
                       </div>
                     </div>
@@ -290,34 +291,20 @@ export function NovaCampanha() {
           </div>
 
           <div className={styles.inputGroup}>
-            <label className={styles.label}>Tipo</label>
-            <div className={styles.radioGroup}>
-              <label className={styles.radioLabel}>
-                <input
-                  type="radio"
-                  name="tipoItem"
-                  className={styles.radioInput}
-                  checked={currentItem.tipo === 'alimento'}
-                  onChange={() => setCurrentItem({ ...currentItem, tipo: 'alimento' })}
-                />
-                Alimento
-              </label>
-              <label className={styles.radioLabel}>
-                <input
-                  type="radio"
-                  name="tipoItem"
-                  className={styles.radioInput}
-                  checked={currentItem.tipo === 'objeto'}
-                  onChange={() => setCurrentItem({ ...currentItem, tipo: 'objeto' })}
-                />
-                Objeto
-              </label>
-            </div>
+            <label className={styles.label}>Unidade de Medida</label>
+            <input
+              type="text"
+              className={styles.input}
+              style={{ paddingLeft: '1rem' }}
+              value={currentItem.unidadeMedida}
+              onChange={(e) => setCurrentItem({ ...currentItem, unidadeMedida: e.target.value })}
+              placeholder="Ex: kg, L, pct, unidade..."
+            />
           </div>
 
           <div className={styles.inputGroup}>
             <label className={styles.label}>
-              Quantidade ({currentItem.tipo === 'alimento' ? 'kg' : 'unidades'})
+              Quantidade
             </label>
             <input
               type="number"

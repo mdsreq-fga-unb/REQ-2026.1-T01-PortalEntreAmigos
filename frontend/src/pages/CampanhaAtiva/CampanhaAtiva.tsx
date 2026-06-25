@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import {
   ArrowLeft, Edit, StopCircle, Trash2, Calendar, Target, MapPin,
   X, Type, FileText, CheckCircle2, Trash
@@ -8,6 +8,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { eventoService, itemDoacaoService, doacaoService } from '../../services/api';
 import { DonationProgress } from '../Doar/components/DonationProgress/DonationProgress';
 import { MapPicker, type PontoColeta } from '../../components/MapPicker/MapPicker';
+import { Modal } from '../../components/Modal/Modal';
 import toast from 'react-hot-toast';
 import styles from './CampanhaAtiva.module.css';
 
@@ -25,6 +26,12 @@ export function CampanhaAtiva() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editFormData, setEditFormData] = useState<any>({});
   const [pontosEditando, setPontosEditando] = useState<PontoColeta[]>([]);
+  const [confirmModal, setConfirmModal] = useState({
+    isOpen: false,
+    title: '',
+    message: '',
+    action: () => {}
+  });
 
 
   const carregarDados = useCallback(async () => {
@@ -81,25 +88,43 @@ export function CampanhaAtiva() {
   };
 
 
-  const handleEncerrar = async () => {
-    try {
-      const atualizado = await eventoService.atualizar(id!, { status: 'CONCLUIDO' });
-      setCampanha(atualizado);
-      toast.success('Campanha encerrada!');
-    } catch {
-      toast.error('Erro ao encerrar campanha');
-    }
+  const navigate = useNavigate();
+
+  const handleEncerrar = () => {
+    setConfirmModal({
+      isOpen: true,
+      title: 'Encerrar Campanha',
+      message: 'Tem certeza que deseja encerrar esta campanha? Esta ação não poderá ser desfeita.',
+      action: async () => {
+        try {
+          const atualizado = await eventoService.atualizar(id!, { status: 'AGUARDANDO_RELATORIO' });
+          setCampanha(atualizado);
+          toast.success('Campanha encerrada! Redirecionando para o relatório...');
+          setConfirmModal(prev => ({ ...prev, isOpen: false }));
+          navigate(`/relatorio-transparencia/${id}`);
+        } catch {
+          toast.error('Erro ao encerrar campanha');
+        }
+      }
+    });
   };
 
-  const handleDeletar = async () => {
-    if (!confirm('Tem certeza que deseja excluir esta campanha?')) return;
-    try {
-      await eventoService.deletar(id!);
-      toast.success('Campanha excluída!');
-      window.location.href = '/gerenciar-campanhas';
-    } catch {
-      toast.error('Erro ao excluir campanha');
-    }
+  const handleDeletar = () => {
+    setConfirmModal({
+      isOpen: true,
+      title: 'Excluir Campanha',
+      message: 'Tem certeza que deseja excluir esta campanha? Todos os dados serão perdidos permanentemente.',
+      action: async () => {
+        try {
+          await eventoService.deletar(id!);
+          toast.success('Campanha excluída!');
+          setConfirmModal(prev => ({ ...prev, isOpen: false }));
+          navigate('/gerenciar-campanhas');
+        } catch {
+          toast.error('Erro ao excluir campanha');
+        }
+      }
+    });
   };
 
   const handleConfirmarPromessa = async (promessaId: number) => {
@@ -371,6 +396,36 @@ export function CampanhaAtiva() {
           </div>
         </div>
       )}
+
+      {/* ─── Modal de Confirmação ───────────────────────────────────────── */}
+      <Modal 
+        isOpen={confirmModal.isOpen} 
+        onClose={() => setConfirmModal(prev => ({ ...prev, isOpen: false }))}
+        title={confirmModal.title}
+      >
+        <div className={styles.form}>
+          <p style={{ marginBottom: '1.5rem', color: '#4b5563', lineHeight: '1.5' }}>
+            {confirmModal.message}
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
+            <button
+              type="button"
+              className={styles.cancelButton}
+              onClick={() => setConfirmModal(prev => ({ ...prev, isOpen: false }))}
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              className={styles.saveButton}
+              style={{ backgroundColor: confirmModal.title.includes('Excluir') ? '#ef4444' : 'var(--color-primary)' }}
+              onClick={confirmModal.action}
+            >
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </Modal>
     </main>
   );
 }

@@ -1,6 +1,6 @@
 import { FileText, DollarSign, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { PageHeader } from '../../components/PageHeader/PageHeader';
-import ongBg from '../../assets/ong_background.png';
 import todosImg from '../../assets/todos_sobre.png';
 import missaoImg from '../../assets/desenho_sobre.png';
 import visaoImg from '../../assets/coelho_sobre.png';
@@ -40,9 +40,8 @@ export function Sobre() {
   return (
     <main className={styles.container}>
       <PageHeader
-        image={ongBg}
-        title="Quem Somos"
-        subtitle="Desde 2013, unimos pessoas, recursos e solidariedade para levar esperança a quem mais precisa."
+        title="Ação Entre Amigos BSB"
+        subtitle="Quem Somos - Desde 2013, unimos pessoas, recursos e solidariedade para levar esperança a quem mais precisa."
       />
 
       {/* História */}
@@ -166,9 +165,9 @@ export function Sobre() {
               <p>Medimos e divulgamos o número de pessoas e comunidades beneficiadas em cada campanha.</p>
             </div>
           </div>
-          <a href="/transparencia" className={styles.transparenciaBtn}>
+          <Link to="/transparencia" className={styles.transparenciaBtn}>
             Ver página de Transparência completa
-          </a>
+          </Link>
         </div>
       </section>
     </main>

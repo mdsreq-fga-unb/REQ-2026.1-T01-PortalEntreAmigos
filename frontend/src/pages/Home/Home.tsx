@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Heart, ArrowRight, Users, Package, TrendingUp } from 'lucide-react';
 import { PageHeader } from '../../components/PageHeader/PageHeader';
 import { eventoService } from '../../services/api';
-import bannerImg from '../../assets/donation_banner.png';
 import styles from './Home.module.css';
 
 export function Home() {
@@ -27,20 +26,28 @@ export function Home() {
     }
   };
 
+  // Se temos campanha, usamos os dados dela
+  const titulo = campanhaAtiva ? campanhaAtiva.nome : 'Ação Entre Amigos BSB';
+  const subtitulo = campanhaAtiva 
+    ? campanhaAtiva.descricao 
+    : 'Não existem campanhas em andamento no momento.';
+  const badge = campanhaAtiva ? 'Campanha Ativa' : undefined;
+  
   return (
     <main className={styles.container}>
       <PageHeader
-        image={bannerImg}
-        title={campanhaAtiva?.nome ?? 'Campanha de Inverno Solidário'}
-        subtitle={campanhaAtiva?.descricao ?? 'Ajude-nos a aquecer famílias neste inverno. Estamos arrecadando roupas de frio, cobertores e alimentos não perecíveis.'}
-        badge="Campanha Ativa"
-        alignment="left"
-        minHeight="500px"
+        title={titulo}
+        subtitle={subtitulo}
+        badge={badge}
+        alignment="center"
+        minHeight="350px"
       >
-        <button onClick={handleDoar} className={styles.donateButton}>
-          <Heart size={20} className={styles.heartIcon} />
-          Quero Doar Agora
-        </button>
+        {campanhaAtiva && (
+          <button onClick={handleDoar} className={styles.donateButton}>
+            <Heart size={20} className={styles.heartIcon} />
+            Quero Doar Agora
+          </button>
+        )}
       </PageHeader>
 
       {/* restante do JSX igual ao original */}

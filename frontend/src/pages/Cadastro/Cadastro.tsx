@@ -115,7 +115,8 @@ export function Cadastro() {
     const toastId = toast.loading('Criando sua conta...');
 
     try {
-      const response = await fetch('http://localhost:8000/api/cadastro/', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+      const response = await fetch(`${API_URL}/cadastro/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

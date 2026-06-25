@@ -3,11 +3,13 @@ from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 import re
-from .models import Evento, ItemDoacao, Doacao, PerfilUsuario
+from .models import Evento, ItemDoacao, Doacao, PerfilUsuario, CodigoRecuperacaoSenha, CardTransparencia
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
+from django.db import transaction
+from django.conf import settings
 
 def is_valid_cpf(cpf: str) -> bool:
     # Remove caracteres não numéricos
@@ -37,6 +39,20 @@ def is_valid_cpf(cpf: str) -> bool:
         return False
         
     return True
+
+
+def validar_complexidade_senha(senha: str) -> str | None:
+    """Valida os critérios de complexidade da senha.
+    Retorna uma mensagem de erro ou None se a senha for válida."""
+    if len(senha) < 8:
+        return "A senha deve ter no mínimo 8 caracteres."
+    if not re.search(r'[A-Z]', senha):
+        return "A senha deve conter pelo menos uma letra maiúscula."
+    if not re.search(r'\d', senha):
+        return "A senha deve conter pelo menos um número."
+    if not re.search(r'[!@#$%^&*(),.?":{}|<>]', senha):
+        return "A senha deve conter pelo menos um caractere especial."
+    return None
 
 class RegistroSerializer(serializers.ModelSerializer):
     # CA-US01-01: Campos obrigatórios
@@ -76,15 +92,9 @@ class RegistroSerializer(serializers.ModelSerializer):
         if data['password'] != data['confirmacao_senha']:
             raise serializers.ValidationError({"password": "As senhas não coincidem."})
         
-        senha = data['password']
-        if len(senha) < 8:
-            raise serializers.ValidationError({"password": "A senha deve ter no mínimo 8 caracteres."})
-        if not re.search(r'[A-Z]', senha):
-            raise serializers.ValidationError({"password": "A senha deve conter pelo menos uma letra maiúscula."})
-        if not re.search(r'\d', senha):
-            raise serializers.ValidationError({"password": "A senha deve conter pelo menos um número."})
-        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', senha):
-            raise serializers.ValidationError({"password": "A senha deve conter pelo menos um caractere especial."})
+        erro = validar_complexidade_senha(data['password'])
+        if erro:
+            raise serializers.ValidationError({"password": erro})
 
         return data
 
@@ -93,47 +103,68 @@ class RegistroSerializer(serializers.ModelSerializer):
         telefone = validated_data.pop('telefone')
         validated_data.pop('confirmacao_senha', None)
 
-        # CA-US01-04: O método create_user do Django automaticamente aplica o hash na senha
-        user = User.objects.create_user(
-            username=validated_data['email'], # No Django padrão, o username é obrigatório, usaremos o e-mail
-            email=validated_data['email'],
-            password=validated_data['password'],
-            first_name=validated_data['first_name'],
-            is_active= False
-        )
-        
-        # PerfilUsuario é criado via signal, apenas atualizamos CPF e Telefone
-        perfil, created = PerfilUsuario.objects.get_or_create(user=user)
-        perfil.cpf = cpf
-        perfil.telefone = telefone
-        perfil.save()
-        
-        url_ativacao = construir_link_confirmacao(user)
-        corpo_email = f"Olá {user.first_name},\n\nObrigado por se cadastrar no Portal Entre Amigos!\n\nPor favor, clique no link abaixo para ativar a sua conta:\n{url_ativacao}\n\nSe você não solicitou este cadastro, apenas ignore este e-mail."
-        
-        send_mail(
-            subject='Bem-vindo ao Portal Entre Amigos! Confirme seu e-mail',
-            message=corpo_email,
-            from_email='sistema@portalentreamigos.org',
-            recipient_list=[user.email],
-            fail_silently=False,
-        )
-        
+        # Envolve toda a operação em uma transação atômica.
+        # Se o envio do e-mail falhar, o usuário e o perfil são removidos do banco,
+        # evitando o cenário de conta criada mas impossível de ativar.
+        with transaction.atomic():
+            # CA-US01-04: O método create_user do Django automaticamente aplica o hash na senha
+            user = User.objects.create_user(
+                username=validated_data['email'], # No Django padrão, o username é obrigatório, usaremos o e-mail
+                email=validated_data['email'],
+                password=validated_data['password'],
+                first_name=validated_data['first_name'],
+                is_active=False
+            )
+
+            # PerfilUsuario é criado via signal, apenas atualizamos CPF e Telefone
+            perfil, created = PerfilUsuario.objects.get_or_create(user=user)
+            perfil.cpf = cpf
+            perfil.telefone = telefone
+            perfil.save()
+
+            url_ativacao = construir_link_confirmacao(user)
+            corpo_email = (
+                f"Olá {user.first_name},\n\n"
+                f"Obrigado por se cadastrar no Portal Entre Amigos!\n\n"
+                f"Por favor, clique no link abaixo para ativar a sua conta:\n"
+                f"{url_ativacao}\n\n"
+                f"Se você não solicitou este cadastro, apenas ignore este e-mail."
+            )
+
+            send_mail(
+                subject='Bem-vindo ao Portal Entre Amigos! Confirme seu e-mail',
+                message=corpo_email,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[user.email],
+                fail_silently=False,
+            )
+
         return user
 
 
 
 class LoginSerializer(serializers.Serializer):
-    email = serializers.EmailField(required=True)
+    # Aceita e-mail ou CPF no campo identificador
+    email = serializers.CharField(required=True)
     password = serializers.CharField(write_only=True, required=True)
 
     def validate(self, data):
-        email = data.get('email')
+        identificador = data.get('email', '').strip()
         password = data.get('password')
-        
-        # Tenta achar o usuário pelo e-mail primeiro para descobrir o username real dele
-        user_obj = User.objects.filter(email=email).first()
-        
+
+        user_obj = None
+
+        # Tenta primeiro localizar pelo e-mail
+        user_obj = User.objects.filter(email__iexact=identificador).first()
+
+        # Se não encontrou pelo e-mail, tenta pelo CPF
+        if not user_obj:
+            cpf_limpo = ''.join(filter(str.isdigit, identificador))
+            if cpf_limpo:
+                perfil = PerfilUsuario.objects.filter(cpf=cpf_limpo).select_related('user').first()
+                if perfil:
+                    user_obj = perfil.user
+
         if user_obj and user_obj.check_password(password) and not user_obj.is_active:
             raise AuthenticationFailed(
                 'Sua conta ainda não foi ativada. Verifique o link de confirmação enviado para o seu e-mail.',
@@ -143,10 +174,10 @@ class LoginSerializer(serializers.Serializer):
         if user_obj:
             user = authenticate(username=user_obj.username, password=password)
         else:
-            user = authenticate(username=email, password=password)
+            user = None
 
         if not user:
-            raise AuthenticationFailed('E-mail ou senha incorretos.')
+            raise AuthenticationFailed('E-mail, CPF ou senha incorretos.')
 
         data['user'] = user
         return data
@@ -194,8 +225,13 @@ class ItemDoacaoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ItemDoacao
-        fields = ['id', 'nome', 'meta_item', 'evento', 'quantidade_prometida', 'quantidade_recebida', 'progresso', 'progresso_recebido']
+        fields = ['id', 'nome', 'unidade_medida', 'meta_item', 'evento', 'quantidade_prometida', 'quantidade_recebida', 'progresso', 'progresso_recebido']
         read_only_fields = ['progresso', 'progresso_recebido']
+
+    def validate_meta_item(self, value):
+        if value <= 0:
+            raise serializers.ValidationError("A meta de arrecadação do item deve ser maior que zero.")
+        return value
 
 
 class DoacaoSerializer(serializers.ModelSerializer):
@@ -216,16 +252,25 @@ class DoacaoSerializer(serializers.ModelSerializer):
 def construir_link_confirmacao(utilizador):
     """
     Recebe um objeto de utilizador (User) recém-criado, gera os tokens de segurança
-     e monta o link final que será enviado por e-mail.
+    e monta o link final que será enviado por e-mail.
+    A URL base é lida de settings.FRONTEND_URL, permitindo configuração por ambiente
+    sem alterar o código-fonte.
     """
-    
-    #Transformar a Chave Primária (ID) num formato seguro para URLs
+
+    # Transformar a Chave Primária (ID) num formato seguro para URLs
     uid_seguro = urlsafe_base64_encode(force_bytes(utilizador.pk))
-    
-    #Gerar o token matemático único e temporário
+
+    # Gerar o token matemático único e temporário
     token_unico = default_token_generator.make_token(utilizador)
-    
+
     # Construção do endereço direcionado ao Frontend (React)
-    url_frontend = f"http://localhost:5173/confirmar-email?uid={uid_seguro}&token={token_unico}"
-    
-    return url_frontend        
+    # settings.FRONTEND_URL é definido em core/settings.py e pode ser sobrescrito
+    # por variável de ambiente para os diferentes ambientes (dev, staging, produção).
+    url_frontend = f"{settings.FRONTEND_URL}/confirmar-email?uid={uid_seguro}&token={token_unico}"
+
+    return url_frontend
+
+class CardTransparenciaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CardTransparencia
+        fields = ['id', 'nome', 'arquivo_pdf', 'criado_em']

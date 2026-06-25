@@ -10,6 +10,7 @@ class Evento(models.Model):
 
     class Status(models.TextChoices):
         EM_ANDAMENTO = 'EM_ANDAMENTO', 'Em andamento'
+        AGUARDANDO_RELATORIO = 'AGUARDANDO_RELATORIO', 'Aguardando Relatório'
         CONCLUIDO = 'CONCLUIDO', 'Concluído'
         CANCELADO = 'CANCELADO', 'Cancelado'
 
@@ -67,6 +68,7 @@ class ItemDoacao(models.Model):
     )
 
     nome = models.CharField(max_length=100)
+    unidade_medida = models.CharField(max_length=20, default='unidade')
     meta_item = models.PositiveIntegerField(default=1)
     # Total de unidades prometidas (todas as promessas, independente de status)
     quantidade_prometida = models.PositiveIntegerField(default=0)
@@ -139,6 +141,15 @@ class PerfilUsuario(models.Model):
         return f"Perfil de {self.user.email}"
 
 
+class CodigoRecuperacaoSenha(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='codigo_recuperacao')
+    codigo = models.CharField(max_length=5)
+    criado_em = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Código de recuperação de {self.user.email}"
+
+
 @receiver(post_save, sender=User)
 def criar_perfil_usuario(sender, instance, created, **kwargs):
     if created:
@@ -151,4 +162,42 @@ def salvar_perfil_usuario(sender, instance, **kwargs):
         PerfilUsuario.objects.create(user=instance)
     else:
         instance.perfil.save()
+
+
+@receiver(post_save, sender=Evento)
+def manter_limite_campanhas_encerradas(sender, instance, **kwargs):
+    if instance.status == Evento.Status.CONCLUIDO:
+        encerradas = Evento.objects.filter(status=Evento.Status.CONCLUIDO).order_by('-id')
+        if encerradas.count() > 3:
+            para_deletar = encerradas[3:]
+            for camp in para_deletar:
+                camp.delete()
+
+
+class CardTransparencia(models.Model):
+    nome = models.CharField(max_length=100)
+    arquivo_pdf = models.FileField(upload_to='transparencia_pdfs/')
+    criado_em = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.nome
+
+@receiver(post_delete, sender=CardTransparencia)
+def deletar_pdf_ao_excluir_card(sender, instance, **kwargs):
+    if instance.arquivo_pdf:
+        instance.arquivo_pdf.delete(False)
+
+from django.db.models.signals import pre_save
+@receiver(pre_save, sender=CardTransparencia)
+def deletar_pdf_antigo_ao_atualizar(sender, instance, **kwargs):
+    if not instance.pk:
+        return
+    try:
+        old_file = CardTransparencia.objects.get(pk=instance.pk).arquivo_pdf
+    except CardTransparencia.DoesNotExist:
+        return
+    new_file = instance.arquivo_pdf
+    if not old_file == new_file:
+        if old_file:
+            old_file.delete(False)
 

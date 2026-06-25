@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../contexts/AuthContext';
@@ -27,38 +26,8 @@ export function CampaignCard({
   isActive
 }: CampaignCardProps) {
   const { isAdmin } = useAuth();
-  const [isExporting, setIsExporting] = useState(false);
-
-  // Cap progress at 100% for the visual bar width
   const visualProgress = Math.min(progress, 100);
   const barClass = progressColor === 'primary' ? styles.barPrimary : styles.barSecondary;
-
-  const handleExportarPDF = async () => {
-  try {
-    setIsExporting(true);
-    const blob = await eventoService.exportarRelatorioPDF(id);
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `doacoes_${title}.pdf`);
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.URL.revokeObjectURL(url);
-  } catch (error: any) {
-    let mensagem = 'Erro ao gerar relatório em PDF.';
-    if (error.response?.data instanceof Blob) {
-      try {
-        const texto = await error.response.data.text();
-        mensagem = JSON.parse(texto).detail || mensagem;
-      } catch {
-      }
-    }
-    toast.error(mensagem);
-  } finally {
-    setIsExporting(false);
-  }
-};
 
   return (
     <div className={styles.card}>
@@ -83,16 +52,10 @@ export function CampaignCard({
               <Link to="/doar" className={`${styles.button} ${styles.btnPrimary}`} style={{ textAlign: 'center', textDecoration: 'none' }}>DOAR</Link>
               <button className={`${styles.button} ${styles.btnSecondary}`}>COMPARTILHAR</button>
             </>
-          ) : isAdmin ? (
-            <button
-              className={`${styles.button} ${styles.btnSecondary}`}
-              onClick={handleExportarPDF}
-              disabled={isExporting}
-            >
-              {isExporting ? 'EXPORTANDO...' : 'EXPORTAR RELATÓRIO'}
-            </button>
           ) : (
-            <button className={`${styles.button} ${styles.btnSecondary}`}>COMPROVANTE</button>
+            <Link to={`/campanha-encerrada/${id}`} className={`${styles.button} ${styles.btnSecondary}`} style={{ textAlign: 'center', textDecoration: 'none' }}>
+              VISUALIZAR CAMPANHA
+            </Link>
           )}
         </div>
       </div>

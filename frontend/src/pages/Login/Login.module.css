@@ -95,14 +95,20 @@
   color: var(--color-text-main);
 }
 
-.forgotPassword {
+.forgotLink {
   font-size: 0.85rem;
   color: var(--color-secondary);
   font-weight: 500;
   transition: color 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  text-decoration: none;
 }
 
-.forgotPassword:hover {
+.forgotLink:hover {
   color: var(--color-primary);
 }
 
@@ -159,9 +165,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
 }
 
-.submitButton:hover {
+.submitButton:hover:not(:disabled) {
   background-color: var(--color-primary-hover);
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(233, 125, 37, 0.2);
@@ -169,6 +179,11 @@
 
 .submitButton:active {
   transform: translateY(0);
+}
+
+.submitButton:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 .registerRedirect {
@@ -187,6 +202,110 @@
   color: var(--color-primary);
 }
 
+/* Modal: Esqueci o e-mail */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modalCard {
+  background: var(--color-surface);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  padding: 0.35rem;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalClose:hover {
+  background: #f1f5f9;
+  color: var(--color-text-main);
+}
+
+.modalIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(233, 125, 37, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  border: 1px solid rgba(233, 125, 37, 0.2);
+}
+
+.modalTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.modalText {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.modalButton {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.85rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.modalButton:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
 /* Responsive */
 @media (max-width: 640px) {
   .card {
@@ -201,3 +320,4 @@
     padding: 0.875rem 0.875rem 0.875rem 2.75rem;
   }
 }
+

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { PlusCircle, Settings, ArrowLeft } from 'lucide-react';
+import { PlusCircle, Settings, ArrowLeft, FileText } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { eventoService } from '../../services/api';
 import toast from 'react-hot-toast';
@@ -9,6 +9,7 @@ import styles from './GerenciarCampanhas.module.css';
 export function GerenciarCampanhas() {
   const { user, isAdmin } = useAuth();
   const [campanhaAtivaId, setCampanhaAtivaId] = useState<number | null>(null);
+  const [campanhaAguardandoId, setCampanhaAguardandoId] = useState<number | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,8 +18,11 @@ export function GerenciarCampanhas() {
       .then(data => {
         const ativa = data.find((e: any) => e.status === 'EM_ANDAMENTO');
         if (ativa) setCampanhaAtivaId(ativa.id);
+
+        const aguardando = data.find((e: any) => e.status === 'AGUARDANDO_RELATORIO');
+        if (aguardando) setCampanhaAguardandoId(aguardando.id);
       })
-      .catch(() => toast.error('Erro ao buscar campanha ativa'));
+      .catch(() => toast.error('Erro ao buscar campanhas'));
   }, [isAdmin]);
 
   const handleGerenciar = () => {
@@ -79,6 +83,18 @@ export function GerenciarCampanhas() {
               <p>Edite as informações da campanha vigente, acompanhe o progresso das doações ou encerre.</p>
             </div>
           </button>
+
+          {campanhaAguardandoId && (
+            <Link to={`/relatorio-transparencia/${campanhaAguardandoId}`} className={styles.actionCard} style={{ border: '2px solid #f97316' }}>
+              <div className={styles.iconWrapper} style={{ backgroundColor: '#fff7ed', color: '#ea580c' }}>
+                <FileText size={36} />
+              </div>
+              <div className={styles.cardText}>
+                <h3 style={{ color: '#ea580c' }}>Terminar Relatório</h3>
+                <p>Você tem uma campanha aguardando a finalização do relatório de transparência.</p>
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </main>

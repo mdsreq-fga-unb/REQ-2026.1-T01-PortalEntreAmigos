@@ -137,6 +137,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Libera o acesso para qualquer porta durante o desenvolvimento
 CORS_ALLOW_ALL_ORIGINS = True
@@ -159,3 +163,7 @@ EMAIL_HOST = os.getenv("EMAIL_HOST", "mailpit")
 EMAIL_PORT = int(os.getenv("EMAIL_PORT", 1025))
 
 DEFAULT_FROM_EMAIL = "nao-responda@acaoentreamigos.org"
+
+# URL base do frontend para montar links em e-mails transacionais.
+# Em produção, defina a variável de ambiente FRONTEND_URL com a URL real.
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
