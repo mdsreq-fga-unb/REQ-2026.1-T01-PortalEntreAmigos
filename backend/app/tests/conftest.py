@@ -25,7 +25,10 @@ def usuario_dados():
 def usuario_criado(db, usuario_dados):
     client = APIClient()
     client.post('/api/cadastro/', usuario_dados, format='json')
-    return User.objects.get(email=usuario_dados['email'])
+    user = User.objects.get(email=usuario_dados['email'])
+    user.is_active = True
+    user.save(update_fields=['is_active'])
+    return user
 
 
 @pytest.fixture
@@ -43,15 +46,17 @@ def admin_user(db):
         first_name='Admin',
         is_staff=True,
         is_superuser=True,
+        is_active=True,
     )
     PerfilUsuario.objects.get_or_create(user=user, defaults={'cpf': '52998224725', 'telefone': '61988887777'})
     return user
 
 
 @pytest.fixture
-def admin_client(api_client, admin_user):
-    api_client.force_authenticate(user=admin_user)
-    return api_client
+def admin_client(admin_user):
+    client = APIClient()
+    client.force_authenticate(user=admin_user)
+    return client
 
 
 @pytest.fixture

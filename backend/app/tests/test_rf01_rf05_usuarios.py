@@ -30,6 +30,9 @@ class TestRF02LoginUsuario:
 
     def test_login_sucesso(self, api_client, usuario_dados):
         api_client.post('/api/cadastro/', usuario_dados, format='json')
+        user = User.objects.get(email=usuario_dados['email'])
+        user.is_active = True
+        user.save(update_fields=['is_active'])
         response = api_client.post(
             '/api/login/',
             {'email': usuario_dados['email'], 'password': usuario_dados['password']},
