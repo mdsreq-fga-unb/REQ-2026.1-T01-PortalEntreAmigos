@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { X, UploadCloud, Edit, Trash2, FileText, Plus } from 'lucide-react';
 import { transparenciaService } from '../../services/api';
+import { PageHeader } from '../../components/PageHeader/PageHeader';
 import toast from 'react-hot-toast';
 import styles from './Transparencia.module.css';
 
@@ -138,23 +139,18 @@ export function Transparencia() {
 
   return (
     <main className={styles.container}>
-      <header className={styles.header}>
-        <div className={styles.headerTop}>
-          <div>
-            <h1 className={styles.title}>TRANSPARÊNCIA</h1>
-            <p className={styles.subtitle}>
-              Cada real doado é registrado e comprovado. Veja abaixo<br/>
-              as notas fiscais e relatórios das campanhas.
-            </p>
-          </div>
-          {isAdmin && (
-            <button className={styles.addButton} onClick={() => openModal()}>
-              <Plus size={20} />
-              Adicionar Transparência
-            </button>
-          )}
-        </div>
-      </header>
+      <PageHeader 
+        title="TRANSPARÊNCIA"
+        subtitle="Cada real doado é registrado e comprovado. Veja abaixo as notas fiscais e relatórios das campanhas."
+        minHeight="200px"
+      >
+        {isAdmin && (
+          <button className={styles.addButton} onClick={() => openModal()} style={{ marginTop: '1rem', width: 'auto', alignSelf: 'center', margin: '0 auto', display: 'flex', alignItems: 'center' }}>
+            <Plus size={20} style={{ marginRight: '8px' }} />
+            Adicionar Transparência
+          </button>
+        )}
+      </PageHeader>
 
       <section className={styles.cardsList}>
         {cards.length === 0 ? (

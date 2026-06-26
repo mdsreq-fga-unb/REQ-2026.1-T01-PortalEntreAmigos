@@ -90,7 +90,7 @@ export function DonationProgress({ data, globalProgress, title = 'Distribuição
               className={styles.circleValue}
               cx="50" cy="50" r="40"
               strokeDasharray="251.2" /* 2 * PI * 40 */
-              strokeDashoffset={251.2 - (251.2 * globalProgress) / 100}
+              strokeDashoffset={251.2 - (251.2 * Math.min(globalProgress, 100)) / 100}
             />
           </svg>
           <div className={styles.progressTextValue}>{globalProgress}%</div>

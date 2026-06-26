@@ -4,6 +4,7 @@ import { FiMinus, FiPlus } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import { doacaoService } from '../../../../services/api';
 import { useAuth } from '../../../../contexts/AuthContext';
+import { Modal } from '../../../../components/Modal/Modal';
 import styles from './DonationSelector.module.css';
 
 export interface DonationItem {
@@ -27,6 +28,7 @@ export function DonationSelector({ items, onPromessaFeita }: DonationSelectorPro
     items.reduce((acc, item) => ({ ...acc, [item.id]: 0 }), {})
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleIncrement = (id: string) => {
     setQuantities(prev => ({ ...prev, [id]: prev[id] + 1 }));
@@ -38,8 +40,7 @@ export function DonationSelector({ items, onPromessaFeita }: DonationSelectorPro
 
   const totalSelected = Object.values(quantities).reduce((a, b) => a + b, 0);
 
-  const handlePrometear = async () => {
-    // Usuário não logado: avisa e redireciona para o login
+  const handleOpenModal = () => {
     if (!user) {
       toast.error('Você precisa estar logado para fazer uma promessa de doação.');
       navigate('/login');
@@ -50,6 +51,11 @@ export function DonationSelector({ items, onPromessaFeita }: DonationSelectorPro
       toast.error('Selecione ao menos um item para prometer.');
       return;
     }
+
+    setIsModalOpen(true);
+  };
+
+  const handlePrometear = async () => {
 
     setIsSubmitting(true);
     try {
@@ -118,11 +124,48 @@ export function DonationSelector({ items, onPromessaFeita }: DonationSelectorPro
 
       <button
         className={styles.donateBtn}
-        onClick={handlePrometear}
+        onClick={handleOpenModal}
         disabled={isSubmitting}
       >
         {isSubmitting ? 'REGISTRANDO...' : `PROMETER DOAR ITENS SELECIONADOS (${totalSelected})`}
       </button>
+
+      <Modal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        title="Confirmar Promessa"
+      >
+        <p style={{ color: 'var(--color-text-main)', marginBottom: '1rem' }}>
+          Deseja realmente confirmar essa promessa de doação?
+        </p>
+        
+        <div style={{ background: '#f8fafc', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
+          <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--color-text-main)', fontSize: '0.9rem' }}>Itens selecionados:</h4>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {items.filter(item => quantities[item.id] > 0).map(item => (
+              <li key={item.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.25rem 0', color: 'var(--color-text-muted)' }}>
+                <span>{item.name}</span>
+                <strong style={{ color: 'var(--color-primary)' }}>{quantities[item.id]} un.</strong>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
+          <button 
+            onClick={() => setIsModalOpen(false)}
+            style={{ padding: '0.5rem 1rem', background: 'transparent', border: '1px solid #cbd5e1', borderRadius: '4px', cursor: 'pointer', fontWeight: 600, color: 'var(--color-text-muted)' }}
+          >
+            Cancelar
+          </button>
+          <button 
+            onClick={() => { setIsModalOpen(false); handlePrometear(); }}
+            style={{ padding: '0.5rem 1rem', background: 'var(--color-primary)', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 600, color: 'white' }}
+          >
+            Confirmar Doação
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }

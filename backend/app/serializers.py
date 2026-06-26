@@ -242,12 +242,13 @@ class DoacaoSerializer(serializers.ModelSerializer):
     item_nome = serializers.CharField(source='item.nome', read_only=True)
     # Nome da campanha/evento para exibir na aba "Minha Conta"
     evento_nome = serializers.CharField(source='item.evento.nome', read_only=True)
+    evento_status = serializers.CharField(source='item.evento.status', read_only=True)
+    evento_id = serializers.IntegerField(source='item.evento.id', read_only=True)
 
     class Meta:
         model = Doacao
-        fields = ['id', 'item', 'item_nome', 'evento_nome', 'usuario', 'doador_nome', 'doador_cpf', 'quantidade', 'status', 'criado_em']
-        read_only_fields = ['usuario', 'doador_nome', 'doador_cpf', 'item_nome', 'evento_nome', 'status', 'criado_em']
-        
+        fields = ['id', 'item', 'item_nome', 'evento_nome', 'evento_status', 'evento_id', 'usuario', 'doador_nome', 'doador_cpf', 'quantidade', 'status', 'criado_em']
+        read_only_fields = ['usuario', 'doador_nome', 'doador_cpf', 'item_nome', 'evento_nome', 'evento_status', 'evento_id', 'status', 'criado_em']
 # Disparo de emails
 def construir_link_confirmacao(utilizador):
     """

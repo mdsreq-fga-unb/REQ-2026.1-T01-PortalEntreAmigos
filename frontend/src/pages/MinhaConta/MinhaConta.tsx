@@ -330,49 +330,86 @@ export function MinhaConta() {
                   </Link>
                 </div>
               ) : (
-                promessas.map((promessa) => (
-                  <div key={promessa.id} className={styles.promiseItem}>
-                    <div className={styles.promiseDetails}>
-                      <span className={styles.campaignName}>{promessa.evento_nome || 'Campanha'}</span>
-                      <span className={styles.itemName}>
-                        {promessa.item_nome} • <strong>{promessa.quantidade} u.</strong>
-                      </span>
-                      <span className={styles.promiseDate}>
-                        Prometido em: {new Date(promessa.criado_em).toLocaleDateString('pt-BR')}
-                      </span>
-                    </div>
-                    <div className={styles.promiseStatus}>
-                      {promessa.status === 'RECEBIDA' ? (
-                        <span className={`${styles.badge} ${styles.badgeSuccess}`}>
-                          ✓ Confirmada
-                        </span>
-                      ) : (
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                          <span className={`${styles.badge} ${styles.badgeWarning}`}>
-                            ⏳ Precisa cumprir
+                <>
+                  <h3 style={{ marginTop: '0', marginBottom: '1rem', color: 'var(--color-text-main)', fontSize: '1.25rem' }}>Em Andamento</h3>
+                  {promessas.filter(p => p.evento_status === 'EM_ANDAMENTO').length === 0 ? (
+                    <p style={{ color: 'var(--color-text-muted)' }}>Nenhuma promessa em campanhas ativas.</p>
+                  ) : (
+                    promessas.filter(p => p.evento_status === 'EM_ANDAMENTO').map((promessa) => (
+                      <div key={promessa.id} className={styles.promiseItem}>
+                        <div className={styles.promiseDetails}>
+                          <span className={styles.campaignName}>{promessa.evento_nome || 'Campanha'}</span>
+                          <span className={styles.itemName}>
+                            {promessa.item_nome} • <strong>{promessa.quantidade} u.</strong>
                           </span>
-                          <button
-                            onClick={() => handleCancelPromise(promessa.id)}
-                            style={{ 
-                              background: 'transparent', 
-                              border: 'none', 
-                              color: '#ef4444', 
-                              cursor: 'pointer', 
-                              display: 'flex', 
-                              alignItems: 'center', 
-                              justifyContent: 'center',
-                              padding: '4px',
-                              borderRadius: '4px'
-                            }}
-                            title="Cancelar promessa"
-                          >
-                            <Trash2 size={16} />
-                          </button>
+                          <span className={styles.promiseDate}>
+                            Prometido em: {new Date(promessa.criado_em).toLocaleDateString('pt-BR')}
+                          </span>
                         </div>
-                      )}
-                    </div>
-                  </div>
-                ))
+                        <div className={styles.promiseStatus}>
+                          {promessa.status === 'RECEBIDA' ? (
+                            <span className={`${styles.badge} ${styles.badgeSuccess}`}>
+                              ✓ Confirmada
+                            </span>
+                          ) : (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                              <span className={`${styles.badge} ${styles.badgeWarning}`}>
+                                ⏳ Precisa cumprir
+                              </span>
+                              <button
+                                onClick={() => handleCancelPromise(promessa.id)}
+                                style={{ 
+                                  background: 'transparent', 
+                                  border: 'none', 
+                                  color: '#ef4444', 
+                                  cursor: 'pointer', 
+                                  display: 'flex', 
+                                  alignItems: 'center', 
+                                  justifyContent: 'center',
+                                  padding: '4px',
+                                  borderRadius: '4px'
+                                }}
+                                title="Cancelar promessa"
+                              >
+                                <Trash2 size={16} />
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))
+                  )}
+
+                  {promessas.filter(p => p.evento_status !== 'EM_ANDAMENTO').length > 0 && (
+                    <>
+                      <h3 style={{ marginTop: '2rem', marginBottom: '1rem', color: 'var(--color-text-main)', fontSize: '1.25rem' }}>Histórico (Campanhas Encerradas)</h3>
+                      {promessas.filter(p => p.evento_status !== 'EM_ANDAMENTO').map((promessa) => (
+                        <div key={promessa.id} className={styles.promiseItem}>
+                          <div className={styles.promiseDetails}>
+                            <span className={styles.campaignName}>{promessa.evento_nome || 'Campanha'}</span>
+                            <span className={styles.itemName}>
+                              {promessa.item_nome} • <strong>{promessa.quantidade} u.</strong>
+                            </span>
+                            <span className={styles.promiseDate}>
+                              Prometido em: {new Date(promessa.criado_em).toLocaleDateString('pt-BR')}
+                            </span>
+                          </div>
+                          <div className={styles.promiseStatus}>
+                            {promessa.status === 'RECEBIDA' ? (
+                              <span className={`${styles.badge} ${styles.badgeSuccess}`}>
+                                ✓ Confirmada
+                              </span>
+                            ) : (
+                              <span className={`${styles.badge} ${styles.badgeWarning}`}>
+                                Não Confirmada
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  )}
+                </>
               )}
             </div>
           </div>

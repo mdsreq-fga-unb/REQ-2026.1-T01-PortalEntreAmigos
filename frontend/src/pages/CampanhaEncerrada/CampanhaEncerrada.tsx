@@ -17,7 +17,7 @@ export function CampanhaEncerrada() {
 
     const carregarDados = async () => {
       try {
-        const eventoData = await eventoService.obterPorId(id);
+        const eventoData = await eventoService.buscar(id);
         const itensData = await itemDoacaoService.listarPorEvento(id);
         
         setCampanha(eventoData);

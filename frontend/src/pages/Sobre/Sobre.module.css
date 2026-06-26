@@ -8,7 +8,7 @@
 .historiaSection {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 5rem 1.5rem;
+  padding: 3rem 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -86,7 +86,7 @@
 /* --- Timeline --- */
 .timelineSection {
   background-color: var(--color-surface);
-  padding: 5rem 1.5rem;
+  padding: 3rem 1.5rem;
 }
 
 .timelineTitle {
@@ -123,12 +123,11 @@
 
 .timelineAxis {
   position: absolute;
-  left: 50%;
+  left: 20px;
   top: 0;
   bottom: 0;
   width: 2px;
   background-color: #e0e0e0;
-  transform: translateX(-50%);
   z-index: 0;
 }
 
@@ -137,16 +136,8 @@
   width: 100%;
   position: relative;
   z-index: 1;
-}
-
-.timelineItem.left {
   justify-content: flex-start;
-  padding-right: calc(50% + 2rem);
-}
-
-.timelineItem.right {
-  justify-content: flex-end;
-  padding-left: calc(50% + 2rem);
+  padding-left: 50px;
 }
 
 .timelineCard {
@@ -171,14 +162,36 @@
   border-radius: 50%;
   position: absolute;
   top: 1.5rem;
+  left: -37px;
 }
 
-.timelineItem.left .timelineDot {
-  right: -2.85rem;
-}
+@media (min-width: 768px) {
+  .timelineAxis {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-.timelineItem.right .timelineDot {
-  left: -2.85rem;
+  .timelineItem.left {
+    justify-content: flex-start;
+    padding-left: 0;
+    padding-right: calc(50% + 2rem);
+  }
+
+  .timelineItem.right {
+    justify-content: flex-end;
+    padding-left: calc(50% + 2rem);
+    padding-right: 0;
+  }
+
+  .timelineItem.left .timelineDot {
+    right: -2.85rem;
+    left: auto;
+  }
+
+  .timelineItem.right .timelineDot {
+    left: -2.85rem;
+    right: auto;
+  }
 }
 
 .dotRed    { background-color: #e74c3c; }
@@ -211,7 +224,7 @@
 
 /* --- MVV --- */
 .mvvSection {
-  padding: 5rem 1.5rem;
+  padding: 3rem 1.5rem;
   background-color: var(--color-background);
 }
 
@@ -308,7 +321,7 @@
 /* --- Números --- */
 .numerosSection {
   background-color: var(--color-primary);
-  padding: 5rem 1.5rem;
+  padding: 3rem 1.5rem;
   text-align: center;
 }
 
@@ -346,7 +359,7 @@
 
 .numerosGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 2rem;
   max-width: 800px;
   margin: 0 auto;
@@ -379,7 +392,13 @@
   text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) {
+  .numerosGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
   .numerosGrid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -388,7 +407,7 @@
 /* --- Transparência --- */
 .transparenciaSection {
   background-color: var(--color-background);
-  padding: 5rem 1.5rem;
+  padding: 3rem 1.5rem;
 }
 
 .transparenciaContent {

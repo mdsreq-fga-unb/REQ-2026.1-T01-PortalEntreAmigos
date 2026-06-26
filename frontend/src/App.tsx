@@ -17,7 +17,7 @@ function App() {
           </main>
           <Footer />
         </div>
-        <Toaster position="top-right" />
+        <Toaster position="top-right" containerClassName="print-hidden" />
       </Router>
     </AuthProvider>
   );
