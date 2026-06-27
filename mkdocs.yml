@@ -92,6 +92,27 @@ nav:
         - DOR e DOD: 16_ciclos_rad/ciclo5/RF11/dor_dod_evidencias_RF11.md
         - Critérios de Aceitação: 16_ciclos_rad/ciclo5/RF11/criterios_evidencias_RF11.md
 
+  - MVP:
+    - Matriz: 17_MVP/mvp.md
+    - US01: 17_MVP/us01.md
+    - US02: 17_MVP/us02.md
+    - US03: 17_MVP/us03.md
+    - US04: 17_MVP/us04.md
+    - US05: 17_MVP/us05.md
+    - US06: 17_MVP/us06.md
+    - US07: 17_MVP/us07.md
+    - US08: 17_MVP/us08.md
+    - US09: 17_MVP/us09.md
+    - US10: 17_MVP/us10.md
+    - US11: 17_MVP/us11.md
+    - US12: 17_MVP/us12.md
+    - US13: 17_MVP/us13.md
+    - US14: 17_MVP/us14.md
+    - US15: 17_MVP/us15.md
+    - US16: 17_MVP/us16.md
+    - US17: 17_MVP/us17.md
+    - US18: 17_MVP/us18.md
+    - US19: 17_MVP/us19.md
     
   - Lições Aprendidas:
     - Unidade 1: 10_licoes/Unidades/unidade_01.md
