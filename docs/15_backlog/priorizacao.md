@@ -4,7 +4,7 @@
 
 A priorização do backlog do produto foi realizada com o objetivo de identificar quais funcionalidades possuem maior importância para o desenvolvimento inicial da solução proposta para a ONG Ação Entre Amigos BSB.
 
-O processo de priorização ocorreu em conjunto com o cliente Carlos Vaz e seu vice, permitindo alinhar as necessidades reais da instituição com as limitações de tempo e escopo do projeto acadêmico.
+O processo de priorização ocorreu em conjunto com o cliente Carlos Vaz e seu vice, permitindo alinhar as necessidades reais da instituição com las limitações de tempo e escopo do projeto acadêmico.
 
 A definição das prioridades auxilia a equipe no planejamento das entregas, garantindo foco nas funcionalidades mais relevantes para o funcionamento da plataforma e para os objetivos da ONG.
 
@@ -20,10 +20,10 @@ A técnica MoSCoW foi utilizada para classificar os requisitos de acordo com seu
 
 As categorias utilizadas foram:
 
-- **Must Have:** requisitos essenciais para o funcionamento da solução;
-- **Should Have:** requisitos importantes, mas não críticos para a primeira versão;
-- **Could Have:** requisitos desejáveis, porém opcionais dentro do escopo atual;
-- **Won’t Have:** requisitos que não serão implementados neste momento.
+* **Must Have:** requisitos essenciais para o funcionamento da solução;
+* **Should Have:** requisitos importantes, mas não críticos para a primeira versão;
+* **Could Have:** requisitos desejáveis, porém opcionais dentro do escopo atual;
+* **Won’t Have:** requisitos que não serão implementados neste momento.
 
 Essa técnica permitiu identificar as funcionalidades prioritárias para o desenvolvimento do MVP do sistema.
 
@@ -35,12 +35,13 @@ A matriz Valor x Esforço foi utilizada para analisar o custo-benefício de impl
 
 A técnica considera dois fatores principais:
 
-- **Valor:** impacto e importância da funcionalidade para os usuários e para a ONG;
-- **Esforço:** complexidade técnica e quantidade de trabalho necessária para implementação.
+* **Valor:** impacto e importância da funcionalidade para os usuários e para a ONG;
+* **Esforço:** complexidade técnica e quantidade de trabalho necessária para implementação.
 
 Com isso, foi possível identificar funcionalidades que entregam maior valor com menor esforço de desenvolvimento, auxiliando na definição das prioridades do projeto.
 
 ---
+
 ### Índice de Prioridade (IP)
 
 Para a priorização do backlog foram utilizados os seguintes critérios:
@@ -76,14 +77,13 @@ A Figura 1 apresenta o material produzido pela equipe durante o processo de prio
 
 ---
 
-
 ## Tabela MoSCoW
 
 | Categoria | Requisitos |
 | :--- | :--- |
-| **Must Have (Deve ter)** | [RF06](../13_requisitos/requisitos.md#rf06) – Criar eventos<br>[RF08](../13_requisitos/requisitos.md#rf08) – Excluir eventos<br>[RF09](../13_requisitos/requisitos.md#rf09) – Encerrar eventos<br>[RF11](../13_requisitos/requisitos.md#rf11) – Registrar doação<br>[RF12](../13_requisitos/requisitos.md#rf12) – Atualizar saldo<br>[RF13](../13_requisitos/requisitos.md#rf13) – Confirmar recebimento de doação<br>[RF14](../13_requisitos/requisitos.md#rf14) – Exibir eventos<br>[RF15](../13_requisitos/requisitos.md#rf15) – Realizar inscrição em eventos<br>[RF17](../13_requisitos/requisitos.md#rf17) – Visualizar comprovantes<br>[RF18](../13_requisitos/requisitos.md#rf18) – Enviar notas fiscais |
-| **Should Have (Deveria ter)** | [RF07](../13_requisitos/requisitos.md#rf07) – Editar eventos<br>[RF16](../13_requisitos/requisitos.md#rf16) – Exibir informações institucionais<br>[RF19](../13_requisitos/requisitos.md#rf19) – Gerar relatório de informações do evento |
-| **Could Have (Poderia ter)** | [RF01](../13_requisitos/requisitos.md#rf01) – Cadastrar usuário<br>[RF02](../13_requisitos/requisitos.md#rf02) – Login de usuário<br>[RF03](../13_requisitos/requisitos.md#rf03) – Visualizar perfil<br>[RF04](../13_requisitos/requisitos.md#rf04) – Editar perfil<br>[RF05](../13_requisitos/requisitos.md#rf05) – Excluir conta<br>[RF10](../13_requisitos/requisitos.md#rf10) – Exibir progresso da meta |
+| **Must Have (Deve ter)** | [RF01](../13_requisitos/requisitos.md#rf01) – Cadastrar usuário<br>[RF02](../13_requisitos/requisitos.md#rf02) – Login de usuário<br>[RF03](../13_requisitos/requisitos.md#rf03) – Visualizar perfil<br>[RF04](../13_requisitos/requisitos.md#rf04) – Editar perfil<br>[RF05](../13_requisitos/requisitos.md#rf05) – Excluir conta<br>[RF06](../13_requisitos/requisitos.md#rf06) – Criar eventos<br>[RF08](../13_requisitos/requisitos.md#rf08) – Excluir eventos<br>[RF09](../13_requisitos/requisitos.md#rf09) – Encerrar eventos<br>[RF11](../13_requisitos/requisitos.md#rf11) – Registrar doação<br>[RF12](../13_requisitos/requisitos.md#rf12) – Atualizar saldo<br>[RF13](../13_requisitos/requisitos.md#rf13) – Confirmar recebimento de doação<br>[RF14](../13_requisitos/requisitos.md#rf14) – Exibir eventos<br>[RF15](../13_requisitos/requisitos.md#rf15) – Realizar inscrição em eventos<br>[RF17](../13_requisitos/requisitos.md#rf17) – Visualizar comprovantes<br>[RF18](../13_requisitos/requisitos.md#rf18) – Enviar notas fiscais |
+| **Should Have (Deveria ter)** | [RF07](../13_requisitos/requisitos.md#rf07) – Editar eventos<br>[RF10](../13_requisitos/requisitos.md#rf10) – Exibir progresso da meta<br>[RF16](../13_requisitos/requisitos.md#rf16) – Exibir informações institucionais<br>[RF19](../13_requisitos/requisitos.md#rf19) – Gerar relatório de informações do evento |
+| **Could Have (Poderia ter)** | Nenhum requisito foi mantido nesta categoria. |
 | **Won’t Have (Não terá por enquanto)** | Nenhum requisito foi classificado nesta categoria durante a priorização inicial. |
 
 ---
@@ -92,10 +92,10 @@ A Figura 1 apresenta o material produzido pela equipe durante o processo de prio
 
 | Quadrante | Requisitos |
 | :--- | :--- |
-| **Grande Valor / Pequeno Esforço** | [RF11](../13_requisitos/requisitos.md#rf11) – Registrar doação<br>[RF12](../13_requisitos/requisitos.md#rf12) – Atualizar saldo<br>[RF14](../13_requisitos/requisitos.md#rf14) – Exibir eventos<br>[RF16](../13_requisitos/requisitos.md#rf16) – Exibir informações institucionais |
-| **Grande Valor / Grande Esforço** | [RF06](../13_requisitos/requisitos.md#rf06) – Criar eventos<br>[RF07](../13_requisitos/requisitos.md#rf07) – Editar eventos<br>[RF08](../13_requisitos/requisitos.md#rf08) – Excluir eventos<br>[RF09](../13_requisitos/requisitos.md#rf09) – Encerrar eventos<br>[RF13](../13_requisitos/requisitos.md#rf13) – Confirmar recebimento de doação<br>[RF15](../13_requisitos/requisitos.md#rf15) – Realizar inscrição em eventos<br>[RF17](../13_requisitos/requisitos.md#rf17) – Visualizar comprovantes<br>[RF18](../13_requisitos/requisitos.md#rf18) – Enviar notas fiscais<br>[RF19](../13_requisitos/requisitos.md#rf19) – Gerar relatório de informações do evento |
-| **Pequeno Valor / Pequeno Esforço** | [RF03](../13_requisitos/requisitos.md#rf03) – Visualizar perfil<br>[RF05](../13_requisitos/requisitos.md#rf05) – Excluir conta<br>[RF10](../13_requisitos/requisitos.md#rf10) – Exibir progresso da meta |
-| **Pequeno Valor / Grande Esforço** | [RF01](../13_requisitos/requisitos.md#rf01) – Cadastrar usuário<br>[RF02](../13_requisitos/requisitos.md#rf02) – Login de usuário<br>[RF04](../13_requisitos/requisitos.md#rf04) – Editar perfil |
+| **Grande Valor / Pequeno Esforço** | [RF03](../13_requisitos/requisitos.md#rf03) – Visualizar perfil<br>[RF05](../13_requisitos/requisitos.md#rf05) – Excluir conta<br>[RF10](../13_requisitos/requisitos.md#rf10) – Exibir progresso da meta<br>[RF11](../13_requisitos/requisitos.md#rf11) – Registrar doação<br>[RF12](../13_requisitos/requisitos.md#rf12) – Atualizar saldo<br>[RF14](../13_requisitos/requisitos.md#rf14) – Exibir eventos<br>[RF16](../13_requisitos/requisitos.md#rf16) – Exibir informações institucionais |
+| **Grande Valor / Grande Esforço** | [RF01](../13_requisitos/requisitos.md#rf01) – Cadastrar usuário<br>[RF02](../13_requisitos/requisitos.md#rf02) – Login de usuário<br>[RF04](../13_requisitos/requisitos.md#rf04) – Editar perfil<br>[RF06](../13_requisitos/requisitos.md#rf06) – Criar eventos<br>[RF07](../13_requisitos/requisitos.md#rf07) – Editar eventos<br>[RF08](../13_requisitos/requisitos.md#rf08) – Excluir eventos<br>[RF09](../13_requisitos/requisitos.md#rf09) – Encerrar eventos<br>[RF13](../13_requisitos/requisitos.md#rf13) – Confirmar recebimento de doação<br>[RF15](../13_requisitos/requisitos.md#rf15) – Realizar inscrição em eventos<br>[RF17](../13_requisitos/requisitos.md#rf17) – Visualizar comprovantes<br>[RF18](../13_requisitos/requisitos.md#rf18) – Enviar notas fiscais<br>[RF19](../13_requisitos/requisitos.md#rf19) – Gerar relatório de informações do evento |
+| **Pequeno Valor / Pequeno Esforço** | Nenhum requisito. |
+| **Pequeno Valor / Grande Esforço** | Nenhum requisito. |
 
 ---
 
@@ -103,12 +103,15 @@ A Figura 1 apresenta o material produzido pela equipe durante o processo de prio
 
 A partir das técnicas aplicadas, foi gerada a seguinte priorização do backlog do produto:
 
-| US   | Descrição   | VN | EP | IP   | Quadrante      | Prioridade sugerida |
-|------|---------|----|----|------|----------------|-------------|
+| US | Descrição | VN | EP | IP | Quadrante | Prioridade sugerida |
+| :--- | :--- | :---: | :---: | :---: | :--- | :--- |
 | [US11](backlog.md#us11) | Registrar Doação | 5 | 2 | 2,50 | Q1 Alto valor / Baixa carga técnica | Prioridade 1 |
 | [US12](backlog.md#us12) | Atualizar Saldo | 5 | 2 | 2,50 | Q1 Alto valor / Baixa carga técnica | Prioridade 1 |
 | [US14](backlog.md#us14) | Exibir Eventos | 5 | 2 | 2,50 | Q1 Alto valor / Baixa carga técnica | Prioridade 1 |
 | [US16](backlog.md#us16) | Exibir informações Institucionais | 5 | 2 | 2,50 | Q1 Alto valor / Baixa carga técnica | Prioridade 1 |
+| [US03](backlog.md#us03) | Visualizar Perfil | 4 | 2 | 2,00 | Q1 Alto valor / Baixa carga técnica | Prioridade 1 |
+| [US05](backlog.md#us05) | Excluir Conta | 4 | 2 | 2,00 | Q1 Alto valor / Baixa carga técnica | Prioridade 1 |
+| [US10](backlog.md#us10) | Exibir Progresso da Meta | 4 | 2 | 2,00 | Q1 Alto valor / Baixa carga técnica | Prioridade 1 |
 | [US06](backlog.md#us06) | Criar Eventos | 4 | 3 | 1,33 | Q2 Alto valor / Alta carga técnica | Prioridade 2 |
 | [US07](backlog.md#us07) | Editar Eventos | 4 | 3 | 1,33 | Q2 Alto valor / Alta carga técnica | Prioridade 2 |
 | [US08](backlog.md#us08) | Excluir Eventos | 4 | 3 | 1,33 | Q2 Alto valor / Alta carga técnica | Prioridade 2 |
@@ -118,31 +121,32 @@ A partir das técnicas aplicadas, foi gerada a seguinte priorização do backlog
 | [US17](backlog.md#us17) | Visualizar Comprovantes | 4 | 3 | 1,33 | Q2 Alto valor / Alta carga técnica | Prioridade 2 |
 | [US18](backlog.md#us18) | Enviar Notas Fiscais | 4 | 3 | 1,33 | Q2 Alto valor / Alta carga técnica | Prioridade 2 |
 | [US19](backlog.md#us19) | Gerar relatório de informação de eventos | 4 | 3 | 1,33 | Q2 Alto valor / Alta carga técnica | Prioridade 2 |
-| [US03](backlog.md#us03) | Visualizar Perfil | 2 | 2 | 1,00 | Q3 Baixo valor / Baixa carga técnica | Prioridade 3 |
-| [US05](backlog.md#us05) | Excluir Conta | 2 | 2 | 1,00 | Q3 Baixo valor / Baixa carga técnica | Prioridade 3 |
-| [US10](backlog.md#us10) | Exibir Progresso da Meta | 2 | 2 | 1,00 | Q3 Baixo valor / Baixa carga técnica | Prioridade 3 |
-| [US01](backlog.md#us01) | Cadastro de Usuário | 2 | 4 | 0,50 | Q4 Baixo valor / Alta carga técnica | Prioridade 4 |
-| [US02](backlog.md#us02) | Login de Usuário | 2 | 4 | 0,50 | Q4 Baixo valor / Alta carga técnica | Prioridade 4 |
-| [US04](backlog.md#us04) | Editar Perfil | 2 | 4 | 0,50 | Q4 Baixo valor / Alta carga técnica | Prioridade 4 |
+| [US01](backlog.md#us01) | Cadastro de Usuário | 4 | 4 | 1,00 | Q2 Alto valor / Alta carga técnica | Prioridade 2 |
+| [US02](backlog.md#us02) | Login de Usuário | 4 | 4 | 1,00 | Q2 Alto valor / Alta carga técnica | Prioridade 2 |
+| [US04](backlog.md#us04) | Editar Perfil | 4 | 4 | 1,00 | Q2 Alto valor / Alta carga técnica | Prioridade 2 |
 
 ---
 
 ## MVP do Produto
 
-Com base na priorização realizada utilizando as técnicas MoSCoW, Valor x Esforço e Índice de Prioridade (IP), foi definido que o MVP (Minimum Viable Product) será composto pelas funcionalidades classificadas como Prioridade 1 e Prioridade 2 durante o processo de análise junto ao cliente.
+Com base na priorização realizada em conjunto com o cliente Carlos Vaz, determinou-se que o MVP será composto por todas as funcionalidades classificadas como **Prioridade 1** e **Prioridade 2**.
 
-As funcionalidades de Prioridade 1 foram selecionadas por apresentarem alto valor de negócio e baixa carga técnica, permitindo entregas rápidas e essenciais para o funcionamento inicial da plataforma. Já as funcionalidades de Prioridade 2 foram incluídas por agregarem elevado valor operacional para a ONG, mesmo demandando maior esforço de desenvolvimento.
-
-Essas funcionalidades representam o núcleo principal do sistema e entregam maior valor para a ONG com menor custo de implementação inicial, permitindo validar a solução proposta e apoiar as principais operações da organização.
+Isso significa que todo o gerenciamento de acesso do usuário (cadastro, login e controle de perfil) e o feedback visual de progresso de meta das campanhas foram integrados ao MVP. Essa decisão garante a robustez operacional básica de identificação de usuários e a confiabilidade de prestação de contas das metas públicas arrecadadas de forma imediata na primeira versão de entrega da plataforma.
 
 ### Rastreabilidade do MVP
 
 | Requisito Funcional | User Story Relacionada | Funcionalidade do MVP |
 | :--- | :--- | :--- |
+| [RF01](../13_requisitos/requisitos.md#rf01) – Cadastrar usuário | [US01](backlog.md#us01) | Permitir que novos usuários se cadastrem no sistema |
+| [RF02](../13_requisitos/requisitos.md#rf02) – Login de usuário | [US02](backlog.md#us02) | Permitir autenticação via e-mail e senha |
+| [RF03](../13_requisitos/requisitos.md#rf03) – Visualizar perfil | [US03](backlog.md#us03) | Permitir visualização dos dados cadastrados |
+| [RF04](../13_requisitos/requisitos.md#rf04) – Editar perfil | [US04](backlog.md#us04) | Permitir atualização dos dados do usuário |
+| [RF05](../13_requisitos/requisitos.md#rf05) – Excluir conta | [US05](backlog.md#us05) | Permitir exclusão lógica ou física da conta |
 | [RF06](../13_requisitos/requisitos.md#rf06) – Criar eventos | [US06](backlog.md#us06) | Permitir criação de eventos com nome, descrição, meta, data e local |
 | [RF07](../13_requisitos/requisitos.md#rf07) – Editar eventos | [US07](backlog.md#us07) | Permitir alteração de eventos existentes |
 | [RF08](../13_requisitos/requisitos.md#rf08) – Excluir eventos | [US08](backlog.md#us08) | Permitir remoção de eventos |
 | [RF09](../13_requisitos/requisitos.md#rf09) – Encerrar eventos | [US09](backlog.md#us09) | Permitir finalização manual de eventos |
+| [RF10](../13_requisitos/requisitos.md#rf10) – Exibir progresso da meta | [US10](backlog.md#us10) | Exibir percentual de atingimento da meta |
 | [RF11](../13_requisitos/requisitos.md#rf11) – Registrar doação | [US11](backlog.md#us11) | Permitir registro de itens e quantidades |
 | [RF12](../13_requisitos/requisitos.md#rf12) – Atualizar saldo | [US12](backlog.md#us12) | Permitir controle de valores arrecadados |
 | [RF13](../13_requisitos/requisitos.md#rf13) – Confirmar recebimento de doação | [US13](backlog.md#us13) | Permitir que o usuário administrador confirme a doação |
@@ -153,9 +157,7 @@ Essas funcionalidades representam o núcleo principal do sistema e entregam maio
 | [RF18](../13_requisitos/requisitos.md#rf18) – Enviar notas fiscais | [US18](backlog.md#us18) | Permitir envio de comprovantes |
 | [RF19](../13_requisitos/requisitos.md#rf19) – Gerar relatório de informações do evento | [US19](backlog.md#us19) | Gerar relatório com as informações do evento encerrado |
 
-
 ---
-
 
 ## Considerações
 
@@ -165,11 +167,9 @@ Além disso, o envolvimento direto do cliente no processo contribuiu para garant
 
 ---
 
-
 ## Histórico de Versão
 
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | :---: | :---: | :--- | :---: | :---: |
 | 1.0 | 18/05/2026 | Criação da página de priorização do Backlog | [Guilherme](https://github.com/GuilhermeOliveira1327) | Equipe |
-
-
+| 1.1 | 27/06/2026 | Atualização do MoSCoW e inclusão de autenticação e metas no MVP | Equipe | Equipe |
