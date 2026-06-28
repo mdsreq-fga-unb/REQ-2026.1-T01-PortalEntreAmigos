@@ -41,3 +41,4 @@ watchdog==6.0.0
 djangorestframework-simplejwt>=5.3.1
 reportlab
 dj-database-url
+gunicorn
