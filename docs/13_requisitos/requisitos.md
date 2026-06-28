@@ -61,7 +61,7 @@ Os requisitos funcionais representam as funcionalidades que deverão ser impleme
 | :---: | :--- | :---: |
 | <a id="rf14"></a>RF14 | Exibir eventos | [CP2](../02_solucao/produto.md#cp2) |
 | <a id="rf15"></a>RF15 | Realizar inscrição em eventos | [CP3](../02_solucao/produto.md#cp3) |
-| <a id="rf16"></a>RF16 | Exibir informações institucionais | [CP5](../02_solucao/produto.md#cp5) |
+| <a id="rf16"></a>RF16 | Exibir informações institucionais | [CP8](../02_solucao/produto.md#cp8) |
 
 ---
 
@@ -111,6 +111,14 @@ A tabela abaixo estabelece as restrições operacionais, limites de funcionalida
 ## Rastreabilidade dos Requisitos
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/kMxEVxPcaLlDG02xoxBjUd/Tabela-completa-OE--CP--RF?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+
+---
+
+## Print do Figma
+
+Caso o figma a cima não carregue, aqui esta um print tirado da ultima atualizacao da Matriz de Rastreabilidade do figma
+
+![matriz_rastreabilidade](../00_assets/imagens/matriz_rastreabilidade.png)
 
 ---
 

@@ -52,6 +52,7 @@ As características do produto representam funcionalidades e capacidades de alto
 | <a id="cp5"></a>CP5 | Relatórios e Prestação de Contas | Consolidar informações financeiras e operacionais para auxiliar na transparência e prestação de contas da ONG. | OE2, OE5 |
 | <a id="cp6"></a>CP6 | Perfil e Histórico do Voluntário | Disponibilizar aos voluntários acesso ao histórico de participação e contribuições realizadas. | OE4, OE5 |
 | <a id="cp7"></a>CP7 | Gestão de Acessos e Permissões | Controlar diferentes níveis de acesso entre administradores, organizadores e voluntários. | OE1, OE4 |
+| <a id="cp8"></a>CP8 | Portal Institucional e Comunicação | Promover a visibilidade institucional e o impacto das ações para o público. | OE3, OE4 |
 
 ---
 
