@@ -7,7 +7,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.decorators import action
-from .serializers import RegistroSerializer, LoginSerializer, EventoSerializer, ItemDoacaoSerializer, DoacaoSerializer, construir_link_confirmacao, validar_complexidade_senha
+from .serializers import RegistroSerializer, LoginSerializer, EventoSerializer, ItemDoacaoSerializer, DoacaoSerializer, construir_link_confirmacao, validar_complexidade_senha, enviar_email_brevo
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
@@ -22,7 +22,7 @@ from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from .models import Evento, ItemDoacao, Doacao, CodigoRecuperacaoSenha
-import random
+import random, threading
 from django.utils import timezone
 from datetime import timedelta
 
@@ -314,7 +314,6 @@ class RelatorioDoacoesPDFView(APIView):
 
 
 class EsqueciSenhaView(APIView):
-    """Recebe o e-mail, gera código de 5 dígitos e dispara por e-mail."""
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -323,14 +322,11 @@ class EsqueciSenhaView(APIView):
             return Response({'erro': 'O e-mail é obrigatório.'}, status=status.HTTP_400_BAD_REQUEST)
 
         user = User.objects.filter(email__iexact=email, is_active=True).first()
-
-        # Resposta genérica para não vazar se o e-mail existe ou não
         mensagem_generica = 'Se esse e-mail estiver cadastrado, um código de verificação será enviado em instantes.'
 
         if not user:
             return Response({'mensagem': mensagem_generica}, status=status.HTTP_200_OK)
 
-        # Gera código de 5 dígitos e salva (ou atualiza)
         codigo = str(random.randint(10000, 99999))
         CodigoRecuperacaoSenha.objects.update_or_create(
             user=user,
@@ -345,16 +341,15 @@ class EsqueciSenhaView(APIView):
             f"Este código é válido por 15 minutos.\n"
             f"Se você não solicitou isso, apenas ignore este e-mail."
         )
-        send_mail(
-            subject='Portal Entre Amigos — Código de Recuperação de Senha',
-            message=corpo_email,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[user.email],
-            fail_silently=False,
-        )
+
+        def enviar():
+            enviar_email_brevo(user.email, user.first_name, corpo_email)
+
+        thread = threading.Thread(target=enviar)
+        thread.daemon = True
+        thread.start()
 
         return Response({'mensagem': mensagem_generica}, status=status.HTTP_200_OK)
-
 
 class RedefinirSenhaView(APIView):
     """Valida o código de 5 dígitos e redefine a senha do usuário."""
