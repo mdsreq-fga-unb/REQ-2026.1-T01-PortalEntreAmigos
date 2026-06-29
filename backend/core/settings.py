@@ -30,10 +30,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9*bbf^tfh#r710ii0nas8k65=bt-c!8p65l+0!mg_oxpxbgdw%'
+SECRET_KEY = os.environ.get('SECRET_KEY', '65c8be73e875b3c9bdaa85f36a56e4cb')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 
@@ -159,9 +159,13 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend" #entrega a msg via rede
-EMAIL_HOST = os.getenv("EMAIL_HOST", "mailpit")
-EMAIL_PORT = int(os.getenv("EMAIL_PORT", 1025))
+
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend")
+EMAIL_HOST = os.getenv("EMAIL_HOST", "localhost")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", 25))
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "False") == "True"
 
 DEFAULT_FROM_EMAIL = "nao-responda@acaoentreamigos.org"
 
