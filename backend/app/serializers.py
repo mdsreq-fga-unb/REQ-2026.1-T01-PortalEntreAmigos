@@ -104,7 +104,6 @@ class RegistroSerializer(serializers.ModelSerializer):
         telefone = validated_data.pop('telefone')
         validated_data.pop('confirmacao_senha', None)
 
-        # Cria usuário e perfil em transação separada do email
         with transaction.atomic():
             user = User.objects.create_user(
                 username=validated_data['email'],
@@ -118,7 +117,6 @@ class RegistroSerializer(serializers.ModelSerializer):
             perfil.telefone = telefone
             perfil.save()
 
-        # Envia email fora da transação e em background
         url_ativacao = construir_link_confirmacao(user)
         corpo_email = (
             f"Olá {user.first_name},\n\n"
@@ -140,6 +138,10 @@ class RegistroSerializer(serializers.ModelSerializer):
                 print(f"Email enviado com sucesso para {user.email}")
             except Exception as e:
                 print(f"ERRO ao enviar email: {type(e).__name__}: {e}")
+
+        thread = threading.Thread(target=enviar_email)
+        thread.daemon = True
+        thread.start()
 
         return user
 
