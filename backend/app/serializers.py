@@ -10,6 +10,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.db import transaction
 from django.conf import settings
+import threading
 
 def is_valid_cpf(cpf: str) -> bool:
     # Remove caracteres não numéricos
@@ -103,41 +104,45 @@ class RegistroSerializer(serializers.ModelSerializer):
         telefone = validated_data.pop('telefone')
         validated_data.pop('confirmacao_senha', None)
 
-        # Envolve toda a operação em uma transação atômica.
-        # Se o envio do e-mail falhar, o usuário e o perfil são removidos do banco,
-        # evitando o cenário de conta criada mas impossível de ativar.
+        # Cria usuário e perfil em transação separada do email
         with transaction.atomic():
-            # CA-US01-04: O método create_user do Django automaticamente aplica o hash na senha
             user = User.objects.create_user(
-                username=validated_data['email'], # No Django padrão, o username é obrigatório, usaremos o e-mail
+                username=validated_data['email'],
                 email=validated_data['email'],
                 password=validated_data['password'],
                 first_name=validated_data['first_name'],
                 is_active=False
             )
-
-            # PerfilUsuario é criado via signal, apenas atualizamos CPF e Telefone
             perfil, created = PerfilUsuario.objects.get_or_create(user=user)
             perfil.cpf = cpf
             perfil.telefone = telefone
             perfil.save()
 
-            url_ativacao = construir_link_confirmacao(user)
-            corpo_email = (
-                f"Olá {user.first_name},\n\n"
-                f"Obrigado por se cadastrar no Portal Entre Amigos!\n\n"
-                f"Por favor, clique no link abaixo para ativar a sua conta:\n"
-                f"{url_ativacao}\n\n"
-                f"Se você não solicitou este cadastro, apenas ignore este e-mail."
-            )
+        # Envia email fora da transação e em background
+        url_ativacao = construir_link_confirmacao(user)
+        corpo_email = (
+            f"Olá {user.first_name},\n\n"
+            f"Obrigado por se cadastrar no Portal Entre Amigos!\n\n"
+            f"Por favor, clique no link abaixo para ativar a sua conta:\n"
+            f"{url_ativacao}\n\n"
+            f"Se você não solicitou este cadastro, apenas ignore este e-mail."
+        )
 
-            send_mail(
-                subject='Bem-vindo ao Portal Entre Amigos! Confirme seu e-mail',
-                message=corpo_email,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[user.email],
-                fail_silently=False,
-            )
+        def enviar_email():
+            try:
+                send_mail(
+                    subject='Bem-vindo ao Portal Entre Amigos! Confirme seu e-mail',
+                    message=corpo_email,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[user.email],
+                    fail_silently=True,
+                )
+            except Exception as e:
+                print(f"Erro ao enviar email: {e}")
+
+        thread = threading.Thread(target=enviar_email)
+        thread.daemon = True
+        thread.start()
 
         return user
 
