@@ -135,14 +135,11 @@ class RegistroSerializer(serializers.ModelSerializer):
                     message=corpo_email,
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     recipient_list=[user.email],
-                    fail_silently=True,
+                    fail_silently=False,
                 )
+                print(f"Email enviado com sucesso para {user.email}")
             except Exception as e:
-                print(f"Erro ao enviar email: {e}")
-
-        thread = threading.Thread(target=enviar_email)
-        thread.daemon = True
-        thread.start()
+                print(f"ERRO ao enviar email: {type(e).__name__}: {e}")
 
         return user
 
