@@ -11,6 +11,8 @@ from django.core.mail import send_mail
 from django.db import transaction
 from django.conf import settings
 import threading
+import sib_api_v3_sdk
+from sib_api_v3_sdk.rest import ApiException
 
 def is_valid_cpf(cpf: str) -> bool:
     # Remove caracteres não numéricos
@@ -126,7 +128,7 @@ class RegistroSerializer(serializers.ModelSerializer):
             f"Se você não solicitou este cadastro, apenas ignore este e-mail."
         )
 
-        def enviar_email():
+        """ def enviar_email():
             try:
                 send_mail(
                     subject='Bem-vindo ao Portal Entre Amigos! Confirme seu e-mail',
@@ -138,11 +140,36 @@ class RegistroSerializer(serializers.ModelSerializer):
                 print(f"Email enviado com sucesso para {user.email}")
             except Exception as e:
                 print(f"ERRO ao enviar email: {type(e).__name__}: {e}")
-
+            """
+        def enviar_email_brevo(destinatario, nome, corpo):
+            configuration = sib_api_v3_sdk.Configuration()
+            configuration.api_key['api-key'] = settings.BREVO_API_KEY
+            
+            api_instance = sib_api_v3_sdk.TransactionalEmailsApi(
+                sib_api_v3_sdk.ApiClient(configuration)
+            )
+            
+            email = sib_api_v3_sdk.SendSmtpEmail(
+                to=[{"email": destinatario, "name": nome}],
+                sender={"email": settings.DEFAULT_FROM_EMAIL, "name": "Portal Entre Amigos"},
+                subject='Bem-vindo ao Portal Entre Amigos! Confirme seu e-mail',
+                text_content=corpo
+            )
+            
+            try:
+                api_instance.send_transac_email(email)
+                print(f"Email enviado via Brevo API para {destinatario}")
+            except ApiException as e:
+                print(f"ERRO Brevo API: {e}")
+        
+        
+        def enviar_email():
+            enviar_email_brevo(user.email, user.first_name, corpo_email)
+    
         thread = threading.Thread(target=enviar_email)
         thread.daemon = True
-        thread.start()
-
+        thread.start() 
+        
         return user
 
 

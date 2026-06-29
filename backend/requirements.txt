@@ -42,3 +42,4 @@ djangorestframework-simplejwt>=5.3.1
 reportlab
 dj-database-url
 gunicorn
+sib-api-v3-sdk
