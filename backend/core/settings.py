@@ -168,6 +168,7 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
 EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL", "False") == "True"
 
 DEFAULT_FROM_EMAIL = "devacaoentreamigos@gmail.com"
+BREVO_API_KEY = os.getenv("BREVO_API_KEY", "")
 
 # URL base do frontend para montar links em e-mails transacionais.
 # Em produção, defina a variável de ambiente FRONTEND_URL com a URL real.
