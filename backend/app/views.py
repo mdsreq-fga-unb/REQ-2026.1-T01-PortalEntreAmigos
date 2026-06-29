@@ -7,7 +7,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.decorators import action
-from .serializers import RegistroSerializer, LoginSerializer, EventoSerializer, ItemDoacaoSerializer, DoacaoSerializer, construir_link_confirmacao, validar_complexidade_senha, enviar_email_brevo
+from .serializers import RegistroSerializer, LoginSerializer, EventoSerializer, ItemDoacaoSerializer, DoacaoSerializer, construir_link_confirmacao, validar_complexidade_senha
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
@@ -25,6 +25,7 @@ from .models import Evento, ItemDoacao, Doacao, CodigoRecuperacaoSenha
 import random, threading
 from django.utils import timezone
 from datetime import timedelta
+from .utils import enviar_email_brevo
 
 class RegistroUsuarioView(generics.CreateAPIView):
     queryset = User.objects.all()
