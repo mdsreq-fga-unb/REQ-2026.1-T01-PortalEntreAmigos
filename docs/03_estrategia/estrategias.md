@@ -8,7 +8,7 @@
 
 **Processo de Engenharia de Software:RAD Híbrido (OpenUP + RAD)** Este processo combina uma fase inicial de levantamento e organização dos requisitos, baseada no OpenUP, com ciclos rápidos de desenvolvimento inspirados no RAD. A abordagem prioriza a construção incremental de funcionalidades e a participação ativa do cliente para validar a interface, o fluxo de dados e as entregas realizadas ao longo do projeto.
 
-![Mapa Ciclo RAD](../../00_assets/imagens/RADhibrido.png)
+![Mapa Ciclo RAD](../00_assets/imagens/RADhibrido.png)
 
 ## 3. Quadro Comparativo
 Abaixo, apresenta-se uma comparação técnica entre o processo RAD Híbrido (OpenUP + RAD), que combina planejamento inicial estruturado com ciclos rápidos de desenvolvimento, e o Modelo Espiral, focado na análise rigorosa de riscos e planejamento, para fundamentar a escolha da equipe por uma abordagem híbrida.
