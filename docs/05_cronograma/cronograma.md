@@ -1,3 +1,5 @@
+<style> .badge-yes { background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; display: inline-block; border: 1px solid #c8e6c9; } .badge-done { background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; display: inline-block; border: 1px solid #c8e6c9; } .badge-progress { background: #fff3e0; color: #e65100; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; display: inline-block; border: 1px solid #ffe0b2; } .badge-planned { background: #f5f5f5; color: #616161; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; display: inline-block; border: 1px solid #e0e0e0; } </style>
+
 # Cronograma e Entregas
 
 ## Introdução
@@ -37,15 +39,13 @@ As entregas em equipe EU1, EU2, EU3 e EU4 correspondem aos marcos de avaliação
 **Período:** 27 de Maio – 28 de Junho
 *Fase de desenvolvimento iterativo baseada em ciclos RAD de curta duração. Durante esse período, a equipe realiza múltiplos ciclos de construção, validação e refinamento de funcionalidades, podendo executar atividades em paralelo conforme a divisão das equipes e as prioridades definidas no backlog. No final dessa fase, o **MVP** estara montado.*
 
-- **Duração dos Ciclos**: Aproximadamente uma semana por ciclo.
-
-- **Foco**: Implementação incremental das funcionalidades priorizadas, integração dos componentes do sistema e evolução contínua do produto.
-
-- **Validação**: Ao final de cada ciclo, as funcionalidades desenvolvidas são apresentadas aos stakeholders para obtenção de feedback e identificação de melhorias.
-
-- **Refinamento Contínuo**: Correções, ajustes de usabilidade e melhorias identificadas durante os ciclos anteriores são incorporadas nas iterações seguintes.
-
-- **Entregas**: Cada ciclo gera um ou mais incrementos funcionais do sistema, contribuindo para a construção gradual da versão final do Portal Entre Amigos.
+| CRONOGRAMA | DATA | ESCOPO | EVIDÊNCIAS | STATUS |
+| :--- | :---: | :--- | :---: | :---: |
+| **Ciclo 1** | 26/05 a 01/06 | [US16](../17_MVP/us16.md) | [Evidências](../16_ciclos_rad/fases_rad.md) | <span class="badge-done">concluído</span> |
+| **Ciclo 2** | 26/05 a 01/06 | [US14](../17_MVP/us14.md) | [Evidências](../16_ciclos_rad/fases_rad2.md) | <span class="badge-done">concluído</span> |
+| **Ciclo 3** | 01/06 a 08/06 | [US01](../17_MVP/us01.md), [US02](../17_MVP/us02.md), [US03](../17_MVP/us03.md), [US04](../17_MVP/us04.md), [US05](../17_MVP/us05.md) | [Evidências](../16_ciclos_rad/fases_rad_RF01.md) | <span class="badge-done">concluído</span> |
+| **Ciclo 4** | 08/06 a 15/06 | [US06](../17_MVP/us06.md), [US07](../17_MVP/us07.md), [US08](../17_MVP/us08.md) | [Evidências](../16_ciclos_rad/fases_rad_RF06.md) | <span class="badge-done">concluído</span> |
+| **Ciclo 5** | 08/06 a 15/06 | [US10](../17_MVP/us10.md), [US11](../17_MVP/us11.md) | [Evidências](../16_ciclos_rad/fases_rad_RF10.md) | <span class="badge-done">concluído</span> |
 
 ### Fase 3: Transição
 **Período:** 29 de Junho – 03 de Julho  
@@ -53,9 +53,9 @@ As entregas em equipe EU1, EU2, EU3 e EU4 correspondem aos marcos de avaliação
 
 | Data | Atividade | Meta |
 | :--- | :--- | :--- |
-| **29/06 - 01/07** | **Homologação & QA** | Testes de aceitação (UAT) com a ONG Carlos Vaz e correção de bugs críticos. |
-| **02/07** | **Documentação de Transição** | Atualização do MkDocs com lições aprendidas, guias de uso e artefatos finais de software. |
-| **03/07** | **ENTREGA FINAL (Release)** | **Apresentação do Portal Entre Amigos V1.0 e deploy final.** |
+| **29/06 - 30/06** | **Homologação & QA** | Testes de aceitação (UAT) com a ONG Carlos Vaz e correção de bugs críticos. |
+| **01/07** | **Documentação de Transição** | Atualização do MkDocs com lições aprendidas, guias de uso e artefatos finais de software. |
+| **02/07** | **ENTREGA FINAL (Release)** | **Apresentação do Portal Entre Amigos V1.0 e deploy final.** |
 
 ---
 
