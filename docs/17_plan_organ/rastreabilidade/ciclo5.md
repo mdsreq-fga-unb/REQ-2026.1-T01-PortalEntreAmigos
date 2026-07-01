@@ -26,7 +26,7 @@ As atividades de Engenharia de Software e Engenharia de Requisitos executadas ne
 Criação dos dashboards de progresso físico-financeiro integrados à página interna de cada campanha:
 
 *   **Componentes Desenhados:** Gráfico circular para progresso percentual total, gráfico de pizza para detalhamento proporcional por item solicitado e formulário modal de promessa de doação.
-*   *Mapeamento visual no Figma:* [Protótipos de Alta Fidelidade do Ciclo 5](../../16_ciclos_rad/ciclo5/RF10/fases_rad_RF10.md#design-do-usuario)
+*   *Mapeamento visual no Figma:* [US10](../MVP/us10.md#prototipagem), [US11](../MVP/us11.md#prototipagem)
 
 ### B. Evidência de Construção (Código Fonte)
 Lógica reativa conectando a biblioteca de gráficos às intenções cadastradas, incluindo as travas de desativação (RN-03) e atualização dinâmica (RNF06):
@@ -44,8 +44,9 @@ Lógica reativa conectando a biblioteca de gráficos às intenções cadastradas
 
 A aceitação e a transição deste ciclo basearam-se no cumprimento das seguintes diretrizes de qualidade:
 
-*   **Critérios de Aceitação:** Validação da reatividade de gráficos ([RNF06](../../13_requisitos/requisitos.md#rnf06)), travamento de eventos encerrados ([RN-03](../../13_requisitos/requisitos.md#regras-de-negocio)) e checagem de limites de valores. Detalhados em cada US (ex: [US10](../MVP/us10.md)).
-*   **DoR (Definition of Ready) e DoD (Definition of Done):** Homologados no repositório individual de cada US (ex: [US10](../MVP/us10.md)).
+*   **Critérios de Aceitação:** Validação da reatividade de gráficos ([RNF06](../../13_requisitos/requisitos.md#rnf06)), travamento de eventos encerrados ([RN-03](../../13_requisitos/requisitos.md#regras-de-negocio)) e checagem de limites de valores. Detalhados em cada US: [US10](../MVP/us10.md#criterios-de-aceitacao), [US11](../MVP/us11.md#criterios-de-aceitacao).
+*   **DoR (Definition of Ready):** Homologados no repositório individual de cada US: [US10](../MVP/us10.md#definicao-de-preparado-dor), [US11](../MVP/us11.md#definicao-de-preparado-dor).
+*   **DoD (Definition of Done):** Totalmente revisados e marcados como concluídos: [US10](../MVP/us10.md#definicao-de-pronto-dod), [US11](../MVP/us11.md#definicao-de-pronto-dod).
 
 ---
 

@@ -26,7 +26,7 @@ As atividades de Engenharia de Software e Engenharia de Requisitos executadas ne
 Protótipos elaborados com foco na usabilidade do administrador da ONG, facilitando a inclusão de metas físicas (arroz, óleo, cobertores) e financeiras:
 
 *   **Páginas Desenhadas:** Formulário de criação de evento, tela de edição de metas de doações e botões administrativos de encerramento de campanhas.
-*   *Mapeamento visual no Figma:* Disponível nas páginas de US administrativas (ex: [US06](../MVP/us06.md)).
+*   *Mapeamento visual no Figma:* [US06](../MVP/us06.md#prototipagem), [US07](../MVP/us07.md#prototipagem), [US08](../MVP/us08.md#prototipagem)
  
 ### B. Evidência de Construção (Código Fonte)
 Estruturação de travas de autorização de moderadores e consistência lógica de formulários (ex: bloqueio de datas de término anteriores ao início):
@@ -45,13 +45,14 @@ Estruturação de travas de autorização de moderadores e consistência lógica
 
 A aceitação e a transição deste ciclo basearam-se no cumprimento das seguintes diretrizes de qualidade:
 
-*   **Critérios de Aceitação:** Validação da trava de perfil "Moderador" ([RN-01](../../13_requisitos/requisitos.md#regras-de-negocio)), verificação de campos obrigatórios e conformidade de layout. Detalhados em cada US (ex: [US06](../MVP/us06.md)).
-*   **DoR (Definition of Ready) e DoD (Definition of Done):** Totalmente verificados e aprovados para cada US associada (ex: [US06](../MVP/us06.md)).
+*   **Critérios de Aceitação:** Validação da trava de perfil "Moderador" ([RN-01](../../13_requisitos/requisitos.md#regras-de-negocio)), verificação de campos obrigatórios e conformidade de layout. Detalhados em cada US: [US06](../MVP/us06.md#criterios-de-aceitacao), [US07](../MVP/us07.md#criterios-de-aceitacao), [US08](../MVP/us08.md#criterios-de-aceitacao).
+*   **DoR (Definition of Ready):** Mapeados e chancelados na documentação de cada US: [US06](../MVP/us06.md#definicao-de-preparado-dor), [US07](../MVP/us07.md#definicao-de-preparado-dor), [US08](../MVP/us08.md#definicao-de-preparado-dor).
+*   **DoD (Definition of Done):** Totalmente verificados e aprovados para cada US associada: [US06](../MVP/us06.md#definicao-de-pronto-dod), [US07](../MVP/us07.md#definicao-de-pronto-dod), [US08](../MVP/us08.md#definicao-de-pronto-dod).
 
 ---
 
 ## Histórico de Versão
-
+ 
 | Versão |    Data    | Descrição  | Autor(es) | Revisor(es)|
 | :----: | :--------: | :--------- | :-------: | :---------: |
 |  1.0   | 01/07/2026 | População inicial do arquivo com detalhamento de rastreabilidade | [Artur Fernandes Galdino](https://github.com/ArturFGaldino) | Equipe |

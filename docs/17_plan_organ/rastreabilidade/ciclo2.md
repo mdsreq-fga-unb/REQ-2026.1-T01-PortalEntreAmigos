@@ -27,7 +27,7 @@ Protótipos de alta fidelidade responsivos foram criados para a vitrine e detalh
 
 *   **Vitrine Geral de Campanhas**: Listagem contendo card destacado da campanha ativa e histórico de campanhas encerradas.
 *   **Interna de Campanha (Detalhes)**: Descrições, dados logísticos de pontos de entrega e necessidades.
-*   *Mapeamento visual no Figma:* [Protótipos de Alta Fidelidade do Ciclo 2](../../16_ciclos_rad/ciclo2/fases_rad.md#design-do-usuario)
+*   *Mapeamento visual no Figma:* [US14](../MVP/us14.md#prototipagem)
 
 ### B. Evidência de Construção (Código Fonte)
 Implementação de componentes em React/Next.js conectados à navegação responsiva:
@@ -46,8 +46,8 @@ Implementação de componentes em React/Next.js conectados à navegação respon
 
 A aceitação e a transição deste ciclo basearam-se no cumprimento das seguintes diretrizes de qualidade:
 
-*   **Critérios de Aceitação:** Validação da listagem dinâmica e exibição dos detalhes básicos da campanha. Evidências disponíveis em [Critérios de Aceitação - Ciclo 2](../../16_ciclos_rad/ciclo2/criterios_evidencias.md).
-*   **DoR (Definition of Ready) e DoD (Definition of Done):** Mapeados e checados no repositório. Evidências disponíveis em [DoR e DoD - Ciclo 2](../../16_ciclos_rad/ciclo2/dor_dod_evidencias.md).
+*   **Critérios de Aceitação:** Validação da listagem dinâmica e exibição dos detalhes básicos da campanha. Evidências disponíveis em [US14](../MVP/us14.md#criterios-de-aceitacao).
+*   **DoR (Definition of Ready) e DoD (Definition of Done):** Mapeados e checados no repositório. Evidências disponíveis em [US14](../MVP/us14.md#definicao-de-preparado-dor) e [US14](../MVP/us14.md#definicao-de-pronto-dod).
 
 ---
 

@@ -26,7 +26,7 @@ As atividades de Engenharia de Software e Engenharia de Requisitos executadas ne
 Estruturação visual de fluxos de login e formulários de cadastro com padrões de feedback dinâmico para validações de regras de segurança:
 
 *   **Páginas Desenhadas:** Login, Cadastro de Conta, Tela de Perfil do Usuário e modal de confirmação de exclusão.
-*   *Mapeamento visual no Figma:* Disponível em cada história de usuário (ex: [Prototipagem na US01](../MVP/us01.md#prototipagem)).
+*   *Mapeamento visual no Figma:* [US01](../MVP/us01.md#prototipagem), [US02](../MVP/us02.md#prototipagem), [US03](../MVP/us03.md#prototipagem), [US04](../MVP/us04.md#prototipagem), [US05](../MVP/us05.md#prototipagem)
 
 ### B. Evidência de Construção (Código Fonte)
 O frontend em Next.js/React foi codificado contendo validações contra injeção de caracteres inválidos, testes de regex de senha forte e tratamento de sessões:
@@ -45,8 +45,9 @@ O frontend em Next.js/React foi codificado contendo validações contra injeçã
 
 A aceitação e a transição deste ciclo basearam-se no cumprimento das seguintes diretrizes de qualidade:
 
-*   **Critérios de Aceitação:** Validação da criptografia de senhas ([RNF03](../../13_requisitos/requisitos.md#rnf03)), restrição de unicidade de e-mail e regras de senhas fortes. Detalhados em cada US individual (ex: [Critérios de Aceite da US01](../MVP/us01.md#criterios-de-aceitacao)).
-*   **DoR (Definition of Ready) e DoD (Definition of Done):** Mapeados e chancelados na documentação de cada US (ex: [DoR/DoD da US01](../MVP/us01.md#definicao-de-preparado-dor)).
+*   **Critérios de Aceitação:** Validação da criptografia de senhas ([RNF03](../../13_requisitos/requisitos.md#rnf03)), restrição de unicidade de e-mail e regras de senhas fortes. Detalhados em cada US individual: [US01](../MVP/us01.md#criterios-de-aceitacao), [US02](../MVP/us02.md#criterios-de-aceitacao), [US03](../MVP/us03.md#criterios-de-aceitacao), [US04](../MVP/us04.md#criterios-de-aceitacao), [US05](../MVP/us05.md#criterios-de-aceitacao).
+*   **DoR (Definition of Ready):** Mapeados e chancelados na documentação de cada US: [US01](../MVP/us01.md#definicao-de-preparado-dor), [US02](../MVP/us02.md#definicao-de-preparado-dor), [US03](../MVP/us03.md#definicao-de-preparado-dor), [US04](../MVP/us04.md#definicao-de-preparado-dor), [US05](../MVP/us05.md#definicao-de-preparado-dor).
+*   **DoD (Definition of Done):** Totalmente revisados e marcados como concluídos: [US01](../MVP/us01.md#definicao-de-pronto-dod), [US02](../MVP/us02.md#definicao-de-pronto-dod), [US03](../MVP/us03.md#definicao-de-pronto-dod), [US04](../MVP/us04.md#definicao-de-pronto-dod), [US05](../MVP/us05.md#definicao-de-pronto-dod).
 
 ---
 
