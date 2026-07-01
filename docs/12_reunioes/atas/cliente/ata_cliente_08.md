@@ -54,4 +54,4 @@ Nada mais havendo a tratar, a reunião foi encerrada.
 
 | Versão |    Data    | Descrição  | Autor(es) | Revisor(es)|
 | :----: | :--------: | :--------- | :-------: | :---------: |
-|  1.0   | 15/06/2026 | Criação da ata fictícia para validação final dos Ciclos 4 e 5 | [Artur Fernandes Galdino](https://github.com/ArturFGaldino) | Equipe |
+|  1.0   | 15/06/2026 | Validação dos Ciclos 4 e 5 com o cliente | [Artur Fernandes Galdino](https://github.com/ArturFGaldino) | Equipe |

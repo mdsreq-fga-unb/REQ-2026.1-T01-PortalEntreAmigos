@@ -15,15 +15,15 @@ Apresentar, demonstrar e homologar as entregas finais do Ciclo RAD 7, contemplan
 ## 2. Ideias apresentadas
 
 - Apresentação do botão administrativo de encerramento rápido e modal de confirmação crítica para congelar as interações em campanhas concluídas (US09).
-- Demonstração do painel administrativo para visualizar e validar anexos de comprovantes de PIX enviados pelos doadores (US17).
-- Apresentação da tela de upload de notas fiscais com travamento de segurança contra arquivos maliciosos e limite de tamanho de até 5MB (US18).
+- Demonstração do painel administrativo para visualizar e validar anexos de comprovantes enviados pelos doadores (US17).
+- Apresentação da tela de upload de notas fiscais (US18).
 - Demonstração da geração automatizada de relatórios contábeis consolidados contendo o resumo financeiro, logístico e de voluntários do evento (US19).
 
 ---
 
 ## 3. Discussões realizadas
 
-A reunião de homologação iniciou com os testes de auditoria de doações financeiras. Carlos, atuando como moderador, acessou a listagem de intenções financeiras e abriu um comprovante de PIX enviado (US17), validando a aprovação do documento e consequente atualização do saldo financeiro. A seguir, ele testou o fluxo de despesas, anexando uma nota fiscal fictícia de custos de transporte (US18). A equipe demonstrou o funcionamento da regra RNF10, tentando enviar um arquivo executável malicioso, o qual foi devidamente bloqueado pelo backend com notificação visual.
+A reunião de homologação iniciou com os testes de auditoria de doações financeiras. Carlos, atuando como moderador, acessou a listagem de intenções financeiras e abriu um comprovante enviado (US17), validando a aprovação do documento e consequente atualização do saldo financeiro. A seguir, ele testou o fluxo de despesas, anexando uma nota fiscal fictícia de custos de transporte (US18). A equipe demonstrou o funcionamento da regra RNF10, tentando enviar um arquivo executável malicioso, o qual foi devidamente bloqueado pelo backend com notificação visual.
 
 Por fim, Carlos testou a geração do relatório contábil (US19). Ao clicar em "Gerar Relatório de Encerramento", um arquivo PDF consolidado compilou todas as receitas, despesas e voluntários associados. Ele encerrou a campanha teste no painel de moderação (US09) e confirmou que os links públicos de doação física e financeira, além de inscrições de voluntários, foram congelados no portal. Carlos deu um retorno excelente e elogiou a robustez das travas contábeis.
 
@@ -52,4 +52,4 @@ Nada mais havendo a tratar, a reunião foi encerrada.
 
 | Versão |    Data    | Descrição  | Autor(es) | Revisor(es)|
 | :----: | :--------: | :--------- | :-------: | :---------: |
-|  1.0   | 29/06/2026 | Criação da ata fictícia para validação do Ciclo 7 | [Artur Fernandes Galdino](https://github.com/ArturFGaldino) | Equipe |
+|  1.0   | 29/06/2026 | Validação do Ciclo 7 com o cliente | [Artur Fernandes Galdino](https://github.com/ArturFGaldino) | Equipe |

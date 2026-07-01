@@ -50,4 +50,4 @@ Nada mais havendo a tratar, a reunião foi encerrada.
 
 | Versão |    Data    | Descrição  | Autor(es) | Revisor(es)|
 | :----: | :--------: | :--------- | :-------: | :---------: |
-|  1.0   | 22/06/2026 | Criação da ata fictícia para validação do Ciclo 6 | [Artur Fernandes Galdino](https://github.com/ArturFGaldino) | Equipe |
+|  1.0   | 22/06/2026 | Validação do Ciclo 6 com o cliente | [Artur Fernandes Galdino](https://github.com/ArturFGaldino) | Equipe |
