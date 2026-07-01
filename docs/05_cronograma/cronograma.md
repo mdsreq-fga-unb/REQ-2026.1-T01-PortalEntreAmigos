@@ -46,6 +46,8 @@ As entregas em equipe EU1, EU2, EU3 e EU4 correspondem aos marcos de avaliação
 | **Ciclo 3** | 01/06 a 08/06  | [US01](../17_plan_organ/MVP/us01.md), [US02](../17_plan_organ/MVP/us02.md), [US03](../17_plan_organ/MVP/us03.md), [US04](../17_plan_organ/MVP/us04.md), [US05](../17_plan_organ/MVP/us05.md) | [Evidências](../17_plan_organ/rastreabilidade/ciclo3.md) | <span class="badge-done">concluído</span> |
 | **Ciclo 4** | 08/06 a 15/06 | [US06](../17_plan_organ/MVP/us06.md), [US07](../17_plan_organ/MVP/us07.md), [US08](../17_plan_organ/MVP/us08.md) | [Evidências](../17_plan_organ/rastreabilidade/ciclo4.md) | <span class="badge-done">concluído</span> |
 | **Ciclo 5** | 08/06 a 15/06 | [US10](../17_plan_organ/MVP/us10.md), [US11](../17_plan_organ/MVP/us11.md) | [Evidências](../17_plan_organ/rastreabilidade/ciclo5.md) | <span class="badge-done">concluído</span> |
+| **Ciclo 6** | 15/06 a 22/06 | [US12](../17_plan_organ/MVP/us12.md), [US13](../17_plan_organ/MVP/us13.md), [US15](../17_plan_organ/MVP/us15.md) | [Evidências](../17_plan_organ/rastreabilidade/ciclo6.md) | <span class="badge-done">concluído</span> |
+| **Ciclo 7** | 22/06 a 29/06 | [US09](../17_plan_organ/MVP/us09.md), [US17](../17_plan_organ/MVP/us17.md), [US18](../17_plan_organ/MVP/us18.md), [US19](../17_plan_organ/MVP/us19.md) | [Evidências](../17_plan_organ/rastreabilidade/ciclo7.md) | <span class="badge-done">concluído</span> |
 
 ### Fase 3: Transição
 **Período:** 29 de Junho – 03 de Julho  
