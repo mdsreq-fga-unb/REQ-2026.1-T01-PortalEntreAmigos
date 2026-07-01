@@ -105,6 +105,7 @@ nav:
     - MVP: 17_plan_organ/MVP/mvp.md
     
   - Lições Aprendidas:
+    - Geral da Matéria: 10_licoes/licoes_materia.md
     - Unidade 1: 10_licoes/Unidades/unidade_01.md
     - Unidade 2: 10_licoes/Unidades/unidade_02.md
     - Unidade 3: 10_licoes/Unidades/unidade_03.md
@@ -182,7 +183,11 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.tilde
   - pymdownx.highlight
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - toc:
       permalink: true
   - attr_list
