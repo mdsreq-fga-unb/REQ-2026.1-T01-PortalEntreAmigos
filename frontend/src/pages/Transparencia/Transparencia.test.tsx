@@ -1,42 +1,39 @@
 import { render, screen } from '@testing-library/react';
-import { Transparencia } from './Transparencia';
 import { describe, it, expect, vi } from 'vitest';
+import { Transparencia } from './Transparencia';
 import { AuthProvider } from '../../contexts/AuthContext';
 
-// Intercepta e simula o arquivo de mocks para garantir isolamento
-vi.mock('../../services/mocks', () => ({
-  transparencyReportsMock: [
-    { id: 'r1', title: 'Relatório Janeiro', subtitle: 'Prestação de contas Jan' },
-    { id: 'r2', title: 'Relatório Fevereiro', subtitle: 'Prestação de contas Fev' }
-  ]
-}));
+const mockAuth = vi.fn();
 
-describe('Página Transparencia', () => {
-  it('deve exibir o cabeçalho com o título correto', () => {
+vi.mock('../../contexts/AuthContext', async () => {
+  const actual = await vi.importActual('../../contexts/AuthContext');
+  return {
+    ...actual,
+    useAuth: () => mockAuth(),
+  };
+});
+
+describe('RF17/RF18 — Página Transparência', () => {
+  it('exibe cabeçalho e comprovantes mockados', () => {
+    mockAuth.mockReturnValue({ isAdmin: false });
     render(
       <AuthProvider>
         <Transparencia />
-      </AuthProvider>
+      </AuthProvider>,
     );
-
-    // Verifica o título principal da página usando a semântica de heading (h1)
     expect(screen.getByRole('heading', { level: 1, name: /transparência/i })).toBeInTheDocument();
+    expect(screen.getByText('Cesta Básica - Outubro/2025')).toBeInTheDocument();
+    expect(screen.getByText('Agasalho Solidário - Junho/2025')).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: /visualizar/i }).length).toBeGreaterThanOrEqual(4);
   });
 
-  it('deve renderizar a quantidade exata de cartões baseada nos dados recebidos', () => {
+  it('admin vê opção de adicionar comprovante', () => {
+    mockAuth.mockReturnValue({ isAdmin: true });
     render(
       <AuthProvider>
         <Transparencia />
-      </AuthProvider>
+      </AuthProvider>,
     );
-
-    // Validação específica baseada nos dados mockados controlados:
-    const tituloPrimeiroCard = screen.getByText('Relatório Janeiro');
-    const subtituloPrimeiroCard = screen.getByText('Prestação de contas Jan');
-    const tituloSegundoCard = screen.getByText('Relatório Fevereiro');
-
-    expect(tituloPrimeiroCard).toBeInTheDocument();
-    expect(subtituloPrimeiroCard).toBeInTheDocument();
-    expect(tituloSegundoCard).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: /adicionar/i }).length).toBeGreaterThanOrEqual(1);
   });
 });
