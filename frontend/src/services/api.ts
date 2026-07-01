@@ -96,3 +96,9 @@ export const transparenciaService = {
     await apiClient.delete(`/transparencia/${id}/`);
   }
 }
+
+export const contaService = {
+  excluir: async (dados: { password: string }) => {
+    await apiClient.delete('/perfil/', { data: dados });
+  }
+}

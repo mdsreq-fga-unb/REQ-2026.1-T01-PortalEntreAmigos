@@ -7,7 +7,6 @@ from .models import Evento, ItemDoacao, Doacao, PerfilUsuario, CodigoRecuperacao
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import send_mail
 from django.db import transaction
 from django.conf import settings
 import threading
@@ -127,27 +126,13 @@ class RegistroSerializer(serializers.ModelSerializer):
             f"Se você não solicitou este cadastro, apenas ignore este e-mail."
         )
 
-        """ def enviar_email():
-            try:
-                send_mail(
-                    subject='Bem-vindo ao Portal Entre Amigos! Confirme seu e-mail',
-                    message=corpo_email,
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=[user.email],
-                    fail_silently=False,
-                )
-                print(f"Email enviado com sucesso para {user.email}")
-            except Exception as e:
-                print(f"ERRO ao enviar email: {type(e).__name__}: {e}")
-            """
-        
         def enviar_email():
             enviar_email_brevo(user.email, user.first_name, corpo_email)
-    
+
         thread = threading.Thread(target=enviar_email)
         thread.daemon = True
-        thread.start() 
-        
+        thread.start()
+
         return user
 
 
@@ -235,7 +220,7 @@ class ItemDoacaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = ItemDoacao
         fields = ['id', 'nome', 'unidade_medida', 'meta_item', 'evento', 'quantidade_prometida', 'quantidade_recebida', 'progresso', 'progresso_recebido']
-        read_only_fields = ['progresso', 'progresso_recebido']
+        read_only_fields = ['progresso', 'progresso_recebido', 'quantidade_prometida', 'quantidade_recebida']
 
     def validate_meta_item(self, value):
         if value <= 0:

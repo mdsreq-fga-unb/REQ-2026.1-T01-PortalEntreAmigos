@@ -1,6 +1,9 @@
 import sib_api_v3_sdk
 from sib_api_v3_sdk.rest import ApiException
 from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 def enviar_email_brevo(destinatario, nome, corpo):
     configuration = sib_api_v3_sdk.Configuration()
@@ -19,6 +22,6 @@ def enviar_email_brevo(destinatario, nome, corpo):
 
     try:
         api_instance.send_transac_email(email)
-        print(f"Email enviado via Brevo API para {destinatario}")
+        logger.info(f"Email enviado via Brevo API para {destinatario}")
     except ApiException as e:
-        print(f"ERRO Brevo API: {e}")
+        logger.error(f"ERRO Brevo API ao enviar para {destinatario}: {e}", exc_info=True)

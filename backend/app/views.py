@@ -1,8 +1,7 @@
 from rest_framework import generics, status
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser, BasePermission, SAFE_METHODS
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.models import User
 from rest_framework import viewsets
@@ -10,11 +9,14 @@ from rest_framework.decorators import action
 from .serializers import RegistroSerializer, LoginSerializer, EventoSerializer, ItemDoacaoSerializer, DoacaoSerializer, construir_link_confirmacao, validar_complexidade_senha
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.utils.http import urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_str
+from django.utils.encoding import force_str
 from django.contrib.auth.tokens import default_token_generator
 from django.http import HttpResponse
 from django.db import transaction
-from django.core.mail import send_mail
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError as DjangoValidationError
+import logging
+logger = logging.getLogger(__name__)
 from django.conf import settings
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
@@ -22,14 +24,22 @@ from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from .models import Evento, ItemDoacao, Doacao, CodigoRecuperacaoSenha
-import random, threading
+import secrets, threading
 from django.utils import timezone
 from datetime import timedelta
 from .utils import enviar_email_brevo
 
+class IsAdminOrReadOnly(BasePermission):
+    """Permite leitura para qualquer um; escrita apenas para administradores."""
+    def has_permission(self, request, view):
+        if request.method in SAFE_METHODS:
+            return True
+        return bool(request.user and (request.user.is_staff or request.user.is_superuser))
+
+
 class RegistroUsuarioView(generics.CreateAPIView):
     queryset = User.objects.all()
-    permission_classes = (AllowAny,)  # Permite acesso sem estar logado
+    permission_classes = (AllowAny,)
     authentication_classes = []
     serializer_class = RegistroSerializer
 
@@ -93,6 +103,11 @@ class UserProfileView(APIView):
         if not email or not email.strip():
             return Response({'email': 'E-mail é obrigatório.'}, status=status.HTTP_400_BAD_REQUEST)
 
+        try:
+            validate_email(email)
+        except DjangoValidationError:
+            return Response({'email': 'Formato de e-mail inválido.'}, status=status.HTTP_400_BAD_REQUEST)
+
         if email != user.email and User.objects.filter(email=email).exists():
             return Response({'email': 'Este e-mail já está em uso.'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -136,11 +151,25 @@ class UserProfileView(APIView):
             status=status.HTTP_200_OK,
         )
 
+    def delete(self, request, *args, **kwargs):
+        """Exclui a conta do usuário autenticado após verificar a senha."""
+        user = request.user
+        password = request.data.get('password', '')
+
+        if not password:
+            return Response({'detail': 'A senha é obrigatória para excluir a conta.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if not user.check_password(password):
+            return Response({'detail': 'Senha incorreta.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user.delete()
+        return Response({'detail': 'Conta excluída com sucesso.'}, status=status.HTTP_204_NO_CONTENT)
+
 
 class EventoViewSet(viewsets.ModelViewSet):
     queryset = Evento.objects.all()
     serializer_class = EventoSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
 
 class DoacaoViewSet(viewsets.ModelViewSet):
@@ -190,7 +219,7 @@ class DoacaoViewSet(viewsets.ModelViewSet):
 class ItemDoacaoViewSet(viewsets.ModelViewSet):
     queryset = ItemDoacao.objects.all()
     serializer_class = ItemDoacaoSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
     # Filtra itens pelo evento: /api/itens-doacao/?evento=1
     def get_queryset(self):
@@ -328,7 +357,7 @@ class EsqueciSenhaView(APIView):
         if not user:
             return Response({'mensagem': mensagem_generica}, status=status.HTTP_200_OK)
 
-        codigo = str(random.randint(10000, 99999))
+        codigo = str(secrets.randbelow(90000) + 10000)
         CodigoRecuperacaoSenha.objects.update_or_create(
             user=user,
             defaults={'codigo': codigo}
@@ -404,5 +433,5 @@ from .models import CardTransparencia
 class CardTransparenciaViewSet(viewsets.ModelViewSet):
     queryset = CardTransparencia.objects.all().order_by('-criado_em')
     serializer_class = CardTransparenciaSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
     parser_classes = (MultiPartParser, FormParser)

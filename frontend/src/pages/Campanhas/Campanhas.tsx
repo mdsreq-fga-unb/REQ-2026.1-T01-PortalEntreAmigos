@@ -16,7 +16,7 @@ export function Campanhas() {
     eventoService.listar()
       .then(data => {
         setCampanhasAtivas(data.filter((e: any) => e.status === 'EM_ANDAMENTO'));
-        setCampanhasEncerradas(data.filter((e: any) => e.status === 'CONCLUIDO' || e.status === 'CANCELADO'));
+        setCampanhasEncerradas(data.filter((e: any) => e.status === 'CONCLUIDO' || e.status === 'CANCELADO' || e.status === 'AGUARDANDO_RELATORIO'));
       })
       .catch((err) => {
     console.error('Erro:', err) 
@@ -39,17 +39,16 @@ export function Campanhas() {
           ) : (
             campanhasAtivas.map(campanha => (
               <div key={campanha.id} onClick={() => navigate(`/doar/${campanha.id}`)} style={{ cursor: 'pointer' }}>
-              <CampaignCard
-                key={campanha.id}
-                id={campanha.id}
-                progress={campanha.progresso_geral}
-                progressColor="primary"
-                endDate={campanha.data_fim}
-                title={campanha.nome}
-                description={campanha.descricao}
-                isActive={true}
-                image={bannerImg}
-              />
+                <CampaignCard
+                  id={campanha.id}
+                  progress={campanha.progresso_geral}
+                  progressColor="primary"
+                  endDate={campanha.data_fim}
+                  title={campanha.nome}
+                  description={campanha.descricao}
+                  isActive={true}
+                  image={bannerImg}
+                />
               </div>
             ))
           )}

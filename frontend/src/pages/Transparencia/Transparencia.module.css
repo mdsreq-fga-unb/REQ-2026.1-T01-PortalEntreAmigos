@@ -74,6 +74,7 @@
   border-radius: 12px;
   border: 1px solid var(--color-border);
   transition: transform 0.2s, box-shadow 0.2s;
+  gap: 1rem;
 }
 
 .cardItem:hover {
@@ -85,22 +86,27 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex: 1;
+  min-width: 0;
 }
 
 .cardIcon {
   color: var(--color-primary);
+  flex-shrink: 0;
 }
 
 .cardTitle {
   font-size: 1.25rem;
   color: var(--color-text-main);
   margin: 0;
+  word-break: break-word;
 }
 
 .cardActions {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .viewPdfButton {
@@ -325,4 +331,14 @@
 
 .dangerButton:hover:not(:disabled) {
   background-color: #dc2626;
+}
+
+@media (max-width: 600px) {
+  .cardItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cardActions {
+    justify-content: flex-end;
+  }
 }

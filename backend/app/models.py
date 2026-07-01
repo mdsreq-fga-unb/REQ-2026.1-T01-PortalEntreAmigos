@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import post_save, post_delete, pre_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 
@@ -98,6 +98,9 @@ class ItemDoacao(models.Model):
             return 0
         return round((self.quantidade_recebida / self.meta_item) * 100, 2)
 
+    def __str__(self):
+        return f"{self.nome} ({self.evento.nome})"
+
 
 class Doacao(models.Model):
     class Status(models.TextChoices):
@@ -151,16 +154,10 @@ class CodigoRecuperacaoSenha(models.Model):
 
 
 @receiver(post_save, sender=User)
-def criar_perfil_usuario(sender, instance, created, **kwargs):
+def criar_ou_salvar_perfil(sender, instance, created, **kwargs):
     if created:
-        PerfilUsuario.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def salvar_perfil_usuario(sender, instance, **kwargs):
-    if not hasattr(instance, 'perfil'):
-        PerfilUsuario.objects.create(user=instance)
-    else:
+        PerfilUsuario.objects.get_or_create(user=instance)
+    elif hasattr(instance, 'perfil'):
         instance.perfil.save()
 
 
@@ -187,7 +184,7 @@ def deletar_pdf_ao_excluir_card(sender, instance, **kwargs):
     if instance.arquivo_pdf:
         instance.arquivo_pdf.delete(False)
 
-from django.db.models.signals import pre_save
+
 @receiver(pre_save, sender=CardTransparencia)
 def deletar_pdf_antigo_ao_atualizar(sender, instance, **kwargs):
     if not instance.pk:

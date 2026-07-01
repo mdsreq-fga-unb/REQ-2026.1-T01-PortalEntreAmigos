@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import styles from './MinhaConta.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { Modal } from '../../components/Modal/Modal';
-import { doacaoService } from '../../services/api';
+import { doacaoService, contaService } from '../../services/api';
 
 export function MinhaConta() {
   const { user, isAdmin, logout, updateUser } = useAuth();
@@ -193,15 +193,19 @@ export function MinhaConta() {
     }
   };
 
-  const handleDeleteAccount = () => {
-    // In a real app, this would verify the password and delete the user API
-    if (deletePassword === 'user123') { // Hardcoded to match the mock
+  const handleDeleteAccount = async () => {
+    if (!deletePassword.trim()) {
+      toast.error('Digite sua senha para confirmar a exclusão.');
+      return;
+    }
+    try {
+      await contaService.excluir({ password: deletePassword });
       setModalType('none');
       logout();
       navigate('/');
       toast.success('Conta excluída com sucesso.');
-    } else {
-      toast.error('Senha incorreta.');
+    } catch (err: any) {
+      toast.error(err.response?.data?.detail || err.response?.data?.password || 'Senha incorreta ou erro ao excluir a conta.');
     }
   };
 

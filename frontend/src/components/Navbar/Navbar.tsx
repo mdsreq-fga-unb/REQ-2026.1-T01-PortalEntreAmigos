@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { FiUser } from 'react-icons/fi';
 import { useAuth } from '../../contexts/AuthContext';
-import { eventoService } from '../../services/api';  // ← adicione
+import { eventoService } from '../../services/api';
+import logoImg from '../../assets/logo.png';
 import styles from './Navbar.module.css';
 
 export function Navbar() {
@@ -37,7 +38,7 @@ export function Navbar() {
       <nav className={styles.navbar}>
         <div className={styles.logoContainer}>
           <Link to="/" onClick={() => setIsOpen(false)}>
-            <img src="/src/assets/logo.png" alt="Ação Entre Amigos BSB" className={styles.logoImage} />
+            <img src={logoImg} alt="Ação Entre Amigos BSB" className={styles.logoImage} />
           </Link>
         </div>
 
