@@ -1,13 +1,16 @@
-import { FiFileText, FiDownload } from 'react-icons/fi';
+import { FiFileText, FiDownload, FiPlus } from 'react-icons/fi';
 import styles from './TransparencyCard.module.css';
 
 interface TransparencyCardProps {
   title: string;
   subtitle: string;
   fileUrl?: string; // Futuro link para o comprovante
+  isAdmin?: boolean;
+  onAddClick?: () => void;
 }
 
-export function TransparencyCard({ title, subtitle, fileUrl }: TransparencyCardProps) {
+export function TransparencyCard({ title, subtitle, fileUrl: _fileUrl, isAdmin, onAddClick }: TransparencyCardProps) {
+
   return (
     <div className={styles.card}>
       <div className={styles.iconContainer}>
@@ -19,10 +22,18 @@ export function TransparencyCard({ title, subtitle, fileUrl }: TransparencyCardP
         <p className={styles.subtitle}>{subtitle}</p>
       </div>
       
-      <button className={styles.actionButton} title="Visualizar comprovante">
-        <FiDownload size={18} />
-        <span>VISUALIZAR</span>
-      </button>
+      <div className={styles.actionsContainer}>
+        {isAdmin && (
+          <button className={`${styles.actionButton} ${styles.addButton}`} onClick={onAddClick} title="Adicionar arquivo PDF">
+            <FiPlus size={18} />
+            <span>ADICIONAR</span>
+          </button>
+        )}
+        <button className={styles.actionButton} title="Visualizar comprovante">
+          <FiDownload size={18} />
+          <span>VISUALIZAR</span>
+        </button>
+      </div>
     </div>
   );
 }

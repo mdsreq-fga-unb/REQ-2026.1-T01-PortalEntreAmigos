@@ -27,3 +27,5 @@ desktop.ini
 *.swp
 *.swo
 
+# Ignorar dados do banco local e e-mails do Mailpit
+/data/

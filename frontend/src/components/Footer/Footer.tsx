@@ -38,15 +38,15 @@ export function Footer() {
         <div className={styles.column}>
           <h3 className={styles.title}>Nossas Redes Sociais</h3>
           <div className={styles.socialLinks}>
-            <a href="#" className={styles.socialLink}>
+            <a href="https://www.facebook.com/acaoentreamigosbsb" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
               <FiFacebook size={20} className={styles.icon} />
               <span>@acaoentreamigosbsb</span>
             </a>
-            <a href="#" className={styles.socialLink}>
+            <a href="https://www.instagram.com/acaoentreamigosbsb" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
               <FiInstagram size={20} className={styles.icon} />
               <span>@acaoentreamigosbsb</span>
             </a>
-            <a href="#" className={styles.socialLink}>
+            <a href="https://wa.me/5561981200295" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
               <FiPhone size={20} className={styles.icon} />
               <span>+55 (61) 98120 - 0295</span>
             </a>

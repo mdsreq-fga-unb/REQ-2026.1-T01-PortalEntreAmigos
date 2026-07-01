@@ -1,22 +1,34 @@
-"""
-URL configuration for core project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/6.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from rest_framework.routers import DefaultRouter
+from django.urls import path, include
+from app.views import (
+    RegistroUsuarioView, LoginUsuarioView, UserProfileView,
+    EventoViewSet, ItemDoacaoViewSet, DoacaoViewSet,
+    AtivarContaView, RelatorioDoacoesPDFView,
+    EsqueciSenhaView, RedefinirSenhaView, CardTransparenciaViewSet
+)
+
+router = DefaultRouter()
+router.register('eventos', EventoViewSet)
+router.register('itens-doacao', ItemDoacaoViewSet)
+router.register('doacoes', DoacaoViewSet, basename='doacao')
+router.register('transparencia', CardTransparenciaViewSet, basename='transparencia')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/cadastro/', RegistroUsuarioView.as_view(), name='registro_usuario'),
+    path('api/login/', LoginUsuarioView.as_view(), name='login_usuario'),
+    path('api/perfil/', UserProfileView.as_view(), name='perfil_usuario'),
+    path('api/ativar-conta/', AtivarContaView.as_view(), name='ativar-conta'),
+    path('api/esqueci-senha/', EsqueciSenhaView.as_view(), name='esqueci-senha'),
+    path('api/redefinir-senha/', RedefinirSenhaView.as_view(), name='redefinir-senha'),
+    path('api/eventos/<int:evento_id>/relatorio-doacoes/', RelatorioDoacoesPDFView.as_view(), name='relatorio_doacoes'),
+    path('api/', include(router.urls)),
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

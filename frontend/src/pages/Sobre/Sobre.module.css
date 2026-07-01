@@ -4,31 +4,31 @@
   width: 100%;
 }
 
-/* --- Content Section --- */
-.contentSection {
+/* --- História --- */
+.historiaSection {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 4rem 1.5rem;
+  padding: 3rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 3rem;
+  align-items: center;
 }
 
-.textBlock {
-  max-width: 800px;
-  margin: 0 auto;
+.historiaText {
+  max-width: 720px;
   text-align: center;
 }
 
-.textBlock h2 {
-  font-size: 2.5rem;
+.historiaText h2 {
+  font-size: 2.25rem;
   color: var(--color-primary);
   margin-bottom: 1.5rem;
   position: relative;
   display: inline-block;
 }
 
-.textBlock h2::after {
+.historiaText h2::after {
   content: '';
   position: absolute;
   bottom: -10px;
@@ -40,81 +40,474 @@
   border-radius: 2px;
 }
 
-.textBlock p {
+.historiaText p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: var(--color-text-main);
-  margin-bottom: 1.5rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
 }
 
-/* --- Activities Grid --- */
-.activitiesGrid {
-  display: grid;
-  grid-template-columns: 1fr;
+.historiaImageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.historiaImage {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.historiaImageWrapper:hover .historiaImage {
+  transform: scale(1.03);
+}
+
+.historiaOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+}
+
+.historiaOverlay span {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* --- Timeline --- */
+.timelineSection {
+  background-color: var(--color-surface);
+  padding: 3rem 1.5rem;
+}
+
+.timelineTitle {
+  text-align: center;
+  font-size: 2.25rem;
+  color: var(--color-text-main);
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timelineTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+}
+
+.timelineList {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
 }
 
-.card {
-  background-color: var(--color-surface);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-bottom: 4px solid transparent;
+.timelineAxis {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #e0e0e0;
+  z-index: 0;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  border-bottom-color: var(--color-primary);
-}
-
-.iconWrapper {
-  width: 64px;
-  height: 64px;
-  background-color: rgba(233, 125, 37, 0.1);
-  color: var(--color-primary);
-  border-radius: 50%;
+.timelineItem {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.5rem auto;
-  transition: background-color 0.3s ease;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  justify-content: flex-start;
+  padding-left: 50px;
 }
 
-.card:hover .iconWrapper {
-  background-color: var(--color-primary);
-  color: white;
+.timelineCard {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
+.timelineCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.timelineDot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  position: absolute;
+  top: 1.5rem;
+  left: -37px;
+}
+
+@media (min-width: 768px) {
+  .timelineAxis {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .timelineItem.left {
+    justify-content: flex-start;
+    padding-left: 0;
+    padding-right: calc(50% + 2rem);
+  }
+
+  .timelineItem.right {
+    justify-content: flex-end;
+    padding-left: calc(50% + 2rem);
+    padding-right: 0;
+  }
+
+  .timelineItem.left .timelineDot {
+    right: -2.85rem;
+    left: auto;
+  }
+
+  .timelineItem.right .timelineDot {
+    left: -2.85rem;
+    right: auto;
+  }
+}
+
+.dotRed    { background-color: #e74c3c; }
+.dotOrange { background-color: #e67e22; }
+.dotYellow { background-color: #f1c40f; }
+.dotGreen  { background-color: #2ecc71; }
+.dotBlue   { background-color: #3498db; }
+
+.timelineYear {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+
+.timelineCard h3 {
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--color-text-main);
+  margin-bottom: 0.5rem;
 }
 
-.card p {
+.timelineCard p {
+  font-size: 0.9rem;
   color: var(--color-text-muted);
   line-height: 1.6;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* --- MVV --- */
+.mvvSection {
+  padding: 3rem 1.5rem;
+  background-color: var(--color-background);
 }
 
-/* --- Desktop Layout (min-width: 768px) --- */
+.mvvTitle {
+  text-align: center;
+  font-size: 2.25rem;
+  color: var(--color-text-main);
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mvvTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+}
+
+.mvvGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mvvCard {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mvvCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.mvvImageWrapper {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.mvvImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.mvvCard:hover .mvvImage {
+  transform: scale(1.04);
+}
+
+.mvvContent {
+  padding: 2rem;
+}
+
+.mvvContent h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.mvvContent p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
 @media (min-width: 768px) {
-  .title {
-    font-size: 4rem;
-  }
-  
-  .subtitle {
-    font-size: 1.5rem;
+  .mvvGrid {
+    flex-direction: row;
   }
 
-  .activitiesGrid {
+  .mvvCard {
+    flex: 1;
+  }
+}
+
+/* --- Números --- */
+.numerosSection {
+  background-color: var(--color-primary);
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.numerosHeader {
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+}
+
+.numerosTitle {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.numerosTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 2px;
+}
+
+.numerosSubtitle {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.85);
+  margin-top: 1.5rem;
+}
+
+.numerosGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.numeroCard {
+  background-color: rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.numeroCard:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+.numeroValor {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+}
+
+.numeroLabel {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .numerosGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .numerosGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* --- Transparência --- */
+.transparenciaSection {
+  background-color: var(--color-background);
+  padding: 3rem 1.5rem;
+}
+
+.transparenciaContent {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.transparenciaContent h2 {
+  font-size: 2rem;
+  color: var(--color-text-main);
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.transparenciaContent h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+}
+
+.transparenciaContent p {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.transparenciaCards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+.transparenciaCard {
+  background: white;
+  border-radius: 14px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.transparenciaCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.transparenciaCardIcon {
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.transparenciaCard strong {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--color-text-main);
+  margin-bottom: 0.5rem;
+}
+
+.transparenciaCard p {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+.transparenciaBtn {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(233, 125, 37, 0.3);
+  margin-top: 1rem;
+}
+
+.transparenciaBtn:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .transparenciaCards {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .transparenciaContent {
+    text-align: center;
   }
 }
