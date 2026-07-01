@@ -100,27 +100,7 @@ nav:
       - Ciclo 3: 17_plan_organ/rastreabilidade/ciclo3.md
       - Ciclo 4: 17_plan_organ/rastreabilidade/ciclo4.md
       - Ciclo 5: 17_plan_organ/rastreabilidade/ciclo5.md
-    - MVP:
-      - Matriz: 17_plan_organ/MVP/mvp.md
-      - US01: 17_plan_organ/MVP/us01.md
-      - US02: 17_plan_organ/MVP/us02.md
-      - US03: 17_plan_organ/MVP/us03.md
-      - US04: 17_plan_organ/MVP/us04.md
-      - US05: 17_plan_organ/MVP/us05.md
-      - US06: 17_plan_organ/MVP/us06.md
-      - US07: 17_plan_organ/MVP/us07.md
-      - US08: 17_plan_organ/MVP/us08.md
-      - US09: 17_plan_organ/MVP/us09.md
-      - US10: 17_plan_organ/MVP/us10.md
-      - US11: 17_plan_organ/MVP/us11.md
-      - US12: 17_plan_organ/MVP/us12.md
-      - US13: 17_plan_organ/MVP/us13.md
-      - US14: 17_plan_organ/MVP/us14.md
-      - US15: 17_plan_organ/MVP/us15.md
-      - US16: 17_plan_organ/MVP/us16.md
-      - US17: 17_plan_organ/MVP/us17.md
-      - US18: 17_plan_organ/MVP/us18.md
-      - US19: 17_plan_organ/MVP/us19.md
+    - MVP: 17_plan_organ/MVP/mvp.md
     
   - Lições Aprendidas:
     - Unidade 1: 10_licoes/Unidades/unidade_01.md
