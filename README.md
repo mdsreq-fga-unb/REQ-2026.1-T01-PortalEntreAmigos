@@ -1,9 +1,3 @@
-# Entrega Unidade 3
-
-[https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/](https://gugofo.github.io/ZEUS_Unidade3/)
-
----
-
 # Projeto de Requisitos de Software 2026.1 - Grupo 1
 
 <p align="center">
