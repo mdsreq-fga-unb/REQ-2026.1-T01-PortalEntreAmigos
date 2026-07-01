@@ -39,6 +39,12 @@ Adicionalmente, os membros do grupo validaram a interface responsiva da tela de 
 
 ---
 
+## Feedback do Cliente
+
+Carlos testou a esteira de login e cadastro. Ele deu um retorno muito positivo sobre as mensagens explicativas dos critérios de senha forte e a presença do checkbox de conformidade de consentimento com a LGPD.
+
+---
+
 ## 5.⁠ ⁠Encerramento
 
 Nada mais havendo a tratar, a reunião foi encerrada.

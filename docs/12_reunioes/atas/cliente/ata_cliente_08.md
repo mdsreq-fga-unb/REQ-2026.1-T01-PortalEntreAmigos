@@ -40,6 +40,12 @@ A restrição sistêmica RN-03 também foi testada: a equipe encerrou uma campan
 
 ---
 
+## Feedback do Cliente
+
+O cliente adorou a visualização do progresso por meio dos gráficos de pizza e circular na página de campanhas ativas. Ele elogiou o recálculo em tempo real e a desativação imediata das opções de doação após o encerramento do evento.
+
+---
+
 ## 5.⁠ ⁠Encerramento
 
 Nada mais havendo a tratar, a reunião foi encerrada.

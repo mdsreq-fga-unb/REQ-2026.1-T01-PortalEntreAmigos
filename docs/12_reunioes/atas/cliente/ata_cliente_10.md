@@ -8,37 +8,43 @@
 
 ## 1. Objetivo da reunião
 
-Apresentar, demonstrar e homologar as entregas finais do Ciclo RAD 7, contemplando o encerramento de campanhas (US09), compartilhamento social (US17), seção de dúvidas frequentes/FAQ (US18) e o painel de parceiros e apoiadores (US19).
+Apresentar, demonstrar e homologar as entregas finais do Ciclo RAD 7, contemplando as ferramentas administrativas e contábeis finais: encerramento definitivo de eventos (US09), visualização e auditoria de comprovantes de doações financeiras (US17), upload de notas fiscais de despesas logísticas (US18) e geração consolidada de relatórios de fechamento de eventos (US19).
 
 ---
 
 ## 2. Ideias apresentadas
 
-- Apresentação do fluxo de moderação para desativar e concluir campanhas de doação que atingiram as metas (US09).
-- Demonstração do botão de compartilhamento no WhatsApp e redes sociais nas páginas de detalhe (US17).
-- Apresentação da interface de FAQ reativa e sanfonada para tirar dúvidas rápidas (US18).
-- Exibição da área de apoiadores institucionais com marcas e logotipos de parceiros no rodapé e páginas institucionais (US19).
+- Apresentação do botão administrativo de encerramento rápido e modal de confirmação crítica para congelar as interações em campanhas concluídas (US09).
+- Demonstração do painel administrativo para visualizar e validar anexos de comprovantes de PIX enviados pelos doadores (US17).
+- Apresentação da tela de upload de notas fiscais com travamento de segurança contra arquivos maliciosos e limite de tamanho de até 5MB (US18).
+- Demonstração da geração automatizada de relatórios contábeis consolidados contendo o resumo financeiro, logístico e de voluntários do evento (US19).
 
 ---
 
 ## 3. Discussões realizadas
 
-A reunião começou com o teste do compartilhamento rápido. Carlos clicou no botão "Compartilhar no WhatsApp" na página da campanha ativa de inverno e validou que o link e a mensagem pré-formatada foram gerados perfeitamente, o que ajuda muito a espalhar as ações da ONG. Em seguida, validou-se a seção de FAQ. Ele achou as perguntas selecionadas ideais e a transição do menu sanfona suave.
+A reunião de homologação iniciou com os testes de auditoria de doações financeiras. Carlos, atuando como moderador, acessou a listagem de intenções financeiras e abriu um comprovante de PIX enviado (US17), validando a aprovação do documento e consequente atualização do saldo financeiro. A seguir, ele testou o fluxo de despesas, anexando uma nota fiscal fictícia de custos de transporte (US18). A equipe demonstrou o funcionamento da regra RNF10, tentando enviar um arquivo executável malicioso, o qual foi devidamente bloqueado pelo backend com notificação visual.
 
-Por fim, Carlos visualizou a galeria de parceiros institucionais. Ele pontuou que o destaque às marcas apoiadoras estimula novas parcerias comerciais e chancela o esforço dos voluntários. O encerramento definitivo de campanhas no painel administrativo também foi testado e aprovado com sucesso, impedindo qualquer nova contribuição após a finalização da ação.
+Por fim, Carlos testou a geração do relatório contábil (US19). Ao clicar em "Gerar Relatório de Encerramento", um arquivo PDF consolidado compilou todas as receitas, despesas e voluntários associados. Ele encerrou a campanha teste no painel de moderação (US09) e confirmou que os links públicos de doação física e financeira, além de inscrições de voluntários, foram congelados no portal. Carlos deu um retorno excelente e elogiou a robustez das travas contábeis.
 
 ---
 
 ## 4. Decisões tomadas
 
-- Homologação do compartilhamento em redes sociais e WhatsApp (US17).
-- Aceitação da página de FAQ e carrossel de marcas parceiras (US18 e US19).
-- Homologação do fluxo de encerramento de metas (US09).
-- Validação das entregas de Engenharia de Software associadas ao Ciclo 7.
+- Homologação do fluxo de encerramento de campanhas e travas lógicas (US09).
+- Aceitação da auditoria visual de comprovantes financeiros (US17) e upload de notas fiscais (US18).
+- Homologação da geração de relatórios de encerramento em formato PDF (US19).
+- Validação final de todas as regras de segurança e negócio associadas (RN-01, RN-03, RNF10).
 
 ---
 
-## 5. Encerramento
+## 5. Feedback do Cliente
+
+Carlos elogiou imensamente a entrega das ferramentas contábeis e de encerramento. Ele pontuou que a capacidade de visualizar comprovantes na própria tela e fazer o upload de notas fiscais de despesas amarra o processo financeiro da ONG de forma íntegra, e a geração do PDF consolidado torna a prestação de contas com apoiadores e comunidade extremamente ágil e transparente.
+
+---
+
+## 6. Encerramento
 
 Nada mais havendo a tratar, a reunião foi encerrada.
 

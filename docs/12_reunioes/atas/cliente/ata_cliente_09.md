@@ -8,35 +8,41 @@
 
 ## 1. Objetivo da reunião
 
-Apresentar, demonstrar e homologar as entregas do Ciclo RAD 6, compreendendo a área de voluntariado (cadastro de preferências de atuação, triagem e alocação dinâmica por parte dos administradores) e o painel público de Transparência Financeira (prestação de contas das receitas e despesas da ONG).
+Apresentar, demonstrar e homologar as entregas do Ciclo RAD 6, compreendendo as rotinas de gerenciamento de estoque (atualização manual de saldos na US12 e confirmação automática de recebimento de doações físicas na US13) e o fluxo para voluntários realizarem inscrições presenciais em eventos da ONG (US15).
 
 ---
 
 ## 2. Ideias apresentadas
 
-- Demonstração do formulário no perfil do voluntário para registrar interesses de atuação física ou intelectual (US12).
-- Apresentação do painel de administração com filtros avançados para pesquisar voluntários baseando-se em suas competências e disponibilidade (US13).
-- Demonstração da aba pública de prestação de contas exibindo tabelas e gráficos simplificados de transparência financeira (US15).
+- Demonstração da tela administrativa para o moderador atualizar manualmente o saldo de mantimentos em estoque, prevenindo quantidades negativas (US12).
+- Apresentação da rotina de validação e recebimento de doações físicas no balcão da ONG, disparando o gatilho automático de incremento do saldo no estoque geral (US13).
+- Demonstração do botão "Inscrever-se" na página de detalhes da campanha para os voluntários logados confirmarem a sua participação física nas ações (US15).
 
 ---
 
 ## 3. Discussões realizadas
 
-A reunião iniciou com a apresentação do fluxo de captação e triagem de voluntários. Carlos testou a funcionalidade como voluntário, marcando suas preferências por "transporte e logística". A seguir, no perfil administrativo, demonstrou-se como o coordenador da ONG consegue instantaneamente filtrar voluntários por esse critério para realizar alocações rápidas em campanhas de inverno. Carlos achou o filtro simples e muito prático para contatar as pessoas certas.
+A reunião iniciou com o teste do fluxo de inscrição de voluntários presenciais. Carlos acessou uma conta de voluntário fictícia e confirmou sua participação em uma campanha ativa de inverno (US15). Foi demonstrado e validado o funcionamento das regras de negócio associadas: o sistema bloqueou tentativas de dupla inscrição do mesmo voluntário no mesmo evento (RN-05) e desativou as opções de inscrição nos eventos marcados com status de encerrado (RN-03).
 
-Posteriormente, a equipe apresentou a tela de transparência financeira. Carlos ressaltou que a clareza nas receitas e despesas é o que dá credibilidade a uma organização do terceiro setor perante parceiros institucionais e doadores individuais, aprovando o design minimalista implementado.
+A seguir, a equipe acessou a conta de moderador para apresentar as funcionalidades logísticas. Carlos acompanhou a atualização do saldo manual (US12) e participou da simulação da entrega física de uma doação (US13). Ao validar a entrega física no sistema administrativo, ele observou o recálculo automático do saldo de estoque geral e a atualização em tempo real dos gráficos no painel público. Carlos considerou o fluxo muito intuitivo e eficiente para reduzir erros humanos no almoxarifado da ONG.
 
 ---
 
 ## 4. Decisões tomadas
 
-- Homologação do fluxo de voluntariado, abrangendo preferências de voluntários e filtros administrativos (US12 e US13).
-- Aceitação da interface de Transparência Financeira (US15).
-- Liberação das entregas de Engenharia de Software correspondentes a este ciclo.
+- Homologação do fluxo de inscrição de voluntários em campanhas (US15).
+- Aceitação das ferramentas logísticas de atualização de saldo manual e confirmação automática de doações (US12 e US13).
+- Validação das regras de negócio associadas (RN-03, RN-05).
 
 ---
 
-## 5. Encerramento
+## 5. Feedback do Cliente
+
+Carlos considerou as ferramentas de estoque e voluntariado muito maduras e fáceis de operar. Ele destacou que a automatização do saldo com a confirmação de recebimento poupará horas de reconciliação manual e trará enorme segurança para as prestações de contas da ONG Ação Entre Amigos BSB.
+
+---
+
+## 6. Encerramento
 
 Nada mais havendo a tratar, a reunião foi encerrada.
 
