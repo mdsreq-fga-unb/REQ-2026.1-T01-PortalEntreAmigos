@@ -108,20 +108,6 @@ A tabela abaixo estabelece as restrições operacionais, limites de funcionalida
 
 ---
 
-## Rastreabilidade dos Requisitos
-
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/kMxEVxPcaLlDG02xoxBjUd/Tabela-completa-OE--CP--RF?node-id=0-1&embed-host=share" allowfullscreen></iframe>
-
----
-
-## Print do Figma
-
-Caso o figma a cima não carregue, aqui esta um print tirado da ultima atualizacao da Matriz de Rastreabilidade do figma
-
-![matriz_rastreabilidade](../00_assets/imagens/matriz_rastreabilidade.png)
-
----
-
 ## Considerações
 
 Os requisitos apresentados representam uma visão inicial das funcionalidades e características esperadas para a solução proposta.
