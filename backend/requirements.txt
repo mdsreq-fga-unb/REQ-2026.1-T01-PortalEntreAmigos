@@ -43,3 +43,5 @@ reportlab
 dj-database-url
 gunicorn
 sib-api-v3-sdk
+cloudinary
+django-cloudinary-storage
