@@ -16,11 +16,11 @@ Nesta unidade final do semestre, o foco da equipe concentrou-se na homologação
 
 - **Como foi superado**: Através de reuniões de validação síncronas periódicas (Atas 9 e 10) e do feedback contínuo do cliente. Carlos pôde testar os fluxos de ponta a ponta (como simular o upload de comprovante de doação e verificar o reflexo imediato nos saldos gerais), permitindo refinar o comportamento de avisos e notificações destrutivas na interface administrativa.
 
-### Fechamento e Apresentação Final (Entrega e Consolidação)
+### Deploy
 
-- **Desafio**: Sintetizar as lições acumuladas e a aplicação da metodologia híbrida RAD + OpenUP ao longo de todo o semestre em um pitch claro e objetivo, apresentando os benefícios gerados para a organização beneficiada.
+- **Desafio**: Nosso principal desafio foi colocar o site no ar, ja que, para a maioria de nos, essa foi a primeira vez que tentamos fazer isso.
 
-- **Como foi superado**: O grupo realizou simulações de apresentações internas e organizou os materiais com foco no valor de negócio e na maturidade técnica dos requisitos levantados. A consolidação dos resultados reforçou a relevância de processos bem definidos na formação acadêmica e profissional da equipe.
+- **Como foi superado**: Apos bastante pequisa, estudos, erros e perceverança, o grupo conseguiu colocar a pagina final no ar, com nenhum erro evidente.
 
 ---
 
