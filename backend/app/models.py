@@ -182,7 +182,11 @@ class CardTransparencia(models.Model):
 @receiver(post_delete, sender=CardTransparencia)
 def deletar_pdf_ao_excluir_card(sender, instance, **kwargs):
     if instance.arquivo_pdf:
-        instance.arquivo_pdf.delete(False)
+        try:
+            instance.arquivo_pdf.delete(False)
+        except Exception as e:
+            import logging
+            logging.getLogger(__name__).warning(f"Falha ao deletar arquivo físico no Cloudinary: {e}")
 
 
 @receiver(pre_save, sender=CardTransparencia)
@@ -196,5 +200,9 @@ def deletar_pdf_antigo_ao_atualizar(sender, instance, **kwargs):
     new_file = instance.arquivo_pdf
     if not old_file == new_file:
         if old_file:
-            old_file.delete(False)
+            try:
+                old_file.delete(False)
+            except Exception as e:
+                import logging
+                logging.getLogger(__name__).warning(f"Falha ao deletar arquivo antigo no Cloudinary: {e}")
 
