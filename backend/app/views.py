@@ -435,3 +435,14 @@ class CardTransparenciaViewSet(viewsets.ModelViewSet):
     serializer_class = CardTransparenciaSerializer
     permission_classes = [IsAdminOrReadOnly]
     parser_classes = (MultiPartParser, FormParser)
+
+    def create(self, request, *args, **kwargs):
+        try:
+            return super().create(request, *args, **kwargs)
+        except Exception as e:
+            import traceback
+            error_details = traceback.format_exc()
+            return Response(
+                {"detail": f"Erro interno ao salvar no Cloudinary: {str(e)}"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
