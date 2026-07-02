@@ -52,6 +52,19 @@ Esses registros contribuem para acompanhar o progresso do trabalho e evidenciam 
 
 ---
 
+### Unidade 4
+
+<p align="center">
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/jk-v3kXBH4g"
+    title="Apresentação Unidade 3"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</p>
+
+---
+
 ## Considerações
 
 As gravações das entregas permitem acompanhar a evolução contínua do projeto, registrando decisões, melhorias e resultados alcançados ao longo da disciplina.
