@@ -1,76 +1,27 @@
-# Projeto de Requisitos de Software 2026.1 - Grupo 1
+# Portal Entre Amigos — Requisitos de Software (2026.1)
 
 <p align="center">
-    <img src="docs/00_assets/imagens/logo_2.png" alt="Logo Ação Entre Amigos">
+    <img src="docs/00_assets/imagens/logo_2.png" alt="Logo Ação Entre Amigos" width="300px">
 </p>
-Fonte: Elaborada pelo Grupo
 
-Bem-vindo ao repositório do **Grupo 01**, da disciplina **Requisitos de Software (2026.1)**, da Universidade de Brasília (FCTE-UnB). Nosso ambiente de documentação está hospedado usando **MkDocs**, e está disponível online em: [https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/](https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/)
+##  Links Rápidos
 
-##  Como Executar o Projeto Localmente
-Caso queira ver ou editar a documentação localmente:
-
-
-### Pré-requisitos
-- Python 3.6 ou superior
-- pip (gerenciador de pacotes do Python)
+* **Aplicação em Produção:** [Acessar Portal Entre Amigos](https://req-2026-1-t01-portalentreamigos-1.onrender.com)
+* **Documentação Oficial (MkDocs):** [Acessar Documentação do Projeto](https://mdsreq-fga-unb.github.io/REQ-2026.1-T01-PortalEntreAmigos/)
 
 
-### Clone este repositório:
-   ```bash
-   git clone https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-PortalEntreAmigos.git
-   cd projeto_grupo01_2026.1
+## Objetivo do Produto
 
-# Acesse a pasta do projeto
-cd repositorio
-   ```
+O objetivo geral da plataforma é centralizar, automatizar e estruturar a gestão operacional de campanhas e doações da ONG **Ação entre Amigos BSB**. O ecossistema visa reduzir drasticamente o retrabalho manual com planilhas, garantindo o controle preciso do estoque físico de mantimentos, transparência contábil de recursos financeiros e engajamento prático de voluntários em eventos sociais.
 
+## Abordagem Metodológica
 
-### Instalação
-   ```bash
-# Instale o MkDocs
-pip install mkdocs
-```
+O projeto foi conduzido sob uma **abordagem híbrida e adaptativa**, aliando duas vertentes da engenharia:
+1.  **OpenUP (Fase de Concepção):** Utilizado para o entendimento profundo do problema, alinhamento de visão do produto com o cliente e delimitação rigorosa de escopo técnico.
+2.  **Ciclos RAD (Rapid Application Development):** Adotado ao longo de 7 iterações sequenciais para garantir prototipagem de alta fidelidade reativa, validação imediata com os stakeholders e construção incremental focada em código limpo.
 
+## Integrantes do Grupo 1
 
-### Configure o Ambiente Virtual (Recomendado)
- ```bash
-# Crie um ambiente virtual
-python -m venv venv
-
-# Ative o ambiente virtual
-# No Windows:
-venv\Scripts\activate
-# No macOS/Linux:
-source venv/bin/activate
-
-# Instale as dependências
-pip install -r requirements.txt
-```
-
-
-### Adicionar uma nova página:
-1. Crie um novo arquivo .md na pasta docs/
-2. Adicione ao menu no mkdocs.yml
-
-
-### Visualize as Alterações Localmente
- ```bash
-# Execute o servidor local
-mkdocs serve
-
-# Acesse no navegador:
-# http://localhost:8000
-```
-
-
-### Deploy para Produção após o push
- ```bash
-# Faça deploy para GitHub Pages
-mkdocs gh-deploy
-```
-
-## Integrantes
 <table>
   <tr>
     <td align="center"><a href="https://github.com/GuilhermeOliveira1327"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/185217197?v=4" width="100px;" alt=""/><br /><sub><b>GUILHERME OLIVEIRA</b></sub></a><br />
